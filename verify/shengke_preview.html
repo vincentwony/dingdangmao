@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生克制化 — 预期效果预览</title>
+<style>
+:root {
+  --cinnabar: #C41E0A; --cinnabar-dim: #8B1508;
+  --gold: #B8860B;     --gold-pale: #D4A574;
+  --parchment: #FFFDF7; --parchment-deep: #F5EDE0;
+  --ink: #3C2415;       --ink-muted: #6B5540;
+  --font-display: 'KaiTi','楷体','STKaiti','Noto Serif SC',serif;
+  --font-body: 'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--parchment-deep);padding:40px 20px;font-family:var(--font-body);color:var(--ink)}
+
+/* ── 卡片框架 ── */
+.card{max-width:720px;margin:0 auto;background:var(--parchment);border-radius:8px;
+  box-shadow:0 2px 16px rgba(60,36,21,0.08),0 0 0 1px var(--gold-pale);overflow:hidden}
+
+/* ── 卡片头 ── */
+.sk-header{display:flex;align-items:baseline;gap:12px;padding:16px 20px;
+  background:linear-gradient(180deg,rgba(184,134,11,0.06) 0%,transparent 100%);
+  border-bottom:1px solid var(--gold-pale)}
+.sk-header-title{font-family:var(--font-display);font-size:1.15rem;font-weight:700;color:var(--ink);
+  letter-spacing:0.08em}
+.sk-header-sub{font-family:var(--font-display);font-size:0.8rem;color:var(--ink-muted);
+  letter-spacing:0.05em}
+.sk-header-dot{width:6px;height:6px;border-radius:50%;background:var(--cinnabar)}
+
+/* ── Layer 1: 五行力量条 ── */
+.sk-bars{padding:20px 20px 12px}
+.sk-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.sk-wx{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:0.9rem;font-weight:700;color:#fff;flex-shrink:0}
+.sk-wx-mu{background:#5D8A3C}.sk-wx-huo{background:var(--cinnabar)}
+.sk-wx-tu{background:#B8860B}.sk-wx-jin{background:#9B8B78}
+.sk-wx-shui{background:#3C5A7D}
+
+.sk-bar-wrap{flex:1;height:8px;background:rgba(60,36,21,0.06);border-radius:4px;overflow:hidden}
+.sk-bar{height:100%;border-radius:4px;transition:width 0.6s ease}
+.sk-bar-mu{background:linear-gradient(90deg,#7AAF4A,#5D8A3C)}
+.sk-bar-huo{background:linear-gradient(90deg,#E8492E,var(--cinnabar))}
+.sk-bar-tu{background:linear-gradient(90deg,#D4A574,var(--gold))}
+.sk-bar-jin{background:linear-gradient(90deg,#B8A898,#9B8B78)}
+.sk-bar-shui{background:linear-gradient(90deg,#5A8FA8,#3C5A7D)}
+
+.sk-score{width:42px;text-align:right;font-family:var(--font-display);font-size:1rem;font-weight:700;
+  color:var(--cinnabar);flex-shrink:0}
+.sk-unit{font-size:0.7rem;font-weight:400;color:var(--ink-muted)}
+.sk-detail{font-size:0.75rem;color:var(--ink-muted);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── Layer 2: 通根注疏 ── */
+.sk-zhushu{margin:0 20px;padding:14px 0;border-top:1px dashed var(--gold-pale);
+  border-bottom:1px dashed var(--gold-pale)}
+.sk-zs-title{font-family:var(--font-display);font-size:0.85rem;color:var(--gold);margin-bottom:10px;
+  letter-spacing:0.06em}
+.sk-zs-item{display:flex;gap:8px;padding:3px 0;font-size:0.8rem;line-height:1.6}
+.sk-zs-tag{display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:3px;font-size:0.65rem;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px}
+.sk-zs-tag-mu{background:#5D8A3C}.sk-zs-tag-huo{background:var(--cinnabar)}
+.sk-zs-tag-tu{background:var(--gold)}.sk-zs-tag-jin{background:#9B8B78}
+.sk-zs-tag-shui{background:#3C5A7D}
+.sk-zs-text{color:var(--ink-muted)}
+.sk-zs-text em{font-style:normal;color:var(--cinnabar);font-weight:600}
+.sk-zs-gap{height:6px}
+
+/* ── Layer 3: 日主总括 ── */
+.sk-summary{display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:14px 20px;font-family:var(--font-display);font-size:0.9rem;letter-spacing:0.05em}
+.sk-ri{font-size:1.1rem;font-weight:700;color:var(--cinnabar)}
+.sk-pct{font-weight:700;color:var(--ink)}
+.sk-summary-divider{width:1px;height:16px;background:var(--gold-pale)}
+
+/* ── 响应式 ── */
+@media(max-width:480px){
+  .sk-detail{display:none}
+  .sk-row{gap:6px}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <!-- 卡片头 -->
+  <div class="sk-header">
+    <span class="sk-header-dot"></span>
+    <span class="sk-header-title">生克制化</span>
+    <span class="sk-header-sub">月令 · 通根 · 天干 三垣推步</span>
+  </div>
+
+  <!-- Layer 1: 五行力量条 -->
+  <div class="sk-bars">
+    <!-- 木 44分 -->
+    <div class="sk-row">
+      <span class="sk-wx sk-wx-mu">木</span>
+      <div class="sk-bar-wrap"><div class="sk-bar sk-bar-mu" style="width:56%"></div></div>
+      <span class="sk-score">44<span class="sk-unit">分</span></span>
+      <span class="sk-detail">月令旺·40 &nbsp; 通根三处·4 &nbsp; 天干—</span>
+    </div>
+    <!-- 火 38分 -->
+    <div class="sk-row">
+      <span class="sk-wx sk-wx-huo">火</span>
+      <div class="sk-bar-wrap"><div class="sk-bar sk-bar-huo" style="width:48%"></div></div>
+      <span class="sk-score">38<span class="sk-unit">分</span></span>
+      <span class="sk-detail">月令相·28 &nbsp; 通根一处·5 &nbsp; 天干一处·5</span>
+    </div>
+    <!-- 土 34分 -->
+    <div class="sk-row">
+      <span class="sk-wx sk-wx-tu">土</span>
+      <div class="sk-bar-wrap"><div class="sk-bar sk-bar-tu" style="width:43%"></div></div>
+      <span class="sk-score">34<span class="sk-unit">分</span></span>
+      <span class="sk-detail">月令休·16 &nbsp; 通根三处·5 &nbsp; 天干二处·13</span>
+    </div>
+    <!-- 金 13分 -->
+    <div class="sk-row">
+      <span class="sk-wx sk-wx-jin">金</span>
+      <div class="sk-bar-wrap"><div class="sk-bar sk-bar-jin" style="width:17%"></div></div>
+      <span class="sk-score">13<span class="sk-unit">分</span></span>
+      <span class="sk-detail">月令囚·8 &nbsp; 通根— &nbsp; 天干一处·5</span>
+    </div>
+    <!-- 水 1分 -->
+    <div class="sk-row">
+      <span class="sk-wx sk-wx-shui">水</span>
+      <div class="sk-bar-wrap"><div class="sk-bar sk-bar-shui" style="width:2%"></div></div>
+      <span class="sk-score">1<span class="sk-unit">分</span></span>
+      <span class="sk-detail">月令死·0 &nbsp; 通根二处·1 &nbsp; 天干—</span>
+    </div>
+  </div>
+
+  <!-- Layer 2: 通根注疏 -->
+  <div class="sk-zhushu">
+    <div class="sk-zs-title">▍ 通根溯源</div>
+
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-mu">木</span>
+      <span class="sk-zs-text">辰中<em>乙</em>木·中气 三十铢 × 冠带半铢 → <em>十七铢</em></span>
+    </div>
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-mu">木</span>
+      <span class="sk-zs-text">卯中<em>乙</em>木·本气 百铢 × 沐浴二铢 → <em>二十铢</em></span>
+    </div>
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-mu">木</span>
+      <span class="sk-zs-text">辰中<em>乙</em>木·中气 三十铢 × 冠带半铢 → <em>十七铢</em></span>
+    </div>
+    <div class="sk-zs-gap"></div>
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-huo">火</span>
+      <span class="sk-zs-text">午中<em>丁</em>火·本气 七十铢 × 帝旺整铢 → <em>七十铢</em></span>
+    </div>
+    <div class="sk-zs-gap"></div>
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-tu">土</span>
+      <span class="sk-zs-text">辰中<em>戊</em>土·本气 六十铢 × 冠带半铢 → <em>三十三铢</em> &nbsp;（二处同）</span>
+    </div>
+    <div class="sk-zs-gap"></div>
+    <div class="sk-zs-item">
+      <span class="sk-zs-tag sk-zs-tag-shui">水</span>
+      <span class="sk-zs-text">辰中<em>癸</em>水·余气 十铢 × 冠带半铢 → <em>六铢</em> &nbsp;（二处同）</span>
+    </div>
+  </div>
+
+  <!-- Layer 3: 日主总括 -->
+  <div class="sk-summary">
+    <span>日主</span>
+    <span class="sk-ri">戊土</span>
+    <span class="sk-summary-divider"></span>
+    <span>印比 <span class="sk-pct">44%</span></span>
+    <span class="sk-summary-divider"></span>
+    <span>克泄耗 <span class="sk-pct">56%</span></span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+[TC14] 癸亥 癸亥 癸亥 癸亥
+pattern=一氣格 yongshen=食伤 strength=极旺(39%)
+isCong=True verify=PASS

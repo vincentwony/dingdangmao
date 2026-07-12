@@ -1,0 +1,233 @@
+/* ═══════════════════════════════════════════════════════════
+   Design Tokens — 公信万年历 全局变量
+   方案：文学性克制（OWSPACE方向）| 生成：Utopia 流体公式 (375→1440)
+   管理：所有颜色/字号/间距/层级 唯一定义处
+   原则：暖白底 + 克制金 + 排版驱动 + 零阴影零渐变
+   ═══════════════════════════════════════════════════════════ */
+
+/* ══════ 响应式基准 ══════ */
+:root {
+  /* ── 字号（Utopia 1.2 比例尺） ── */
+  --text-2xs: clamp(0.5rem, 0.467rem + 0.14vw, 0.563rem);   /* 8→9px */
+  --text-xs:  clamp(0.625rem, 0.574rem + 0.22vw, 0.75rem);    /* 10→12px */
+  --text-sm:  clamp(0.75rem, 0.676rem + 0.31vw, 0.875rem);    /* 12→14px */
+  --text-base: clamp(0.875rem, 0.818rem + 0.24vw, 1rem);      /* 14→16px */
+  --text-md:  clamp(1rem, 0.909rem + 0.39vw, 1.125rem);       /* 16→18px */
+  --text-lg:  clamp(1.125rem, 0.983rem + 0.61vw, 1.375rem);   /* 18→22px */
+  --text-xl:  clamp(1.25rem, 1.037rem + 0.91vw, 1.625rem);    /* 20→26px */
+  --text-2xl: clamp(1.5rem, 1.179rem + 1.37vw, 2rem);         /* 24→32px */
+  --text-3xl: clamp(1.75rem, 1.283rem + 1.99vw, 2.5rem);      /* 28→40px */
+  --text-4xl: clamp(2rem, 1.358rem + 2.74vw, 3rem);           /* 32→48px */
+
+  /* ── 间距（Utopia 1.5 比例尺） ── */
+  --space-3xs: clamp(0.125rem, 0.103rem + 0.09vw, 0.188rem);  /* 2→3px */
+  --space-2xs: clamp(0.25rem, 0.206rem + 0.19vw, 0.375rem);   /* 4→6px */
+  --space-xs:  clamp(0.375rem, 0.309rem + 0.28vw, 0.5rem);     /* 6→8px */
+  --space-sm:  clamp(0.5rem, 0.402rem + 0.42vw, 0.75rem);      /* 8→12px */
+  --space-md:  clamp(0.75rem, 0.618rem + 0.56vw, 1rem);        /* 12→16px */
+  --space-lg:  clamp(1rem, 0.804rem + 0.84vw, 1.5rem);         /* 16→24px */
+  --space-xl:  clamp(1.5rem, 1.206rem + 1.25vw, 2.25rem);      /* 24→36px */
+  --space-2xl: clamp(2rem, 1.566rem + 1.85vw, 3rem);           /* 32→48px */
+  --space-3xl: clamp(3rem, 2.347rem + 2.78vw, 4.5rem);         /* 48→72px */
+
+  /* ── 圆角 ── */
+  --radius-none: 0;
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-full: 9999px;
+  --radius-pill: 9999px;    /* 胶囊圆角（别名，与 full 一致） */
+
+  /* ── z-index 语义层级 ── */
+  --z-base:      1;
+  --z-dropdown:  10;
+  --z-sticky:    50;
+  --z-overlay:   100;
+  --z-panel:     200;
+  --z-modal:     500;
+  --z-archive-overlay: 600;
+  --z-footer:    900;     /* 页脚：高于所有内容浮层 */
+  --z-tooltip:   910;     /* 页脚箭头：略高于页脚 */
+  --z-nav:       950;     /* 顶部导航栏：始终可见，低于 Toast(1000) */
+  --z-toast:     1000;    /* 通知提示：高于导航栏 */
+  --z-debug:     9999;    /* 调试信息：最高层级 */
+}
+
+/* ══════ 亮色主题 ══════ */
+:root,
+body.light {
+  /* 品牌色 — 文学金（OWSPACE #bea353 方向） */
+  --color-cinnabar:      #C41E0A;
+  --color-cinnabar-deep: #8B1508;
+  --color-cinnabar-glow: rgba(196,30,10,0.28);
+  --color-gold:          #9a8035;      /* 可读金色（文字/边框） */
+  --color-gold-bright:   #bea353;      /* OWSPACE 文学金（强调/Hover） */
+  --color-gold-pale:     #c7b47b;      /* 淡金（装饰/分隔） */
+
+  /* 语义色 */
+  --color-danger:     #DC2626;
+  --color-warning:    #D98A20;
+  --color-info:       #5A8FA8;
+  --color-success:    #5D8A7C;
+  --color-good:       #5D8A7C;     /* 吉（同 success） */
+  --color-bad:        #DC2626;     /* 凶（同 danger） */
+
+  /* 中性色 */
+  --color-white:      #FFFFFF;
+  --color-offwhite:   #F8F7F5;        /* OWSPACE 暖白底 */
+  --color-gray-50:    #F0EDE8;
+  --color-gray-100:   #E8E4DE;
+  --color-gray-200:   #D5CFC7;
+  --color-gray-300:   #B8B0A7;
+  --color-gray-400:   #6B6359;
+  --color-gray-500:   #5C554E;
+  --color-gray-600:   #3D3732;
+  --color-gray-700:   #2C2723;
+  --color-gray-800:   #1C1916;
+  --color-gray-900:   #0D0B0A;
+
+  /* 背景色 */
+  --bg-page:        var(--color-offwhite);
+  --bg-card:        var(--color-white);
+  --bg-card-raised: #FAFAF8;
+  --bg-input:       #F9F6F1;
+  --bg-overlay:     rgba(13,11,10,0.45);
+  --surface-warm:   #FDFAF6;     /* 暖色表面（卡片强调变体） */
+
+  /* 文字色 */
+  --text-primary:   var(--color-gray-800);
+  --text-secondary: var(--color-gray-600);
+  --text-muted:     var(--color-gray-500);
+  --text-heading:   var(--color-gray-900);
+  --text-on-dark:   #F7F3EE;
+
+  /* 边框色 */
+  --border-light:    var(--color-gray-200);
+  --border-medium:   #D4B896;
+  --border-ink:      var(--color-gray-200);
+  --border-gold:     #D4B896;
+  --border-strong:   var(--color-gray-300);
+
+  /* 阴影 — 最小化（OWSPACE 零阴影原则） */
+  --shadow-sm:  0 1px 2px rgba(13,11,10,0.04);
+  --shadow-md:  0 2px 8px rgba(13,11,10,0.06);
+  --shadow-lg:  0 4px 16px rgba(13,11,10,0.08);
+  --shadow-xl:  0 8px 24px rgba(13,11,10,0.10);
+
+  /* ── 别名/派生变量（供 base.css 等引用） ── */
+  --surface-card:         var(--bg-card);           /* 卡片表面（可被组件覆盖） */
+  --color-interactive:    var(--color-cinnabar);    /* 交互色（按钮/链接默认） */
+  --color-interactive-hover: var(--color-cinnabar-deep); /* 交互色悬停 */
+  --hairline:             var(--border-ink);        /* 极细边框（输入框等） */
+  --hairline-strong:      var(--border-gold);       /* 强调极细边框 */
+  --card-padding:         20px;                     /* 卡片统一内边距 */
+  --card-gap:             16px;                     /* 卡片统一间距 */
+
+  /* ── 八字细盘五行色（问真八字专业配色） ── */
+  --bt-gan-water:   #2e83f6;   /* 壬癸水 → .bt-blue */
+  --bt-gan-wood:    #07e930;   /* 甲乙木 → .bt-green */
+  --bt-gan-fire:    #d30505;   /* 丙丁火 → .bt-red */
+  --bt-gan-earth:   #8b6d03;   /* 戊己土 → .bt-orange */
+  --bt-gan-metal:   #ef9104;   /* 庚辛金 → .bt-gold */
+
+  /* 遮罩 */
+  --backdrop-blur: blur(6px);
+}
+
+/* ══════ 暗色主题 ══════ */
+body.dark {
+  /* 品牌色（暗色下提亮） */
+  --color-cinnabar:      #D4403A;
+  --color-cinnabar-deep: #A01510;
+  --color-cinnabar-glow: rgba(212,64,58,0.35);
+  --color-gold:          #c7b47b;
+  --color-gold-bright:   #D4A853;
+  --color-gold-pale:     #B0A080;
+
+  /* 语义色 */
+  --color-danger:     #E84848;
+  --color-warning:    #E8A040;
+  --color-info:       #70A8C0;
+  --color-success:    #70A898;
+  --color-good:       #70A898;     /* 吉（同 success） */
+  --color-bad:        #E84848;     /* 凶（同 danger） */
+
+  /* 中性色反转 */
+  --color-white:      #0D0B0A;
+  --color-offwhite:   #12100E;
+  --color-gray-50:    #161412;
+  --color-gray-100:   #1C1A17;
+  --color-gray-200:   #262420;
+  --color-gray-300:   #3A3632;
+  --color-gray-400:   #6B6460;
+  --color-gray-500:   #A09890;
+  --color-gray-600:   #B5B0AA;
+  --color-gray-700:   #D5D0CA;
+  --color-gray-800:   #E8E4DE;
+  --color-gray-900:   #F5F2EF;
+
+  /* 背景色 */
+  --bg-page:        var(--color-offwhite);
+  --bg-card:        var(--color-gray-100);
+  --bg-card-raised: #1A1815;
+  --bg-input:       #1E1C19;
+  --bg-overlay:     rgba(0,0,0,0.55);
+  --surface-warm:   #1A1815;     /* 暖色表面（暗色下同 card-raised） */
+
+  /* 文字色 */
+  --text-primary:   var(--color-gray-800);
+  --text-secondary: var(--color-gray-600);
+  --text-muted:     var(--color-gray-400);
+  --text-heading:   var(--color-gray-900);
+  --text-on-dark:   #0D0B0A;
+
+  /* 边框色 */
+  --border-light:    var(--color-gray-200);
+  --border-medium:   #4A4030;
+  --border-ink:      var(--color-gray-200);
+  --border-gold:     #4A3F32;
+  --border-strong:   var(--color-gray-300);
+
+  /* 阴影 */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.2);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.3);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.4);
+  --shadow-xl:  0 16px 48px rgba(0,0,0,0.5);
+
+  /* ── 八字细盘五行色（暗色下提亮） ── */
+  --bt-gan-water:   #5AADFF;
+  --bt-gan-wood:    #4DFF60;
+  --bt-gan-fire:    #FF4A4A;
+  --bt-gan-earth:   #C9A013;
+  --bt-gan-metal:   #FFB340;
+
+  /* 遮罩 */
+  --backdrop-blur: blur(10px);
+}
+
+/* ══════ 全局字体 ══════ */
+:root {
+  --font-body:    'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-display: 'Noto Serif TC', 'KaiTi', '楷体', 'STKaiti', 'PingFang SC', serif;
+  --font-mono:    'Cascadia Code', 'Fira Code', 'Courier New', monospace;
+  --font-seal:    'Noto Serif TC', 'KaiTi', '楷体', 'STKaiti', serif;
+}
+
+/* ══════ 性能 ══════ */
+:root {
+  --transition-fast:   0.12s ease;
+  --transition-base:   0.18s ease;
+  --transition-slow:   0.25s ease;
+  --transition-spring: 0.25s ease;
+  --transition:        var(--transition-base);  /* 通用过渡（别名，跟随 base 值） */
+}
+
+/* ══════ prefers-reduced-motion ══════ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast:   0s;
+    --transition-base:   0.01s;
+    --transition-slow:   0.01s;
+    --transition-spring: 0.01s;
+  }
+}

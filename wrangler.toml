@@ -1,0 +1,23 @@
+# 公信万年历 — 商业化授权 Worker
+# 部署：wrangler deploy
+name = "wannianli-license"
+main = "worker-license.js"
+compatibility_date = "2024-01-01"
+
+# KV 命名空间（首次部署前需创建：wrangler kv:namespace create LICENSE_CODES）
+# [[kv_namespaces]]
+# binding = "LICENSE_CODES"
+# id = "your-kv-namespace-id"
+
+# 环境变量（部署前在 CF Dashboard 或 wrangler secret 设置）
+# [vars]
+# API_KEY = "你的管理API密钥"
+#
+# [env.production.vars]
+# HMAC_SECRET = "8af3c1b7e42d5f9ac3d4e5f6a7b8c9d0"
+# API_KEY = "你的生产API密钥"
+
+# 路由（自定义域名）
+# routes = [
+#   { pattern = "api.wannianli.com/*", zone_name = "wannianli.com" }
+# ]

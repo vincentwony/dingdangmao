@@ -1,0 +1,2490 @@
+[
+  {
+    "info": {
+      "id": "TC01",
+      "desc": "甲木·巳月",
+      "pillars": [
+        "甲子",
+        "庚午",
+        "辛酉",
+        "甲午"
+      ],
+      "bIdx": [
+        6000000,
+        60000006,
+        8994297,
+        89931630
+      ],
+      "riGan": "辛",
+      "riZhi": "酉",
+      "yueZhi": "午",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": -0.6999999999999997,
+      "strength": "中和",
+      "strengthLabel": "日主力量适中，最佳状态",
+      "scoreLing": -3.5999999999999996,
+      "scoreGen": 3,
+      "scoreShi": -0.10000000000000009,
+      "correction": 0,
+      "scLingRaw": -1.2,
+      "scGenRaw": 1.5,
+      "scShiRaw": -0.10000000000000009,
+      "riWx": 3,
+      "rootDetails": [
+        "day有根_酉(1.50)"
+      ],
+      "favorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      },
+      "unfavorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　年柱 甲子　月柱 庚午　日柱 辛酉　时柱 甲午</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令提纲</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">午</span>，本气 <span class=\"bz-dingge-gold\">丁</span>（阴火），本气十神：<span class=\"bz-dingge-highlight\">七杀</span>。<br>节气：芒种后 <span class=\"bz-dingge-gold\">9.2</span> 日，司令人元：<span class=\"bz-dingge-highlight\">丙</span>（阳火）。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、本气十神定位</div><div class=\"bz-dingge-step-body\">本气 <span class=\"bz-dingge-gold\">丁</span> 对日主 <span class=\"bz-dingge-gold\">辛</span>：<span class=\"bz-dingge-highlight\">七杀</span>。<br><span style=\"color:var(--color-warning);font-size:12px;\">司令 丙（正官）未透干，降等以本气定格。</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、透干验证</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">丙</span> 未透出天干 → <span style=\"color:var(--color-warning);\">格局不真</span>，层次减等。</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">七杀格</div><div class=\"bz-dingge-grade\">逆用格局（喜制伏，忌生扶）</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、四柱配合分析</div><div class=\"bz-dingge-step-body\">相神（辅格）：<span style=\"color:var(--color-warning);\">无得力相神</span><br>忌神（损格）：<span style=\"color:#C41E0A;font-weight:600;\">年财(滋杀)、时财(滋杀)</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、格局层次评定</div><div class=\"bz-dingge-step-body\">综合评分：<span class=\"bz-dingge-highlight\">破格</span>（-3 分）。格局破败，用神被伤，忌神猖獗，主一生多舛。</div></div><div class=\"bz-dingge-step\" style=\"margin-top:4px;\"><div class=\"bz-dingge-step-label\">八、喜用神索引</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">忌神（损格十神）：<span style=\"color:#C41E0A;font-weight:600;\">正财、偏财</span></div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　|　年柱 甲子　月柱 庚午　日柱 辛酉　时柱 甲午</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">午</span>（夏季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（正格逆用）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">七杀格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：伤官</span>（五行水，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：伤官、正印</span>（五行水/土，扶助用神）<br><span style=\"color:#D98A20;\">仇神：正官</span>（五行火，党助忌神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：正财</span>（五行木，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生夏季，<span class=\"bz-dingge-gold\">需要调候</span>。<br>调候指引：夏金融化，喜壬水淬炼 → 调候五行：<span class=\"bz-dingge-gold\">水</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">火</span> 克 <span class=\"bz-dingge-highlight\">金</span>（交战），通关用神：<span class=\"bz-dingge-gold\">土</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">水</span> 有根但未透 → <span style=\"color:#D98A20;font-weight:700;\">偏真用神</span>。效果中等，需岁运引发加强。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">伤官</span>（五行水）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">正财</span>（五行木）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div>",
+    "congGe": {
+      "ganArr": [
+        "甲",
+        "庚",
+        "辛",
+        "甲"
+      ],
+      "zhiArr": [
+        "子",
+        "午",
+        "酉",
+        "午"
+      ],
+      "riGan": "辛",
+      "riGanIdx": 7,
+      "riWx": 3,
+      "yueZhi": "午",
+      "yueZhiIdx": 6,
+      "scores": {
+        "mu": 18,
+        "huo": 77,
+        "tu": 10,
+        "jin": 48,
+        "shui": 14
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 9,
+          "kind": "财"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 18,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 12,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 9,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 14,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 41,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 5,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 18,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 36,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 5,
+          "kind": "印"
+        }
+      ],
+      "shengZhuTotal": 58,
+      "keXieTotal": 124,
+      "totalScore": 182,
+      "shengPct": 31.9,
+      "keXiePct": 68.1,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "酉本气辛",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "月支",
+          "gan": "己",
+          "kind": "印",
+          "zhi": "午"
+        },
+        {
+          "pos": "时支",
+          "gan": "己",
+          "kind": "印",
+          "zhi": "午"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "丁",
+      "yueWx": 1,
+      "yueIsYinBi": false,
+      "yueSSKind": "官",
+      "ssScores": {
+        "印": 10,
+        "比": 48,
+        "财": 18,
+        "官": 77,
+        "食伤": 14
+      },
+      "result": "非从格",
+      "congShen": "—",
+      "congType": null,
+      "luckyEl": [],
+      "unluckyEl": [],
+      "luckyWx": [],
+      "unluckyWx": [],
+      "congShenWx": -1,
+      "grade": "—",
+      "dangerYears": "",
+      "isCong": false,
+      "wuxingVals": {
+        "mu": 32,
+        "huo": 80,
+        "tu": 30,
+        "jin": 66,
+        "shui": 24,
+        "total": 232,
+        "shengzhu": 96,
+        "kexie": 136,
+        "shengPct": 41.4,
+        "kexiePct": 58.6
+      },
+      "luckyGan": [],
+      "luckyZhi": [],
+      "unluckyGan": [],
+      "unluckyZhi": []
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC02",
+      "desc": "丙火·子月",
+      "pillars": [
+        "辛未",
+        "辛丑",
+        "辛未",
+        "丙申"
+      ],
+      "bIdx": [
+        6000007,
+        60000097,
+        8997067,
+        89964872
+      ],
+      "riGan": "辛",
+      "riZhi": "未",
+      "yueZhi": "丑",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": 7.302,
+      "strength": "极强",
+      "strengthLabel": "日主旺极，需克泄耗来平衡",
+      "scoreLing": 5.1,
+      "scoreGen": 0.9120000000000001,
+      "scoreShi": 1.29,
+      "correction": 0,
+      "scLingRaw": 1.6999999999999997,
+      "scGenRaw": 0.45600000000000007,
+      "scShiRaw": 1.29,
+      "riWx": 3,
+      "rootDetails": [
+        "hour有根_申(0.57)"
+      ],
+      "favorable": {
+        "note": "宜克泄耗（官杀、食伤、财才）",
+        "wx": [
+          "克我(官杀)",
+          "我生(食伤)",
+          "我克(财)"
+        ]
+      },
+      "unfavorable": {
+        "note": "忌生扶（印、比劫）",
+        "wx": [
+          "生我(印)",
+          "同我(比劫)"
+        ]
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　年柱 辛未　月柱 辛丑　日柱 辛未　时柱 丙申</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">从旺格·从印</div><div class=\"bz-dingge-grade\">特殊格局 · 顺势而为</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">从格判定依据</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">生助力量占 <span class=\"bz-dingge-highlight\">82.2%</span>，克泄耗力量占 <span style=\"color:#C41E0A;font-weight:600;\">17.8%</span>。日主有本气根，天干有印比。<br>日主极旺，满盘印比成势，顺从旺势取用。</div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　|　年柱 辛未　月柱 辛丑　日柱 辛未　时柱 丙申</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">丑</span>（冬季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（从格顺势）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">从旺格·从印</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：正印</span>（五行土，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：劫财</span>（五行金，扶助用神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：伤官、正财、正官</span>（五行水/木/火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生冬季，<span class=\"bz-dingge-gold\">需要调候</span>。<br>调候指引：冬金寒凝，喜丙火暖局 → 调候五行：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">土</span> 克 <span class=\"bz-dingge-highlight\">水</span>（交战），通关用神：<span class=\"bz-dingge-gold\">金</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">土</span> 有根但未透 → <span style=\"color:#D98A20;font-weight:700;\">偏真用神</span>。效果中等，需岁运引发加强。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">正印</span>（五行土）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">伤官、正财、正官</span>（五行水/木/火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div><div class=\"bz-dingge-step bz-section--red\" style=\"margin-top:12px;\"><div class=\"bz-dingge-step-label\">八、从格核心提示（命主必读）</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;line-height:1.9;\"><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">一、命局简析</div><p style=\"margin:2px 0 8px 0;\">日主<span class=\"bz-dingge-highlight\">辛</span>（五行属金），日主极旺，生于印比当令之月，满盘印比成势，财官食伤虚浮无根，日主强旺不可逆，只能顺其旺势取用。</p><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">二、喜用神详解（顺势而取）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(212,184,102,0.12);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">优先级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">类别</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">命理作用</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第1</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第一喜神（用神）</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">土</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">戊、己</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">辰、戌、丑、未</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">全局最旺，顺势发财升官</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第2</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第二喜神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">金</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">庚、辛</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">申、酉</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">助旺用神，锦上添花</td></tr></table><div style=\"font-weight:700;color:var(--color-cinnabar-deep);margin-bottom:4px;\">三、忌神警示（触之必凶）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(196,30,10,0.06);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">危险等级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">破格后果</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第一忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">水</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">壬、癸</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">亥、子</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">直接破格，犯旺招灾，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">木</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">甲、乙</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">寅、卯</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">火</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">丙、丁</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">巳、午</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr></table><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">四、核心原则</div><p style=\"margin:2px 0 8px 0;\">从格之命，一生需<span style=\"color:#C41E0A;font-weight:700;\">「顺势而不逆」</span>。逢喜神流年大运必发达，逢忌神必遭重挫。<br>《渊海子平》云：\"从格无根，方论从。\"大运见印比即破，逢之需格外谨慎。<br>《子平真诠》：\"真从之格局，逢印比运即破。\"破格时多应灾祸，事业反复，健康受损。</p><div style=\"font-weight:700;color:#5D8A7C;margin-bottom:4px;\">五、典籍参考</div><p style=\"margin:2px 0 4px 0;font-size:12px;color:var(--text-secondary);\">《滴天髓》：\"从得真者只论从，从神又有吉和凶。\"<br>《三命通会》：\"从财、从杀、从儿，各有喜忌，不可一概论也。\"<br>《渊海子平》：\"假从者，如人之根浅力薄，不能自立，局中虽有劫印，而自顾不暇，不得不从人也。\"</p></div></div>",
+    "congGe": {
+      "ganArr": [
+        "辛",
+        "辛",
+        "辛",
+        "丙"
+      ],
+      "zhiArr": [
+        "未",
+        "丑",
+        "未",
+        "申"
+      ],
+      "riGan": "辛",
+      "riGanIdx": 7,
+      "riWx": 3,
+      "yueZhi": "丑",
+      "yueZhiIdx": 1,
+      "scores": {
+        "mu": 4,
+        "huo": 19,
+        "tu": 116,
+        "jin": 64,
+        "shui": 21
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 15,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 15,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 18,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 9,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 36,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 41,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 8,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 7,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 36,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 8,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 14,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 3,
+          "kind": "印"
+        }
+      ],
+      "shengZhuTotal": 203,
+      "keXieTotal": 44,
+      "totalScore": 247,
+      "shengPct": 82.2,
+      "keXiePct": 17.8,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "申本气庚",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "月支",
+          "gan": "辛",
+          "kind": "比",
+          "zhi": "丑"
+        },
+        {
+          "pos": "时支",
+          "gan": "戊",
+          "kind": "印",
+          "zhi": "申"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "己",
+      "yueWx": 2,
+      "yueIsYinBi": true,
+      "yueSSKind": "印",
+      "ssScores": {
+        "印": 116,
+        "比": 64,
+        "财": 4,
+        "官": 19,
+        "食伤": 21
+      },
+      "result": "从旺格·从印",
+      "congShen": "印星",
+      "congType": "从旺格·从印",
+      "luckyEl": [
+        "印",
+        "比劫"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀"
+      ],
+      "luckyWx": [
+        2,
+        3
+      ],
+      "unluckyWx": [
+        4,
+        0,
+        1
+      ],
+      "congShenWx": 2,
+      "grade": "上等",
+      "dangerYears": "大运见<span style=\"color:#C41E0A;font-weight:700;\">财、官杀</span>运则破格。<br><br>流年吉凶：<br>· <span style=\"color:#5D8A7C;font-weight:700;\">喜</span> 辰戌丑未（土）、申酉（金） 旺年，顺势而昌；<br>· <span style=\"color:#C41E0A;font-weight:700;\">忌</span> 亥子（水）、寅卯（木）、巳午（火） 旺年，逆势则破格招灾。<br>",
+      "isCong": true,
+      "wuxingVals": {
+        "mu": 4,
+        "huo": 42,
+        "tu": 111,
+        "jin": 70,
+        "shui": 21,
+        "total": 248,
+        "shengzhu": 181,
+        "kexie": 67,
+        "shengPct": 73,
+        "kexiePct": 27
+      },
+      "luckyGan": [
+        "戊、己",
+        "庚、辛"
+      ],
+      "luckyZhi": [
+        "辰、戌、丑、未",
+        "申、酉"
+      ],
+      "unluckyGan": [
+        "壬、癸",
+        "甲、乙",
+        "丙、丁"
+      ],
+      "unluckyZhi": [
+        "亥、子",
+        "寅、卯",
+        "巳、午"
+      ]
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC03",
+      "desc": "庚金·申月",
+      "pillars": [
+        "戊辰",
+        "庚申",
+        "戊子",
+        "丁巳"
+      ],
+      "bIdx": [
+        6000004,
+        60000056,
+        8995824,
+        89949953
+      ],
+      "riGan": "戊",
+      "riZhi": "子",
+      "yueZhi": "申",
+      "sex": "坤"
+    },
+    "strength": {
+      "score": 1.3220000000000003,
+      "strength": "中和偏强",
+      "strengthLabel": "日主略旺，接近平衡",
+      "scoreLing": -2.0999999999999996,
+      "scoreGen": 2.272,
+      "scoreShi": 1.1500000000000001,
+      "correction": 0,
+      "scLingRaw": -0.7,
+      "scGenRaw": 1.136,
+      "scShiRaw": 1.1500000000000001,
+      "riWx": 2,
+      "rootDetails": [
+        "year有根_辰(0.44)",
+        "hour有根_巳(1.09)"
+      ],
+      "favorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      },
+      "unfavorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">戊</span>（阳土）　年柱 戊辰　月柱 庚申　日柱 戊子　时柱 丁巳</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令提纲</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">申</span>，本气 <span class=\"bz-dingge-gold\">庚</span>（阳金），本气十神：<span class=\"bz-dingge-highlight\">食神</span>。<br>节气：立秋后 <span class=\"bz-dingge-gold\">12.3</span> 日，司令人元：<span class=\"bz-dingge-highlight\">壬</span>（阳水）。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、本气十神定位</div><div class=\"bz-dingge-step-body\">本气 <span class=\"bz-dingge-gold\">庚</span> 对日主 <span class=\"bz-dingge-gold\">戊</span>：<span class=\"bz-dingge-highlight\">食神</span>。<br><span style=\"color:var(--color-warning);font-size:12px;\">司令 壬（偏财）未透干，降等以本气定格。</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、透干验证</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">壬</span> 未透出天干 → <span style=\"color:var(--color-warning);\">格局不真</span>，层次减等。</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">食神格</div><div class=\"bz-dingge-grade\">顺用格局（喜扶助，忌克泄）</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、四柱配合分析</div><div class=\"bz-dingge-step-body\">相神（辅格）：<span style=\"color:var(--color-warning);\">无得力相神</span><br>忌神（损格）：<span style=\"color:#5D8A7C;\">无明显忌神</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、格局层次评定</div><div class=\"bz-dingge-step-body\">综合评分：<span class=\"bz-dingge-highlight\">下等</span>（+1 分）。格局偏弱，用神无力或忌神当道，须大运扶起方有作为。</div></div><div class=\"bz-dingge-step\" style=\"margin-top:4px;\"><div class=\"bz-dingge-step-label\">八、喜用神索引</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\"></div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">戊</span>（阳土）　|　年柱 戊辰　月柱 庚申　日柱 戊子　时柱 丁巳</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">申</span>（秋季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（正格顺用）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">食神格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：食神</span>（五行金，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：偏财</span>（五行水，扶助用神）<br><span style=\"color:#D98A20;\">仇神：七杀</span>（五行木，党助忌神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：偏印</span>（五行火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生秋季，调候需求不迫切。<br>调候指引：秋土虚寒，喜丙火暖局 → 调候五行：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">水</span> 克 <span class=\"bz-dingge-highlight\">火</span>（交战），通关用神：<span class=\"bz-dingge-gold\">木</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">金</span> 透干通根 → <span style=\"color:#5D8A7C;font-weight:700;\">真用神</span>。力量充足，能充分发挥平衡命局的作用。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">食神</span>（五行金）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">偏印</span>（五行火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div>",
+    "congGe": {
+      "ganArr": [
+        "戊",
+        "庚",
+        "戊",
+        "丁"
+      ],
+      "zhiArr": [
+        "辰",
+        "申",
+        "子",
+        "巳"
+      ],
+      "riGan": "戊",
+      "riGanIdx": 4,
+      "riWx": 2,
+      "yueZhi": "申",
+      "yueZhiIdx": 8,
+      "scores": {
+        "mu": 8,
+        "huo": 20,
+        "tu": 31,
+        "jin": 65,
+        "shui": 39
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 6,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 20,
+          "kind": "食伤"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 7,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 7,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 11,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年中气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 8,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 4,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 37,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 12,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 2,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 23,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 13,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 5,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 8,
+          "kind": "食伤"
+        }
+      ],
+      "shengZhuTotal": 51,
+      "keXieTotal": 125,
+      "totalScore": 176,
+      "shengPct": 29,
+      "keXiePct": 71,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "辰本气戊",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "月支",
+          "gan": "戊",
+          "kind": "比",
+          "zhi": "申"
+        },
+        {
+          "pos": "时支",
+          "gan": "戊",
+          "kind": "比",
+          "zhi": "巳"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "庚",
+      "yueWx": 3,
+      "yueIsYinBi": false,
+      "yueSSKind": "食伤",
+      "ssScores": {
+        "印": 20,
+        "比": 31,
+        "财": 39,
+        "官": 8,
+        "食伤": 65
+      },
+      "result": "非从格",
+      "congShen": "—",
+      "congType": null,
+      "luckyEl": [],
+      "unluckyEl": [],
+      "luckyWx": [],
+      "unluckyWx": [],
+      "congShenWx": -1,
+      "grade": "—",
+      "dangerYears": "",
+      "isCong": false,
+      "wuxingVals": {
+        "mu": 3,
+        "huo": 38,
+        "tu": 40,
+        "jin": 112,
+        "shui": 160,
+        "total": 353,
+        "shengzhu": 78,
+        "kexie": 275,
+        "shengPct": 22.1,
+        "kexiePct": 77.9
+      },
+      "luckyGan": [],
+      "luckyZhi": [],
+      "unluckyGan": [],
+      "unluckyZhi": []
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC04",
+      "desc": "壬水·午月",
+      "pillars": [
+        "乙亥",
+        "癸未",
+        "癸未",
+        "辛酉"
+      ],
+      "bIdx": [
+        6000011,
+        60000139,
+        8998339,
+        89980137
+      ],
+      "riGan": "癸",
+      "riZhi": "未",
+      "yueZhi": "未",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": -1.8760000000000008,
+      "strength": "中和偏弱",
+      "strengthLabel": "日主略弱，接近平衡",
+      "scoreLing": -4.800000000000001,
+      "scoreGen": 0.864,
+      "scoreShi": 2.06,
+      "correction": 0,
+      "scLingRaw": -1.6,
+      "scGenRaw": 0.432,
+      "scShiRaw": 2.06,
+      "riWx": 4,
+      "rootDetails": [
+        "year有根_亥(0.72)"
+      ],
+      "favorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      },
+      "unfavorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">癸</span>（阴水）　年柱 乙亥　月柱 癸未　日柱 癸未　时柱 辛酉</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令提纲</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">未</span>，本气 <span class=\"bz-dingge-gold\">己</span>（阴土），本气十神：<span class=\"bz-dingge-highlight\">七杀</span>。<br>节气：小暑后 <span class=\"bz-dingge-gold\">2.3</span> 日，司令人元：<span class=\"bz-dingge-highlight\">丁</span>（阴火）。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、本气十神定位</div><div class=\"bz-dingge-step-body\">本气 <span class=\"bz-dingge-gold\">己</span> 对日主 <span class=\"bz-dingge-gold\">癸</span>：<span class=\"bz-dingge-highlight\">七杀</span>。<br><span style=\"color:var(--color-warning);font-size:12px;\">司令 丁（偏财）未透干，降等以本气定格。</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、透干验证</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">丁</span> 未透出天干 → <span style=\"color:var(--color-warning);\">格局不真</span>，层次减等。</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">七杀格</div><div class=\"bz-dingge-grade\">逆用格局（喜制伏，忌生扶）</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、四柱配合分析</div><div class=\"bz-dingge-step-body\">相神（辅格）：<span style=\"color:#5D8A7C;font-weight:600;\">年食神(制杀)、时印(化杀)</span><br>忌神（损格）：<span style=\"color:#5D8A7C;\">无明显忌神</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、格局层次评定</div><div class=\"bz-dingge-step-body\">综合评分：<span class=\"bz-dingge-highlight\">中等</span>（+3 分）。格局有扶有制，虽有瑕疵但不至于破格，主衣食丰足。</div></div><div class=\"bz-dingge-step\" style=\"margin-top:4px;\"><div class=\"bz-dingge-step-label\">八、喜用神索引</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">喜神（辅格十神）：<span style=\"color:#5D8A7C;font-weight:600;\">食神、正印、偏印</span></div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">癸</span>（阴水）　|　年柱 乙亥　月柱 癸未　日柱 癸未　时柱 辛酉</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">未</span>（夏季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（正格逆用）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">七杀格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：伤官</span>（五行木，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：伤官、正印</span>（五行木/金，扶助用神）<br><span style=\"color:#D98A20;\">仇神：正官</span>（五行土，党助忌神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：正财</span>（五行火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生夏季，<span class=\"bz-dingge-gold\">需要调候</span>。<br>调候指引：夏水干涸，喜辛金发源 → 调候五行：<span class=\"bz-dingge-gold\">金</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">金</span> 克 <span class=\"bz-dingge-highlight\">木</span>（交战），通关用神：<span class=\"bz-dingge-gold\">水</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">木</span> 透干通根 → <span style=\"color:#5D8A7C;font-weight:700;\">真用神</span>。力量充足，能充分发挥平衡命局的作用。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">伤官</span>（五行木）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">正财</span>（五行火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div>",
+    "congGe": {
+      "ganArr": [
+        "乙",
+        "癸",
+        "癸",
+        "辛"
+      ],
+      "zhiArr": [
+        "亥",
+        "未",
+        "未",
+        "酉"
+      ],
+      "riGan": "癸",
+      "riGanIdx": 9,
+      "riWx": 4,
+      "yueZhi": "未",
+      "yueZhiIdx": 7,
+      "scores": {
+        "mu": 17,
+        "huo": 10,
+        "tu": 77,
+        "jin": 42,
+        "shui": 50
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 8,
+          "kind": "食伤"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 10,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 12,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 15,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 28,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 5,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 41,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 36,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·日中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 27,
+          "kind": "印"
+        }
+      ],
+      "shengZhuTotal": 92,
+      "keXieTotal": 119,
+      "totalScore": 211,
+      "shengPct": 43.6,
+      "keXiePct": 56.4,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "亥本气壬",
+      "hasHiddenYinBi": false,
+      "hiddenYinBiList": [],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "己",
+      "yueWx": 2,
+      "yueIsYinBi": false,
+      "yueSSKind": "官",
+      "ssScores": {
+        "印": 42,
+        "比": 50,
+        "财": 10,
+        "官": 77,
+        "食伤": 17
+      },
+      "result": "非从格",
+      "congShen": "—",
+      "congType": null,
+      "luckyEl": [],
+      "unluckyEl": [],
+      "luckyWx": [],
+      "unluckyWx": [],
+      "congShenWx": -1,
+      "grade": "—",
+      "dangerYears": "",
+      "isCong": false,
+      "wuxingVals": {
+        "mu": 43,
+        "huo": 10,
+        "tu": 72,
+        "jin": 99,
+        "shui": 64,
+        "total": 288,
+        "shengzhu": 163,
+        "kexie": 125,
+        "shengPct": 56.6,
+        "kexiePct": 43.4
+      },
+      "luckyGan": [],
+      "luckyZhi": [],
+      "unluckyGan": [],
+      "unluckyZhi": []
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC05",
+      "desc": "戊土·辰月",
+      "pillars": [
+        "壬戌",
+        "甲辰",
+        "己未",
+        "辛未"
+      ],
+      "bIdx": [
+        5999998,
+        59999980,
+        8993515,
+        89922247
+      ],
+      "riGan": "己",
+      "riZhi": "未",
+      "yueZhi": "辰",
+      "sex": "坤"
+    },
+    "strength": {
+      "score": 2.856,
+      "strength": "中和偏强",
+      "strengthLabel": "日主略旺，接近平衡",
+      "scoreLing": 1.5,
+      "scoreGen": 5.196,
+      "scoreShi": -3.84,
+      "correction": 0,
+      "scLingRaw": 0.5,
+      "scGenRaw": 2.598,
+      "scShiRaw": -3.84,
+      "riWx": 2,
+      "rootDetails": [
+        "year有根_戌(1.00)",
+        "day有根_未(1.11)",
+        "hour有根_未(1.11)"
+      ],
+      "favorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      },
+      "unfavorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">己</span>（阴土）　年柱 壬戌　月柱 甲辰　日柱 己未　时柱 辛未</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">从旺格·从比</div><div class=\"bz-dingge-grade\">特殊格局 · 顺势而为</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">从格判定依据</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">生助力量占 <span class=\"bz-dingge-highlight\">81.3%</span>，克泄耗力量占 <span style=\"color:#C41E0A;font-weight:600;\">18.7%</span>。日主有本气根，天干无助。<br>日主极旺，满盘印比成势，顺从旺势取用。</div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">己</span>（阴土）　|　年柱 壬戌　月柱 甲辰　日柱 己未　时柱 辛未</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">辰</span>（春季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（从格顺势）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">从旺格·从比</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：劫财</span>（五行土，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：正印</span>（五行火，扶助用神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：伤官、正财、正官</span>（五行金/水/木，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生春季，调候需求不迫切。<br>调候指引：春土湿润，喜丙火暖局 → 调候五行：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">土</span> 克 <span class=\"bz-dingge-highlight\">水</span>（交战），通关用神：<span class=\"bz-dingge-gold\">金</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">土</span> 透干通根 → <span style=\"color:#5D8A7C;font-weight:700;\">真用神</span>。力量充足，能充分发挥平衡命局的作用。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">劫财</span>（五行土）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">伤官、正财、正官</span>（五行金/水/木）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div><div class=\"bz-dingge-step bz-section--red\" style=\"margin-top:12px;\"><div class=\"bz-dingge-step-label\">八、从格核心提示（命主必读）</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;line-height:1.9;\"><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">一、命局简析</div><p style=\"margin:2px 0 8px 0;\">日主<span class=\"bz-dingge-highlight\">己</span>（五行属土），日主极旺，生于印比当令之月，满盘印比成势，财官食伤虚浮无根，日主强旺不可逆，只能顺其旺势取用。</p><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">二、喜用神详解（顺势而取）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(212,184,102,0.12);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">优先级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">类别</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">命理作用</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第1</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第一喜神（用神）</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">火</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">丙、丁</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">巳、午</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">全局最旺，顺势发财升官</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第2</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第二喜神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">土</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">戊、己</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">辰、戌、丑、未</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">助旺用神，锦上添花</td></tr></table><div style=\"font-weight:700;color:var(--color-cinnabar-deep);margin-bottom:4px;\">三、忌神警示（触之必凶）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(196,30,10,0.06);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">危险等级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">破格后果</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第一忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">金</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">庚、辛</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">申、酉</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">直接破格，犯旺招灾，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">水</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">壬、癸</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">亥、子</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">木</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">甲、乙</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">寅、卯</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr></table><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">四、核心原则</div><p style=\"margin:2px 0 8px 0;\">从格之命，一生需<span style=\"color:#C41E0A;font-weight:700;\">「顺势而不逆」</span>。逢喜神流年大运必发达，逢忌神必遭重挫。<br>《渊海子平》云：\"从格无根，方论从。\"大运见印比即破，逢之需格外谨慎。<br>《子平真诠》：\"真从之格局，逢印比运即破。\"破格时多应灾祸，事业反复，健康受损。</p><div style=\"font-weight:700;color:#5D8A7C;margin-bottom:4px;\">五、典籍参考</div><p style=\"margin:2px 0 4px 0;font-size:12px;color:var(--text-secondary);\">《滴天髓》：\"从得真者只论从，从神又有吉和凶。\"<br>《三命通会》：\"从财、从杀、从儿，各有喜忌，不可一概论也。\"<br>《渊海子平》：\"假从者，如人之根浅力薄，不能自立，局中虽有劫印，而自顾不暇，不得不从人也。\"</p></div></div>",
+    "congGe": {
+      "ganArr": [
+        "壬",
+        "甲",
+        "己",
+        "辛"
+      ],
+      "zhiArr": [
+        "戌",
+        "辰",
+        "未",
+        "未"
+      ],
+      "riGan": "己",
+      "riGanIdx": 5,
+      "riWx": 2,
+      "yueZhi": "辰",
+      "yueZhiIdx": 4,
+      "scores": {
+        "mu": 18,
+        "huo": 15,
+        "tu": 162,
+        "jin": 17,
+        "shui": 13
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 10,
+          "kind": "财"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 8,
+          "kind": "官"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "己",
+          "wx": "土",
+          "pts": 21,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 13,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 36,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 4,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 41,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 6,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 3,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 32,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·日中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 32,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 5,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 2,
+          "kind": "官"
+        }
+      ],
+      "shengZhuTotal": 209,
+      "keXieTotal": 48,
+      "totalScore": 257,
+      "shengPct": 81.3,
+      "keXiePct": 18.7,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "戌本气戊",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "年支",
+          "gan": "丁",
+          "kind": "印",
+          "zhi": "戌"
+        },
+        {
+          "pos": "日支",
+          "gan": "丁",
+          "kind": "印",
+          "zhi": "未"
+        },
+        {
+          "pos": "时支",
+          "gan": "丁",
+          "kind": "印",
+          "zhi": "未"
+        }
+      ],
+      "hasTianGanBiJie": false,
+      "riHasTianGanHelp": false,
+      "yueBenQi": "戊",
+      "yueWx": 2,
+      "yueIsYinBi": true,
+      "yueSSKind": "比",
+      "ssScores": {
+        "印": 15,
+        "比": 162,
+        "财": 13,
+        "官": 18,
+        "食伤": 17
+      },
+      "result": "从旺格·从比",
+      "congShen": "比劫",
+      "congType": "从旺格·从比",
+      "luckyEl": [
+        "比劫",
+        "印"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀",
+        "食伤"
+      ],
+      "luckyWx": [
+        1,
+        2
+      ],
+      "unluckyWx": [
+        3,
+        4,
+        0
+      ],
+      "congShenWx": 2,
+      "grade": "上等",
+      "dangerYears": "大运见<span style=\"color:#C41E0A;font-weight:700;\">财、官杀、食伤</span>运则破格。<br><br>流年吉凶：<br>· <span style=\"color:#5D8A7C;font-weight:700;\">喜</span> 巳午（火）、辰戌丑未（土） 旺年，顺势而昌；<br>· <span style=\"color:#C41E0A;font-weight:700;\">忌</span> 申酉（金）、亥子（水）、寅卯（木） 旺年，逆势则破格招灾。<br>",
+      "isCong": true,
+      "wuxingVals": {
+        "mu": 35,
+        "huo": 12,
+        "tu": 199,
+        "jin": 56,
+        "shui": 44,
+        "total": 346,
+        "shengzhu": 211,
+        "kexie": 135,
+        "shengPct": 61,
+        "kexiePct": 39
+      },
+      "luckyGan": [
+        "丙、丁",
+        "戊、己"
+      ],
+      "luckyZhi": [
+        "巳、午",
+        "辰、戌、丑、未"
+      ],
+      "unluckyGan": [
+        "庚、辛",
+        "壬、癸",
+        "甲、乙"
+      ],
+      "unluckyZhi": [
+        "申、酉",
+        "亥、子",
+        "寅、卯"
+      ]
+    },
+    "huaGe": {
+      "type": "甲己化土格",
+      "hePair": "己甲合",
+      "huaWx": 2,
+      "huaWxName": "土",
+      "pillar": "月干"
+    }
+  },
+  {
+    "info": {
+      "id": "TC06",
+      "desc": "乙木·酉月",
+      "pillars": [
+        "庚午",
+        "乙酉",
+        "辛酉",
+        "戊戌"
+      ],
+      "bIdx": [
+        6000006,
+        60000081,
+        8996577,
+        89958994
+      ],
+      "riGan": "辛",
+      "riZhi": "酉",
+      "yueZhi": "酉",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": 11.96,
+      "strength": "极强",
+      "strengthLabel": "日主旺极，需克泄耗来平衡",
+      "scoreLing": 6,
+      "scoreGen": 3.96,
+      "scoreShi": 1,
+      "correction": 1,
+      "scLingRaw": 2,
+      "scGenRaw": 1.98,
+      "scShiRaw": 1,
+      "riWx": 3,
+      "rootDetails": [
+        "day有根_酉(1.50)",
+        "hour有根_戌(0.60)"
+      ],
+      "favorable": {
+        "note": "宜克泄耗（官杀、食伤、财才）",
+        "wx": [
+          "克我(官杀)",
+          "我生(食伤)",
+          "我克(财)"
+        ]
+      },
+      "unfavorable": {
+        "note": "忌生扶（印、比劫）",
+        "wx": [
+          "生我(印)",
+          "同我(比劫)"
+        ]
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　年柱 庚午　月柱 乙酉　日柱 辛酉　时柱 戊戌</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">从旺格·从比</div><div class=\"bz-dingge-grade\">特殊格局 · 顺势而为</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">从格判定依据</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">生助力量占 <span class=\"bz-dingge-highlight\">84.1%</span>，克泄耗力量占 <span style=\"color:#C41E0A;font-weight:600;\">15.9%</span>。日主有本气根，天干有印比。<br>日主极旺，满盘印比成势，顺从旺势取用。</div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">辛</span>（阴金）　|　年柱 庚午　月柱 乙酉　日柱 辛酉　时柱 戊戌</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">酉</span>（秋季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（从格顺势）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">从旺格·从比</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：劫财</span>（五行金，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：正印</span>（五行土，扶助用神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：伤官、正财、正官</span>（五行水/木/火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生秋季，调候需求不迫切。<br>调候指引：秋金清冷，喜丙火暖局 → 调候五行：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">金</span> 克 <span class=\"bz-dingge-highlight\">木</span>（交战），通关用神：<span class=\"bz-dingge-gold\">水</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">金</span> 透干通根 → <span style=\"color:#5D8A7C;font-weight:700;\">真用神</span>。力量充足，能充分发挥平衡命局的作用。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">劫财</span>（五行金）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">伤官、正财、正官</span>（五行水/木/火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div><div class=\"bz-dingge-step bz-section--red\" style=\"margin-top:12px;\"><div class=\"bz-dingge-step-label\">八、从格核心提示（命主必读）</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;line-height:1.9;\"><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">一、命局简析</div><p style=\"margin:2px 0 8px 0;\">日主<span class=\"bz-dingge-highlight\">辛</span>（五行属金），日主极旺，生于印比当令之月，满盘印比成势，财官食伤虚浮无根，日主强旺不可逆，只能顺其旺势取用。</p><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">二、喜用神详解（顺势而取）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(212,184,102,0.12);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">优先级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">类别</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">命理作用</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第1</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第一喜神（用神）</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">土</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">戊、己</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">辰、戌、丑、未</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">全局最旺，顺势发财升官</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第2</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第二喜神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">金</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">庚、辛</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">申、酉</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">助旺用神，锦上添花</td></tr></table><div style=\"font-weight:700;color:var(--color-cinnabar-deep);margin-bottom:4px;\">三、忌神警示（触之必凶）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(196,30,10,0.06);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">危险等级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">破格后果</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第一忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">水</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">壬、癸</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">亥、子</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">直接破格，犯旺招灾，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">木</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">甲、乙</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">寅、卯</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">火</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">丙、丁</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">巳、午</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr></table><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">四、核心原则</div><p style=\"margin:2px 0 8px 0;\">从格之命，一生需<span style=\"color:#C41E0A;font-weight:700;\">「顺势而不逆」</span>。逢喜神流年大运必发达，逢忌神必遭重挫。<br>《渊海子平》云：\"从格无根，方论从。\"大运见印比即破，逢之需格外谨慎。<br>《子平真诠》：\"真从之格局，逢印比运即破。\"破格时多应灾祸，事业反复，健康受损。</p><div style=\"font-weight:700;color:#5D8A7C;margin-bottom:4px;\">五、典籍参考</div><p style=\"margin:2px 0 4px 0;font-size:12px;color:var(--text-secondary);\">《滴天髓》：\"从得真者只论从，从神又有吉和凶。\"<br>《三命通会》：\"从财、从杀、从儿，各有喜忌，不可一概论也。\"<br>《渊海子平》：\"假从者，如人之根浅力薄，不能自立，局中虽有劫印，而自顾不暇，不得不从人也。\"</p></div></div>",
+    "congGe": {
+      "ganArr": [
+        "庚",
+        "乙",
+        "辛",
+        "戊"
+      ],
+      "zhiArr": [
+        "午",
+        "酉",
+        "酉",
+        "戌"
+      ],
+      "riGan": "辛",
+      "riGanIdx": 7,
+      "riWx": 3,
+      "yueZhi": "酉",
+      "yueZhiIdx": 9,
+      "scores": {
+        "mu": 10,
+        "huo": 21,
+        "tu": 27,
+        "jin": 114,
+        "shui": 0
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 7,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 10,
+          "kind": "财"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 24,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 9,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 14,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 2,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 41,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 36,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 16,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 7,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 6,
+          "kind": "比"
+        }
+      ],
+      "shengZhuTotal": 164,
+      "keXieTotal": 31,
+      "totalScore": 195,
+      "shengPct": 84.1,
+      "keXiePct": 15.9,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "酉本气辛",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "年支",
+          "gan": "己",
+          "kind": "印",
+          "zhi": "午"
+        },
+        {
+          "pos": "时支",
+          "gan": "辛",
+          "kind": "比",
+          "zhi": "戌"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "辛",
+      "yueWx": 3,
+      "yueIsYinBi": true,
+      "yueSSKind": "比",
+      "ssScores": {
+        "印": 27,
+        "比": 114,
+        "财": 10,
+        "官": 21,
+        "食伤": 0
+      },
+      "result": "从旺格·从比",
+      "congShen": "比劫",
+      "congType": "从旺格·从比",
+      "luckyEl": [
+        "比劫",
+        "印"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀",
+        "食伤"
+      ],
+      "luckyWx": [
+        2,
+        3
+      ],
+      "unluckyWx": [
+        4,
+        0,
+        1
+      ],
+      "congShenWx": 3,
+      "grade": "上等",
+      "dangerYears": "大运见<span style=\"color:#C41E0A;font-weight:700;\">财、官杀、食伤</span>运则破格。<br><br>流年吉凶：<br>· <span style=\"color:#5D8A7C;font-weight:700;\">喜</span> 辰戌丑未（土）、申酉（金） 旺年，顺势而昌；<br>· <span style=\"color:#C41E0A;font-weight:700;\">忌</span> 亥子（水）、寅卯（木）、巳午（火） 旺年，逆势则破格招灾。<br>",
+      "isCong": true,
+      "wuxingVals": {
+        "mu": 36,
+        "huo": 36,
+        "tu": 54,
+        "jin": 210,
+        "shui": 0,
+        "total": 336,
+        "shengzhu": 264,
+        "kexie": 72,
+        "shengPct": 78.6,
+        "kexiePct": 21.4
+      },
+      "luckyGan": [
+        "戊、己",
+        "庚、辛"
+      ],
+      "luckyZhi": [
+        "辰、戌、丑、未",
+        "申、酉"
+      ],
+      "unluckyGan": [
+        "壬、癸",
+        "甲、乙",
+        "丙、丁"
+      ],
+      "unluckyZhi": [
+        "亥、子",
+        "寅、卯",
+        "巳、午"
+      ]
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC07",
+      "desc": "丁火·寅月",
+      "pillars": [
+        "丙寅",
+        "庚寅",
+        "甲子",
+        "壬申"
+      ],
+      "bIdx": [
+        6000002,
+        60000026,
+        8994900,
+        89938868
+      ],
+      "riGan": "甲",
+      "riZhi": "子",
+      "yueZhi": "寅",
+      "sex": "坤"
+    },
+    "strength": {
+      "score": 2.1559999999999997,
+      "strength": "中和偏强",
+      "strengthLabel": "日主略旺，接近平衡",
+      "scoreLing": 2.4,
+      "scoreGen": 0.6959999999999998,
+      "scoreShi": -0.94,
+      "correction": 0,
+      "scLingRaw": 0.7999999999999999,
+      "scGenRaw": 0.3479999999999999,
+      "scShiRaw": -0.94,
+      "riWx": 0,
+      "rootDetails": [
+        "year有根_寅(0.58)"
+      ],
+      "favorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      },
+      "unfavorable": {
+        "note": "视具体格局而定",
+        "wx": []
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">甲</span>（阳木）　年柱 丙寅　月柱 庚寅　日柱 甲子　时柱 壬申</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令提纲</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">寅</span>，本气 <span class=\"bz-dingge-gold\">甲</span>（阳木），本气十神：<span class=\"bz-dingge-highlight\">比肩</span>。<br>节气：立春后 <span class=\"bz-dingge-gold\">3.7</span> 日，司令人元：<span class=\"bz-dingge-highlight\">戊</span>（阳土）。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、本气十神定位</div><div class=\"bz-dingge-step-body\">本气 <span class=\"bz-dingge-gold\">甲</span> 对日主 <span class=\"bz-dingge-gold\">甲</span>：<span class=\"bz-dingge-highlight\">比肩</span>。<br><span style=\"color:var(--color-warning);font-size:12px;\">司令 戊（偏财）未透干，降等以本气定格。</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、透干验证</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">戊</span> 未透出天干 → <span style=\"color:var(--color-warning);\">格局不真</span>，层次减等。</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">建禄格</div><div class=\"bz-dingge-grade\">特殊格局 · 身强须财官平衡</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、四柱配合分析</div><div class=\"bz-dingge-step-body\">相神（辅格）：<span style=\"color:var(--color-warning);\">无得力相神</span><br>忌神（损格）：<span style=\"color:#5D8A7C;\">无明显忌神</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、格局层次评定</div><div class=\"bz-dingge-step-body\">综合评分：<span class=\"bz-dingge-highlight\">下等</span>（+1 分）。格局偏弱，用神无力或忌神当道，须大运扶起方有作为。</div></div><div class=\"bz-dingge-step\" style=\"margin-top:4px;\"><div class=\"bz-dingge-step-label\">八、喜用神索引</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\"></div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">甲</span>（阳木）　|　年柱 丙寅　月柱 庚寅　日柱 甲子　时柱 壬申</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">寅</span>（春季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（正格）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">建禄格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：偏财、七杀</span>（五行土/金，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：偏财、七杀</span>（五行土/金，扶助用神）<br><span style=\"color:#D98A20;\">仇神：比肩</span>（五行木，党助忌神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：比肩、偏印</span>（五行木/水，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生春季，调候需求不迫切。<br>调候指引：春木旺盛，喜庚金修剪 → 调候五行：<span class=\"bz-dingge-gold\">金</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">火</span> 克 <span class=\"bz-dingge-highlight\">金</span>（交战），通关用神：<span class=\"bz-dingge-gold\">土</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">土</span> 有根但未透 → <span style=\"color:#D98A20;font-weight:700;\">偏真用神</span>。效果中等，需岁运引发加强。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">偏财、七杀</span>（五行土/金）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">比肩、偏印</span>（五行木/水）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div>",
+    "congGe": {
+      "ganArr": [
+        "丙",
+        "庚",
+        "甲",
+        "壬"
+      ],
+      "zhiArr": [
+        "寅",
+        "寅",
+        "子",
+        "申"
+      ],
+      "riGan": "甲",
+      "riGanIdx": 0,
+      "riWx": 0,
+      "yueZhi": "寅",
+      "yueZhiIdx": 2,
+      "scores": {
+        "mu": 93,
+        "huo": 39,
+        "tu": 12,
+        "jin": 21,
+        "shui": 20
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 15,
+          "kind": "食伤"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 8,
+          "kind": "官"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 24,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 6,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 32,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年中气",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 12,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 4,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "甲",
+          "wx": "木",
+          "pts": 37,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 12,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 4,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 9,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 13,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 5,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 4,
+          "kind": "财"
+        }
+      ],
+      "shengZhuTotal": 132,
+      "keXieTotal": 72,
+      "totalScore": 204,
+      "shengPct": 64.7,
+      "keXiePct": 35.3,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "寅本气甲",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "时支",
+          "gan": "壬",
+          "kind": "印",
+          "zhi": "申"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "甲",
+      "yueWx": 0,
+      "yueIsYinBi": true,
+      "yueSSKind": "比",
+      "ssScores": {
+        "印": 20,
+        "比": 93,
+        "财": 12,
+        "官": 21,
+        "食伤": 39
+      },
+      "result": "非从格",
+      "congShen": "—",
+      "congType": null,
+      "luckyEl": [],
+      "unluckyEl": [],
+      "luckyWx": [],
+      "unluckyWx": [],
+      "congShenWx": -1,
+      "grade": "—",
+      "dangerYears": "",
+      "isCong": false,
+      "wuxingVals": {
+        "mu": 136,
+        "huo": 78,
+        "tu": 12,
+        "jin": 42,
+        "shui": 60,
+        "total": 328,
+        "shengzhu": 196,
+        "kexie": 132,
+        "shengPct": 59.8,
+        "kexiePct": 40.2
+      },
+      "luckyGan": [],
+      "luckyZhi": [],
+      "unluckyGan": [],
+      "unluckyZhi": []
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC08",
+      "desc": "辛金·丑月",
+      "pillars": [
+        "己卯",
+        "丁丑",
+        "戊午",
+        "戊午"
+      ],
+      "bIdx": [
+        6000015,
+        60000193,
+        8999994,
+        89999994
+      ],
+      "riGan": "戊",
+      "riZhi": "午",
+      "yueZhi": "丑",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": 8.94,
+      "strength": "极强",
+      "strengthLabel": "日主旺极，需克泄耗来平衡",
+      "scoreLing": 2.4,
+      "scoreGen": 3.2399999999999998,
+      "scoreShi": 3.3000000000000003,
+      "correction": 0,
+      "scLingRaw": 0.7999999999999999,
+      "scGenRaw": 1.6199999999999999,
+      "scShiRaw": 3.3000000000000003,
+      "riWx": 2,
+      "rootDetails": [
+        "day有根_午(0.90)",
+        "hour有根_午(0.90)"
+      ],
+      "favorable": {
+        "note": "宜克泄耗（官杀、食伤、财才）",
+        "wx": [
+          "克我(官杀)",
+          "我生(食伤)",
+          "我克(财)"
+        ]
+      },
+      "unfavorable": {
+        "note": "忌生扶（印、比劫）",
+        "wx": [
+          "生我(印)",
+          "同我(比劫)"
+        ]
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">戊</span>（阳土）　年柱 己卯　月柱 丁丑　日柱 戊午　时柱 戊午</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令提纲</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">丑</span>，本气 <span class=\"bz-dingge-gold\">己</span>（阴土），本气十神：<span class=\"bz-dingge-highlight\">劫财</span>。<br>节气：小寒后 <span class=\"bz-dingge-gold\">13.6</span> 日，司令人元：<span class=\"bz-dingge-highlight\">己</span>（阴土）。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、司令十神定位</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">己</span> 对日主 <span class=\"bz-dingge-gold\">戊</span>：<span class=\"bz-dingge-highlight\">劫财</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、透干验证</div><div class=\"bz-dingge-step-body\">司令 <span class=\"bz-dingge-gold\">己</span> 透出天干于：<span class=\"bz-dingge-highlight\">年</span>柱 → <span class=\"bz-dingge-gold\">格局为真</span>（《滴天髓》：格之真者，月支之神，透于天干也）。</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">月劫格</div><div class=\"bz-dingge-grade\">特殊格局 · 身强须财官平衡</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、四柱配合分析</div><div class=\"bz-dingge-step-body\">相神（辅格）：<span style=\"color:var(--color-warning);\">无得力相神</span><br>忌神（损格）：<span style=\"color:#5D8A7C;\">无明显忌神</span></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、格局层次评定</div><div class=\"bz-dingge-step-body\">综合评分：<span class=\"bz-dingge-highlight\">中等</span>（+3 分）。格局有扶有制，虽有瑕疵但不至于破格，主衣食丰足。</div></div><div class=\"bz-dingge-step\" style=\"margin-top:4px;\"><div class=\"bz-dingge-step-label\">八、喜用神索引</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\"></div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">戊</span>（阳土）　|　年柱 己卯　月柱 丁丑　日柱 戊午　时柱 戊午</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">丑</span>（冬季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（正格）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">月劫格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：七杀、食神</span>（五行木/金，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：七杀、食神</span>（五行木/金，扶助用神）<br><span style=\"color:#D98A20;\">仇神：比肩</span>（五行土，党助忌神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：比肩、偏印</span>（五行土/火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生冬季，<span class=\"bz-dingge-gold\">需要调候</span>。<br>调候指引：冬土冻结，喜丙火解冻 → 调候五行：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局五行无明显交战，通关需求不迫切。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">木</span> 有根但未透 → <span style=\"color:#D98A20;font-weight:700;\">偏真用神</span>。效果中等，需岁运引发加强。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">七杀、食神</span>（五行木/金）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">比肩、偏印</span>（五行土/火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div>",
+    "congGe": {
+      "ganArr": [
+        "己",
+        "丁",
+        "戊",
+        "戊"
+      ],
+      "zhiArr": [
+        "卯",
+        "丑",
+        "午",
+        "午"
+      ],
+      "riGan": "戊",
+      "riGanIdx": 4,
+      "riWx": 2,
+      "yueZhi": "丑",
+      "yueZhiIdx": 1,
+      "scores": {
+        "mu": 14,
+        "huo": 28,
+        "tu": 88,
+        "jin": 8,
+        "shui": 7
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "己",
+          "wx": "土",
+          "pts": 20,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 6,
+          "kind": "印"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 8,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 7,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 14,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 41,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·月中气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 8,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·月余气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 7,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 11,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 6,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 11,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 6,
+          "kind": "比"
+        }
+      ],
+      "shengZhuTotal": 134,
+      "keXieTotal": 29,
+      "totalScore": 163,
+      "shengPct": 82.2,
+      "keXiePct": 17.8,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "丑本气己",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "日支",
+          "gan": "己",
+          "kind": "比",
+          "zhi": "午"
+        },
+        {
+          "pos": "时支",
+          "gan": "己",
+          "kind": "比",
+          "zhi": "午"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "己",
+      "yueWx": 2,
+      "yueIsYinBi": true,
+      "yueSSKind": "比",
+      "ssScores": {
+        "印": 28,
+        "比": 88,
+        "财": 7,
+        "官": 14,
+        "食伤": 8
+      },
+      "result": "专旺格·稼穑格(土)",
+      "congShen": "比劫",
+      "congType": null,
+      "luckyEl": [
+        "比劫",
+        "印"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀",
+        "食伤"
+      ],
+      "luckyWx": [
+        1,
+        2
+      ],
+      "unluckyWx": [
+        3,
+        4,
+        0
+      ],
+      "congShenWx": 2,
+      "grade": "上等",
+      "dangerYears": "",
+      "isCong": false,
+      "wuxingVals": {
+        "mu": 24,
+        "huo": 46,
+        "tu": 101,
+        "jin": 8,
+        "shui": 7,
+        "total": 186,
+        "shengzhu": 147,
+        "kexie": 39,
+        "shengPct": 79,
+        "kexiePct": 21
+      },
+      "luckyGan": [
+        "丙、丁",
+        "戊、己"
+      ],
+      "luckyZhi": [
+        "巳、午",
+        "辰、戌、丑、未"
+      ],
+      "unluckyGan": [
+        "庚、辛",
+        "壬、癸",
+        "甲、乙"
+      ],
+      "unluckyZhi": [
+        "申、酉",
+        "亥、子",
+        "寅、卯"
+      ]
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC09",
+      "desc": "癸水·戌月",
+      "pillars": [
+        "戊午",
+        "辛酉",
+        "壬午",
+        "庚子"
+      ],
+      "bIdx": [
+        5999994,
+        59999937,
+        8992218,
+        89906676
+      ],
+      "riGan": "壬",
+      "riZhi": "午",
+      "yueZhi": "酉",
+      "sex": "坤"
+    },
+    "strength": {
+      "score": 9.629999999999999,
+      "strength": "极强",
+      "strengthLabel": "日主旺极，需克泄耗来平衡",
+      "scoreLing": 6,
+      "scoreGen": 1.92,
+      "scoreShi": 1.71,
+      "correction": 0,
+      "scLingRaw": 2,
+      "scGenRaw": 0.96,
+      "scShiRaw": 1.71,
+      "riWx": 4,
+      "rootDetails": [
+        "hour有根_子(1.20)"
+      ],
+      "favorable": {
+        "note": "宜克泄耗（官杀、食伤、财才）",
+        "wx": [
+          "克我(官杀)",
+          "我生(食伤)",
+          "我克(财)"
+        ]
+      },
+      "unfavorable": {
+        "note": "忌生扶（印、比劫）",
+        "wx": [
+          "生我(印)",
+          "同我(比劫)"
+        ]
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">壬</span>（阳水）　年柱 戊午　月柱 辛酉　日柱 壬午　时柱 庚子</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">假从旺格</div><div class=\"bz-dingge-grade\">特殊格局 · 顺势而为</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">从格判定依据</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">生助力量占 <span class=\"bz-dingge-highlight\">73.7%</span>，克泄耗力量占 <span style=\"color:#C41E0A;font-weight:600;\">26.3%</span>。日主有本气根，天干有印比。<br>日主极旺，满盘印比成势，顺从旺势取用。</div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">壬</span>（阳水）　|　年柱 戊午　月柱 辛酉　日柱 壬午　时柱 庚子</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">酉</span>（秋季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（从格顺势）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">假从旺格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：偏印</span>（五行金，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：比肩</span>（五行水，扶助用神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：食神、偏财</span>（五行木/火，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生秋季，调候需求不迫切。<br>调候指引：秋水通源，喜戊土制水 → 调候五行：<span class=\"bz-dingge-gold\">土</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">水</span> 克 <span class=\"bz-dingge-highlight\">火</span>（交战），通关用神：<span class=\"bz-dingge-gold\">木</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">金</span> 透干通根 → <span style=\"color:#5D8A7C;font-weight:700;\">真用神</span>。力量充足，能充分发挥平衡命局的作用。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">偏印</span>（五行金）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">食神、偏财</span>（五行木/火）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div><div class=\"bz-dingge-step bz-section--red\" style=\"margin-top:12px;\"><div class=\"bz-dingge-step-label\">八、从格核心提示（命主必读）</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;line-height:1.9;\"><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">一、命局简析</div><p style=\"margin:2px 0 8px 0;\">日主<span class=\"bz-dingge-highlight\">壬</span>（五行属水），日主极旺，生于印比当令之月，满盘印比成势，财官食伤虚浮无根，日主强旺不可逆，只能顺其旺势取用。</p><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">二、喜用神详解（顺势而取）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(212,184,102,0.12);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">优先级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">类别</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">命理作用</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第1</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第一喜神（用神）</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">金</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">庚、辛</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">申、酉</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">全局最旺，顺势发财升官</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第2</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第二喜神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">水</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">壬、癸</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">亥、子</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">助旺用神，锦上添花</td></tr></table><div style=\"font-weight:700;color:var(--color-cinnabar-deep);margin-bottom:4px;\">三、忌神警示（触之必凶）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(196,30,10,0.06);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">危险等级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">破格后果</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第一忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">木</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">甲、乙</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">寅、卯</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">直接破格，犯旺招灾，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">火</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">丙、丁</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">巳、午</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr></table><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">四、核心原则</div><p style=\"margin:2px 0 8px 0;\">从格之命，一生需<span style=\"color:#C41E0A;font-weight:700;\">「顺势而不逆」</span>。逢喜神流年大运必发达，逢忌神必遭重挫。<br>《渊海子平》云：\"从格无根，方论从。\"大运见印比即破，逢之需格外谨慎。<br>《子平真诠》：\"真从之格局，逢印比运即破。\"破格时多应灾祸，事业反复，健康受损。</p><div style=\"font-weight:700;color:#5D8A7C;margin-bottom:4px;\">五、典籍参考</div><p style=\"margin:2px 0 4px 0;font-size:12px;color:var(--text-secondary);\">《滴天髓》：\"从得真者只论从，从神又有吉和凶。\"<br>《三命通会》：\"从财、从杀、从儿，各有喜忌，不可一概论也。\"<br>《渊海子平》：\"假从者，如人之根浅力薄，不能自立，局中虽有劫印，而自顾不暇，不得不从人也。\"</p></div></div>",
+    "congGe": {
+      "ganArr": [
+        "戊",
+        "辛",
+        "壬",
+        "庚"
+      ],
+      "zhiArr": [
+        "午",
+        "酉",
+        "午",
+        "子"
+      ],
+      "riGan": "壬",
+      "riGanIdx": 8,
+      "riWx": 4,
+      "yueZhi": "酉",
+      "yueZhiIdx": 9,
+      "scores": {
+        "mu": 0,
+        "huo": 28,
+        "tu": 13,
+        "jin": 68,
+        "shui": 33
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "戊",
+          "wx": "土",
+          "pts": 9,
+          "kind": "官"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 20,
+          "kind": "印"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "壬",
+          "wx": "水",
+          "pts": 6,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "庚",
+          "wx": "金",
+          "pts": 7,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 14,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·年余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 2,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 41,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 14,
+          "kind": "财"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 2,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 27,
+          "kind": "比"
+        }
+      ],
+      "shengZhuTotal": 115,
+      "keXieTotal": 41,
+      "totalScore": 156,
+      "shengPct": 73.7,
+      "keXiePct": 26.3,
+      "riHasRoot": true,
+      "riHasBenQiRoot": true,
+      "rootDetail": "子本气癸",
+      "hasHiddenYinBi": false,
+      "hiddenYinBiList": [],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "辛",
+      "yueWx": 3,
+      "yueIsYinBi": true,
+      "yueSSKind": "印",
+      "ssScores": {
+        "印": 68,
+        "比": 33,
+        "财": 28,
+        "官": 13,
+        "食伤": 0
+      },
+      "result": "假从旺格",
+      "congShen": "印比",
+      "congType": "假从旺格",
+      "luckyEl": [
+        "印",
+        "比劫"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀"
+      ],
+      "luckyWx": [
+        3,
+        4
+      ],
+      "unluckyWx": [
+        0,
+        1
+      ],
+      "congShenWx": -1,
+      "grade": "中等",
+      "dangerYears": "大运见<span style=\"color:#C41E0A;font-weight:700;\">财、官杀</span>运则破格。<br><br>流年吉凶：<br>· <span style=\"color:#5D8A7C;font-weight:700;\">喜</span> 申酉（金）、亥子（水） 旺年，顺势而昌；<br>· <span style=\"color:#C41E0A;font-weight:700;\">忌</span> 寅卯（木）、巳午（火） 旺年，逆势则破格招灾。<br>· 平运：辰戌丑未（土） 旺年，不生克格局，可作平运。",
+      "isCong": true,
+      "wuxingVals": {
+        "mu": 0,
+        "huo": 32,
+        "tu": 44,
+        "jin": 85,
+        "shui": 63,
+        "total": 224,
+        "shengzhu": 148,
+        "kexie": 76,
+        "shengPct": 66.1,
+        "kexiePct": 33.9
+      },
+      "luckyGan": [
+        "庚、辛",
+        "壬、癸"
+      ],
+      "luckyZhi": [
+        "申、酉",
+        "亥、子"
+      ],
+      "unluckyGan": [
+        "甲、乙",
+        "丙、丁"
+      ],
+      "unluckyZhi": [
+        "寅、卯",
+        "巳、午"
+      ]
+    },
+    "huaGe": null
+  },
+  {
+    "info": {
+      "id": "TC10",
+      "desc": "己土·卯月",
+      "pillars": [
+        "丙子",
+        "辛卯",
+        "丁未",
+        "丁未"
+      ],
+      "bIdx": [
+        6000012,
+        60000147,
+        8998603,
+        89983303
+      ],
+      "riGan": "丁",
+      "riZhi": "未",
+      "yueZhi": "卯",
+      "sex": "乾"
+    },
+    "strength": {
+      "score": 7.324,
+      "strength": "极强",
+      "strengthLabel": "日主旺极，需克泄耗来平衡",
+      "scoreLing": 6,
+      "scoreGen": 0.3239999999999999,
+      "scoreShi": 1,
+      "correction": 0,
+      "scLingRaw": 2,
+      "scGenRaw": 0.16199999999999995,
+      "scShiRaw": 1,
+      "riWx": 1,
+      "rootDetails": [
+        "day有根_未(0.09)",
+        "hour有根_未(0.09)"
+      ],
+      "favorable": {
+        "note": "宜克泄耗（官杀、食伤、财才）",
+        "wx": [
+          "克我(官杀)",
+          "我生(食伤)",
+          "我克(财)"
+        ]
+      },
+      "unfavorable": {
+        "note": "忌生扶（印、比劫）",
+        "wx": [
+          "生我(印)",
+          "同我(比劫)"
+        ]
+      }
+    },
+    "pattern": "<div class=\"bz-dingge-title\"><i class=\"ti ti-list-details\"></i> 八字格局</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">丁</span>（阴火）　年柱 丙子　月柱 辛卯　日柱 丁未　时柱 丁未</div></div><div class=\"bz-dingge-result\"><div class=\"bz-dingge-geju\">假从旺格</div><div class=\"bz-dingge-grade\">特殊格局 · 顺势而为</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">从格判定依据</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;\">生助力量占 <span class=\"bz-dingge-highlight\">69.3%</span>，克泄耗力量占 <span style=\"color:#C41E0A;font-weight:600;\">30.7%</span>。日主无本气根，天干有印比。<br>日主极旺，满盘印比成势，顺从旺势取用。</div></div>",
+    "xiyong": "<div class=\"bz-dingge-title\"><i class=\"ti ti-star\"></i> 八字喜用</div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">一、四柱八字概览</div><div class=\"bz-dingge-step-body\">日主 <span class=\"bz-dingge-highlight\">丁</span>（阴火）　|　年柱 丙子　月柱 辛卯　日柱 丁未　时柱 丁未</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">二、月令格局</div><div class=\"bz-dingge-step-body\">月令 <span class=\"bz-dingge-gold\">卯</span>（春季），月令为用神之源。《子平真诠》云：\"八字用神，专求月令。\"</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">三、格局喜用（从格顺势）</div><div class=\"bz-dingge-step-body\"><div class=\"bz-dingge-result\" style=\"margin-top:0;\"><div style=\"font-size:14px;font-weight:700;margin-bottom:6px;\">格局：<span class=\"bz-dingge-geju\" style=\"display:inline;font-size:14px;\">假从旺格</span></div><div style=\"font-size:13px;line-height:2.0;\"><span style=\"color:#C41E0A;font-weight:700;\">用神：正印</span>（五行木，成格之神）<br><span style=\"color:#8B6914;font-weight:600;\">喜神：劫财</span>（五行火，扶助用神）<br><span style=\"color:var(--color-cinnabar-deep);\">忌神：伤官、正财</span>（五行土/金，破坏格局）<br></div></div></div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">四、调候参考</div><div class=\"bz-dingge-step-body\">出生春季，调候需求不迫切。<br>调候指引：春火微弱，喜甲木生扶 → 调候五行：<span class=\"bz-dingge-gold\">木</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">五、通关参考</div><div class=\"bz-dingge-step-body\">命局 <span class=\"bz-dingge-highlight\">木</span> 克 <span class=\"bz-dingge-highlight\">土</span>（交战），通关用神：<span class=\"bz-dingge-gold\">火</span>。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">六、真假用神检验</div><div class=\"bz-dingge-step-body\">用神 <span class=\"bz-dingge-gold\">木</span> 有根但未透 → <span style=\"color:#D98A20;font-weight:700;\">偏真用神</span>。效果中等，需岁运引发加强。</div></div><div class=\"bz-dingge-step\"><div class=\"bz-dingge-step-label\">七、岁运喜忌参考</div><div class=\"bz-dingge-step-body\">大运行 <span class=\"bz-dingge-gold\">正印</span>（五行木）为吉，贵人相助，事业顺遂。<br>大运行 <span style=\"color:#C41E0A;\">伤官、正财</span>（五行土/金）为凶，需谨慎行事，以守为主。<br>《滴天髓》云：\"富贵虽定乎格局，穷通实系乎运途。\"原局用神得力，逢吉运则锦上添花；原局用神无力，逢忌运则雪上加霜。</div></div><div class=\"bz-dingge-step bz-section--red\" style=\"margin-top:12px;\"><div class=\"bz-dingge-step-label\">八、从格核心提示（命主必读）</div><div class=\"bz-dingge-step-body\" style=\"font-size:13px;line-height:1.9;\"><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">一、命局简析</div><p style=\"margin:2px 0 8px 0;\">日主<span class=\"bz-dingge-highlight\">丁</span>（五行属火），日主极旺，生于印比当令之月，满盘印比成势，财官食伤虚浮无根，日主强旺不可逆，只能顺其旺势取用。</p><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">二、喜用神详解（顺势而取）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(212,184,102,0.12);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">优先级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">类别</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">命理作用</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第1</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第一喜神（用神）</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">木</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">甲、乙</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">寅、卯</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">全局最旺，顺势发财升官</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第2</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-weight:700;\">第二喜神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#C41E0A;font-weight:700;\">火</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">丙、丁</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">巳、午</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">助旺用神，锦上添花</td></tr></table><div style=\"font-weight:700;color:var(--color-cinnabar-deep);margin-bottom:4px;\">三、忌神警示（触之必凶）</div><table style=\"width:100%;border-collapse:collapse;font-size:12px;margin:4px 0 8px 0;\"><tr style=\"background:rgba(196,30,10,0.06);\"><th style=\"padding:4px 8px;border:1px solid #D4A574;\">危险等级</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">五行</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应天干</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">对应地支</th><th style=\"padding:4px 8px;border:1px solid #D4A574;\">破格后果</th></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第一忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">土</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">戊、己</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">辰、戌、丑、未</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">直接破格，犯旺招灾，主破财、官非、病灾</td></tr><tr><td style=\"padding:4px 8px;border:1px solid var(--border-ink);text-align:center;color:#C41E0A;font-weight:700;\">第二忌神</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);color:#8B1508;font-weight:700;\">金</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">庚、辛</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);\">申、酉</td><td style=\"padding:4px 8px;border:1px solid var(--border-ink);font-size:11px;\">间接破格，生助忌神，主破财、官非、病灾</td></tr></table><div style=\"font-weight:700;color:#C41E0A;margin-bottom:4px;\">四、核心原则</div><p style=\"margin:2px 0 8px 0;\">从格之命，一生需<span style=\"color:#C41E0A;font-weight:700;\">「顺势而不逆」</span>。逢喜神流年大运必发达，逢忌神必遭重挫。<br>《渊海子平》云：\"从格无根，方论从。\"大运见印比即破，逢之需格外谨慎。<br>《子平真诠》：\"真从之格局，逢印比运即破。\"破格时多应灾祸，事业反复，健康受损。</p><div style=\"font-weight:700;color:#5D8A7C;margin-bottom:4px;\">五、典籍参考</div><p style=\"margin:2px 0 4px 0;font-size:12px;color:var(--text-secondary);\">《滴天髓》：\"从得真者只论从，从神又有吉和凶。\"<br>《三命通会》：\"从财、从杀、从儿，各有喜忌，不可一概论也。\"<br>《渊海子平》：\"假从者，如人之根浅力薄，不能自立，局中虽有劫印，而自顾不暇，不得不从人也。\"</p></div></div>",
+    "congGe": {
+      "ganArr": [
+        "丙",
+        "辛",
+        "丁",
+        "丁"
+      ],
+      "zhiArr": [
+        "子",
+        "卯",
+        "未",
+        "未"
+      ],
+      "riGan": "丁",
+      "riGanIdx": 3,
+      "riWx": 1,
+      "yueZhi": "卯",
+      "yueZhiIdx": 3,
+      "scores": {
+        "mu": 53,
+        "huo": 66,
+        "tu": 36,
+        "jin": 8,
+        "shui": 11
+      },
+      "detailLines": [
+        {
+          "pos": "天干·年",
+          "gan": "丙",
+          "wx": "火",
+          "pts": 5,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·月",
+          "gan": "辛",
+          "wx": "金",
+          "pts": 8,
+          "kind": "财"
+        },
+        {
+          "pos": "天干·日",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 18,
+          "kind": "比"
+        },
+        {
+          "pos": "天干·时",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 15,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·年本气",
+          "gan": "癸",
+          "wx": "水",
+          "pts": 11,
+          "kind": "官"
+        },
+        {
+          "pos": "地支·月本气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 41,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·日本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 18,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·日中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 14,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·日余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 6,
+          "kind": "印"
+        },
+        {
+          "pos": "地支·时本气",
+          "gan": "己",
+          "wx": "土",
+          "pts": 18,
+          "kind": "食伤"
+        },
+        {
+          "pos": "地支·时中气",
+          "gan": "丁",
+          "wx": "火",
+          "pts": 14,
+          "kind": "比"
+        },
+        {
+          "pos": "地支·时余气",
+          "gan": "乙",
+          "wx": "木",
+          "pts": 6,
+          "kind": "印"
+        }
+      ],
+      "shengZhuTotal": 124,
+      "keXieTotal": 55,
+      "totalScore": 179,
+      "shengPct": 69.3,
+      "keXiePct": 30.7,
+      "riHasRoot": true,
+      "riHasBenQiRoot": false,
+      "rootDetail": "未中气丁",
+      "hasHiddenYinBi": true,
+      "hiddenYinBiList": [
+        {
+          "pos": "日支",
+          "gan": "丁",
+          "kind": "比",
+          "zhi": "未"
+        },
+        {
+          "pos": "日支",
+          "gan": "乙",
+          "kind": "印",
+          "zhi": "未"
+        },
+        {
+          "pos": "时支",
+          "gan": "丁",
+          "kind": "比",
+          "zhi": "未"
+        },
+        {
+          "pos": "时支",
+          "gan": "乙",
+          "kind": "印",
+          "zhi": "未"
+        }
+      ],
+      "hasTianGanBiJie": true,
+      "riHasTianGanHelp": true,
+      "yueBenQi": "乙",
+      "yueWx": 0,
+      "yueIsYinBi": true,
+      "yueSSKind": "印",
+      "ssScores": {
+        "印": 53,
+        "比": 66,
+        "财": 8,
+        "官": 11,
+        "食伤": 36
+      },
+      "result": "假从旺格",
+      "congShen": "印比",
+      "congType": "假从旺格",
+      "luckyEl": [
+        "印",
+        "比劫"
+      ],
+      "unluckyEl": [
+        "财",
+        "官杀"
+      ],
+      "luckyWx": [
+        0,
+        1
+      ],
+      "unluckyWx": [
+        2,
+        3
+      ],
+      "congShenWx": -1,
+      "grade": "中等",
+      "dangerYears": "大运见<span style=\"color:#C41E0A;font-weight:700;\">财、官杀</span>运则破格。<br><br>流年吉凶：<br>· <span style=\"color:#5D8A7C;font-weight:700;\">喜</span> 寅卯（木）、巳午（火） 旺年，顺势而昌；<br>· <span style=\"color:#C41E0A;font-weight:700;\">忌</span> 辰戌丑未（土）、申酉（金） 旺年，逆势则破格招灾。<br>· 平运：亥子（水） 旺年，不生克格局，可作平运。",
+      "isCong": true,
+      "wuxingVals": {
+        "mu": 108,
+        "huo": 82,
+        "tu": 36,
+        "jin": 29,
+        "shui": 18,
+        "total": 273,
+        "shengzhu": 190,
+        "kexie": 83,
+        "shengPct": 69.6,
+        "kexiePct": 30.4
+      },
+      "luckyGan": [
+        "甲、乙",
+        "丙、丁"
+      ],
+      "luckyZhi": [
+        "寅、卯",
+        "巳、午"
+      ],
+      "unluckyGan": [
+        "戊、己",
+        "庚、辛"
+      ],
+      "unluckyZhi": [
+        "辰、戌、丑、未",
+        "申、酉"
+      ]
+    },
+    "huaGe": null
+  }
+]

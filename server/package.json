@@ -1,0 +1,16 @@
+{
+  "name": "gongxin-server",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "@lunisolar/plugin-thegods": "^0.1.4",
+    "express": "^4.21.0",
+    "gongxin-core": "file:../core",
+    "lunisolar": "^2.6.0"
+  }
+}

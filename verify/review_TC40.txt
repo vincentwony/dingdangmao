@@ -1,0 +1,4 @@
+[TC40] 丙辰 乙未 癸卯 壬子
+PRE : strength=极旺(41%) yongshen=官杀 verify=PASS
+POST: strength=中和(16%) yongshen=印星 verify=PASS
+reasoning: 日主癸水 | 强度中和 | 占比16% | 正格: 食神格 | 余气透干 | 格局成格 | 中格 | 调候: 水 — 夏月生人需水调候 (§5.5)

@@ -1,0 +1,37 @@
+{
+  "dependencies": {
+    "@lunisolar/plugin-thegods": "^0.1.4",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "lunar-javascript": "^1.7.7",
+    "lunisolar": "^2.6.0",
+    "mystilight-8char": "^1.0.0"
+  },
+  "name": "phone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build-release.js",
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  },
+  "scripts": {
+    "test": "node core/__tests__/regression.test.js && node core/__tests__/wuxing.test.js && node core/__tests__/shensha-data.test.js && node core/__tests__/boundary.test.js && echo '✅ 全部测试通过'",
+    "test:engine": "node core/__tests__/regression.test.js",
+    "test:wuxing": "node core/__tests__/wuxing.test.js",
+    "test:shensha": "node core/__tests__/shensha-data.test.js",
+    "test:boundary": "node core/__tests__/boundary.test.js",
+    "test:ziping": "node test-ziping-zhenquan.js",
+    "test:validate": "node test-analysis-validate.js",
+    "build": "node build-release.js",
+    "build:check": "node build-release.js --check",
+    "build:skip-check": "node build-release.js --skip-check",
+    "check:css": "node scripts/check-css-vars.js",
+    "check:zh": "node scripts/check-zh-chars.js",
+    "check:hmac": "node scripts/check-hmac-keys.js",
+    "check": "node scripts/check-hmac-keys.js && node scripts/check-css-vars.js && node scripts/check-zh-chars.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

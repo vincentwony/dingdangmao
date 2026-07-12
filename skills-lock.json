@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "seede-design": {
+      "source": "seedeai/seede-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "bd911d68044e0ffd19321bbd98b86f4848b7ba7cd1c0732058300ec19ab2671a"
+    }
+  }
+}

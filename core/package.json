@@ -1,0 +1,17 @@
+{
+  "name": "gongxin-core",
+  "version": "1.0.0",
+  "description": "公信万年历 — 共享计算库（农历/八字/神煞/宜忌）",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test __tests__/*.test.js",
+    "test:regression": "node --test __tests__/regression.test.js",
+    "lint:patterns": "node scripts/lint-patterns.js",
+    "check:exports": "node -e \"var c=require('./index.js');var types=['json','csv','markdown','api','props','cache'];types.forEach(function(t){c.assertExporterType(t);});console.log('✅ Export types OK');\""
+  },
+  "dependencies": {
+    "lunisolar": "2.6.0",
+    "@lunisolar/plugin-thegods": "0.1.4"
+  }
+}

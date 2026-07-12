@@ -1,0 +1,4 @@
+[TC11] 庚午 壬午 丙寅 甲午
+PRE : strength=极旺(66%) yongshen=官杀 verify=PASS
+POST: strength=极旺(66%) yongshen=官杀 verify=PASS
+reasoning: 日主丙火 | 强度极旺 | 占比66% | 正格: 月刃格 | 本气不透定格 | 格局成格 | 中格 | 调候: 水 — 夏月生人需水调候 (§5.5)

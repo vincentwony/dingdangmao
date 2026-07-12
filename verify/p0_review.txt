@@ -1,0 +1,206 @@
+P0 Review — All 50 Cases
+======================================================================
+
+Columns: ID | DayGan MonthZhi | Old->New Strength | Old->New Yongshen | Verdict
+----------------------------------------------------------------------
+
+[TC01] --- | 戊寅 | 中和(20%) | 印星 | OK
+       甲子 丙寅 戊午 壬戌
+       pattern=七杀格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC02] CHG | 甲丑 | 偏弱(13%)->极弱(4%) | 印星 | OK
+       乙亥 己丑 甲子 丙寅
+       pattern=正财格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC03] --- | 甲寅 | 极旺(50%) | 官杀 | OK
+       丙寅 庚寅 甲子 壬申
+       pattern=食神格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC04] CHG | 壬酉 | 偏弱(10%)->偏旺(28%) | 印星->官杀 | OK
+       戊午 辛酉 壬午 庚子
+       pattern=正印格  old_ys=异党  verify=PASS
+
+[TC05] CHG | 己辰 | 极旺(81%)->极旺(89%) | 官杀 | OK
+       壬戌 甲辰 己未 辛未
+       pattern=月刃格  old_ys=异党  verify=PASS
+
+[TC06] CHG | 丁酉 | 中和(15%)->偏弱(12%) | 印星 | OK
+       庚申 乙酉 丁亥 甲辰
+       pattern=偏财格  old_ys=异党  verify=PASS
+
+[TC07] --- | 丙卯 | 极旺(74%) | 官杀 | OK
+       壬寅 癸卯 丙午 戊戌
+       pattern=正印格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC08] CHG | 乙子 | 中和(20%) | 印星->食伤 | OK
+       辛酉 庚子 乙丑 丙戌
+       pattern=偏印格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC09] CHG | 辛未 | 偏旺(27%)->偏旺(29%) | 官杀->食伤 | OK
+       戊辰 己未 辛巳 丁酉
+       pattern=偏印格  old_ys=异党  verify=PASS
+
+[TC10] CHG | 癸亥 | 极旺(47%)->极旺(35%) | 官杀->财星 | OK
+       甲寅 乙亥 癸酉 戊午
+       pattern=伤官格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC11] --- | 丙午 | 极旺(66%) | 官杀 | OK
+       庚午 壬午 丙寅 甲午
+       pattern=月刃格  old_ys=异党  verify=PASS
+
+[TC12] --- | 壬寅 | 偏旺(32%) | 官杀 | OK
+       丙申 庚寅 壬辰 戊申
+       pattern=偏财格  old_ys=异党  verify=PASS
+
+[TC13] --- | 乙卯 | 极旺(58%) | 官杀 | OK
+       乙卯 己卯 乙酉 己卯
+       pattern=建禄格  old_ys=异党  verify=PASS
+
+[TC14] CHG | 癸亥 | 极旺(44%)->极旺(39%) | 官杀->财星 | OK
+       癸亥 癸亥 癸亥 癸亥
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC15] --- | 甲寅 | 极旺(39%) | 官杀 | OK
+       甲寅 甲寅 甲寅 甲寅
+       pattern=建禄格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC16] CHG | 戊午 | 中和(20%)->偏旺(25%) | 印星->财星 | OK
+       戊戌 戊午 戊午 戊午
+       pattern=正印格  old_ys=异党  verify=PASS
+
+[TC17] CHG | 己辰 | 极旺(41%)->极旺(63%) | 官杀 | STR_SWING
+       壬子 甲辰 己巳 丙寅
+       pattern=月刃格  old_ys=异党  verify=PASS
+
+[TC18] CHG | 辛午 | 中和(20%) | 官杀->食伤 | OK
+       丙午 甲午 辛酉 戊戌
+       pattern=从杀格->七杀格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC19] --- | 丙寅 | 偏弱(14%) | 印星 | OK
+       乙亥 戊寅 丙申 辛卯
+       pattern=食神格  old_ys=异党  verify=PASS
+
+[TC20] CHG | 辛午 | 中和(20%) | 官杀->食伤 | OK
+       丙午 甲午 辛酉 戊戌
+       pattern=从杀格->七杀格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC21] --- | 庚寅 | 极弱(4%) | 财星 | DIR_MISMATCH
+       甲寅 丙寅 庚寅 戊寅
+       pattern=从财格  old_ys=异党  verify=PASS
+
+[TC22] --- | 丙午 | 极旺(41%) | 官杀 | OK
+       丁巳 丙午 丙午 甲午
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC23] CHG | 辛丑 | 偏旺(25%)->偏旺(32%) | 官杀 | OK
+       壬子 癸丑 辛亥 己丑
+       pattern=偏印格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC24] --- | 戊寅 | 极弱(4%) | 印星 | OK
+       戊子 甲寅 戊午 丁巳
+       pattern=七杀格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC25] CHG | 戊丑 | 偏旺(28%)->极旺(40%) | 官杀 | OK
+       己未 丁丑 戊子 辛酉
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC26] --- | 甲申 | 中和(20%) | 印星 | OK
+       庚申 甲申 甲寅 丙寅
+       pattern=七杀格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC27] CHG | 壬子 | 极旺(46%)->中和(20%) | 官杀->财星 | STR_SWING|VERIFY_FAIL
+       甲午 丙子 壬午 庚子
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=FAIL
+
+[TC28] --- | 乙卯 | 极旺(36%) | 官杀 | OK
+       癸卯 乙卯 乙卯 丙子
+       pattern=建禄格  old_ys=异党  verify=PASS
+
+[TC29] CHG | 戊午 | 中和(20%)->偏旺(26%) | 印星->财星 | OK
+       戊午 戊午 戊午 戊午
+       pattern=正印格  old_ys=异党  verify=PASS
+
+[TC30] CHG | 戊戌 | 偏弱(12%)->偏弱(10%) | 印星 | OK
+       庚戌 丙戌 戊寅 壬戌
+       pattern=建禄格  old_ys=异党  verify=PASS
+
+[TC31] CHG | 庚申 | 极旺(37%)->极旺(43%) | 官杀 | OK
+       壬午 戊申 庚戌 丙戌
+       pattern=食神格  old_ys=异党  verify=PASS
+
+[TC32] --- | 甲卯 | 极旺(39%) | 官杀 | OK
+       丙子 辛卯 甲午 丁卯
+       pattern=月刃格  old_ys=异党  verify=PASS
+
+[TC33] --- | 辛申 | 偏旺(29%) | 官杀 | OK
+       己酉 壬申 辛未 戊子
+       pattern=伤官格  old_ys=异党  verify=PASS
+
+[TC34] --- | 癸巳 | 中和(20%) | 印星 | OK
+       丁卯 乙巳 癸丑 壬戌
+       pattern=正财格  old_ys=异党  verify=PASS
+
+[TC35] CHG | 甲戌 | 中和(21%)->极旺(42%) | 印星->食伤 | STR_SWING
+       乙巳 丙戌 甲寅 丁卯
+       pattern=伤官格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC36] CHG | 甲子 | 极弱(7%)->中和(20%) | 印星->食伤 | OK
+       庚子 戊子 甲子 甲子
+       pattern=正印格  old_ys=异党  verify=PASS
+
+[TC37] --- | 丁寅 | 中和(22%) | 官杀 | OK
+       辛巳 庚寅 丁酉 戊申
+       pattern=伤官格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC38] CHG | 丙未 | 中和(24%)->极旺(35%) | 官杀 | OK
+       甲戌 辛未 丙午 癸巳
+       pattern=伤官格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC39] CHG | 乙戌 | 中和(20%) | 印星->食伤 | OK
+       辛亥 戊戌 乙亥 丙戌
+       pattern=正财格  old_ys=异党  verify=PASS
+
+[TC40] CHG | 癸未 | 极旺(41%)->中和(16%) | 官杀->印星 | STR_SWING
+       丙辰 乙未 癸卯 壬子
+       pattern=食神格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC41] CHG | 壬辰 | 极旺(35%)->中和(20%) | 官杀 | OK
+       戊辰 丙辰 壬戌 乙巳
+       pattern=七杀格->从杀格  old_ys=异党  verify=PASS
+
+[TC42] CHG | 甲戌 | 极弱(1%)->中和(24%) | 印星->食伤 | STR_SWING
+       丁酉 庚戌 甲寅 己巳
+       pattern=伤官格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC43] CHG | 庚辰 | 极旺(37%)->极旺(41%) | 官杀 | OK
+       甲辰 戊辰 庚戌 庚辰
+       pattern=偏印格  old_ys=异党  verify=PASS
+
+[TC44] CHG | 戊未 | 极旺(40%)->极旺(58%) | 官杀->财星 | OK
+       癸丑 己未 戊寅 壬子
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC45] --- | 甲卯 | 极旺(43%) | 官杀 | OK
+       乙丑 己卯 甲午 甲子
+       pattern=月刃格  old_ys=克泄耗类(官杀/食伤/财星)  verify=PASS
+
+[TC46] --- | 丁寅 | 偏旺(32%) | 官杀 | OK
+       己巳 丙寅 丁卯 乙巳
+       pattern=月刃格  old_ys=异党  verify=PASS
+
+[TC47] CHG | 丙辰 | 中和(20%) | 官杀->食伤 | OK
+       壬申 甲辰 丙辰 戊戌
+       pattern=从杀格->从儿格  old_ys=异党  verify=PASS
+
+[TC48] CHG | 甲丑 | 极弱(2%)->中和(20%) | 印星 | OK
+       戊寅 乙丑 甲申 庚午
+       pattern=正财格  old_ys=生扶类(印星/比劫)  verify=PASS
+
+[TC49] --- | 庚寅 | 中和(20%) | 财星 | OK
+       丁卯 壬寅 庚戌 丙子
+       pattern=从财格  old_ys=异党  verify=PASS
+
+[TC50] CHG | 丙戌 | 中和(19%)->偏弱(14%) | 印星->官杀 | VERIFY_FAIL
+       癸未 壬戌 丙寅 己亥
+       pattern=食神格  old_ys=异党  verify=FAIL
+

@@ -1,0 +1,1309 @@
+[
+  {
+    "id": "TC01",
+    "bazi": "甲子 丙寅 戊午 壬戌",
+    "sex": "乾",
+    "desc": "子平真诠标准命例 — 正官格",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 46.4,
+    "shengPct": 53.6,
+    "reasoning": "非从格 | 生助53.6% 克泄耗46.4% | 非从格 | 身强(生助53.6%≥46.4%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC02",
+    "bazi": "乙亥 己丑 甲子 丙寅",
+    "sex": "坤",
+    "desc": "子平真诠 TC02 — 正印格候选",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "正财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 50,
+    "shengPct": 50,
+    "reasoning": "非从格 | 生助50% 克泄耗50% | 非从格 | 身强(生助50%≥50%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC03",
+    "bazi": "丙寅 庚寅 甲子 壬申",
+    "sex": "乾",
+    "desc": "子平真诠 TC03 — 偏财格候选",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "比肩格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 35.3,
+    "shengPct": 64.7,
+    "reasoning": "非从格 | 生助64.7% 克泄耗35.3% | 非从格 | 身强(生助64.7%≥35.3%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC04",
+    "bazi": "戊午 辛酉 壬午 庚子",
+    "sex": "坤",
+    "desc": "子平真诠 TC04 — 正印格候选",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 26.3,
+    "shengPct": 73.7,
+    "reasoning": "从格: 假从旺格 | 生助73.7% 克泄耗26.3% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC05",
+    "bazi": "壬戌 甲辰 己未 辛未",
+    "sex": "乾",
+    "desc": "子平真诠 TC05 — 比肩格候选",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "从旺格·从比",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 18.7,
+    "shengPct": 81.3,
+    "reasoning": "从格: 从旺格·从比 | 生助81.3% 克泄耗18.7% | 从旺格·从比 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC06",
+    "bazi": "庚申 乙酉 丁亥 甲辰",
+    "sex": "乾",
+    "desc": "回归测试 — 偏财格",
+    "source": "regression.test.js",
+    "pattern": "假从弱格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 69.2,
+    "shengPct": 30.8,
+    "reasoning": "从格: 假从弱格 | 生助30.8% 克泄耗69.2% | 假从弱格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC07",
+    "bazi": "壬寅 癸卯 丙午 戊戌",
+    "sex": "乾",
+    "desc": "回归测试 — 伤官格",
+    "source": "regression.test.js",
+    "pattern": "正印格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 40.5,
+    "shengPct": 59.5,
+    "reasoning": "非从格 | 生助59.5% 克泄耗40.5% | 非从格 | 身强(生助59.5%≥40.5%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC08",
+    "bazi": "辛酉 庚子 乙丑 丙戌",
+    "sex": "乾",
+    "desc": "回归测试 — 正官格",
+    "source": "regression.test.js",
+    "pattern": "偏印格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 54.9,
+    "shengPct": 45.1,
+    "reasoning": "非从格 | 生助45.1% 克泄耗54.9% | 非从格 | 身弱(克泄耗54.9%>45.1%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC09",
+    "bazi": "戊辰 己未 辛巳 丁酉",
+    "sex": "乾",
+    "desc": "回归测试 — 偏财格",
+    "source": "regression.test.js",
+    "pattern": "从旺格·从印",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 19.7,
+    "shengPct": 80.3,
+    "reasoning": "从格: 从旺格·从印 | 生助80.3% 克泄耗19.7% | 从旺格·从印 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC10",
+    "bazi": "甲寅 乙亥 癸酉 戊午",
+    "sex": "乾",
+    "desc": "回归测试 — 食神格候选",
+    "source": "regression.test.js",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 54.6,
+    "shengPct": 45.4,
+    "reasoning": "非从格 | 生助45.4% 克泄耗54.6% | 非从格 | 身弱(克泄耗54.6%>45.4%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC11",
+    "bazi": "庚午 壬午 丙寅 甲午",
+    "sex": "乾",
+    "desc": "回归测试 — 三午火局极旺",
+    "source": "regression.test.js",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 21.5,
+    "shengPct": 78.5,
+    "reasoning": "从格: 假从旺格 | 生助78.5% 克泄耗21.5% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC12",
+    "bazi": "丙申 庚寅 壬辰 戊申",
+    "sex": "乾",
+    "desc": "回归测试 — 从杀格候选",
+    "source": "regression.test.js",
+    "pattern": "假从弱格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 73.6,
+    "shengPct": 26.4,
+    "reasoning": "从格: 假从弱格 | 生助26.4% 克泄耗73.6% | 假从弱格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC13",
+    "bazi": "乙卯 己卯 乙酉 己卯",
+    "sex": "乾",
+    "desc": "回归测试 — 从财格候选(三卯一酉)",
+    "source": "regression.test.js",
+    "pattern": "从旺格·从比",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 15.3,
+    "shengPct": 84.7,
+    "reasoning": "从格: 从旺格·从比 | 生助84.7% 克泄耗15.3% | 从旺格·从比 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC14",
+    "bazi": "癸亥 癸亥 癸亥 癸亥",
+    "sex": "乾",
+    "desc": "回归测试 — 四柱同水(从强候选)",
+    "source": "regression.test.js",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 8.8,
+    "shengPct": 91.2,
+    "reasoning": "非从格 | 生助91.2% 克泄耗8.8% | 专旺格·润下格(水) | 身强(生助91.2%≥8.8%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC15",
+    "bazi": "甲寅 甲寅 甲寅 甲寅",
+    "sex": "乾",
+    "desc": "回归测试 — 四柱同木(专旺格)",
+    "source": "regression.test.js",
+    "pattern": "比肩格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 19.8,
+    "shengPct": 80.2,
+    "reasoning": "非从格 | 生助80.2% 克泄耗19.8% | 专旺格·曲直格(木) | 身强(生助80.2%≥19.8%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC16",
+    "bazi": "戊戌 戊午 戊午 戊午",
+    "sex": "乾",
+    "desc": "回归测试 — 三午一戌火土极旺",
+    "source": "regression.test.js",
+    "pattern": "从旺格·从印",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 1.5,
+    "shengPct": 98.5,
+    "reasoning": "从格: 从旺格·从印 | 生助98.5% 克泄耗1.5% | 从旺格·从印 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC17",
+    "bazi": "壬子 甲辰 己巳 丙寅",
+    "sex": "乾",
+    "desc": "回归测试 — 化气格候选(甲己合)",
+    "source": "regression.test.js",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 33.3,
+    "shengPct": 66.7,
+    "reasoning": "从格: 假从旺格 | 生助66.7% 克泄耗33.3% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC18",
+    "bazi": "丙午 甲午 辛酉 戊戌",
+    "sex": "乾",
+    "desc": "从格BUG复现 — 印星否决(时干戊透印)",
+    "source": "bug-reproduce",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 69.7,
+    "shengPct": 30.3,
+    "reasoning": "非从格 | 生助30.3% 克泄耗69.7% | 非从格 | 身弱(克泄耗69.7%>30.3%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC19",
+    "bazi": "乙亥 戊寅 丙申 辛卯",
+    "sex": "乾",
+    "desc": "从格验证 — 年干乙透印否决",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 27.7,
+    "shengPct": 72.3,
+    "reasoning": "从格: 假从旺格 | 生助72.3% 克泄耗27.7% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC20",
+    "bazi": "丙午 甲午 辛酉 戊戌",
+    "sex": "坤",
+    "desc": "从格验证 — 时干戊透印否决(坤造)",
+    "source": "test-ziping-zhenquan.js",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 69.7,
+    "shengPct": 30.3,
+    "reasoning": "非从格 | 生助30.3% 克泄耗69.7% | 非从格 | 身弱(克泄耗69.7%>30.3%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "ancient",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC21",
+    "bazi": "甲寅 丙寅 庚寅 戊寅",
+    "sex": "乾",
+    "desc": "四柱寅木 — 偏财旺极测试",
+    "source": "generated",
+    "pattern": "假从弱格·从财",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 89.2,
+    "shengPct": 10.8,
+    "reasoning": "从格: 假从弱格·从财 | 生助10.8% 克泄耗89.2% | 假从弱格·从财 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC22",
+    "bazi": "丁巳 丙午 丙午 甲午",
+    "sex": "乾",
+    "desc": "火炎土燥 — 调候紧急(夏月)",
+    "source": "generated",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 11.5,
+    "shengPct": 88.5,
+    "reasoning": "非从格 | 生助88.5% 克泄耗11.5% | 专旺格·炎上格(火) | 身强(生助88.5%≥11.5%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC23",
+    "bazi": "壬子 癸丑 辛亥 己丑",
+    "sex": "乾",
+    "desc": "金寒水冷 — 调候紧急(冬月)",
+    "source": "generated",
+    "pattern": "偏印格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 39.2,
+    "shengPct": 60.8,
+    "reasoning": "非从格 | 生助60.8% 克泄耗39.2% | 非从格 | 身强(生助60.8%≥39.2%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC24",
+    "bazi": "戊子 甲寅 戊午 丁巳",
+    "sex": "乾",
+    "desc": "日主旺+印重 — 从强边界测试",
+    "source": "generated",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 43.7,
+    "shengPct": 56.3,
+    "reasoning": "非从格 | 生助56.3% 克泄耗43.7% | 非从格 | 身强(生助56.3%≥43.7%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC25",
+    "bazi": "己未 丁丑 戊子 辛酉",
+    "sex": "乾",
+    "desc": "土重金埋 — 格局判定测试",
+    "source": "generated",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 36,
+    "shengPct": 64,
+    "reasoning": "非从格 | 生助64% 克泄耗36% | 非从格 | 身强(生助64%≥36%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC26",
+    "bazi": "庚申 甲申 甲寅 丙寅",
+    "sex": "乾",
+    "desc": "金木交战 — 冲克测试",
+    "source": "generated",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 63.4,
+    "shengPct": 36.6,
+    "reasoning": "非从格 | 生助36.6% 克泄耗63.4% | 非从格 | 身弱(克泄耗63.4%>36.6%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC27",
+    "bazi": "甲午 丙子 壬午 庚子",
+    "sex": "乾",
+    "desc": "水火既济 — 子午双冲测试",
+    "source": "generated",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 36.2,
+    "shengPct": 63.8,
+    "reasoning": "非从格 | 生助63.8% 克泄耗36.2% | 非从格 | 身强(生助63.8%≥36.2%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC28",
+    "bazi": "癸卯 乙卯 乙卯 丙子",
+    "sex": "乾",
+    "desc": "三卯木局 — 从强边界",
+    "source": "generated",
+    "pattern": "从旺格·从比",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 2.4,
+    "shengPct": 97.6,
+    "reasoning": "从格: 从旺格·从比 | 生助97.6% 克泄耗2.4% | 从旺格·从比 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC29",
+    "bazi": "戊午 戊午 戊午 戊午",
+    "sex": "乾",
+    "desc": "四柱同土 — 专旺格测试",
+    "source": "generated",
+    "pattern": "从旺格·从印",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 0,
+    "shengPct": 100,
+    "reasoning": "从格: 从旺格·从印 | 生助100% 克泄耗0% | 从旺格·从印 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC30",
+    "bazi": "庚戌 丙戌 戊寅 壬戌",
+    "sex": "乾",
+    "desc": "三戌土重 — 比劫旺测试",
+    "source": "generated",
+    "pattern": "从旺格·从比",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 20,
+    "shengPct": 80,
+    "reasoning": "从格: 从旺格·从比 | 生助80% 克泄耗20% | 从旺格·从比 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC31",
+    "bazi": "壬午 戊申 庚戌 丙戌",
+    "sex": "乾",
+    "desc": "申戌金局 — 正官格测试",
+    "source": "generated",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 33.9,
+    "shengPct": 66.1,
+    "reasoning": "从格: 假从旺格 | 生助66.1% 克泄耗33.9% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC32",
+    "bazi": "丙子 辛卯 甲午 丁卯",
+    "sex": "坤",
+    "desc": "木火通明 — 伤官格测试",
+    "source": "generated",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 33.9,
+    "shengPct": 66.1,
+    "reasoning": "从格: 假从旺格 | 生助66.1% 克泄耗33.9% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC33",
+    "bazi": "己酉 壬申 辛未 戊子",
+    "sex": "坤",
+    "desc": "金水相生 — 正印格测试",
+    "source": "generated",
+    "pattern": "假从旺格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 31.2,
+    "shengPct": 68.8,
+    "reasoning": "从格: 假从旺格 | 生助68.8% 克泄耗31.2% | 假从旺格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC34",
+    "bazi": "丁卯 乙巳 癸丑 壬戌",
+    "sex": "坤",
+    "desc": "食神生财 — 格局综合测试",
+    "source": "generated",
+    "pattern": "假从弱格·从财",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 85.6,
+    "shengPct": 14.4,
+    "reasoning": "从格: 假从弱格·从财 | 生助14.4% 克泄耗85.6% | 假从弱格·从财 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC35",
+    "bazi": "乙巳 丙戌 甲寅 丁卯",
+    "sex": "乾",
+    "desc": "木火相生 — 专旺边界",
+    "source": "generated",
+    "pattern": "偏财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 73.5,
+    "shengPct": 26.5,
+    "reasoning": "非从格 | 生助26.5% 克泄耗73.5% | 非从格 | 身弱(克泄耗73.5%>26.5%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC36",
+    "bazi": "庚子 戊子 甲子 甲子",
+    "sex": "乾",
+    "desc": "三子水局 — 印重身强测试",
+    "source": "generated",
+    "pattern": "从旺格·从印",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 10.7,
+    "shengPct": 89.3,
+    "reasoning": "从格: 从旺格·从印 | 生助89.3% 克泄耗10.7% | 从旺格·从印 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC37",
+    "bazi": "辛巳 庚寅 丁酉 戊申",
+    "sex": "坤",
+    "desc": "财官印俱全 — 综合测试",
+    "source": "generated",
+    "pattern": "正印格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 44.1,
+    "shengPct": 55.9,
+    "reasoning": "非从格 | 生助55.9% 克泄耗44.1% | 非从格 | 身强(生助55.9%≥44.1%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC38",
+    "bazi": "甲戌 辛未 丙午 癸巳",
+    "sex": "乾",
+    "desc": "火土相生 — 食伤生财测试",
+    "source": "generated",
+    "pattern": "伤官格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 64.5,
+    "shengPct": 35.5,
+    "reasoning": "非从格 | 生助35.5% 克泄耗64.5% | 非从格 | 身弱(克泄耗64.5%>35.5%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC39",
+    "bazi": "辛亥 戊戌 乙亥 丙戌",
+    "sex": "坤",
+    "desc": "金重木轻 — 从杀边界",
+    "source": "generated",
+    "pattern": "假从弱格",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 79.3,
+    "shengPct": 20.7,
+    "reasoning": "从格: 假从弱格 | 生助20.7% 克泄耗79.3% | 假从弱格 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC40",
+    "bazi": "丙辰 乙未 癸卯 壬子",
+    "sex": "乾",
+    "desc": "土水交战 — 格局测试",
+    "source": "generated",
+    "pattern": "七杀格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 68.3,
+    "shengPct": 31.7,
+    "reasoning": "非从格 | 生助31.7% 克泄耗68.3% | 非从格 | 身弱(克泄耗68.3%>31.7%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC41",
+    "bazi": "戊辰 丙辰 壬戌 乙巳",
+    "sex": "乾",
+    "desc": "辰戌冲 — 格局测试",
+    "source": "generated",
+    "pattern": "假从弱格·从官杀",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 90.9,
+    "shengPct": 9.1,
+    "reasoning": "从格: 假从弱格·从官杀 | 生助9.1% 克泄耗90.9% | 假从弱格·从官杀 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC42",
+    "bazi": "丁酉 庚戌 甲寅 己巳",
+    "sex": "坤",
+    "desc": "金木交战 — 综合测试",
+    "source": "generated",
+    "pattern": "偏财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 88.3,
+    "shengPct": 11.7,
+    "reasoning": "非从格 | 生助11.7% 克泄耗88.3% | 非从格 | 身弱(克泄耗88.3%>11.7%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC43",
+    "bazi": "甲辰 戊辰 庚戌 庚辰",
+    "sex": "乾",
+    "desc": "三辰一戌土重 — 从强边界",
+    "source": "generated",
+    "pattern": "从旺格·从印",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 14.6,
+    "shengPct": 85.4,
+    "reasoning": "从格: 从旺格·从印 | 生助85.4% 克泄耗14.6% | 从旺格·从印 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC44",
+    "bazi": "癸丑 己未 戊寅 壬子",
+    "sex": "坤",
+    "desc": "土重水塞 — 调候测试",
+    "source": "generated",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 36.9,
+    "shengPct": 63.1,
+    "reasoning": "非从格 | 生助63.1% 克泄耗36.9% | 非从格 | 身强(生助63.1%≥36.9%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC45",
+    "bazi": "乙丑 己卯 甲午 甲子",
+    "sex": "乾",
+    "desc": "卯月甲木 — 月刃格候选",
+    "source": "generated",
+    "pattern": "劫财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "克泄耗类(官杀/食伤/财星)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 36.9,
+    "shengPct": 63.1,
+    "reasoning": "非从格 | 生助63.1% 克泄耗36.9% | 非从格 | 身强(生助63.1%≥36.9%)→宜泄克耗",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC46",
+    "bazi": "己巳 丙寅 丁卯 乙巳",
+    "sex": "坤",
+    "desc": "寅月丁火 — 正印格测试",
+    "source": "generated",
+    "pattern": "从旺格·从比",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 15.3,
+    "shengPct": 84.7,
+    "reasoning": "从格: 从旺格·从比 | 生助84.7% 克泄耗15.3% | 从旺格·从比 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC47",
+    "bazi": "壬申 甲辰 丙辰 戊戌",
+    "sex": "乾",
+    "desc": "辰月丙火 — 食神格测试",
+    "source": "generated",
+    "pattern": "假从弱格·从儿(食伤)",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 89.5,
+    "shengPct": 10.5,
+    "reasoning": "从格: 假从弱格·从儿(食伤) | 生助10.5% 克泄耗89.5% | 假从弱格·从儿(食伤) | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC48",
+    "bazi": "戊寅 乙丑 甲申 庚午",
+    "sex": "乾",
+    "desc": "申金克木 — 七杀格测试",
+    "source": "generated",
+    "pattern": "正财格",
+    "isCong": false,
+    "isHua": false,
+    "yongshen": "生扶类(印星/比劫)",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 63.4,
+    "shengPct": 36.6,
+    "reasoning": "非从格 | 生助36.6% 克泄耗63.4% | 非从格 | 身弱(克泄耗63.4%>36.6%)→宜生扶",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC49",
+    "bazi": "丁卯 壬寅 庚戌 丙子",
+    "sex": "坤",
+    "desc": "寅月庚金 — 偏财格测试",
+    "source": "generated",
+    "pattern": "假从弱格·从财",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 84.2,
+    "shengPct": 15.8,
+    "reasoning": "从格: 假从弱格·从财 | 生助15.8% 克泄耗84.2% | 假从弱格·从财 | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  },
+  {
+    "id": "TC50",
+    "bazi": "癸未 壬戌 丙寅 己亥",
+    "sex": "乾",
+    "desc": "戌月丙火 — 食神格测试",
+    "source": "generated",
+    "pattern": "假从弱格·从儿(食伤)",
+    "isCong": true,
+    "isHua": false,
+    "yongshen": "异党",
+    "likeGod": "",
+    "fearGod": "",
+    "strengthLevel": "",
+    "strengthPct": 0,
+    "keXiePct": 82.3,
+    "shengPct": 17.7,
+    "reasoning": "从格: 假从弱格·从儿(食伤) | 生助17.7% 克泄耗82.3% | 假从弱格·从儿(食伤) | 从格用神=所从之神",
+    "classicRef": "",
+    "verified_by": [
+      "code_review",
+      "user"
+    ],
+    "warnings": [
+      "⚠️ 旧管道使用固定分值(12/10/8/4/2)打分体系，无权威典籍支持"
+    ]
+  }
+]

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公信万年历 — 注册码生成器</title>
+<style>
+:root {
+  --c-bg: #FFFDF7; --c-bg2: #F8F4E8; --c-text: #3B2F2F; --c-text2: #6B5C52;
+  --c-gold: #B8860B; --c-cinnabar: #C41E0A; --c-card: #FFFAF0;
+  --c-border: #DCCAA5; --c-success: #2D7D46;
+  --font-body: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  --font-display: "PingFang SC", "Noto Serif SC", "SimSun", serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-body); background: var(--c-bg); color: var(--c-text);
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  padding: 20px; transition: all 0.3s;
+}
+body.dark {
+  --c-bg: #1A1410; --c-bg2: #241E18; --c-text: #E8D5B0; --c-text2: #B8A48E;
+  --c-card: #241E18; --c-border: #5A4A32;
+}
+.container { max-width: 540px; width: 100%; }
+.header { text-align: center; margin-bottom: 24px; }
+.header .icon { font-size: 48px; line-height: 1; margin-bottom: 8px; }
+.header h1 { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.08em; color: var(--c-cinnabar); }
+.header .sub { font-size: 12px; color: var(--c-text2); margin-top: 4px; }
+.card {
+  background: var(--c-card); border: 1.5px solid var(--c-border);
+  border-radius: 12px; padding: 24px; margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.card-title {
+  font-family: var(--font-display); font-size: 15px; letter-spacing: 0.06em;
+  margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--c-border); color: var(--c-gold);
+}
+.input-row { margin-bottom: 14px; }
+.input-row label { display: block; font-size: 12px; color: var(--c-text2); margin-bottom: 4px; letter-spacing: 0.04em; }
+.input-row input {
+  width: 100%; padding: 10px 14px; font-size: 16px;
+  font-family: "Consolas", "Courier New", monospace; letter-spacing: 0.06em;
+  background: var(--c-bg); border: 1.5px solid var(--c-border); border-radius: 8px;
+  color: var(--c-text); text-align: center; outline: none; transition: border-color 0.2s;
+}
+.input-row input:focus { border-color: var(--c-gold); }
+.btn {
+  display: block; width: 100%; padding: 12px; font-size: 15px;
+  font-family: var(--font-display); letter-spacing: 0.08em;
+  border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-weight: 700;
+}
+.btn-primary { background: var(--c-cinnabar); color: #FFFDF7; }
+.btn-primary:hover { background: #A01808; }
+.btn-primary:disabled { background: #C8B898; color: #FFF; cursor: not-allowed; }
+.btn-ghost {
+  background: transparent; border: 1.5px solid var(--c-border);
+  color: var(--c-text2); font-size: 12px; padding: 8px; letter-spacing: 0.04em;
+}
+.btn-ghost:hover { background: var(--c-bg2); }
+.result-box {
+  background: var(--c-bg); border: 2px solid var(--c-gold); border-radius: 10px;
+  padding: 16px; margin-top: 12px; text-align: center; display: none; word-break: break-all;
+}
+.result-box.show { display: block; }
+.result-box .key {
+  font-size: 14px; font-family: "Consolas", "Courier New", monospace; font-weight: 700;
+  letter-spacing: 0.04em; color: var(--c-success); line-height: 1.6; margin-bottom: 10px;
+}
+.result-box .meta { font-size: 11px; color: var(--c-text2); }
+.btn-copy {
+  display: inline-block; margin-top: 8px; padding: 6px 20px; font-size: 12px;
+  border-radius: 6px; border: 1.5px solid var(--c-gold); background: var(--c-bg);
+  color: var(--c-gold); cursor: pointer; letter-spacing: 0.06em;
+}
+.btn-copy:hover { background: var(--c-gold); color: #FFF; }
+/* 历史记录 */
+.history-item {
+  display: flex; flex-direction: column; padding: 10px 0;
+  border-bottom: 1px dashed var(--c-border); font-size: 12px;
+}
+.history-item .row1 { display: flex; justify-content: space-between; align-items: center; }
+.history-item .date { color: var(--c-text2); }
+.history-item .mid { font-family: "Consolas", "Courier New", monospace; color: var(--c-text); }
+.history-item .regcode {
+  font-family: "Consolas", "Courier New", monospace; color: var(--c-success);
+  font-weight: 600; font-size: 10px; word-break: break-all; margin-top: 4px;
+  cursor: pointer; line-height: 1.4;
+}
+.history-empty { text-align: center; font-size: 12px; color: var(--c-text2); padding: 16px 0; }
+.btn-clear { font-size: 11px; color: var(--c-cinnabar); background: none; border: none; cursor: pointer; float: right; }
+/* 密码解锁 */
+.unlock-overlay {
+  position: fixed; inset: 0; background: var(--c-bg); z-index: 2000;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.unlock-box { max-width: 400px; width: 100%; text-align: center; }
+.unlock-box .lock-icon { font-size: 56px; margin-bottom: 16px; }
+.unlock-box h2 { font-family: var(--font-display); font-size: 18px; letter-spacing: 0.06em; margin-bottom: 8px; }
+.unlock-box .msg { font-size: 12px; color: var(--c-text2); margin-bottom: 20px; }
+.unlock-box .error { font-size: 12px; color: var(--c-cinnabar); margin-top: 8px; display: none; }
+.unlock-box .error.show { display: block; }
+.theme-toggle { position: fixed; top: 12px; right: 12px; font-size: 20px; cursor: pointer; opacity: 0.5; z-index: 10; }
+.theme-toggle:hover { opacity: 1; }
+.toast {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  background: #2D7D46; color: #FFF; font-size: 13px; padding: 8px 20px;
+  border-radius: 20px; z-index: 3000; letter-spacing: 0.04em;
+  opacity: 0; transition: opacity 0.3s; pointer-events: none;
+}
+.toast.show { opacity: 1; }
+.count { font-size: 11px; color: var(--c-text2); margin-top: 4px; text-align: right; }
+</style>
+</head>
+<body>
+<div class="theme-toggle" onclick="toggleTheme()" title="切换暗色模式">&#9788;</div>
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════ 密码解锁层 ════════════════ -->
+<div class="unlock-overlay" id="unlockOverlay">
+  <div class="unlock-box">
+    <div class="lock-icon">&#128274;</div>
+    <h2>注册码生成器</h2>
+    <div class="msg">请输入管理密码以解锁私钥</div>
+    <div class="input-row">
+      <input type="password" id="passwordInput" placeholder="请输入管理密码" autocomplete="off">
+    </div>
+    <button class="btn btn-primary" onclick="unlock()">解 锁</button>
+    <div class="error" id="unlockError"></div>
+  </div>
+</div>
+
+<!-- ════════════════ 主界面 ════════════════ -->
+<div class="container" id="mainUI" style="display:none;">
+  <div class="header">
+    <div class="icon">&#128220;</div>
+    <h1>公信万年历 · 注册码生成器</h1>
+    <div class="sub">v1.0 &mdash; 请妥善保管此工具，勿外传</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">生成注册码</div>
+    <div class="input-row">
+      <label>客户的机器码</label>
+      <input type="text" id="machineIdInput" placeholder="格式：XXXX-XXXX-XXXX-XXXX" maxlength="23" autocomplete="off">
+    </div>
+    <div class="count" id="charCount"></div>
+    <button class="btn btn-primary" id="generateBtn" onclick="generate()" disabled>生成注册码</button>
+    <div class="result-box" id="resultBox">
+      <div class="key" id="resultKey"></div>
+      <div class="meta" id="resultMeta"></div>
+      <button class="btn-copy" onclick="copyResult()">复制注册码（发回给客户）</button>
+    </div>
+  </div>
+
+  <!-- 新格式：HMAC 短码 -->
+  <div class="card" style="margin-top:20px;">
+    <div class="card-title" style="color:#5D8A7C;">新格式 · 短码激活码（BZ-T-YYYYMMDD-XXXX）</div>
+    <div class="input-row">
+      <label>客户机器码</label>
+      <input type="text" id="shortMidInput" placeholder="XXXX-XXXX-XXXX" maxlength="14" autocomplete="off">
+    </div>
+    <div class="input-row">
+      <label>会员等级</label>
+      <select id="shortTierSel" style="width:100%;padding:6px;border:1px solid #ccc;border-radius:4px;">
+        <option value="Q">季卡(3个月) ¥68</option>
+        <option value="Y">年卡 ¥198（365天）</option>
+        <option value="U">终身卡 ¥598（永久有效）</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" onclick="generateShort()" style="background:#5D8A7C;">生成短码激活码</button>
+    <div class="result-box" id="shortResultBox">
+      <div class="key" id="shortResultKey" style="font-size:20px;letter-spacing:2px;"></div>
+      <div class="meta" id="shortResultMeta"></div>
+      <button class="btn-copy" onclick="copyShortResult()">复制激活码</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">生成记录<button class="btn-clear" onclick="clearHistory()">清空</button></div>
+    <div id="historyList"></div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+// ！！！重要：运行 init-keygen.js 后，
+// 将 encrypted-key.json 的内容替换下面这个 null ！！！
+// ═══════════════════════════════════════════
+var ENCRYPTED_KEY_DATA = {
+  "version": 1,
+  "algorithm": "PBKDF2-SHA512+AES-256-GCM",
+  "iterations": 600000,
+  "salt": "vhBGE7ZXWJfCZG3ZpFiGBdfaAWrhmrlzMKnNwe0Byf8=",
+  "payload": "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"
+};
+
+var cryptoKey =null;
+
+// ── 主题 ──
+(function() {
+  if (localStorage.getItem('keygen_theme') === 'dark') document.body.classList.add('dark');
+})();
+function toggleTheme() {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('keygen_theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+}
+
+// ── Toast ──
+var toastTimer;
+function showToast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function() { el.classList.remove('show'); }, 2000);
+}
+
+// ── Base64 编解码 ──
+// 使用标准Base64（含 +/），分组分隔符用 -，无歧义
+function sigBase64Encode(buf) {
+  return btoa(String.fromCharCode.apply(null, new Uint8Array(buf)));
+}
+function sigBase64Decode(str) {
+  var binary = atob(str);
+  var bytes = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+// ── 格式化为5字符一组 ──
+function group5(str) {
+  var groups = [];
+  for (var i = 0; i < str.length; i += 5) groups.push(str.slice(i, i + 5));
+  return groups.join('-');
+}
+
+// ═══════════════════════════════════════════
+// 密码解锁 → 解密私钥
+// ═══════════════════════════════════════════
+function showError(msg) {
+  var el = document.getElementById('unlockError');
+  el.textContent = msg; el.classList.add('show');
+}
+
+async function unlock() {
+  var password = document.getElementById('passwordInput').value;
+
+  if (!ENCRYPTED_KEY_DATA || !ENCRYPTED_KEY_DATA.salt || !ENCRYPTED_KEY_DATA.payload) {
+    showError('未找到加密私钥。请先运行 init-keygen.js 并将 encrypted-key.json 的内容填入本文件 ENCRYPTED_KEY_DATA 变量。');
+    return;
+  }
+  if (!password) { showError('请输入密码'); return; }
+
+  try {
+    var enc = new TextEncoder();
+    var salt = base64ToBuf(ENCRYPTED_KEY_DATA.salt);
+
+    var baseKey = await crypto.subtle.importKey('raw', enc.encode(password), { name: 'PBKDF2' }, false, ['deriveBits', 'deriveKey']);
+
+    var aesKey = await crypto.subtle.deriveKey(
+      { name: 'PBKDF2', salt: salt, iterations: ENCRYPTED_KEY_DATA.iterations, hash: 'SHA-512' },
+      baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']
+    );
+
+    var payload = base64ToBuf(ENCRYPTED_KEY_DATA.payload);
+    var iv = new Uint8Array(payload, 0, 12);
+    var authTag = new Uint8Array(payload, 12, 16);
+    var ciphertext = new Uint8Array(payload, 28);
+
+    // AES-GCM 解密
+    var combined = new Uint8Array(ciphertext.length + 16);
+    combined.set(ciphertext, 0);
+    combined.set(authTag, ciphertext.length);
+
+    var decrypted = await crypto.subtle.decrypt(
+      { name: 'AES-GCM', iv: iv, tagLength: 128 },
+      aesKey, combined
+    );
+
+    var privateKeyPem = new TextDecoder().decode(decrypted);
+    cryptoKey = await importPrivateKey(privateKeyPem);
+
+    document.getElementById('unlockOverlay').style.display = 'none';
+    document.getElementById('mainUI').style.display = 'block';
+    showToast('私钥已解锁');
+
+    renderHistory();
+    var input = document.getElementById('machineIdInput');
+    input.addEventListener('input', onMachineIdInput);
+    input.focus();
+
+  } catch (e) {
+    console.error(e);
+    var detail = e.message || e.toString();
+    if (detail.indexOf('AES-GCM') > -1 || detail.indexOf('decrypt') > -1 || detail.indexOf('operation') > -1) {
+      detail = '很可能密码错误 — ' + detail;
+    }
+    if (detail.indexOf('subtle') > -1 || detail.indexOf('crypto') > -1) {
+      detail = '浏览器不支持 Web Crypto API，请用 Chrome/Edge/Firefox 打开此文件 — ' + detail;
+    }
+    showError('解密失败: ' + detail);
+    document.getElementById('passwordInput').value = '';
+    document.getElementById('passwordInput').focus();
+  }
+}
+
+document.getElementById('passwordInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') unlock();
+});
+document.getElementById('passwordInput').focus();
+
+// ── PEM → CryptoKey ──
+async function importPrivateKey(pem) {
+  var b64 = pem.replace('-----BEGIN PRIVATE KEY-----', '').replace('-----END PRIVATE KEY-----', '').replace(/\s/g, '');
+  return crypto.subtle.importKey('pkcs8', base64ToBuf(b64), { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['sign']);
+}
+
+function base64ToBuf(b64) {
+  var binary = atob(b64);
+  var bytes = new Uint8Array(binary.length);
+  for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return bytes.buffer;
+}
+
+// ── 机器码输入 ──
+function onMachineIdInput() {
+  var raw = document.getElementById('machineIdInput').value.trim();
+  var clean = raw.replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 20);
+  var formatted = '';
+  for (var i = 0; i < clean.length; i++) {
+    if (i > 0 && i % 4 === 0) formatted += '-';
+    formatted += clean[i];
+  }
+  document.getElementById('machineIdInput').value = formatted;
+  document.getElementById('generateBtn').disabled = clean.length < 8;
+  document.getElementById('charCount').textContent = '机器码长度: ' + clean.length + ' 字符（最低8位）';
+}
+
+// ═══════════════════════════════════════════
+// 生成注册码
+//
+// 注册码 = Base64url( machineId | "|lifetime|" | timestamp | "|" | RSA_SHA256_Signature )
+// 注册码长度 ≈ 16 + 10 + 13 + 4 + 342 = ~385 char (Base64url)
+// 分组为5字符一组：约77组
+// ═══════════════════════════════════════════
+async function generate() {
+  var machineId = document.getElementById('machineIdInput').value.trim();
+  if (!machineId || !cryptoKey) return;
+
+  var btn = document.getElementById('generateBtn');
+  btn.disabled = true;
+  btn.textContent = '正在生成...';
+
+  try {
+    var cleanMid = machineId.replace(/-/g, '');
+    var timestamp = Date.now();
+    var payload = cleanMid + '|lifetime|' + timestamp;
+
+    var sig = await crypto.subtle.sign(
+      { name: 'RSASSA-PKCS1-v1_5' },
+      cryptoKey,
+      new TextEncoder().encode(payload)
+    );
+
+    // 组装：payload + '|' + base64url(signature)
+    var sigB64 = sigBase64Encode(sig);
+    var licenseData = payload + '|' + sigB64;
+    var regCode = group5(licenseData);
+
+    document.getElementById('resultKey').textContent = regCode;
+    document.getElementById('resultMeta').textContent =
+      '机器码: ' + machineId + ' | 授权: 终身 | ' + new Date(timestamp).toLocaleString('zh-CN') +
+      ' | 长度: ' + licenseData.length + ' 字符';
+    document.getElementById('resultBox').classList.add('show');
+    document.getElementById('resultMeta').dataset.fullData = licenseData;
+
+    saveRecord(machineId, regCode, licenseData, timestamp);
+
+  } catch (e) {
+    console.error(e);
+    showToast('生成失败: ' + e.message);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '生成注册码';
+}
+
+// ═══════════════════════════════════════════
+// HMAC 短码激活码生成（新格式）
+// 格式: BZ-{tier}-{YYYYMMDD}-{4chars}
+// ═══════════════════════════════════════════
+// ！！！此密钥必须与 index.html 中 _LIC_HMAC_K1+K2 完全一致！！！
+var HMAC_KEY = '381cb51f0923fc771bf7e81547c485f7';
+
+function daysFromNow(days) {
+  var d = new Date();
+  d.setDate(d.getDate() + days);
+  var y = d.getFullYear();
+  var m = String(d.getMonth() + 1).padStart(2, '0');
+  var day = String(d.getDate()).padStart(2, '0');
+  return y + m + day;
+}
+
+async function generateShort() {
+  var mid = document.getElementById('shortMidInput').value.trim();
+  var tier = document.getElementById('shortTierSel').value;
+  if (!mid) return;
+
+  var rawMid = mid.replace(/-/g, '').toUpperCase();
+  var tierDays = { Q: 90, Y: 365, U: 0 };
+  var tierLabels = { Q: '季卡(3个月)', Y: '年卡', U: '终身卡' };
+  var expireDate = tierDays[tier] > 0 ? daysFromNow(tierDays[tier]) : '00000000';
+
+  // HMAC-SHA256
+  var message = rawMid + tier + expireDate;
+  var keyData = new TextEncoder().encode(HMAC_KEY);
+  var cryptoKeyHmac = await crypto.subtle.importKey(
+    'raw', keyData, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  );
+  var sig = await crypto.subtle.sign('HMAC', cryptoKeyHmac, new TextEncoder().encode(message));
+  var sigHex = Array.from(new Uint8Array(sig.slice(0, 4)))
+    .map(function(b) { return ('0' + b.toString(16)).slice(-2); }).join('').toUpperCase();
+
+  var code = 'BZ-' + tier + '-' + expireDate + '-' + sigHex;
+
+  document.getElementById('shortResultKey').textContent = code;
+  document.getElementById('shortResultMeta').textContent =
+    '机器码: ' + mid + ' | ' + tierLabels[tier] + ' | 到期: ' + (tier === 'U' ? '永久有效' : expireDate) + ' | HMAC-SHA256';
+  document.getElementById('shortResultBox').classList.add('show');
+
+  saveRecord(mid, code, code, Date.now());
+}
+
+function copyShortResult() {
+  var code = document.getElementById('shortResultKey').textContent;
+  navigator.clipboard.writeText(code).then(function() {
+    showToast('已复制激活码');
+  }).catch(function() {
+    showToast('复制失败，请手动选择复制');
+  });
+}
+
+// ═══════════════════════════════════════════
+// 历史记录
+// ═══════════════════════════════════════════
+var HISTORY_KEY = 'keygen_history';
+
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]'); } catch(e) { return []; }
+}
+
+function saveRecord(machineId, regCode, fullLicenseData, timestamp) {
+  var history = getHistory();
+  history.unshift({
+    date: new Date(timestamp).toISOString().slice(0, 10),
+    time: new Date(timestamp).toLocaleTimeString('zh-CN'),
+    machineId: machineId,
+    regCode: regCode,
+    fullData: fullLicenseData
+  });
+  if (history.length > 50) history = history.slice(0, 50);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+  renderHistory();
+  showToast('注册码已生成');
+}
+
+function renderHistory() {
+  var history = getHistory();
+  var container = document.getElementById('historyList');
+  if (history.length === 0) {
+    container.innerHTML = '<div class="history-empty">暂无生成记录</div>';
+    return;
+  }
+  var html = '';
+  for (var i = 0; i < history.length; i++) {
+    var r = history[i];
+    html += '<div class="history-item">' +
+      '<div class="row1"><span class="date">' + r.date + ' ' + r.time + '</span><span class="mid">' + r.machineId + '</span></div>' +
+      '<span class="regcode" title="点击复制完整注册数据" onclick="copyText(unescapeHtml(\'' + escapeHtml(r.fullData) + '\'))">' + r.regCode.slice(0, 60) + (r.regCode.length > 60 ? '...' : '') + '</span>' +
+      '</div>';
+  }
+  container.innerHTML = html;
+}
+
+function escapeHtml(str) { return str.replace(/'/g, "\\'").replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function unescapeHtml(str) { return str.replace(/\\'/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>'); }
+
+function clearHistory() {
+  if (confirm('确定清空所有生成记录？此操作不可恢复。')) {
+    localStorage.removeItem(HISTORY_KEY);
+    renderHistory();
+    showToast('记录已清空');
+  }
+}
+
+function copyResult() {
+  var fullData = document.getElementById('resultMeta').dataset.fullData;
+  if (fullData) {
+    copyText(fullData);
+    showToast('注册码已复制（' + fullData.length + '字符）');
+  }
+}
+
+function copyText(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed'; ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select(); document.execCommand('copy');
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>

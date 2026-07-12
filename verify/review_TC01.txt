@@ -1,0 +1,4 @@
+[TC01] 甲子 丙寅 戊午 壬戌
+PRE : strength=中和(20%) yongshen=印星 verify=PASS
+POST: strength=中和(20%) yongshen=印星 verify=PASS
+reasoning: 日主戊土 | 强度中和 | 占比20% | 正格: 七杀格 | 本气透干 | 格局成格 | 中格

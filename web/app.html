@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<meta name="x5-fullscreen" content="true">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#3C2415">
+<title>天地玄黄 · 日月更替 — 八卦掌决版</title>
+
+<!-- DNS 预解析 -->
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<!-- 样式表（按加载顺序：变量 → 基础 → 布局 → 模块） -->
+<link rel="stylesheet" href="/css/variables.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/layout.css">
+<link rel="stylesheet" href="/css/calendar.css">
+<link rel="stylesheet" href="/css/bazi.css">
+
+<!-- PWA manifest -->
+<link rel="manifest" href="/manifest.webmanifest">
+</head>
+<body>
+
+<!-- 阻塞脚本：首帧前应用主题，防止 dark↔light 闪烁 -->
+<script>
+(function(){
+  var t = localStorage.getItem('theme');
+  if (t === 'light') document.body.classList.add('light');
+  else document.body.classList.add('dark');
+})();
+</script>
+
+<!-- ══════ 顶部固定导航栏（双行布局 — 参照 qingnang.cc） ══════ -->
+<header class="top-nav" id="bottomTabs" role="banner" aria-label="天地玄黄日历">
+  <div class="top-nav-inner">
+    <!-- 第一行：品牌标题 + 导航按钮 -->
+    <div class="top-nav-row1">
+      <div class="top-nav-brand">
+        <h1><a href="/" style="text-decoration:none;color:inherit;"><i class="ti ti-calendar-time" aria-hidden="true"></i> 天地玄黄 · 日月更替 <span class="badge">八卦掌决版</span></a></h1>
+      </div>
+      <nav class="top-nav-tabs" role="navigation" aria-label="主导航">
+        <a href="/" class="tab-item" id="tabHome" title="返回首页"><span class="tab-label">首页</span></a>
+        <button class="tab-item tab-active" id="tabCalendar" title="万年历"><span class="tab-label">年历</span></button>
+        <button class="tab-item" id="tabNianli" title="节气"><span class="tab-label">节气</span></button>
+        <button class="tab-item" id="tabBazi" title="八字排盘"><span class="tab-label">八字</span></button>
+        <button class="tab-item" id="tabZiwei" title="紫微斗数"><span class="tab-label">紫微</span></button>
+        <button class="tab-item" id="tabNote" title="每日记事"><span class="tab-label">记事</span></button>
+        <button class="tab-item" id="tabSettings" title="设置"><span class="tab-label">设置</span></button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- 跳过导航链接 -->
+<a href="#main-content" class="sr-only sr-only-focusable">跳转到主要内容</a>
+
+<!-- ══════ 主容器 ══════ -->
+<main class="wrap" id="main-content" role="main" aria-label="日历内容">
+
+  <!-- 节气顶栏 -->
+  <div id="jqTopBar" style="font-size:12px;line-height:1.5;"></div>
+  <!-- 吉神公告栏 -->
+  <div id="jishenBanner" style="display:none;text-align:center;padding:6px 12px;margin:0 8px;border-radius:8px;font-size:0.9375rem;font-weight:700;letter-spacing:0.06em;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(212,175,55,0.04));border:1px solid rgba(212,175,55,0.25);color:var(--color-gold);"></div>
+
+  <!-- 主内容区 -->
+  <div class="main">
+
+    <!-- 日历区 -->
+    <div id="cal-root" role="tabpanel" aria-labelledby="tabCalendar">
+      <div class="cal-header-bar" id="calHeaderBar">
+        <span class="cal-header-label">公元
+          <select id="Cal_y" class="cal-header-sel"></select>年
+          <select id="Cal_m" class="cal-header-sel cal-header-sel-sm"></select>月
+          <button id="btnChangeMonth" class="cal-header-btn">确定</button>
+          <button id="btnToday" class="cal-header-btn cal-header-today"><i class="ti ti-arrow-back-up"></i> 今天</button>
+        </span>
+        <div id="Cal2" class="cal-header-gz"></div>
+      </div>
+      <div class="cal-grid-wrap">
+        <div id="Cal3"></div>
+      </div>
+      <div id="FTLN" class="cal-footer-bar"></div>
+    </div>
+
+    <!-- 八字排盘区 -->
+    <div id="bazi-root" style="display:none;"></div>
+
+    <!-- 紫微斗数 iframe 覆盖层 -->
+    <div id="ziwei-root" style="display:none; position:fixed; inset:0; z-index:2000; background:var(--bg-page,#12100E);">
+      <iframe id="ziwei-iframe" src="" style="width:100%;height:100%;border:none;" allow="clipboard-write"></iframe>
+    </div>
+
+    <!-- 详情浮层 -->
+    <div id="detail-root" class="detail-panel-overlay" style="display:none;"></div>
+
+    <!-- ══════ 设置面板（独立，不依赖 JS 模块） ══════ -->
+    <div class="settings-panel" id="settingsPanel" role="menu" aria-label="日历标签设置" style="position:fixed;top:auto;right:auto;z-index:2000;">
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-alert-triangle"></i> 无禄日标签</div>
+          <div class="st-desc">在日历格上显示"无"字标识</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togWuluBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-calendar-month"></i> 月倒家杀标签</div>
+          <div class="st-desc">在日历格上显示按月判定的"倒"字标识</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togDaojiaMonth"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-calendar"></i> 年倒家杀标签</div>
+          <div class="st-desc">在日历格上显示按年判定的"倒"字标识</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togDaojiaYear"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-skull"></i> 金神七煞标签</div>
+          <div class="st-desc">在日历格上显示"煞"字标识</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togJinshenqishaBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-star"></i> 五富日标签</div>
+          <div class="st-desc">在日历格上显示"富"字标识（吉神·宜求财）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togWufuBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-alert-circle"></i> 四离四绝日标签</div>
+          <div class="st-desc">在日历格上显示"离/绝"字标识（月忌日·大事勿用）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togSiLiSiJueBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-sparkles"></i> 天赦日标签</div>
+          <div class="st-desc">在日历格上显示"赦"字标识（大吉·消灾解厄）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togTiansheBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-sun"></i> 天德日标签</div>
+          <div class="st-desc">在日历格上显示"德"字标识（吉神·天德）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togTiandeBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-moon"></i> 月德日标签</div>
+          <div class="st-desc">在日历格上显示"月"字标识（吉神·月德）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togYuedeBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-alert-triangle"></i> 杨公忌日标签</div>
+          <div class="st-desc">在日历格上显示"忌"字标识（十三忌日·大事勿用）</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togYanggongJiBadge"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-palette"></i> 字号大小</div>
+          <div class="st-desc" id="fontSizeDesc">标准</div>
+        </div>
+        <div class="font-size-btns">
+          <button class="fs-btn" data-fs="small" aria-label="小字号">A-</button>
+          <button class="fs-btn fs-active" data-fs="medium" aria-label="标准字号">A</button>
+          <button class="fs-btn" data-fs="large" aria-label="大字号">A+</button>
+        </div>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-moon"></i> 暗色模式</div>
+          <div class="st-desc">切换暗色/亮色显示主题</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" id="togDarkMode"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-lock"></i> 授权状态</div>
+          <div class="st-desc" id="licenseStatusDesc">加载中...</div>
+        </div>
+        <button class="btn-license-settings" id="licenseSettingsBtn"><i class="ti ti-lock"></i>&nbsp;激活</button>
+      </div>
+    </div>
+
+    <!-- 命盘档案 -->
+    <div id="archive-root"></div>
+
+    <!-- 每日记事 -->
+    <div id="note-root"></div>
+
+  </div><!-- /main -->
+
+</main><!-- /wrap -->
+
+<!-- ══════ 固定页脚 ══════ -->
+<footer class="foot" id="pageFoot" role="contentinfo" aria-label="版权与来源信息">
+  <div class="foot-tab" id="footTab" title="折叠/展开页脚">
+    <i class="ti ti-chevron-down"></i>
+  </div>
+  <div class="foot-body">
+    <div class="foot-inner">
+      <div class="foot-line">命理推断 · 八卦掌决版 &nbsp; 岁次推演范围：公元前 4712 年 — 公元 9999 年</div>
+      <div class="foot-line">历算核心承自寿星万年历<span class="sep">|</span>神煞体系基于 lunisolar</div>
+      <div class="foot-line">指导老师：王贵柱<span class="sep">|</span>校对：芹芹<span class="sep">|</span>设计：梓踊</div>
+    </div>
+  </div>
+</footer>
+
+<!-- 试用横幅（授权模块待迁移） -->
+<div class="trial-banner" id="trialBanner" style="display:none;">
+  <span class="trial-banner-icon"><i class="ti ti-clock"></i></span>
+  <span class="trial-banner-text" id="trialBannerText"></span>
+  <button class="trial-banner-btn" id="trialBannerBtn"><i class="ti ti-lock"></i>&nbsp;激活完整版</button>
+</div>
+
+<!-- ══════ 设置面板（独立脚本，不依赖任何模块） ══════ -->
+<script>
+// 全局桩函数 — 在任何模块加载前定义，bzinfo HTML 内联事件会调用
+window.showToast = function(msg, type, duration) {
+  console.log('[toast]', type||'info', msg);
+  var el = document.createElement('div');
+  el.textContent = msg;
+  el.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#3C2415;color:#F5DD96;padding:8px 20px;border-radius:20px;z-index:9999;font-size:14px;transition:opacity 0.3s;pointer-events:none;';
+  document.body.appendChild(el);
+  setTimeout(function() { el.style.opacity='0'; setTimeout(function() { el.remove(); }, 300); }, (duration||2000));
+};
+
+(function() {
+  'use strict';
+
+  var panel = document.getElementById('settingsPanel');
+  var tab = document.getElementById('tabSettings');
+  var visible = false;
+
+  function getSet(key, def) {
+    try { var v = localStorage.getItem('cal_' + key); return v === null ? def : v === 'true'; }
+    catch(e) { return def; }
+  }
+  function saveSet(key, val) {
+    try { localStorage.setItem('cal_' + key, val ? 'true' : 'false'); } catch(e) {}
+  }
+  function refreshCalendar() {
+    var data = {
+      showWulu: getSet('showWulu', true),
+      showDaojiaMonth: getSet('showDaojiaMonth', true),
+      showDaojiaYear: getSet('showDaojiaYear', true),
+      showJinshenqisha: getSet('showJinshenqisha', true),
+      showWufu: getSet('showWufu', true),
+      showSiLiSiJue: getSet('showSiLiSiJue', true),
+      showTiande: getSet('showTiande', true),
+      showYuede: getSet('showYuede', true),
+      showTianshe: getSet('showTianshe', true)
+    };
+    // DOM 事件（日历也监听此事件）
+    try { window.dispatchEvent(new CustomEvent('settings:changed', { detail: data })); } catch(e) {}
+    // State 模块（如果已加载）
+    try { if (window.State && window.State.emit) window.State.emit('settings:changed', data); } catch(e) {}
+  }
+
+  function initToggles() {
+    document.getElementById('togWuluBadge').checked = getSet('showWulu', true);
+    document.getElementById('togDaojiaMonth').checked = getSet('showDaojiaMonth', true);
+    document.getElementById('togDaojiaYear').checked = getSet('showDaojiaYear', true);
+    document.getElementById('togJinshenqishaBadge').checked = getSet('showJinshenqisha', true);
+    document.getElementById('togWufuBadge').checked = getSet('showWufu', true);
+    document.getElementById('togSiLiSiJueBadge').checked = getSet('showSiLiSiJue', true);
+    document.getElementById('togYanggongJiBadge').checked = getSet('showYanggongJi', true);
+    document.getElementById('togTiansheBadge').checked = getSet('showTianshe', true);
+    document.getElementById('togTiandeBadge').checked = getSet('showTiande', true);
+    document.getElementById('togYuedeBadge').checked = getSet('showYuede', true);
+    document.getElementById('togDarkMode').checked = document.body.classList.contains('dark');
+    var fs = localStorage.getItem('fontSize') || 'medium';
+    panel.querySelectorAll('.fs-btn').forEach(function(b) {
+      b.classList.toggle('fs-active', b.getAttribute('data-fs') === fs);
+    });
+    document.getElementById('fontSizeDesc').textContent = {small:'小号',medium:'标准',large:'大号'}[fs]||'标准';
+    updateLicenseStatus();
+  }
+
+  function updateLicenseStatus() {
+    var desc = document.getElementById('licenseStatusDesc');
+    var btn = document.getElementById('licenseSettingsBtn');
+    if (!desc) return;
+    try {
+      var lic = localStorage.getItem('_license_data');
+      if (lic) {
+        var d = JSON.parse(lic);
+        if (d.tier === 'U') { desc.textContent = '已激活·终身使用'; if(btn)btn.style.display='none'; return; }
+        if (d.tier && d.expireDate) { desc.textContent = '已激活'; if(btn)btn.style.display='none'; return; }
+      }
+      if (localStorage.getItem('_trial_start')) { desc.textContent = '试用中'; }
+      else { desc.textContent = '未激活'; }
+    } catch(e) { desc.textContent = '未激活'; }
+  }
+
+  function toggleTheme(isDark) {
+    if (isDark) { document.body.classList.add('dark'); document.body.classList.remove('light'); localStorage.setItem('theme','dark'); }
+    else { document.body.classList.remove('dark'); document.body.classList.add('light'); localStorage.setItem('theme','light'); }
+  }
+
+  function setFontSize(size) {
+    var sizes = { small:'13px', medium:'', large:'18px' };
+    document.documentElement.style.fontSize = sizes[size] || '';
+    localStorage.setItem('fontSize', size);
+    document.getElementById('fontSizeDesc').textContent = {small:'小号',medium:'标准',large:'大号'}[size]||'标准';
+    panel.querySelectorAll('.fs-btn').forEach(function(b) {
+      b.classList.toggle('fs-active', b.getAttribute('data-fs') === size);
+    });
+  }
+
+  function position() {
+    if (!tab) return;
+    var r = tab.getBoundingClientRect();
+    panel.style.top = (r.bottom + 4) + 'px';
+    panel.style.right = (window.innerWidth - r.right) + 'px';
+  }
+
+  window.toggleSettingsPanel = function() {
+    if (visible) { hide(); return; }
+    initToggles();
+    position();
+    panel.classList.add('show');
+    visible = true;
+    setTimeout(function() {
+      document.addEventListener('click', onClickOutside);
+      document.addEventListener('keydown', onEsc);
+    }, 50);
+  };
+
+  function hide() {
+    panel.classList.remove('show');
+    visible = false;
+    document.removeEventListener('click', onClickOutside);
+    document.removeEventListener('keydown', onEsc);
+  }
+
+  function onClickOutside(e) {
+    if (!visible) return;
+    if (!panel.contains(e.target) && tab && !tab.contains(e.target)) hide();
+  }
+
+  function onEsc(e) {
+    if (e.key === 'Escape') hide();
+  }
+
+  panel.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      switch(this.id) {
+        case 'togWuluBadge':       saveSet('showWulu', this.checked); refreshCalendar(); break;
+        case 'togDaojiaMonth':      saveSet('showDaojiaMonth', this.checked); refreshCalendar(); break;
+        case 'togDaojiaYear':       saveSet('showDaojiaYear', this.checked); refreshCalendar(); break;
+        case 'togJinshenqishaBadge':saveSet('showJinshenqisha', this.checked); refreshCalendar(); break;
+        case 'togWufuBadge':        saveSet('showWufu', this.checked); refreshCalendar(); break;
+        case 'togSiLiSiJueBadge':   saveSet('showSiLiSiJue', this.checked); refreshCalendar(); break;
+        case 'togYanggongJiBadge': saveSet('showYanggongJi', this.checked); refreshCalendar(); break;
+        case 'togTiansheBadge':    saveSet('showTianshe', this.checked); refreshCalendar(); break;
+        case 'togTiandeBadge':     saveSet('showTiande', this.checked); refreshCalendar(); break;
+        case 'togYuedeBadge':      saveSet('showYuede', this.checked); refreshCalendar(); break;
+        case 'togDarkMode':         toggleTheme(this.checked); break;
+      }
+    });
+  });
+
+  panel.querySelectorAll('.fs-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() { setFontSize(this.getAttribute('data-fs')); });
+  });
+
+  // 激活按钮 — 由 settings-ui.js 模块处理，内联脚本不再绑定（2026-06-26）
+  // var licBtn = document.getElementById('licenseSettingsBtn');
+  // if (licBtn) licBtn.addEventListener(...);
+
+  if (tab) tab.addEventListener('click', window.toggleSettingsPanel);
+
+  // 字体大小初始化（主题已由 body 后阻塞脚本处理）
+  (function() {
+    var fs = localStorage.getItem('fontSize') || 'medium';
+    if (fs !== 'medium') { var sz={'small':'13px','large':'18px'}; if(sz[fs]) document.documentElement.style.fontSize=sz[fs]; }
+  })();
+
+  console.log('[settings] 就绪（独立模式）');
+})();
+</script>
+
+<!-- 地理经纬度数据库（寿星历） -->
+<script src="/js/geo-data.js"></script>
+	<!-- 寿星历地名卡片数据（extract_geo_cards.py 自动生成） -->
+	<script src="/js/geo-cards-data.js"></script>
+	<!-- 地名卡片网格组件（替代原文本框搜索） -->
+	<script src="/js/geo-cards.js"></script>
+	<!-- 省→地区二级联动树数据（extract_region_tree.py 自动生成） -->
+	<script src="/js/region-tree-data.js"></script>
+	<!-- 省→地区二级联动选择器 -->
+	<script src="/js/region-cascader.js"></script>
+<!-- 八字交互联动（全局函数，bzinfo onclick 依赖） -->
+<script src="/js/bazi-interact.js"></script>
+<!-- ══════ 应用入口 ══════ -->
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

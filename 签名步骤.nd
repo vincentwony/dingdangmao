@@ -1,0 +1,15 @@
+第1步：生成签名密钥
+
+$env:JAVA_HOME = "C:\Program Files\Eclipse Adoptium\jdk-17.0.19.10-hotspot"
+& "$env:JAVA_HOME\bin\keytool" -genkeypair -v -keystore h:\Phone\WannianliAndroid\release.jks -alias wannianli -keyalg RSA -keysize 2048 -validity 36500
+第2步：签名APK
+
+$env:ANDROID_SDK = "C:\Users\Administrator\AppData\Local\Android\Sdk"
+& "$env:ANDROID_SDK\build-tools\34.0.0\apksigner" sign --ks h:\Phone\WannianliAndroid\release.jks --out h:\Phone\WannianliAndroid\app\build\outputs\apk\release\app-release.apk h:\Phone\WannianliAndroid\app\build\outputs\apk\release\app-release-unsigned.apk
+第3步：验证签名
+
+& "$env:ANDROID_SDK\build-tools\34.0.0\apksigner" verify --verbose h:\Phone\WannianliAndroid\app\build\outputs\apk\release\app-release.apk
+一步一执行，执行完第3步后看到 Verifies 就说明签名成功。
+
+export KEYSTORE_PASS="12345688"
+bash h:/Phone/sign-apk.sh

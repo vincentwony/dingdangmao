@@ -1,0 +1,4 @@
+[TC27] 甲午 丙子 壬午 庚子
+PRE : strength=极旺(46%) yongshen=官杀 verify=PASS
+POST: strength=中和(20%) yongshen=财星 verify=FAIL
+reasoning: 日主壬水 | 强度中和 | 占比20% | 正格: 月刃格 | 本气不透定格 | 格局成格 | 中格 | 验算未通过: 身弱/中和偏弱正格但用财官泄克耗，方向矛盾 (§6.2第三层检查2) | 调候: 火 — 冬月生人需火暖局 (§5.5)

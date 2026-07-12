@@ -1,0 +1,15 @@
+TC35: 乙巳 丙戌 甲寅 丁卯
+  strength=极旺(42%) yongshen=食伤 pattern=伤官格
+  verify=PASS
+  reasoning: 日主甲木 | 强度极旺 | 占比42% | 正格: 伤官格 | 中气透干 | 格局成格 | 中格 | 调候: 火 — 冬月生人需火暖局 (§5.5)
+
+TC42: 丁酉 庚戌 甲寅 己巳
+  strength=中和(24%) yongshen=食伤 pattern=伤官格
+  verify=PASS
+  reasoning: 日主甲木 | 强度中和 | 占比24% | 正格: 伤官格 | 中气透干 | 格局成格 | 中格 | 调候: 火 — 冬月生人需火暖局 (§5.5)
+
+TC17: 壬子 甲辰 己巳 丙寅
+  strength=极旺(63%) yongshen=官杀 pattern=月刃格
+  verify=PASS
+  reasoning: 日主己土 | 强度极旺 | 占比63% | 正格: 月刃格 | 本气不透定格 | 格局成格 | 中格
+

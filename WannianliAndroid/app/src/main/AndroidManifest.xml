@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GongxinWannianli"
+        android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout|smallestScreenSize"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 子时 23:00-01:00 水 -->
+        <activity-alias
+            android:name=".MainActivityZi"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_zi"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 丑时 01:00-03:00 土 -->
+        <activity-alias
+            android:name=".MainActivityChou"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_chou"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 寅时 03:00-05:00 木 -->
+        <activity-alias
+            android:name=".MainActivityYin"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_yin"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 卯时 05:00-07:00 木 -->
+        <activity-alias
+            android:name=".MainActivityMao"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_mao"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 辰时 07:00-09:00 土 -->
+        <activity-alias
+            android:name=".MainActivityChen"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_chen"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 巳时 09:00-11:00 火 -->
+        <activity-alias
+            android:name=".MainActivitySi"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_si"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 午时 11:00-13:00 火 -->
+        <activity-alias
+            android:name=".MainActivityWu"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_wu"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 未时 13:00-15:00 土 -->
+        <activity-alias
+            android:name=".MainActivityWei"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_wei"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 申时 15:00-17:00 金 -->
+        <activity-alias
+            android:name=".MainActivityShen"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_shen"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 酉时 17:00-19:00 金 -->
+        <activity-alias
+            android:name=".MainActivityYou"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_you"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 戌时 19:00-21:00 土 -->
+        <activity-alias
+            android:name=".MainActivityXu"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_xu"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <!-- 亥时 21:00-23:00 水 -->
+        <activity-alias
+            android:name=".MainActivityHai"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@drawable/ic_launcher_hai"
+            android:label="@string/app_name"
+            android:targetActivity=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+    </application>
+
+</manifest>

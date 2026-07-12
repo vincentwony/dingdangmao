@@ -1,0 +1,13 @@
+node_modules/
+Back/
+.build/
+WannianliAndroid/app/build/
+WannianliAndroid/.gradle/
+WannianliAndroid/local.properties
+*.apk
+*.jks
+.git/
+.env
+WannianliAndroid/app/build/
+.superpowers/
+impeccable/
