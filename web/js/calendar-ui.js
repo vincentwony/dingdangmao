@@ -14,16 +14,19 @@ var _containerEl = null;
 var _selectedDay = null;
 
 // ══════ 设置缓存（渲染前更新，避免循环内读 localStorage） ══════
-var _setShowWulu = true;
-var _setShowDaojiaMonth = true;
-var _setShowDaojiaYear = true;
-var _setShowJinshen = true;
-var _setShowWufu = true;
-var _setShowSiLiSiJue = true;
-var _setShowYanggongJi = true;
-var _setShowTiande = true;
-var _setShowYuede = true;
-var _setShowTianshe = true;
+// ══════ 日历徽章设置（key→变量映射，由 _refreshSettings 更新） ══════
+var _badgeFlags = {
+  wulu:       { show: true, key: 'showWulu' },
+  daojiaM:    { show: true, key: 'showDaojiaMonth' },
+  daojiaY:    { show: true, key: 'showDaojiaYear' },
+  jinshen:    { show: true, key: 'showJinshenqisha' },
+  wufu:       { show: true, key: 'showWufu' },
+  silisijue:  { show: true, key: 'showSiLiSiJue' },
+  yanggongji: { show: true, key: 'showYanggongJi' },
+  tiande:     { show: true, key: 'showTiande' },
+  yuede:      { show: true, key: 'showYuede' },
+  tianshe:    { show: true, key: 'showTianshe' }
+};
 
 // ══════ DailyNotes 引用（由 note-ui 模块设置） ══════
 var _DailyNotes = null;
@@ -45,16 +48,9 @@ function _loadSet(key, def) {
 }
 /** 刷新设置缓存 */
 function _refreshSettings() {
-  _setShowWulu = _loadSet('showWulu', true);
-  _setShowDaojiaMonth = _loadSet('showDaojiaMonth', true);
-  _setShowDaojiaYear = _loadSet('showDaojiaYear', true);
-  _setShowJinshen = _loadSet('showJinshenqisha', true);
-  _setShowWufu = _loadSet('showWufu', true);
-  _setShowSiLiSiJue = _loadSet('showSiLiSiJue', true);
-  _setShowYanggongJi = _loadSet('showYanggongJi', true);
-  _setShowTiande = _loadSet('showTiande', true);
-  _setShowYuede = _loadSet('showYuede', true);
-  _setShowTianshe = _loadSet('showTianshe', true);
+  for (var k in _badgeFlags) {
+    if (_badgeFlags.hasOwnProperty(k)) _badgeFlags[k].show = _loadSet(_badgeFlags[k].key, true);
+  }
 }
 
 /** 农历日期数字→中文（1→初一, 15→十五, 20→二十, 29→廿九） */
@@ -88,22 +84,22 @@ function _resolveFestival(jq, solarFes, lunarFes) {
 
 /** 渲染日历格徽章（无禄/金神七煞/倒家杀/五富） */
 function _renderBadges(dayData) {
-  var html = '';
-  if (_setShowTianshe && dayData.isTianshe) html += '<span class="cal-badge cal-badge-tianshe">赦</span>';
-  if (_setShowTiande && dayData.isTiande) html += '<span class="cal-badge cal-badge-tiande">德</span>';
-  if (_setShowYuede && dayData.isYuede) html += '<span class="cal-badge cal-badge-yuede">月</span>';
-  if (_setShowWufu && dayData.isWufu) html += '<span class="cal-badge cal-badge-wufu">富</span>';
-  if (_setShowWulu && dayData.isWulu) html += '<span class="cal-badge cal-badge-wu">无</span>';
-  if (dayData.isJinshenqisha && _setShowJinshen) html += '<span class="cal-badge cal-badge-sha">煞</span>';
-  if ((_setShowDaojiaMonth && dayData.isDaojiaMonth) || (_setShowDaojiaYear && dayData.isDaojiaYear)) {
+  var b = _badgeFlags, html = '';
+  if (b.tianshe.show && dayData.isTianshe) html += '<span class="cal-badge cal-badge-tianshe">赦</span>';
+  if (b.tiande.show && dayData.isTiande) html += '<span class="cal-badge cal-badge-tiande">德</span>';
+  if (b.yuede.show && dayData.isYuede) html += '<span class="cal-badge cal-badge-yuede">月</span>';
+  if (b.wufu.show && dayData.isWufu) html += '<span class="cal-badge cal-badge-wufu">富</span>';
+  if (b.wulu.show && dayData.isWulu) html += '<span class="cal-badge cal-badge-wu">无</span>';
+  if (dayData.isJinshenqisha && b.jinshen.show) html += '<span class="cal-badge cal-badge-sha">煞</span>';
+  if ((b.daojiaM.show && dayData.isDaojiaMonth) || (b.daojiaY.show && dayData.isDaojiaYear)) {
     html += '<span class="cal-badge cal-badge-dao">倒</span>';
   }
-  if (_setShowSiLiSiJue && dayData.isSiLiSiJue) {
+  if (b.silisijue.show && dayData.isSiLiSiJue) {
     var slsjData = dayData.silisiJue || {};
     var slsjChar = slsjData.type === '离' ? '离' : '绝';
     html += '<span class="cal-badge cal-badge-silisijue">' + slsjChar + '</span>';
   }
-  if (_setShowYanggongJi && dayData.isYanggongJi) {
+  if (b.yanggongji.show && dayData.isYanggongJi) {
     html += '<span class="cal-badge cal-badge-yanggongji">忌</span>';
   }
   return html;
