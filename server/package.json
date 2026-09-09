@@ -3,15 +3,49 @@
   "version": "1.0.0",
   "type": "commonjs",
   "main": "index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
+    "test": "npm run test:override && npm run test:override-noref && npm run test:noref2 && npm run test:godsmeta && npm run test:godsmeta-ui && npm run test:choose && npm run test:choose-ui && npm run test:choose-e2e && npm run test:dst && npm run test:bazi-dst && npm run test:yiji && npm run test:zishi && npm run test:hongsha && npm run test:hongsha-ui && npm run test:guansha && npm run test:gods && npm run test:remaining",
+    "test:legacy": "npm run test:daymaster && npm run test:congge && npm run test:p2 && npm run test:hmac-fallback && npm run test:insecure && npm run test:ziwei-override && npm run test:ziwei-patterns",
+    "test:gods": "node verify_gods_audit.js",
+    "test:override": "node verify_override_4.js",
+    "test:override-noref": "node verify_override_noref.js",
+    "test:remaining": "node verify_remaining_final.js",
+    "test:guansha": "node verify_guansha.js",
+    "test:daymaster": "node verify_daymaster.js",
+    "test:congge": "node verify_congge.js",
+    "test:p2": "node verify_p2.js",
+    "test:hmac-fallback": "node verify_hmac_fallback.js",
+    "test:insecure": "node verify_insecure_context.js",
+    "test:ziwei-override": "node verify_ziwei_override.mjs",
+    "test:ziwei-patterns": "node verify_ziwei_patterns.mjs",
+    "test:dst": "node verify_dst.js",
+    "test:bazi-dst": "node verify_bazi_dst.js",
+    "test:yiji": "node verify_yi_ji.js",
+    "test:zishi": "node verify_bazi_zishi.js",
+    "test:hongsha": "node verify_hongsha_impl.js",
+    "test:hongsha-ui": "node check_hongsha_ui.js",
+    "test:noref2": "node verify_noref2.js",
+    "test:godsmeta": "node verify_godsmeta.js",
+    "test:godsmeta-ui": "node verify_detail_godsmeta.js",
+    "test:choose": "node verify_choose.js",
+    "test:choose-ui": "node verify_choose_ui.js",
+    "test:choose-e2e": "node check_choose_ui.js",
     "postinstall": "cd ../core && npm install"
-},
+  },
   "dependencies": {
     "@lunisolar/plugin-thegods": "^0.1.4",
+    "dotenv": "^17.4.2",
     "express": "^4.21.0",
     "gongxin-core": "file:../core",
+    "iztro": "^2.5.8",
     "lunisolar": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }

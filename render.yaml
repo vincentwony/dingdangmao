@@ -1,0 +1,16 @@
+# Render.com 部署蓝图 — 公信万年历网页
+# 在 Render 后台 New → Blueprint → 选择本仓库，即按此配置自动部署。
+services:
+  - type: web
+    name: gongxin-wannianli
+    runtime: node
+    rootDir: server          # 含 package.json(start) 的目录；core/ 与 web/ 在同仓库根，构建时一并检出
+    plan: free               # 免费档：15 分钟无访问自动休眠，首次访问冷启动约数秒
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # HMAC_SECRET 已在代码内置默认值（前端公开、非机密），无需设置；
+      # 如需自定义，可在 Render 后台 Environment 中添加同名变量覆盖。
