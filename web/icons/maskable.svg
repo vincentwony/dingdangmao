@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="公信万年历">
+  <defs>
+    <radialGradient id="bgm" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#2a1a0e"/>
+      <stop offset="100%" stop-color="#160d06"/>
+    </radialGradient>
+    <linearGradient id="goldm" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8C66A"/>
+      <stop offset="50%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+  </defs>
+  <!-- maskable：背景必须填满至边缘，无透明 -->
+  <rect x="0" y="0" width="512" height="512" fill="url(#bgm)"/>
+  <!-- 太极缩小并居中于安全区（半径约 110，远小于安全圆 205） -->
+  <g transform="translate(256 256)">
+    <circle r="110" fill="none" stroke="url(#goldm)" stroke-width="5"/>
+    <path d="M0,-110 A110,110 0 0,1 0,110 A55,55 0 0,1 0,0 A55,55 0 0,0 0,-110 Z" fill="#F5EDE0"/>
+    <path d="M0,-110 A110,110 0 0,0 0,110 A55,55 0 0,0 0,0 A55,55 0 0,1 0,-110 Z" fill="#3C2415"/>
+    <circle cx="0" cy="-55" r="22" fill="#3C2415"/>
+    <circle cx="0" cy="55" r="22" fill="#F5EDE0"/>
+  </g>
+</svg>

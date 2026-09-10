@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+  body { margin:0; background:#1c1813; font-family: var(--font-display); }
+  .pv-wrap { padding: 22px; }
+  .pv-cap { color:#c7b47b; font-size:13px; letter-spacing:2px; margin:0 0 8px 4px; opacity:.85; }
+  .pv-cap b { color:#D4A853; }
+  .top-nav { position: relative !important; margin-bottom:0; }
+  .spacer { height:20px; }
+  .tabs { display:inline-flex; gap:6px; }
+  .tabs .t { font-size:13px; color:#c7b47b; padding:8px 13px; border-radius:8px; letter-spacing:1px; background:rgba(201,169,110,.10); }
+  .tabs .t.on { color:#f0dcab; background:rgba(201,169,110,.16); box-shadow:inset 0 -2px 0 #D4A853; }
+
+  /* C 双环太极印 */
+  .brandC { display:inline-flex; align-items:center; gap:13px; }
+  .brandC .seal {
+    width:44px; height:44px; border-radius:50%; flex-shrink:0;
+    background:radial-gradient(circle at 38% 32%,#2a2218,#15110d);
+    border:2px solid #D4A853; box-shadow:0 0 0 3px rgba(212,168,83,.18);
+    display:flex; align-items:center; justify-content:center; color:#e8d5a0; font-size:22px;
+  }
+  .brandC .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandC .title { font-size:22px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandC .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandC .badge {
+    display:inline-flex; align-items:center; gap:6px; margin-left:12px; font-size:11px; letter-spacing:1px;
+    color:#f0dcab; background:#A01510; padding:4px 9px; border-radius:6px; border:1px solid rgba(212,168,83,.5);
+  }
+  .brandC .badge i { width:7px; height:7px; background:#D4A853; border-radius:1px; display:inline-block; }
+
+  /* D 方篆印格 */
+  .brandD { display:inline-flex; align-items:center; gap:13px; }
+  .brandD .sq {
+    width:52px; height:52px; flex-shrink:0; border:1.5px solid #D4A853; border-radius:8px;
+    background:rgba(212,168,83,.05); display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:#D4A853; font-size:18px; font-weight:600; line-height:1.1; text-align:center;
+  }
+  .brandD .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandD .title { font-size:21px; font-weight:600; letter-spacing:6px; color:#D4A853; }
+  .brandD .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.75; }
+  .brandD .badge {
+    margin-left:12px; font-size:11px; letter-spacing:2px; padding:4px 10px; border-radius:999px;
+    color:#f0dcab; background:linear-gradient(135deg,#A01510,#D4403A); border:1px solid rgba(212,168,83,.5);
+  }
+
+  /* E 八卦徽标 */
+  .brandE { display:inline-flex; align-items:center; gap:13px; }
+  .brandE .gua {
+    width:44px; height:44px; flex-shrink:0; border-radius:11px; border:1.5px solid rgba(212,168,83,.6);
+    background:radial-gradient(circle at 40% 30%,#2a2218,#14110d);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; padding:0 9px;
+  }
+  .brandE .gua b { display:block; width:100%; height:3px; border-radius:2px; background:#D4A853; }
+  .brandE .gua b.broken { background:linear-gradient(90deg,#D4A853 42%,transparent 42% 58%,#D4A853 58%); }
+  .brandE .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandE .title { font-size:22px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandE .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandE .badge {
+    margin-left:12px; font-size:11px; letter-spacing:2px; padding:3px 10px; border-radius:999px;
+    color:#c7b47b; border:1px solid rgba(212,168,83,.55); background:transparent;
+  }
+
+  /* F 极简金点 */
+  .brandF { display:inline-flex; align-items:center; gap:12px; }
+  .brandF .dot { width:11px; height:11px; flex-shrink:0; background:#D4A853; transform:rotate(45deg); border-radius:2px; }
+  .brandF .txt { display:flex; flex-direction:column; line-height:1.1; }
+  .brandF .title {
+    font-size:21px; font-weight:500; letter-spacing:4px; color:#D4A853; position:relative; padding-bottom:5px;
+  }
+  .brandF .title::after { content:''; position:absolute; left:0; bottom:0; width:46px; height:2px; background:#D4A853; border-radius:2px; }
+  .brandF .sub { font-size:11px; letter-spacing:2px; color:#c7b47b; opacity:.7; margin-top:4px; }
+  .brandF .badge { margin-left:12px; font-size:11px; letter-spacing:1px; color:#c7b47b; opacity:.9; }
+</style>
+</head>
+<body>
+<div class="pv-wrap">
+
+  <p class="pv-cap"><b>方案 C</b> · 双环太极印</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandC">
+      <span class="seal">☯</span>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge"><i></i>八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 D</b> · 方篆印格</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandD">
+      <span class="sq">天地<br>玄黄</span>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 E</b> · 八卦徽标</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandE">
+      <span class="gua"><b></b><b class="broken"></b><b></b></span>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 F</b> · 极简金点</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandF">
+      <span class="dot"></span>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+</div>
+</body>
+</html>

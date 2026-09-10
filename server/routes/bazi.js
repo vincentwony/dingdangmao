@@ -3,11 +3,13 @@
 
 var { Router } = require('express');
 var core = require('gongxin-core');
+var timeUtil = require('../lib/time-util.js');
+var guansha = require('../lib/guansha-rules.js');
+var dmStrength = require('../lib/daymaster-strength.js'); // 日主强弱 · 权威判定引擎
+var unified = require('../lib/bazi-unified.js'); // 八字分析 · 统一出口（只保留一套标准）
+var dstLib = require('../lib/dst.js');          // 夏令时（1986–1991 中国）校准
 var Lunar = core.Lunar, JD = core.JD, J2000 = core.J2000;
-var _computeCongGeData = core._computeCongGeData;
-    var _computeCongGeDataV2 = core._computeCongGeDataV2;
-    var _computeAllWuxing = core._computeAllWuxing;
-    var computeTianLuoDiWang = core.computeTianLuoDiWang;
+var computeTianLuoDiWang = core.computeTianLuoDiWang;
 var _DG_GAN = core._DG_GAN, _DG_BENQI = core._DG_BENQI;
 
 var router = Router();
@@ -63,9 +65,32 @@ router.post('/', function(req, res, next) {
     var sex = body.sex === '女' ? 0 : 1;
     var calType = body.calType || 'gongli';
     var y = parseInt(body.y, 10), m = parseInt(body.m, 10), d = parseInt(body.d, 10);
-    var h = parseInt(body.h, 10) || 12, min = parseInt(body.min, 10) || 0;
+    var h = timeUtil.normalizeHour(body.h, 12);     // 保留 h=0（午夜/早子时），缺失时默认午时
+    var min = timeUtil.normalizeMinute(body.min, 0); // 分钟取 0-59；严禁用 normalizeHour（会钳成 0）
+    var _rawH = h; // 钟表小时（夏令时校准前），供子时流派判定
     var jdVal = parseFloat(body.jd) || 116.4, wd = parseFloat(body.wd) || 39.9;
     var isLeap = !!body.isLeap;
+
+    // —— 夏令时修正（1986–1991 中国，Phase 1.2）——
+    // 夏令时期间「北京时间(钟表)」实为 UTC+9，需减 1h 得标准时(UTC+8)再排盘。
+    // 公历输入：用 applyDST 规整到标准时墙上值（跨日安全）；
+    // 农历输入：DST 仅对时刻减 1h 融入 t（Lunar.JL 小数日处理跨农历日），年区间按公历近似。
+    var _dstMode = body.dst || 'auto';
+    var _ziShi = body.ziShi || 'wan'; // 子时流派：wan=夜子时(默认,23:00起日柱换次日) / zao=早子时(23:00不换日)
+    var _dstApplied = false;
+    if (calType === 'gongli') {
+      var _d = dstLib.applyDST(y, m, d, h, min, _dstMode);
+      if (_d.applied) { y = _d.y; m = _d.m; d = _d.d; h = _d.h; min = _d.min; _dstApplied = true; }
+    } else {
+      var _in = dstLib.isDST(y, m, d);
+      var _doApply = (_dstMode === 'on') || (_dstMode === 'auto' && _in);
+      if (_doApply) {
+        var _adj = h * 60 + min - 60;
+        h = ((_adj / 60) % 24 + 24) % 24;
+        min = ((_adj % 60) + 60) % 60;
+        _dstApplied = true;
+      }
+    }
 
     if (!y || !m || !d) {
       return res.status(400).json({ ok: false, error: 'y/m/d required', code: 400 });
@@ -189,35 +214,39 @@ router.post('/', function(req, res, next) {
         }
       }
     })();
+    ob.bz_dst = _dstApplied; // 透明化：本次排盘是否应用了夏令时修正
+
+    // —— 子时流派（Phase 1.3）——
+    // 默认夜子时(wan)：mingLiBaZi 已按「23:00 起日柱换次日」实现。
+    // 早子时(zao)：23:00–23:59 出生者日柱用「当日」（不换日），时柱按当日日干遁子时。
+    // 注：判定用 _rawH（钟表小时），不受夏令时校准影响。
+    if (_ziShi === 'zao' && _rawH === 23) {
+      var _dg = Lunar.Gan.indexOf(ob.bz_jr[0]);
+      var _dz = Lunar.Zhi.indexOf(ob.bz_jr[1]);
+      if (_dg >= 0 && _dz >= 0) {
+        ob.bz_jr = Lunar.Gan[(_dg + 9) % 10] + Lunar.Zhi[(_dz + 11) % 12]; // 日柱前推一日（当日）
+        var _hs = (((_dg + 9) % 10) % 5) * 2 % 10; // 五鼠遁：当日日干遁子时
+        ob.bz_js = Lunar.Gan[_hs] + '子';
+      }
+    }
 
     // 前后节气信息（需在 mingLiBaZi 之后，ob.bz_jd 被设置）
     // dayunjl 依赖 _getLunarDateStr（block[2]中定义，沙箱可能未加载），加 try-catch 保护
     try { ob.bzJQ = typeof dayunjl === 'function' ? dayunjl(ob.bz_jd) : ''; } catch(e) { ob.bzJQ = ''; }
 
-    // 从格分析 — Engine A (《滴天髓》顺势派)
-    ob._congGeData = _computeCongGeData(ob);
-    var cd = ob._congGeData;
-    if (cd && cd.isCong) { ob._geName = cd.congType; }
-    else {
+    // 从格分析 — 统一出口（源自权威引擎 A/B 7级，单一标准；不再有 Engine A/B 双口径）
+    var _uCong = unified.getCongGeData(ob);
+    ob._congGeData = _uCong; // 供下方 determineBaziPattern 格局卡「从格预检」读取，与「从格」卡同源（消除跨卡双结论）
+    if (_uCong.isCong) {
+      ob._geName = _uCong.congType;
+    } else {
       try {
         var mb = ob.b2 % 12, bqIdx = _DG_GAN[_DG_BENQI[mb]];
         if (bqIdx === undefined) bqIdx = 0;
         ob._geName = Lunar.sshen(ob.b3, bqIdx) + '格';
-      } catch(e) { ob._geName = '未知格局'; }
+      } catch (e) { ob._geName = '未知格局'; }
     }
-
-    // 从格分析 — Engine B (《子平真诠》根气派)
-    // V2 核心差异: 天干见印比 → 不判从格 (即使克泄耗>85%)
-    ob._congGeDataV2 = _computeCongGeDataV2(ob);
-    var cdV2 = ob._congGeDataV2;
-    if (cdV2 && cdV2.isCong) { ob._geNameV2 = cdV2.congType; }
-    else {
-      try {
-        var mb2 = ob.b2 % 12, bqIdx2 = _DG_GAN[_DG_BENQI[mb2]];
-        if (bqIdx2 === undefined) bqIdx2 = 0;
-        ob._geNameV2 = Lunar.sshen(ob.b3, bqIdx2) + '格';
-      } catch(e) { ob._geNameV2 = '未知格局'; }
-    }
+    ob._geNameV2 = ob._geName; // 统一标准：Engine A/B 合并为同一结论
 
     // ═══ 日标信息新字段 ═══
     var _bufD = {}; JD.DD(d0 + J2000, _bufD);
@@ -357,9 +386,10 @@ router.post('/', function(req, res, next) {
     var fullBzinfo = (typeof renderBaziTable === 'function' ? renderBaziTable(ob) : '')
                    + (ob.bzinfo || '');
 
-    // ═══ 五行力量计算 ═══
-    var wxCalc = _computeAllWuxing(ob);
-    ob._wuxingBreakdown = wxCalc;
+    // ═══ 日主强弱 · 权威判定（覆盖层，依据《日主强弱判定方法研究与实现方案.md》§5 方案二 A/B 7级）═══
+    var _dmResult = dmStrength.computeDayMasterStrength(ob);
+    ob._dayMasterStrength = _dmResult;
+    var _wx = unified.getWuxing(ob); // 五行力量 · 统一出口（源自权威引擎 scores）
 
     // 卡片拆分 — Engine A
     var cards = _splitBzinfoToCards(fullBzinfo);
@@ -383,22 +413,41 @@ router.post('/', function(req, res, next) {
       }
     }
 
-    // 卡片拆分 — Engine B（重建三张核心分析卡片）
-    var _savedCG = ob._congGeData, _savedGN = ob._geName;
-    ob._congGeData = ob._congGeDataV2;
-    ob._geName = ob._geNameV2;
+    // ═══ 权威判定卡片覆盖（须在所有 _splitBzinfoToCards 重建之后执行）═══
+    // 日主强弱(bz_rizhu)：原 sxwnl-bundle 用旧三要素算法生成；此处替换为依据
+    //   《日主强弱判定方法研究与实现方案.md》§5 方案二（A/B 比值 7 级）的权威结论。
+    // 五行力量(bz_wuxing)：替换为 lib/bazi-unified.js 统一出口（与 wx-dist 同源，消除上游旧卡空白 canvas）。
+    // —— 以上两项为「只需一套标准」的覆盖，对 Engine A / Engine B 同时生效。
+    // ⚠️ 刻意保留的双引擎差异：喜用神 / 从格 / 格局 三张卡**仅 Engine B(cardsV2) 走统一出口**，
+    //   Engine A(cards，默认视图) 仍用上游古籍旧派逻辑（《滴天髓》顺势派），供用户切换对照。
+    //   这是设计使然，不是 bug——勿在 Engine A 覆盖块中补这三张卡。
+    var _dmCardBody = _buildDayMasterCard(_dmResult, ob);
+    var _wuxingCardBody = unified.getWuxingCard(ob); // 五行力量 · 统一出口（与 wx-dist 同源，替换上游含空 canvas 的旧卡）
+    cards = cards.map(function(c) {
+      if (c.id === 'bz_rizhu') return { id: c.id, title: '日主强弱', body: _dmCardBody };
+      if (c.id === 'bz_wuxing') return { id: c.id, title: c.title, body: _wuxingCardBody };
+      return c;
+    });
+
+    // ═══ 小儿关煞推算 ═══
+    // 正统子平 + 民间三十六关 + 七十二煞子集（结构化数据，供前端第伍章渲染）
+    var xiaoErGuanSha = null;
+    try { xiaoErGuanSha = guansha.computeXiaoErGuanSha(ob, sex); } catch (e) { xiaoErGuanSha = null; }
+
+    // 卡片拆分 — Engine B（重建核心分析卡片，全部来自统一出口，单一标准）
+    // 注：ob._congGeData 已在上方（L203 区域）设为 unified.getCongGeData(ob)，
+    //     供 determineBaziPattern 格局卡「从格预检」读取，与「从格」卡同源；不再交换 _congGeDataV2。
     var _v2geju = typeof determineBaziPattern === 'function' ? determineBaziPattern(ob) : '';
-    var _v2xiyong = typeof determineXiyongshen === 'function' ? determineXiyongshen(ob) : '';
-    var _v2congge = typeof determineCongGe === 'function' ? determineCongGe(ob) : '';
+    var _v2xiyong = unified.getXiyong(ob);      // 喜用神 · 统一出口（旺衰用神法，源自权威引擎 verdict）
+    var _v2congge = unified.getCongGe(ob);      // 从格 · 统一出口（源自权威引擎 verdict，单一标准）
+    var _v2wuxing = unified.getWuxingCard(ob);  // 五行力量 · 统一出口（与 wx-dist 同源）
     var cardsV2 = cards.map(function(c) {
       if (c.id === 'bz_geju' && _v2geju) return { id: c.id, title: c.title, body: _v2geju };
       if (c.id === 'bz_xiyong' && _v2xiyong) return { id: c.id, title: c.title, body: _v2xiyong };
       if (c.id === 'bz_congge' && _v2congge) return { id: c.id, title: c.title, body: _v2congge };
+      if (c.id === 'bz_wuxing' && _v2wuxing) return { id: c.id, title: c.title, body: _v2wuxing };
       return c;
     });
-    // 恢复原始数据
-    ob._congGeData = _savedCG;
-    ob._geName = _savedGN;
 
     var result = {
       name: name, sex: sex === 1 ? '男' : '女',
@@ -409,18 +458,23 @@ router.post('/', function(req, res, next) {
       jieQi: ob.bzJQ || '',
       zhenTaiYang: ob.bz_zty || '',
       jiShi: ob.bz_JS || '',
+      dstApplied: _dstApplied,
+      ziShi: _ziShi,
       // Engine A (《滴天髓》)
       geName: ob._geName,
-      congGe: { isCong: cd ? cd.isCong : false, congType: cd ? cd.congType : '非从格', shengPct: cd ? cd.shengPct : 0, keXiePct: cd ? cd.keXiePct : 0, detail: cd ? cd.result : '' },
+      congGe: { isCong: _uCong.isCong, congType: _uCong.congType, shengPct: _uCong.shengPct, keXiePct: _uCong.keXiePct, detail: _uCong.detail },
       cards: cards,
       // Engine B (《子平真诠》)
       geNameV2: ob._geNameV2,
-      congGeV2: { isCong: cdV2 ? cdV2.isCong : false, congType: cdV2 ? cdV2.congType : '非从格', shengPct: cdV2 ? cdV2.shengPct : 0, keXiePct: cdV2 ? cdV2.keXiePct : 0, detail: cdV2 ? cdV2.result : '' },
+      congGeV2: { isCong: _uCong.isCong, congType: _uCong.congType, shengPct: _uCong.shengPct, keXiePct: _uCong.keXiePct, detail: _uCong.detail },
       cardsV2: cardsV2,
-      wuxingScores: wxCalc.scores,
-      wuxingPct: wxCalc.pct,
-      wuxingLevels: wxCalc.levels,
-      wuxingDetails: wxCalc.details,
+      wuxingScores: _wx.scores,
+      wuxingPct: _wx.pct,
+      wuxingLevels: _wx.levels,
+      wuxingDetails: _wx.details,
+      // 日主强弱 · 权威判定（文档 §5 方案二 A/B 7级）— 前端单一权威结论 + 五行分布图作明细
+      dayMasterStrength: _dmResult,
+      dayMasterScores: _dmResult.scores,
       // 2026-06-26: bzinfo 不再返回客户端，cards[] 已完全替代
       bzinfo: '',
       cards: cards,
@@ -443,7 +497,9 @@ router.post('/', function(req, res, next) {
         kongWang: kongWangStr
       },
       // 天罗地网运（双算法）
-      tianLuoDiWang: tldw || { classic: { hasShensha: false }, modern: { hasShensha: false } }
+      tianLuoDiWang: tldw || { classic: { hasShensha: false }, modern: { hasShensha: false } },
+      // 小儿关煞（第伍章）
+      xiaoErGuanSha: xiaoErGuanSha
     };
 
     res.json({ ok: true, data: result, took: Date.now() - t0 });
@@ -455,8 +511,8 @@ router.post('/congge', function(req, res, next) {
   try {
     var t0 = Date.now(), body = req.body;
     var ob = { bz_jn: body.pillars.year, bz_jy: body.pillars.month, bz_jr: body.pillars.day, bz_js: body.pillars.hour, b1: body.b1, b2: body.b2, b3: body.b3, b4: body.b4, name: body.name || '', sex: body.sex === '女' ? 0 : 1 };
-    ob._congGeData = _computeCongGeData(ob);
-    res.json({ ok: true, data: ob._congGeData, took: Date.now() - t0 });
+    ob._congGeData = unified.getCongGeData(ob); // 从格 · 统一出口（不再依赖上游 _computeCongGeData 双口径）
+    res.json({ ok: true, data: ob._congGeData, html: unified.getCongGe(ob), took: Date.now() - t0 });
   } catch(e) { next(e); }
 });
 
@@ -465,10 +521,8 @@ router.post('/xiyong', function(req, res, next) {
   try {
     var t0 = Date.now(), body = req.body;
     var ob = { bz_jn: body.pillars.year, bz_jy: body.pillars.month, bz_jr: body.pillars.day, bz_js: body.pillars.hour, b1: body.b1, b2: body.b2, b3: body.b3, b4: body.b4, name: body.name || '', sex: body.sex === '女' ? 0 : 1 };
-    ob._congGeData = _computeCongGeData(ob);
-    ob._geName = body.geName || '';
-    var xy = core.determineXiyongshen(ob);
-    res.json({ ok: true, data: xy, took: Date.now() - t0 });
+    var xy = unified.getXiyong(ob); // 喜用神 · 统一出口（不再依赖上游 determineXiyongshen 旧刻度）
+    res.json({ ok: true, data: xy, strength: ob._dayMasterStrength, took: Date.now() - t0 });
   } catch(e) { next(e); }
 });
 
@@ -572,6 +626,87 @@ function _card(id, icon, title, body) {
 }
 function _step(label, body) {
   return '<div class="bz-dingge-step"><div class="bz-dingge-step-label">'+label+'</div><div class="bz-dingge-step-body">'+body+'</div></div>';
+}
+
+// ══════ 日主强弱 · 权威判定卡片（覆盖 bz_rizhu）══════
+// 依据《日主强弱判定方法研究与实现方案.md》§5 方案二 A/B 比值 7 级 + 旺/强分论 + 三维框架
+function _buildDayMasterCard(dm, ob) {
+  function _lvClass(lv) {
+    if (lv === '弱极' || lv === '很弱' || lv === '比较弱') return 'dm-lv-weak';
+    if (lv === '平衡') return 'dm-lv-balance';
+    return 'dm-lv-strong';
+  }
+  var lvCls = _lvClass(dm.level);
+
+  // 三维：得令 / 得地 / 得势
+  function _dim(k, ok, sub) {
+    return '<div class="dm-dim ' + (ok ? 'on' : 'off') + '">'
+      + '<span class="dm-dim-ic">' + (ok ? '✓' : '✕') + '</span>'
+      + '<span class="dm-dim-k">' + k + '</span>'
+      + (sub ? '<span class="dm-dim-sub">' + sub + '</span>' : '')
+      + '</div>';
+  }
+  var dims = _dim('得令', dm.deling, dm.yueStatus)
+    + _dim('得地', dm.dedi, dm.rootList.length ? (dm.rootList.length + ' 根') : '')
+    + _dim('得势', dm.desi, dm.shiList.length ? (dm.shiList.length + ' 扶') : '');
+
+  // 旺/强 标记
+  var chips = '';
+  if (dm.wang) chips += '<span class="dm-chip dm-chip-wang">旺</span>';
+  if (dm.qiang) chips += '<span class="dm-chip dm-chip-qiang">强</span>';
+  if (!chips) chips = '<span class="dm-chip dm-chip-none">弱</span>';
+
+  // 五行得分 strip（与 wx-dist 同色板，体现 A/B 来源）
+  var wxVar = { '木':'--bt-gan-wood', '火':'--bt-gan-fire', '土':'--bt-gan-earth', '金':'--bt-gan-metal', '水':'--bt-gan-water' };
+  var order = [['木', dm.scores[0]], ['火', dm.scores[1]], ['土', dm.scores[2]], ['金', dm.scores[3]], ['水', dm.scores[4]]];
+  var total = 0; order.forEach(function(o) { total += o[1]; }); if (total === 0) total = 1;
+  var bars = order.map(function(o) {
+    var pct = Math.round(o[1] / total * 100);
+    var color = 'var(' + wxVar[o[0]] + ')';
+    return '<div class="wx-bar-item">'
+      + '<span class="wx-bar-label" style="color:' + color + '">' + o[0] + '</span>'
+      + '<span class="wx-bar-bg"><span class="wx-bar-fill" style="width:' + pct + '%;background:' + color + ';"></span></span>'
+      + '<span class="wx-bar-pct">' + pct + '%</span>'
+      + '<span class="wx-bar-val">' + o[1].toFixed(1) + '</span>'
+      + '</div>';
+  }).join('');
+
+  // 从格注脚（不另立第二结论，仅交叉引用，消除双结论矛盾）
+  var congNote = '';
+  var _cd = unified.getCongGeData(ob);
+  if (_cd.isCong) {
+    congNote = '<div class="dm-cong">⚑ 此造入「' + (_cd.congType || '从格') + '」，强弱以格局论为主（详见「从格」章）。</div>';
+  }
+
+  var body =
+    '<div class="dm-card">'
+    + '<div class="dm-head">'
+    +   '<div class="dm-gan"><span class="dm-gan-name">' + dm.riGanName + '</span><span class="dm-gan-wx">' + dm.riWxName + '日主</span></div>'
+    +   '<div class="dm-level-wrap">'
+    +     '<div class="dm-level ' + lvCls + '">' + dm.level + '</div>'
+    +     '<div class="dm-chips">' + chips + '</div>'
+    +   '</div>'
+    + '</div>'
+    + '<div class="dm-dims">' + dims + '</div>'
+    + '<div class="dm-ab">'
+    +   '<div class="dm-ab-item"><span class="dm-ab-k">生扶 A</span><span class="dm-ab-v">' + dm.A + '</span></div>'
+    +   '<div class="dm-ab-item"><span class="dm-ab-k">克泄 B</span><span class="dm-ab-v">' + dm.B + '</span></div>'
+    +   '<div class="dm-ab-item"><span class="dm-ab-k">A/B</span><span class="dm-ab-v">' + dm.ratio + '</span></div>'
+    + '</div>'
+    + '<div class="dm-scores">' + bars + '</div>'
+    + '<div class="dm-xiyong">'
+    +   '<div class="dm-xy-row"><span class="dm-xy-k good">喜</span><span class="dm-xy-v good">' + dm.favorable + '</span></div>'
+    +   '<div class="dm-xy-row"><span class="dm-xy-k bad">忌</span><span class="dm-xy-v bad">' + dm.unfavorable + '</span></div>'
+    + '</div>'
+    + '<div class="dm-conclusion">' + dm.conclusion + '</div>'
+    + congNote
+    + '</div>';
+
+  return '<div class="card" data-card-id="bz_rizhu">'
+    + '<div class="card-header" onclick="window.toggleBaziCardCollapse(this)">'
+    + '<span><i class="ti ti-target"></i> 日主强弱 · 权威判定</span>'
+    + '<i class="ti ti-chevron-down card-collapse-icon"></i></div>'
+    + '<div class="card-body"><div class="bz-section-body">' + body + '</div></div></div>';
 }
 
 /** 构建天罗地网运卡片 HTML — 结论先行 + 单面板切换 */

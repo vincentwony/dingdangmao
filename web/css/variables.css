@@ -132,6 +132,21 @@ body.light {
 
   /* 遮罩 */
   --backdrop-blur: blur(6px);
+
+  /* ── 升级：日历/神煞语义色（深化古典金） ── */
+  --color-today:        #b8860b;
+  --ss-good-bg:         rgba(184,134,11,0.10);
+  --ss-good-border:     rgba(184,134,11,0.32);
+  --ss-good-text:       #8a6d1f;
+  --ss-bad-bg:          rgba(196,30,10,0.08);
+  --ss-bad-border:      rgba(196,30,10,0.28);
+  --ss-bad-text:        #b3372a;
+
+  /* 日历 cell 语义色 — 月相/节气（抽 token，消除 JS 硬编码 hex，暗色自动切换） */
+  --moon-new:        #404040;   /* 朔（暗灰点） */
+  --moon-full:       #C8961A;   /* 望（深化金点） */
+  --moon-quarter:    #8A8278;   /* 上弦/下弦（暖灰点） */
+  --color-jieqi:     #2E7D32;   /* 节气标记（绿◆） */
 }
 
 /* ══════ 暗色主题 ══════ */
@@ -203,6 +218,21 @@ body.dark {
 
   /* 遮罩 */
   --backdrop-blur: blur(10px);
+
+  /* ── 升级：日历/神煞语义色（深化古典金） ── */
+  --color-today:        #D4A853;
+  --ss-good-bg:         rgba(212,168,83,0.12);
+  --ss-good-border:     rgba(212,168,83,0.35);
+  --ss-good-text:       #d8b35a;
+  --ss-bad-bg:          rgba(212,64,58,0.12);
+  --ss-bad-border:      rgba(212,64,58,0.34);
+  --ss-bad-text:        #e8857c;
+
+  /* 日历 cell 语义色 — 月相/节气（暗色提亮，保证对比度） */
+  --moon-new:        #9A938A;
+  --moon-full:       #E0B44A;
+  --moon-quarter:    #B5ADA3;
+  --color-jieqi:     #5FB85F;
 }
 
 /* ══════ 全局字体 ══════ */

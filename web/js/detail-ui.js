@@ -7,7 +7,6 @@ import { API } from './api.js';
 import { $, _highlightFab } from './dom-helpers.js';
 
 // ══════ 常量 ══════
-var DUTY12_ORDER2 = ['建','除','滿','平','定','執','破','危','成','收','開','閉'];
 var DUTY12_GOOD2 = { '建':false,'除':true,'滿':false,'平':false,'定':true,'執':true,'破':false,'危':true,'成':true,'收':false,'開':true,'閉':false };
 var DUTY12_MEANING2 = {
     '建':'万物建始·宜求嗣出行', '除':'除旧布新·宜沐浴扫舍',
@@ -17,23 +16,75 @@ var DUTY12_MEANING2 = {
     '成':'成就功业·宜嫁娶开市', '收':'收敛归藏·宜纳财入宅',
     '開':'开张启动·宜开市出行', '閉':'闭藏封固·宜安葬修坟'
 };
-var NINE_STAR_ORDER2 = ['妖星','惑星','禾刀','煞贡','直星','卜木','角己','人专','立早'];
-var NINE_STARS2 = {
-    0: { name: '妖星', good: false, meaning: '上官嫁娶起造开店移徙入宅不利，主退败灾凶' },
-    1: { name: '惑星', good: false, meaning: '主灾祸，不宜大事' },
-    2: { name: '禾刀', good: false, meaning: '有灾迫，慎防口舌是非' },
-    3: { name: '煞贡', good: true, meaning: '大吉，万事皆宜' },
-    4: { name: '直星', good: true, meaning: '大吉，诸事顺利' },
-    5: { name: '卜木', good: false, meaning: '有口舌是非，不宜诉讼' },
-    6: { name: '角己', good: false, meaning: '疾病虚惊，不宜远行' },
-    7: { name: '人专', good: true, meaning: '吉，宜嫁娶开市出行' },
-    8: { name: '立早', good: false, meaning: '凶，百事不宜' }
+// ── 古籍释义（动态：随当日值星/九星而变）──
+// 建除十二神 名义义例 — 据《钦定协纪辨方书·卷六·建除十二神》
+var DUTY_CLASSIC = {
+  '建': '建者，一月之主也。所值之日为月内行事之纲，凡事当依时创制、兴举初事；然忌妄动土功、嫁娶、安葬。',
+  '除': '除者，除旧布新也。阳气奋发、万物更新，宜祀神、祈福、求医、出行；忌远行。',
+  '滿': '滿者，丰豫盈溢也。物极则反，宜祭祀、祈福；忌开业、求财、嫁娶。',
+  '平': '平者，平治也，无偏陂高低。宜修造、平治道路；忌移徙、远行。',
+  '定': '定者，安定不动也。宜签约、纳采、安床、订盟；忌词讼、医疗、出行。',
+  '執': '執者，守其成也。宜捕捉、拘执、伐木；忌移徙、开市。',
+  '破': '破者，破坏离散也。百事俱凶，唯宜求医、破屋坏垣；忌一切营建嫁娶。',
+  '危': '危者，危惧也，临险而慎。宜祭祀、安床、祈福；忌登高、乘船。',
+  '成': '成者，成就也。诸事皆成，宜开市、嫁娶、入学、签约、求医；忌词讼。',
+  '收': '收者，收敛归藏也。宜纳财、收养、入仓；忌开市、嫁娶、放债。',
+  '開': '開者，生气开扬也。宜开市、出行、嫁娶、求医、动土；忌安葬、诉讼、放债。',
+  '閉': '閉者，闭藏封闭也。宜安葬、修坟、筑堤；忌开市、求医、出行。'
 };
+var DUTY_CLASSIC_SRC = '《钦定协纪辨方书·卷六·建除十二神》';
+// 九星 名义义例 — 据《星历考原·九星值日》／《协纪辨方书·卷十》
+var NINE_CLASSIC = {
+  '妖星': '妖星，凶。所值之日，上官、嫁娶、起造、移徙、开店俱不利，主退败灾凶。',
+  '惑星': '惑星，凶。主灾祸，不宜兴举大事。',
+  '禾刀': '禾刀，凶。有灾逼至，慎防口舌是非之争。',
+  '煞贡': '煞贡，吉（上吉）。大吉之日，万事皆宜，百事顺遂。',
+  '直星': '直星，吉（上吉）。大吉之日，诸事顺利，营造皆宜。',
+  '卜木': '卜木，凶。主口舌是非，不宜兴词诉讼。',
+  '角己': '角己，凶。主疾病虚惊，不宜远行出入。',
+  '人专': '人专，吉。宜嫁娶、开市、出行，人情和顺。',
+  '立早': '立早，凶。百事不宜，诸事忌用。'
+};
+var NINE_CLASSIC_SRC = '《星历考原·九星值日》';
+// 黄道十二神 名义义例 — 据《钦定协纪辨方书·卷六·黄道黑道十二神》（与「建除十二神」为不同体系）
+var HUANGDAO_CLASSIC = {
+  '青龙': '青龙，黄道六神之首，东方木德之象。所值之时，百事皆宜，尤利兴举、动土、嫁娶、出行、开市。',
+  '明堂': '明堂，黄道之神，象帝王布政之堂。所值之时，宜起居、安床、修造、安葬、请贵；诸事和顺。',
+  '天刑': '天刑，黑道之神，象刑罚拘系。所值之时，忌词讼、出行、嫁娶、动土；宜静不宜动。',
+  '朱雀': '朱雀，黑道之神，南方火象，主口舌。所值之时，忌词讼、争辩、移徙；宜谨言慎行。',
+  '金匮': '金匮，黄道之神，象藏籍纳财之府。所值之时，宜收纳、藏书、求财、嫁娶、安床。',
+  '天德': '天德，黄道之神（与择日「天德日」干支法异，勿混）。所值之时，宜修造、安葬、祈福、出行，百事皆吉。',
+  '白虎': '白虎，黑道之神，西方金象，主凶丧。所值之时，忌嫁娶、出行、动土、安葬；宜避不宜趋。',
+  '玉堂': '玉堂，黄道之神，象殿阁清华。所值之时，宜起居、修造、安床、嫁娶、开市、入学。',
+  '天牢': '天牢，黑道之神，象拘系牢狱。所值之时，忌词讼、出行、嫁娶、动土；宜静守。',
+  '玄武': '玄武（清刊或作元武），黑道之神，北方水象，主盗失。所值之时，忌移徙、出行、开市、纳财；慎防盗失。',
+  '司命': '司命，黄道之神，象掌籍录生命。所值之时，宜祭祀、祈福、受封、嫁娶、出行；诸事可举。',
+  '勾陈': '勾陈，黑道之神，象滞碍纠缠。所值之时，忌嫁娶、出行、移徙、兴作；宜缓不宜急。'
+};
+var HUANGDAO_CLASSIC_SRC = '《钦定协纪辨方书·卷六·黄道黑道十二神》';
+// 黄道十二神 一句话宜忌（供单值卡 dn-mean 显示）
+var HUANGDAO_MEANING = {
+  '青龙': '百事皆宜，利兴举、动土、嫁娶、出行、开市',
+  '明堂': '宜起居、安床、修造、安葬、请贵',
+  '天刑': '忌词讼、出行、嫁娶、动土；宜静守',
+  '朱雀': '忌词讼、争辩、移徙；谨言慎行',
+  '金匮': '宜收纳、藏书、求财、嫁娶、安床',
+  '天德': '宜修造、安葬、祈福、出行，百事吉',
+  '白虎': '忌嫁娶、出行、动土、安葬；宜避',
+  '玉堂': '宜起居、修造、安床、嫁娶、开市、入学',
+  '天牢': '忌词讼、出行、嫁娶、动土；宜静',
+  '玄武': '忌移徙、出行、开市、纳财；慎防盗失',
+  '司命': '宜祭祀、祈福、受封、嫁娶、出行',
+  '勾陈': '忌嫁娶、出行、移徙、兴作；宜缓'
+};
+var HUANGDAO_GOOD = { '青龙':true,'明堂':true,'天刑':false,'朱雀':false,'金匮':true,'天德':true,'白虎':false,'玉堂':true,'天牢':false,'玄武':false,'司命':true,'勾陈':false };
 var WEEK2 = ['日','一','二','三','四','五','六'];
 var CMON = ['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','冬月','腊月'];
 var CDAY = ['初一','初二','初三','初四','初五','初六','初七','初八','初九','初十',
     '十一','十二','十三','十四','十五','十六','十七','十八','十九','二十',
     '廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+// 注：GOOD_ALL / BAD_ALL 仅为“精选神煞”参考清单，自 2026-07-14 起【不再用于过滤显示】——
+// 日详情“今日神煞”卡片现渲染 /calendar/day 返回的当日【全部】吉神/凶煞（goodGods/badGods）。
 var GOOD_ALL = [
     '天乙貴人','天乙贵人','天德','月德','天德合','月德合','日祿','日禄',
     '喜神','紅鸞','红鸾','天喜','三合','六合','驛馬','驿马',
@@ -49,129 +100,102 @@ var BAD_ALL = [
     '咸池','血支','血忌','五虛','五虚','八風','八风','歸忌','归忌'
 ];
 // ══════ 状态 ══════
-var _overlayEl = null;
 var _currentData = null;
-var _barY, _barM, _barD;
+var _currentKey = '';   // 当前内联展示的日期键 'y-m-d'
+
+function _showGods() { try { var v = localStorage.getItem('cal_showGods'); return v === null ? true : (v !== 'false'); } catch(e) { return true; } }
+
+// 设置变更后，用已缓存数据重渲染当前详情（如“显示神煞”开关）
+function rerender() {
+  var host = _host();
+  if (!host || !host.classList.contains('show') || !_currentData || !_currentKey) return;
+  var p = _currentKey.split('-');
+  var y = +p[0], m = +p[1], d = +p[2];
+  host.innerHTML = '<div class="cal-detail-inner">' + renderDetail(_currentData, y, m, d) + '</div>';
+  if (_showGods()) _renderJishenBanner(_currentData);
+}
 
 // ══════ 初始化 ══════
 function init() {
-  State.on('date:selected', function(evt) {
-    if (evt && evt.y && evt.m && evt.d) {
-      _barY = evt.y; _barM = evt.m; _barD = evt.d;
-      // 不再自动弹出详情浮层 — 由日历格上的迷你开关控制
-      // 若当前已有浮层在显示且是同一天，刷新内容
-      if (_overlayEl && _overlayEl.classList.contains('show') &&
-          _currentData && _currentData.d === evt.d &&
-          evt.y === _barY && evt.m === _barM) {
-        show(evt.y, evt.m, evt.d);
-      }
-    }
-  });
+  // “显示神煞”等开关变更 → 若详情正在展示则重渲染
+  State.on('settings:changed', function() { rerender(); });
 }
 
-/** 显示详情浮层 */
+/** 获取内联容器 */
+function _host() {
+  return document.getElementById('cal-detail-inline');
+}
+
+/** 是否正在展示 */
+function isOpen() {
+  var host = _host();
+  return !!(host && host.classList.contains('show'));
+}
+
+/** 在日历下方内联渲染日课详情 */
 async function show(y, m, d) {
   if (!y || !m || !d) return;
+  var host = _host();
+  if (!host) return;
 
-  if (!_overlayEl) {
-    _overlayEl = document.createElement('div');
-    _overlayEl.className = 'detail-panel-overlay';
-    _overlayEl.setAttribute('role', 'dialog');
-    _overlayEl.setAttribute('aria-modal', 'true');
-    _overlayEl.setAttribute('aria-label', '日课详情');
-    _overlayEl.innerHTML =
-      '<div class="detail-panel-backdrop"></div>' +
-      '<div class="detail-panel" id="detailPanel">' +
-        '<div class="detail-panel-handle"></div>' +
-        '<div class="detail-panel-head">' +
-          '<h2>日课详情</h2>' +
-          '<button class="detail-panel-close" aria-label="关闭详情"><i class="ti ti-x"></i></button>' +
-        '</div>' +
-        '<div class="detail-panel-body" id="detailBody"></div>' +
-      '</div>';
-
-    var backdrop = _overlayEl.querySelector('.detail-panel-backdrop');
-    if (backdrop) backdrop.addEventListener('click', hide);
-
-    var closeBtn = _overlayEl.querySelector('.detail-panel-close');
-    if (closeBtn) closeBtn.addEventListener('click', hide);
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && _overlayEl.classList.contains('show')) hide();
-    });
-
-    // 触摸手势关闭（移动端下拉面板 >80px）
-    var panel = _overlayEl.querySelector('#detailPanel');
-    var startY = 0, dragging = false;
-    if (panel) {
-      panel.addEventListener('touchstart', function(e) {
-        if (e.target.closest('.detail-panel-body') && panel.scrollTop > 0) return;
-        startY = e.touches[0].clientY; dragging = true;
-        panel.style.transition = 'none';
-      }, { passive: true });
-      panel.addEventListener('touchmove', function(e) {
-        if (!dragging) return;
-        var dy = e.touches[0].clientY - startY;
-        if (dy < 0) { dy = 0; dragging = false; panel.style.transition = ''; return; }
-        panel.style.transform = 'translateY(' + dy + 'px)';
-      }, { passive: true });
-      panel.addEventListener('touchend', function(e) {
-        if (!dragging) return; dragging = false;
-        if (e.changedTouches[0].clientY - startY > 80) { hide(); return; }
-        // 弹性回弹（小于80px时缓动归位）
-        panel.style.transition = 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
-        panel.style.transform = '';
-        var restore = function() { panel.style.transition = ''; panel.removeEventListener('transitionend', restore); };
-        panel.addEventListener('transitionend', restore);
-      });
-    }
-
-    document.body.appendChild(_overlayEl);
-  }
-
-  var bodyEl = _overlayEl.querySelector('#detailBody');
-  if (bodyEl) {
-    bodyEl.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--text-muted);">' +
-      '<i class="ti ti-loader" style="display:inline-block;animation:spin 1s linear infinite;"></i> 加载中...</div>';
-  }
-  _overlayEl.classList.add('show');
-  _overlayEl.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
-  _updateSealState(true);
+  _currentKey = y + '-' + m + '-' + d;
+  host.classList.add('show');
+  host.setAttribute('aria-hidden', 'false');
+  host.innerHTML = '<div class="cal-detail-loading">' +
+    '<i class="ti ti-loader"></i> 正在推演当日日课…</div>';
 
   try {
     var result = await API.post('/calendar/day', { y: y, m: m, d: d });
+    // 若期间已切到其它日期，丢弃过期响应
+    if (_currentKey !== (y + '-' + m + '-' + d)) return;
     if (result.ok) {
       _currentData = result.data;
-      if (bodyEl) bodyEl.innerHTML = renderDetail(result.data, y, m, d);
+      host.innerHTML = '<div class="cal-detail-inner">' + renderDetail(result.data, y, m, d) + '</div>';
+      if (_showGods()) _renderJishenBanner(_currentData);
     } else {
-      if (bodyEl) bodyEl.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--color-cinnabar);">加载失败: ' + (result.error || '未知错误') + '</div>';
+      host.innerHTML = '<div class="cal-detail-error">加载失败：' + (result.error || '未知错误') + '</div>';
     }
   } catch(e) {
-    if (bodyEl) bodyEl.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--color-cinnabar);">网络错误: ' + e.message + '</div>';
+    host.innerHTML = '<div class="cal-detail-error">网络错误：' + e.message + '</div>';
   }
 }
 
-/** 隐藏详情面板 */
+/** 收起内联详情 */
 function hide() {
-  if (!_overlayEl) return;
-  _overlayEl.classList.remove('show');
-  _overlayEl.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
-  _updateSealState(false);
-}
-
-/** 更新日历格印章状态：印(玉石) ↔ 詳(朱砂落印) */
-function _updateSealState(isOpen) {
-  var toggles = document.querySelectorAll('#Cal3 .cal-cell .cal-detail-toggle .seal-char');
-  for (var i = 0; i < toggles.length; i++) {
-    toggles[i].textContent = isOpen ? '詳' : '印';
+  var host = _host();
+  if (host) {
+    host.classList.remove('show');
+    host.setAttribute('aria-hidden', 'true');
+    host.innerHTML = '';
   }
+  _currentKey = '';
+  var banner = document.getElementById('jishenBanner');
+  if (banner) { banner.classList.remove('show'); banner.innerHTML = ''; }
 }
 
-/** 切换 */
+/** 填充吉神公告栏：选中日的吉神名单（呼应已修复的圣心/益后/续世等神煞） */
+function _renderJishenBanner(dat) {
+  var banner = document.getElementById('jishenBanner');
+  if (!banner) return;
+  var gods = (dat && dat.goodGods) ? dat.goodGods : [];
+  if (!gods.length) { banner.classList.remove('show'); banner.innerHTML = ''; return; }
+  var MAX = 16;
+  var shown = gods.slice(0, MAX);
+  var html = '<span class="jb-label"><i class="ti ti-sun"></i> 今日吉神</span>';
+  html += shown.map(function(g) {
+    var m = (dat.godsMeta && dat.godsMeta[g]) || null;
+    var tipTail = m ? (m.isDiff ? '（与运行版有流派差异）' : (m.corrected ? '（已按协纪修正）' : '（协纪出处）')) : '';
+    var attr = m ? (' title="' + escAttr('协纪出处：' + (m.xiejì || '《协纪辨方书》') + tipTail) + '"') : '';
+    return '<span class="jb-god' + (m ? ' has-source' : '') + (m && m.corrected ? ' god-corrected' : '') + '"' + attr + '>' + g + '</span>';
+  }).join('');
+  if (gods.length > shown.length) html += '<span class="jb-more">等 ' + gods.length + ' 位</span>';
+  banner.innerHTML = html;
+  banner.classList.add('show');
+}
+
+/** 切换：同一天再点则收起，否则展示 */
 function toggle(y, m, d) {
-  if (_overlayEl && _overlayEl.classList.contains('show')) {
+  if (isOpen() && _currentKey === (y + '-' + m + '-' + d)) {
     hide();
   } else {
     show(y, m, d);
@@ -179,6 +203,22 @@ function toggle(y, m, d) {
 }
 
 // ══════ 渲染函数 ══════
+
+/** HTML 属性转义（防 title/data-tip 注入断裂） */
+function escAttr(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+/** 把神煞来源元数据拼成可读 tooltip 文本（协纪出处 + 定义 + 差异/已修正） */
+function _metaTip(m) {
+  var t = '协纪出处：' + (m.xiejì || '《协纪辨方书》') + '\n';
+  t += '定义：' + (m.def || '');
+  if (m.isDiff) t += '\n与运行版(lunisolar)差异：' + (m.diff || '');
+  else if (m.corrected) t += '\n已按《协纪辨方书》修正：' + (m.note || '');
+  return t;
+}
 
 function renderDetail(dat, y, m, d) {
   var wday = new Date(y, m - 1, d).getDay();
@@ -200,8 +240,10 @@ function renderDetail(dat, y, m, d) {
   
   html += '<span class="ddh-nongli">农历 ' + (dat.lunarYear || '') + '年【' + y + ' · ' + (dat.yearNaYin || '') + '】</span>';
   html += '<span class="ddh-sep">·</span>';
+  html += '<span class="ddh-nongli"><span class="ddh-tag ddh-tag-jq">节气</span>' + (dat.monthGZ || '') + '月【' + (dat.monthNaYin || '') + '】</span>';
+  html += '<span class="ddh-sep">·</span>';
   var _lm = dat.lunarMonth || 1;
-  html += '<span class="ddh-nongli">' + (dat.monthGZ || '') + '月【' + (dat.isLeap ? '闰' : '') + (CMON[_lm - 1] || _lm + '月') + ' · ' + (dat.monthNaYin || '') + '】</span>';
+  html += '<span class="ddh-nongli"><span class="ddh-tag ddh-tag-nl">农历</span>' + (dat.isLeap ? '闰' : '') + (CMON[_lm - 1] || _lm + '月') + '</span>';
   html += '<span class="ddh-sep">·</span>';
   html += '<span class="ddh-nongli">' + (dat.dayGZ || '') + '日【' + (CDAY[(dat.lunarDay || 1) - 1] || dat.lunarDay) + ' · ' + (dat.dayNaYin || '') + '】</span>';
   html += '</div>';
@@ -217,21 +259,16 @@ function renderDetail(dat, y, m, d) {
   // ══════ 月相与节日 ══════
   html += renderYueXiangFestival(dat);
 
+  // ══════ 宜忌（日课）— 含本程序后置修正（红砂）══════
+  html += renderYiJi(dat);
+
   // ══════ 星命卡片区 ══════
   html += '<div class="detail-cards">';
 
-  // 建除十二神
-  html += '<div class="card dp-reveal-item" data-card-id="duty-god">';
-  html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-building-castle"></i> 今日值神</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
-  html += '<div class="card-body">';
-  html += '<div class="cosmic-board">' + renderDuty12(dat.jianchu) + '</div>';
-  html += '<p class="cosmic-desc">今日值神：<strong>' + (dat.jianchu || '') + '</strong>&ensp;—&ensp;' +
-    (DUTY12_MEANING2[dat.jianchu] || '') + '&ensp;(' + (DUTY12_GOOD2[dat.jianchu] ? '黄道吉日' : '黑道凶日') + ')</p>';
-  html += '</div></div>';
-
+  // 建除值神 + 九星值日（合并单值卡，每天各显示一个值 + 内联古籍释义）
+  html += renderDutyNine(dat);
   html += renderShichen(dat);
-  html += renderNineStar(dat);
-  html += renderShensha(dat, chongS, shaS);
+  if (_showGods()) html += renderShensha(dat, chongS, shaS);
 
   html += '</div>';
 
@@ -253,7 +290,8 @@ function renderWarnings(dat) {
     w += '<span class="silisijue-notice"><i class="ti ti-alert-circle"></i> ' + slsjLabel + ' · ' + slsj.name + '</span>';
   }
   if (dat.wulu) w += '<span class="wulu-notice"><i class="ti ti-alert-triangle"></i> 无禄日</span>';
-  if (dat.hongsha) w += '<span class="hongsha-notice">红砂日</span>';
+  if (dat.hongsha) w += '<span class="hongsha-notice" title="小红砂（凶）：四孟金鸡四仲蛇，四季丑日是红砂。孟月(寅巳申亥)酉日、仲月(子午卯酉)巳日、季月(辰未戌丑)丑日，百事忌。"><i class="ti ti-alert-triangle"></i> 小红砂（凶）</span>';
+  if (dat.dahongsha) w += '<span class="dahongsha-notice" title="大红砂（吉，玉匣记原版）：春戌子、夏辰巳、秋午未、冬申戌，每季两日，百事吉。"><i class="ti ti-sparkles"></i> 大红砂（吉）· 百事吉</span>';
   if (dat.jinshenqisha) w += '<span class="jinshenqisha-notice"><i class="ti ti-skull"></i> 金神七煞</span>';
   if (dat.daojia) {
     var djLabel = '倒家杀';
@@ -276,6 +314,48 @@ function renderWarnings(dat) {
     w += '<span class="sanfu-notice"><i class="ti ti-flame"></i> ' + dat.sanfu.period + '第' + dat.sanfu.day + '天</span>';
   }
   return w ? '<div class="detail-warnings">' + w + '</div>' : '';
+}
+
+/** 宜忌（日课）— 渲染 dat.yiActs（宜）/ dat.jiActs（忌）。
+ *  数据源：lunisolar theGods.getActs(1) 第三方值 + 本程序 _getLsrActs 后置注入（红砂）。
+ *  含「（大红砂」「（小红砂」的项为本程序已验证神煞补充，加 yiji-extra 视觉标注以示来源。 */
+function renderYiJi(dat) {
+  var yi = (dat.yiActs && dat.yiActs.length) ? dat.yiActs : [];
+  var ji = (dat.jiActs && dat.jiActs.length) ? dat.jiActs : [];
+  var html = '<div class="card" data-card-id="yiji">';
+  html += '<div class="card-header"><span><i class="ti ti-calendar-check"></i> 宜忌（日课）</span></div>';
+  html += '<div class="card-body detail-yiji">';
+
+  // 宜
+  html += '<div class="yiji-row yiji-good">';
+  html += '<span class="yiji-label">宜</span>';
+  html += '<div class="yiji-items">';
+  if (yi.length) {
+    yi.forEach(function(it) {
+      var extra = (it.indexOf('（大红砂') >= 0 || it.indexOf('（小红砂') >= 0) ? ' yiji-extra' : '';
+      html += '<span class="yiji-item' + extra + '">' + it + '</span>';
+    });
+  } else {
+    html += '<span class="yiji-item yiji-none">诸事平</span>';
+  }
+  html += '</div></div>';
+
+  // 忌
+  html += '<div class="yiji-row yiji-bad">';
+  html += '<span class="yiji-label">忌</span>';
+  html += '<div class="yiji-items">';
+  if (ji.length) {
+    ji.forEach(function(it) {
+      var extra = (it.indexOf('（大红砂') >= 0 || it.indexOf('（小红砂') >= 0) ? ' yiji-extra' : '';
+      html += '<span class="yiji-item' + extra + '">' + it + '</span>';
+    });
+  } else {
+    html += '<span class="yiji-item yiji-none">无特别所忌</span>';
+  }
+  html += '</div></div>';
+
+  html += '</div></div>';
+  return html;
 }
 
 /** 月相与节日 — 据寿星历 ob.yxmc/ob.yxsj + ob.A/ob.B */
@@ -336,19 +416,52 @@ function renderYueXiangFestival(dat) {
   return html;
 }
 
-function renderDuty12(activeName) {
-  var html = '';
-  for (var i = 0; i < DUTY12_ORDER2.length; i++) {
-    var dn = DUTY12_ORDER2[i];
-    var isGood = DUTY12_GOOD2[dn];
-    var isActive = dn === activeName;
-    html += '<div class="cosmic-cell ' + (isGood ? 'good' : 'bad') + (isActive ? ' active' : '') +
-      '" title="' + (DUTY12_MEANING2[dn] || '') + '">';
-    html += '<span class="cc-main">' + dn + '</span>';
-    if (isActive) html += '<span class="cc-badge">◈ 值神</span>';
-    else html += '<span class="cc-sub">' + (DUTY12_MEANING2[dn] ? DUTY12_MEANING2[dn].substring(0,2) : '—') + '</span>';
-    html += '</div>';
+/** 古籍释义内联块（动态：kind='duty'|'nine'，key=当日值星名） */
+function renderClassic(kind, key) {
+  var text = '', src = '';
+  if (kind === 'duty') { text = DUTY_CLASSIC[key] || ''; src = DUTY_CLASSIC_SRC; }
+  else if (kind === 'nine') { text = NINE_CLASSIC[key] || ''; src = NINE_CLASSIC_SRC; }
+  else { text = HUANGDAO_CLASSIC[key] || ''; src = HUANGDAO_CLASSIC_SRC; }
+  if (!text) return '';
+  return '<div class="classic-inline">' +
+    '<div class="classic-inline-head"><i class="ti ti-book-2"></i> 古籍释义</div>' +
+    '<p class="classic-text">' + text + '</p>' +
+    '<p class="classic-src">—— ' + src + '</p>' +
+  '</div>';
+}
+
+/** 建除值神 + 九星值日 — 合并单值卡（每天各只显示一个值，附内联古籍释义） */
+function renderDutyNine(dat) {
+  var jc = dat.jianchu || '';
+  var jcGood = DUTY12_GOOD2[jc];
+  var nine = dat.nineStar || null;
+  var html = '<div class="card dp-reveal-item" data-card-id="duty-nine">';
+  html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-building-castle"></i> 建除值神 · 九星值日</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
+  html += '<div class="card-body">';
+
+  // ── 建除值神（单值）──
+  if (jc) {
+    html += '<div class="dn-row">';
+    html += '<div class="dn-emblem ' + (jcGood ? 'good' : 'bad') + '">' + jc + '</div>';
+    html += '<div class="dn-main">';
+    html += '<div class="dn-top"><span class="dn-kicker">建除值神</span><span class="dn-verdict ' + (jcGood ? 'good' : 'bad') + '">' + (jcGood ? '黄道' : '黑道') + '</span></div>';
+    html += '<p class="dn-mean">' + (DUTY12_MEANING2[jc] || '') + '</p>';
+    html += renderClassic('duty', jc);
+    html += '</div></div>';
   }
+  html += '<div class="dn-divider"></div>';
+  // ── 九星值日（单值）──
+  if (nine && nine.name) {
+    var nGood = nine.good;
+    html += '<div class="dn-row">';
+    html += '<div class="dn-emblem ' + (nGood ? 'good' : 'bad') + '">' + nine.name + '</div>';
+    html += '<div class="dn-main">';
+    html += '<div class="dn-top"><span class="dn-kicker">九星值日</span><span class="dn-verdict ' + (nGood ? 'good' : 'bad') + '">' + (nGood ? '吉星' : '凶星') + '</span></div>';
+    html += '<p class="dn-mean">' + (nine.meaning || '') + '</p>';
+    html += renderClassic('nine', nine.name);
+    html += '</div></div>';
+  }
+  html += '</div></div>';
   return html;
 }
 
@@ -359,106 +472,122 @@ function renderShichen(dat) {
   var now = new Date();
   var curHour = now.getHours();
   var curSC = Math.floor(((curHour + 1) % 24) / 2);
+  var cur = scData[curSC] || scData[0];
+
+  var god = cur.god || '';
+  var isGood = (typeof cur.yellow === 'boolean') ? cur.yellow : (HUANGDAO_GOOD[god] === true);
+  var timeRange = (cur.full || '').split(/[：:]/)[1] || '';
+  var branchLabel = (cur.branch || '') + '时';
 
   var html = '<div class="card dp-reveal-item" data-card-id="shichen">';
-  html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-clock"></i> 时辰值神</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
+  html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-clock"></i> 当前时辰值神</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
   html += '<div class="card-body">';
-  html += '<div class="cosmic-board">';
-
-  for (var i = 0; i < 12; i++) {
-    var sc = scData[i];
-    var isCur = i === curSC;
-    html += '<div class="cosmic-cell ' + (sc.yellow ? 'good' : 'bad') + (isCur ? ' active' : '') +
-      '" title="' + sc.full + ' ' + sc.god + '">';
-    html += '<span class="cc-main">' + sc.branch + '</span>';
-    html += '<span class="cc-sub">' + (sc.koujue || '') + '</span>';
-    if (isCur) html += '<span class="cc-badge">◈ 当前</span>';
-    html += '</div>';
-  }
-
-  html += '</div>';
-  html += '<p class="cosmic-desc"><span class="dot-ylw"></span>黄道吉时 <span class="dot-red"></span>黑道凶时&ensp;—&ensp;当前：<strong>' +
-    scData[curSC].branch + '时 ' + scData[curSC].god + '</strong>&ensp;(' +
-    (scData[curSC].yellow ? '黄道·吉' : '黑道·凶') + ')</p>';
+  html += '<div class="dn-row">';
+  html += '<div class="dn-emblem ' + (isGood ? 'good' : 'bad') + '">' + god + '</div>';
+  html += '<div class="dn-main">';
+  html += '<div class="dn-top"><span class="dn-kicker">当前时辰值神</span><span class="dn-verdict ' + (isGood ? 'good' : 'bad') + '">' + (isGood ? '黄道' : '黑道') + '</span></div>';
+  html += '<div class="dn-sub">' + branchLabel + ' · ' + timeRange + '</div>';
+  html += '<p class="dn-mean">' + (HUANGDAO_MEANING[god] || '') + '</p>';
+  html += renderClassic('huangdao', god);
+  html += '</div></div>';
   html += '</div></div>';
 
   return html;
 }
 
-function renderNineStar(dat) {
-  if (!dat.nineStar) return '';
+// (renderNineStar 已移除：改由 renderDutyNine 合并单值渲染)
 
-  var html = '<div class="card dp-reveal-item" data-card-id="nine-star">';
-  html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-star"></i> 今日九星</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
-  html += '<div class="card-body">';
-  html += '<div class="ninestar-grid">';
 
-  for (var ni = 0; ni < 9; ni++) {
-    var ns = NINE_STARS2[ni];
-    if (!ns) continue;
-    var starName = NINE_STAR_ORDER2[ni];
-    var isActive = (ni === dat.nineStar.idx);
-    var cls = 'ninestar-item ' + (ns.good ? 'good' : 'bad') + (isActive ? ' active' : '');
-    html += '<div class="' + cls + '">';
-    html += '<span class="ns-name">' + starName + '</span>';
-    if (isActive) html += '<span class="ns-label">✦ 今日值星</span>';
-    html += '</div>';
+/** 构建神煞分组（吉/凶），超量自动折叠 + 「展开全部 N 位」
+ *  @param meta 可选 { 神煞名: {xiejì,def,diff,isDiff} }（来自 /calendar/day 的 godsMeta），
+ *              命中时渲染 title(tooltip) 与「流派差异」小标记 */
+function buildSsGroup(titleText, titleCls, names, tagCls, meta) {
+  var THRESHOLD = 12;
+  var total = names ? names.length : 0;
+  var tagsHtml = '';
+  if (total === 0) {
+    tagsHtml = '<span class="cosmic-ss-count">无</span>';
+  } else {
+    for (var i = 0; i < total; i++) {
+      var nm = names[i];
+      var m = (meta && meta[nm]) || null;
+      var cls = 'cosmic-ss-tag ' + tagCls + (m ? ' has-source' : '') + (m && m.corrected ? ' is-corrected' : '');
+      var attr = '';
+      if (m) {
+        attr += ' title="' + escAttr(_metaTip(m)) + '"';
+        attr += ' data-tip="' + escAttr(_metaTip(m)) + '"';
+      }
+      var mark = '';
+      if (m) {
+        if (m.isDiff) mark = '<i class="ti ti-alert-triangle ss-tag-diff" aria-hidden="true"></i>';
+        else if (m.corrected) mark = '<i class="ti ti-circle-check ss-tag-corrected" aria-hidden="true"></i>';
+      }
+      tagsHtml += '<span class="' + cls + '"' + attr + '>' + nm + mark + '</span>';
+    }
   }
+  var collapsedCls = (total > THRESHOLD) ? ' collapsed' : '';
+  var moreBtn = (total > THRESHOLD)
+    ? '<button type="button" class="ss-more-btn" data-total="' + total + '" onclick="window._ssToggleMore(this)">展开全部 ' + total + ' 位</button>'
+    : '';
+  var countLine = (total > 0)
+    ? '<span class="cosmic-ss-count">共 ' + total + ' 位' + (tagCls === 'good-tag' ? '吉神护佑' : '凶煞值日') + '</span>'
+    : '';
+  return '<div class="cosmic-ss-group ' + (tagCls === 'good-tag' ? 'good-group' : 'bad-group') + '">' +
+    '<span class="cosmic-ss-title ' + titleCls + '">' + titleText + '</span>' +
+    '<div class="cosmic-ss-tags' + collapsedCls + '">' + tagsHtml + '</div>' +
+    moreBtn +
+    countLine +
+    '</div>';
+}
 
-  html += '</div>';
-  html += '<p class="cosmic-desc">' + dat.nineStar.name + ' · ' + (dat.nineStar.good ? '<strong>吉星</strong>' : '凶星') + '&ensp;：' + dat.nineStar.meaning + '</p>';
-  html += '</div></div>';
+/* 神煞分组「展开/收起」切换（由卡片内按钮调用） */
+window._ssToggleMore = function(btn) {
+  var group = btn.parentNode;
+  var tags = group ? group.querySelector('.cosmic-ss-tags') : null;
+  if (!tags) return;
+  var collapsed = tags.classList.toggle('collapsed');
+  btn.textContent = collapsed ? ('展开全部 ' + btn.dataset.total + ' 位') : '收起';
+};
 
-  return html;
+/** 信息徽章（图标 + 标签 + 值） */
+function _ssBadge(icon, label, val) {
+  return '<div class="ss-badge"><i class="ti ' + icon + '"></i>' +
+    '<span class="ss-badge-k">' + label + '</span>' +
+    '<span class="ss-badge-v">' + (val || '—') + '</span></div>';
 }
 
 function renderShensha(dat, chongS, shaS) {
+  var goodN = (dat.goodGods || []).length;
+  var badN = (dat.badGods || []).length;
+  var jcGood = DUTY12_GOOD2[dat.jianchu];
+
   var html = '<div class="card dp-reveal-item" data-card-id="shensha">';
   html += '<div class="card-header" onclick="window.toggleCardCollapse(this)"><span><i class="ti ti-clipboard-list"></i> 今日神煞</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
   html += '<div class="card-body">';
 
-  html += '<div class="info-grid">';
-  html += '<div class="it"><span class="k">五行：</span><span class="v">' + (dat.dayNaYin || '') + '</span></div>';
-  html += '<div class="it"><span class="k">建除：</span><span class="v">' + (dat.jianchu || '') + '</span></div>';
-  if (chongS) {
-    html += '<div class="it"><span class="k">冲煞：</span><span class="v">' + chongS + '·' + (shaS || '') + '</span></div>';
-  }
-  html += '<div class="it"><span class="k">廿八宿：</span><span class="v">' + (dat.xiuFull || '') + '</span></div>';
+  // 焦点区：今日吉凶总览
+  html += '<div class="ss-hero">';
+  html += '<div class="ss-hero-stat good"><span class="ss-hero-num">' + goodN + '</span><span class="ss-hero-lbl">吉神护佑</span></div>';
+  html += '<div class="ss-hero-mid"><span class="ss-hero-jc ' + (jcGood ? 'good' : 'bad') + '">' +
+    (dat.jianchu || '') + '</span><span class="ss-hero-jc-lbl">' + (jcGood ? '黄道' : '黑道') + '</span></div>';
+  html += '<div class="ss-hero-stat bad"><span class="ss-hero-num">' + badN + '</span><span class="ss-hero-lbl">凶煞值日</span></div>';
   html += '</div>';
 
-  var gSet = {};
-  var bSet = {};
-  if (dat.goodGods) for (var gi = 0; gi < dat.goodGods.length; gi++) gSet[dat.goodGods[gi]] = true;
-  if (dat.badGods) for (var bi = 0; bi < dat.badGods.length; bi++) bSet[dat.badGods[bi]] = true;
+  // 信息徽章
+  html += '<div class="ss-info-badges">';
+  html += _ssBadge('ti-flame', '五行', dat.dayNaYin);
+  html += _ssBadge('ti-building-castle', '建除', (dat.jianchu || '') + (jcGood ? '·吉' : '·凶'));
+  if (chongS) html += _ssBadge('ti-swords', '冲煞', chongS + '·' + (shaS || ''));
+  html += _ssBadge('ti-star', '廿八宿', dat.xiuFull);
+  html += '</div>';
 
-  // 吉神组 — 金箔封印
-  var gHit = 0, gTag = '';
-  for (var i = 0; i < GOOD_ALL.length; i++) {
-    var nm = GOOD_ALL[i];
-    if (gSet[nm]) { gHit++; gTag += '<span class="cosmic-ss-tag good-tag">' + nm + '</span>'; }
-  }
-  var gh = '<div class="cosmic-ss-group good-group">';
-  gh += '<span class="cosmic-ss-title good-title">◇ 吉神</span>';
-  gh += '<div class="cosmic-ss-tags">' + (gTag || '<span class="cosmic-ss-count">今日无吉神</span>') + '</div>';
-  if (gHit > 0) gh += '<span class="cosmic-ss-count">共' + gHit + '位吉神护佑</span>';
-  gh += '</div>';
-
-  // 凶煞组 — 石刻封印
-  var bHit = 0, bTag = '';
-  for (var j = 0; j < BAD_ALL.length; j++) {
-    var nm2 = BAD_ALL[j];
-    if (bSet[nm2]) { bHit++; bTag += '<span class="cosmic-ss-tag bad-tag">' + nm2 + '</span>'; }
-  }
-  var bh = '<div class="cosmic-ss-group bad-group">';
-  bh += '<span class="cosmic-ss-title bad-title">◆ 凶煞</span>';
-  bh += '<div class="cosmic-ss-tags">' + (bTag || '<span class="cosmic-ss-count">今日无凶煞</span>') + '</div>';
-  if (bHit > 0) bh += '<span class="cosmic-ss-count">共' + bHit + '位凶煞值日</span>';
-  bh += '</div>';
-
+  // 吉神/凶煞标签墙（全部，超量折叠）；godsMeta 提供协纪出处/差异 tooltip
+  var gh = buildSsGroup('◇ 吉神', 'good-title', dat.goodGods, 'good-tag', dat.godsMeta);
+  var bh = buildSsGroup('◆ 凶煞', 'bad-title', dat.badGods, 'bad-tag', dat.godsMeta);
   html += '<div class="cosmic-shensha-wrap">' + gh + bh + '</div>';
   html += '</div></div>';
 
   return html;
 }
 
-export default { init: init, show: show, hide: hide, toggle: toggle };
+export default { init: init, show: show, hide: hide, toggle: toggle, isOpen: isOpen };

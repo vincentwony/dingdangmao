@@ -16,11 +16,17 @@
 <link rel="stylesheet" href="/css/variables.css">
 <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/layout.css">
-<link rel="stylesheet" href="/css/calendar.css">
-<link rel="stylesheet" href="/css/bazi.css">
+    <link rel="stylesheet" href="/css/calendar.css">
+    <link rel="stylesheet" href="/css/bazi.css">
+    <link rel="stylesheet" href="/css/ziwei.css">
 
 <!-- PWA manifest -->
 <link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="万年历">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
+<link rel="apple-touch-icon" sizes="any" href="/icons/icon-maskable-512.png">
 </head>
 <body>
 
@@ -33,16 +39,27 @@
 })();
 </script>
 
-<!-- ══════ 顶部固定导航栏（双行布局 — 参照 qingnang.cc） ══════ -->
-<header class="top-nav" id="bottomTabs" role="banner" aria-label="天地玄黄日历">
+<!-- ══════ 顶部固定导航栏 ══════ -->
+<header class="top-nav" role="banner" aria-label="天地玄黄日历">
   <div class="top-nav-inner">
-    <!-- 第一行：品牌标题 + 导航按钮 -->
     <div class="top-nav-row1">
-      <div class="top-nav-brand">
-        <h1><a href="/" style="text-decoration:none;color:inherit;"><i class="ti ti-calendar-time" aria-hidden="true"></i> 天地玄黄 · 日月更替 <span class="badge">八卦掌决版</span></a></h1>
-      </div>
-      <nav class="top-nav-tabs" role="navigation" aria-label="主导航">
-        <a href="/" class="tab-item" id="tabHome" title="返回首页"><span class="tab-label">首页</span></a>
+      <a class="top-nav-brand" id="brandHome" href="#home" aria-label="天地玄黄 · 返回首页">
+        <span class="brand-mark"><svg class="brand-mark-svg" viewBox="0 0 40 40" aria-hidden="true">
+          <g fill="#D4A853">
+            <rect x="4" y="12.5" width="32" height="3" rx="1.5"/>
+            <rect x="4" y="19" width="13" height="3" rx="1.5"/>
+            <rect x="23" y="19" width="13" height="3" rx="1.5"/>
+            <rect x="4" y="25.5" width="32" height="3" rx="1.5"/>
+          </g>
+        </svg></span>
+        <span class="brand-text">
+          <span class="brand-title">天地玄黄</span><span class="brand-sep">·</span><span class="brand-sub">日月更替</span>
+        </span>
+        <span class="badge">八卦掌决版</span>
+      </a>
+
+      <nav class="top-nav-tabs" aria-label="主导航">
+        <button class="tab-item" id="tabHome" title="首页"><span class="tab-label">首页</span></button>
         <button class="tab-item tab-active" id="tabCalendar" title="万年历"><span class="tab-label">年历</span></button>
         <button class="tab-item" id="tabNianli" title="节气"><span class="tab-label">节气</span></button>
         <button class="tab-item" id="tabBazi" title="八字排盘"><span class="tab-label">八字</span></button>
@@ -50,9 +67,48 @@
         <button class="tab-item" id="tabNote" title="每日记事"><span class="tab-label">记事</span></button>
         <button class="tab-item" id="tabSettings" title="设置"><span class="tab-label">设置</span></button>
       </nav>
+
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-label="打开导航菜单" aria-expanded="false" aria-controls="navDrawer">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- 移动端抽屉导航（独立于 header，避免被紫微全屏隐藏顶栏误伤） -->
+<div class="nav-scrim" id="navScrim"></div>
+<aside class="nav-drawer" id="navDrawer" role="dialog" aria-modal="true"
+       aria-label="导航菜单" aria-hidden="true" tabindex="-1">
+  <div class="nav-drawer-head">
+    <span class="nav-drawer-brand"><svg class="brand-mark-svg" viewBox="0 0 40 40" aria-hidden="true">
+      <g fill="#D4A853">
+        <rect x="4" y="12.5" width="32" height="3" rx="1.5"/>
+        <rect x="4" y="19" width="13" height="3" rx="1.5"/>
+        <rect x="23" y="19" width="13" height="3" rx="1.5"/>
+        <rect x="4" y="25.5" width="32" height="3" rx="1.5"/>
+      </g>
+    </svg> 天地玄黄</span>
+    <button class="nav-drawer-close" id="navDrawerClose" type="button" aria-label="关闭菜单">
+      <i class="ti ti-x" aria-hidden="true"></i>
+    </button>
+  </div>
+  <nav class="nav-drawer-nav" aria-label="主导航抽屉">
+    <button class="drawer-item" data-nav="home"><i class="ti ti-home-2" aria-hidden="true"></i><span>首页</span></button>
+    <button class="drawer-item" data-nav="calendar"><i class="ti ti-calendar" aria-hidden="true"></i><span>年历</span></button>
+    <button class="drawer-item" data-nav="nianli"><i class="ti ti-sun" aria-hidden="true"></i><span>节气</span></button>
+    <button class="drawer-item" data-nav="bazi"><i class="ti ti-chart-donut-3" aria-hidden="true"></i><span>八字</span></button>
+    <button class="drawer-item" data-nav="ziwei"><i class="ti ti-star" aria-hidden="true"></i><span>紫微</span></button>
+    <button class="drawer-item" data-nav="note"><i class="ti ti-notebook" aria-hidden="true"></i><span>记事</span></button>
+    <button class="drawer-item" data-nav="choose"><i class="ti ti-calendar-star" aria-hidden="true"></i><span>择日</span></button>
+    <button class="drawer-item" data-nav="settings"><i class="ti ti-settings" aria-hidden="true"></i><span>设置</span></button>
+  </nav>
+  <div class="nav-drawer-foot">
+    <span class="nav-drawer-badge">八卦掌决版</span>
+  </div>
+</aside>
 
 <!-- 跳过导航链接 -->
 <a href="#main-content" class="sr-only sr-only-focusable">跳转到主要内容</a>
@@ -61,12 +117,126 @@
 <main class="wrap" id="main-content" role="main" aria-label="日历内容">
 
   <!-- 节气顶栏 -->
-  <div id="jqTopBar" style="font-size:12px;line-height:1.5;"></div>
+  <div id="jqTopBar" class="jq-topbar"></div>
   <!-- 吉神公告栏 -->
   <div id="jishenBanner" style="display:none;text-align:center;padding:6px 12px;margin:0 8px;border-radius:8px;font-size:0.9375rem;font-weight:700;letter-spacing:0.06em;background:linear-gradient(135deg,rgba(212,175,55,0.12),rgba(212,175,55,0.04));border:1px solid rgba(212,175,55,0.25);color:var(--color-gold);"></div>
 
   <!-- 主内容区 -->
   <div class="main">
+
+    <!-- 首页（落地页） -->
+    <div id="home-root" class="home-root" style="display:none;" role="tabpanel" aria-labelledby="tabHome">
+      <div class="home-hero">
+        <div class="home-emblem" aria-hidden="true">
+          <svg class="home-orbit" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+            <circle cx="100" cy="100" r="92" fill="none" stroke="var(--color-gold-pale)" stroke-width="1" stroke-dasharray="1 7" opacity="0.55"/>
+            <circle cx="100" cy="9"   r="2.4" fill="var(--color-gold)"/>
+            <circle cx="191" cy="100" r="2.0" fill="var(--color-gold-pale)"/>
+            <circle cx="100" cy="191" r="2.4" fill="var(--color-gold)"/>
+            <circle cx="9"   cy="100" r="2.0" fill="var(--color-gold-pale)"/>
+            <circle cx="35"  cy="35"  r="1.4" fill="var(--color-gold)"/>
+            <circle cx="165" cy="165" r="1.4" fill="var(--color-gold-pale)"/>
+            <circle cx="165" cy="35"  r="1.4" fill="var(--color-gold)"/>
+            <circle cx="35"  cy="165" r="1.4" fill="var(--color-gold-pale)"/>
+          </svg>
+          <div class="home-sunmoon">
+            <svg viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <radialGradient id="hgSun" cx="38%" cy="34%" r="70%">
+                  <stop offset="0%"  stop-color="#FFF4D6"/>
+                  <stop offset="42%" stop-color="#F2C14E"/>
+                  <stop offset="100%" stop-color="#C8772B"/>
+                </radialGradient>
+                <radialGradient id="hgMoon" cx="40%" cy="36%" r="72%">
+                  <stop offset="0%"  stop-color="#FBFCFE"/>
+                  <stop offset="55%" stop-color="#D7E3EE"/>
+                  <stop offset="100%" stop-color="#9FB4C6"/>
+                </radialGradient>
+                <mask id="hgMoonMask">
+                  <rect width="120" height="120" fill="black"/>
+                  <circle cx="44" cy="60" r="26" fill="white"/>
+                  <circle cx="56" cy="54" r="24" fill="black"/>
+                </mask>
+              </defs>
+              <!-- 月（左 · 银白月牙） -->
+              <circle cx="44" cy="60" r="26" fill="url(#hgMoon)" mask="url(#hgMoonMask)"/>
+              <!-- 日（右 · 鎏金圆 + 光芒） -->
+              <g stroke="url(#hgSun)" stroke-width="2.4" stroke-linecap="round" opacity="0.92">
+                <line x1="78" y1="20" x2="78" y2="31"/>
+                <line x1="78" y1="85" x2="78" y2="96"/>
+                <line x1="41" y1="58" x2="52" y2="58"/>
+                <line x1="104" y1="58" x2="115" y2="58"/>
+                <line x1="52" y1="32" x2="59" y2="39"/>
+                <line x1="97" y1="77" x2="104" y2="84"/>
+                <line x1="104" y1="32" x2="97" y2="39"/>
+                <line x1="59" y1="77" x2="52" y2="84"/>
+              </g>
+              <circle cx="78" cy="58" r="22" fill="url(#hgSun)"/>
+            </svg>
+          </div>
+        </div>
+        <h2 class="home-title">
+          <span class="home-title-main">天地玄黄</span>
+          <span class="home-title-sub">日月更替</span>
+        </h2>
+        <p class="home-tagline">传统历法 · 择日 · 命理</p>
+        <span class="home-seal"><b>八卦</b><b>掌决</b></span>
+      </div>
+      <div class="home-divider">快捷入口</div>
+      <div class="home-entries">
+        <button class="home-entry" type="button" data-nav="calendar">
+          <span class="home-entry-icon home-ic-cal"><svg class="he-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 5V3.2M16 5V3.2"/><path d="M15 14.2a3 3 0 1 1 -3.1 -3.9 2.4 2.4 0 0 0 3.1 3.9Z"/></svg></span>
+          <span class="home-entry-info">
+            <span class="home-entry-title">万年历</span>
+            <span class="home-entry-desc">查看每日宜忌、节气、神煞与日课详情</span>
+          </span>
+          <span class="home-entry-arrow"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+        </button>
+        <button class="home-entry" type="button" data-nav="choose">
+          <span class="home-entry-icon home-ic-choose"><svg class="he-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/><path d="M12 3.2v2.3M12 18.5v2.3M3.2 12h2.3M18.5 12h2.3"/><path d="M12 7.5 13.7 12 12 16.5 10.3 12Z" fill="currentColor" stroke="currentColor"/></svg></span>
+          <span class="home-entry-info">
+            <span class="home-entry-title">择日助手</span>
+            <span class="home-entry-desc">依《协纪辨方书》推算嫁娶、入宅、开业等吉日</span>
+          </span>
+          <span class="home-entry-arrow"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+        </button>
+        <button class="home-entry" type="button" data-nav="bazi">
+          <span class="home-entry-icon home-ic-bazi"><svg class="he-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.2"/><path d="M5 7.6h14M5 12h14M5 16.4h14"/><path d="M9 5.3h6M9 9.9h6M9 14.3h6M9 18.7h6"/></svg></span>
+          <span class="home-entry-info">
+            <span class="home-entry-title">八字排盘</span>
+            <span class="home-entry-desc">输入生辰，推算四柱八字与十神格局</span>
+          </span>
+          <span class="home-entry-arrow"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+        </button>
+        <button class="home-entry" type="button" data-nav="ziwei">
+          <span class="home-entry-icon home-ic-ziwei"><svg class="he-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.8"/><path d="M12 8.4l1 2.3 2.5.3-1.8 1.7.4 2.5-2.1-1.2-2.1 1.2.4-2.5-1.8-1.7 2.5-.3Z" fill="currentColor" stroke="currentColor"/><path d="M12 3.2v2M12 18.8v2M3.2 12h2M18.8 12h2"/><path d="M5.6 5.6l1.4 1.4M18.4 5.6l-1.4 1.4M5.6 18.4l1.4-1.4M18.4 18.4l-1.4-1.4"/></svg></span>
+          <span class="home-entry-info">
+            <span class="home-entry-title">紫微斗数</span>
+            <span class="home-entry-desc">十二宫命盘、四化飞星与运限推演</span>
+          </span>
+          <span class="home-entry-arrow"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+        </button>
+        <button class="home-entry" type="button" data-nav="note">
+          <span class="home-entry-icon home-ic-note"><svg class="he-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M8.5 8.5l1.4 1.4 2.6-2.8"/><path d="M8.5 13h7M8.5 16.5h5"/></svg></span>
+          <span class="home-entry-info">
+            <span class="home-entry-title">每日记事</span>
+            <span class="home-entry-desc">在任意日期记录备忘，日历上显示红点</span>
+          </span>
+          <span class="home-entry-arrow"><i class="ti ti-chevron-right" aria-hidden="true"></i></span>
+        </button>
+      </div>
+      <div class="home-picker">
+        <div class="home-picker-title"><i class="ti ti-calendar-event" aria-hidden="true"></i> 快速查看某日</div>
+        <div class="home-picker-row">
+          <span class="home-picker-field">公元
+            <select class="home-picker-sel" id="homeY" aria-label="年"></select>年
+            <select class="home-picker-sel" id="homeM" aria-label="月"></select>月
+            <select class="home-picker-sel" id="homeD" aria-label="日"></select>日
+          </span>
+          <button class="home-picker-btn" id="homeGo" type="button"><i class="ti ti-arrow-right" aria-hidden="true"></i> 查看日课</button>
+        </div>
+      </div>
+    </div>
 
     <!-- 日历区 -->
     <div id="cal-root" role="tabpanel" aria-labelledby="tabCalendar">
@@ -82,92 +252,24 @@
       <div class="cal-grid-wrap">
         <div id="Cal3"></div>
       </div>
+      <div id="cal-detail-inline"></div>
       <div id="FTLN" class="cal-footer-bar"></div>
     </div>
+
+    <!-- 择日助手独立页（hash: #choose） -->
+    <div id="choose-root" style="display:none;" role="tabpanel" aria-labelledby="btnChoose"></div>
 
     <!-- 八字排盘区 -->
     <div id="bazi-root" style="display:none;"></div>
 
-    <!-- 紫微斗数 iframe 覆盖层 -->
-    <div id="ziwei-root" style="display:none; position:fixed; inset:0; z-index:2000; background:var(--bg-page,#12100E);">
-      <iframe id="ziwei-iframe" src="" style="width:100%;height:100%;border:none;" allow="clipboard-write"></iframe>
-    </div>
+    <!-- 紫微斗数 vanilla 模块挂载点（手写 JS tab，非 iframe） -->
+    <div id="ziwei-vanilla-root" style="display:none;"></div>
 
     <!-- 详情浮层 -->
     <div id="detail-root" class="detail-panel-overlay" style="display:none;"></div>
 
     <!-- ══════ 设置面板（独立，不依赖 JS 模块） ══════ -->
     <div class="settings-panel" id="settingsPanel" role="menu" aria-label="日历标签设置" style="position:fixed;top:auto;right:auto;z-index:2000;">
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-alert-triangle"></i> 无禄日标签</div>
-          <div class="st-desc">在日历格上显示"无"字标识</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togWuluBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-calendar-month"></i> 月倒家杀标签</div>
-          <div class="st-desc">在日历格上显示按月判定的"倒"字标识</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togDaojiaMonth"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-calendar"></i> 年倒家杀标签</div>
-          <div class="st-desc">在日历格上显示按年判定的"倒"字标识</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togDaojiaYear"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-skull"></i> 金神七煞标签</div>
-          <div class="st-desc">在日历格上显示"煞"字标识</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togJinshenqishaBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-star"></i> 五富日标签</div>
-          <div class="st-desc">在日历格上显示"富"字标识（吉神·宜求财）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togWufuBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-alert-circle"></i> 四离四绝日标签</div>
-          <div class="st-desc">在日历格上显示"离/绝"字标识（月忌日·大事勿用）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togSiLiSiJueBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-sparkles"></i> 天赦日标签</div>
-          <div class="st-desc">在日历格上显示"赦"字标识（大吉·消灾解厄）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togTiansheBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-sun"></i> 天德日标签</div>
-          <div class="st-desc">在日历格上显示"德"字标识（吉神·天德）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togTiandeBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-moon"></i> 月德日标签</div>
-          <div class="st-desc">在日历格上显示"月"字标识（吉神·月德）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togYuedeBadge"><span class="toggle-slider"></span></label>
-      </div>
-      <div class="st-row">
-        <div>
-          <div class="st-label"><i class="ti ti-alert-triangle"></i> 杨公忌日标签</div>
-          <div class="st-desc">在日历格上显示"忌"字标识（十三忌日·大事勿用）</div>
-        </div>
-        <label class="toggle-sw"><input type="checkbox" id="togYanggongJiBadge"><span class="toggle-slider"></span></label>
-      </div>
       <div class="st-row">
         <div>
           <div class="st-label"><i class="ti ti-palette"></i> 字号大小</div>
@@ -193,6 +295,177 @@
         </div>
         <button class="btn-license-settings" id="licenseSettingsBtn"><i class="ti ti-lock"></i>&nbsp;激活</button>
       </div>
+
+      <!-- ══════ 显示 ══════ -->
+      <div class="st-section">显示</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-calendar"></i> 周起始日</div>
+          <div class="st-desc">日历每周从哪天起</div>
+        </div>
+        <select class="st-select" data-set="cal_weekStart">
+          <option value="sun">周日</option>
+          <option value="mon">周一</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-sun"></i> 主显</div>
+          <div class="st-desc">格内主显公历 / 农历</div>
+        </div>
+        <select class="st-select" data-set="cal_primaryDisplay">
+          <option value="solar">公历</option>
+          <option value="lunar">农历</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-wind"></i> 减少动效</div>
+          <div class="st-desc">关闭非必要动画</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" class="st-toggle" data-set="cal_reduceMotion"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-palette"></i> 配色预设</div>
+          <div class="st-desc">界面主色调</div>
+        </div>
+        <select class="st-select" data-set="cal_themePreset">
+          <option value="gold">鎏金</option>
+          <option value="cinnabar">朱砂</option>
+          <option value="xuanqing">玄青</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-circle-dot"></i> 今日徽章</div>
+          <div class="st-desc">“今”标识风格</div>
+        </div>
+        <select class="st-select" data-set="cal_todayStyle">
+          <option value="default">默认</option>
+          <option value="classic">古典</option>
+          <option value="minimal">极简</option>
+        </select>
+      </div>
+
+      <!-- ══════ 日历内容 ══════ -->
+      <div class="st-section">日历内容</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-snowflake"></i> 显示节气</div>
+          <div class="st-desc">格内与顶栏节气</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" class="st-toggle" data-set="cal_showJieqi"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-clipboard-list"></i> 显示神煞</div>
+          <div class="st-desc">日详情神煞卡片</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" class="st-toggle" data-set="cal_showGods"><span class="toggle-slider"></span></label>
+      </div>
+
+      <!-- ══════ 排盘默认 ══════ -->
+      <div class="st-section">排盘默认</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-chart-grid"></i> 紫微默认视图</div>
+          <div class="st-desc">打开紫微的默认盘式</div>
+        </div>
+        <select class="st-select" data-set="zw_defaultView">
+          <option value="sanhe">三合</option>
+          <option value="feixing">飞星</option>
+          <option value="sihua">四化</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-calendar-event"></i> 紫微历法</div>
+          <div class="st-desc">出生日期输入历法</div>
+        </div>
+        <select class="st-select" data-set="zw_defaultCalendar">
+          <option value="lunar">农历</option>
+          <option value="solar">公历</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-user"></i> 紫微性别</div>
+          <div class="st-desc">排盘默认性别</div>
+        </div>
+        <select class="st-select" data-set="zw_defaultGender">
+          <option value="male">男</option>
+          <option value="female">女</option>
+        </select>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-clock"></i> 真太阳时</div>
+          <div class="st-desc">排盘默认校正</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" class="st-toggle" data-set="zw_trueSolar"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-map-pin"></i> 默认城市</div>
+          <div class="st-desc" id="defaultCityDesc">未设置</div>
+        </div>
+        <button class="st-btn" id="clearDefaultCity">清除</button>
+      </div>
+
+      <!-- ══════ 启动 ══════ -->
+      <div class="st-section">启动</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-flag"></i> 启动页</div>
+          <div class="st-desc">打开应用默认页</div>
+        </div>
+        <select class="st-select" data-set="cal_defaultTab">
+          <option value="home">首页</option>
+          <option value="calendar">万年历</option>
+          <option value="bazi">八字</option>
+          <option value="ziwei">紫微斗数</option>
+          <option value="note">记事</option>
+        </select>
+      </div>
+
+      <!-- ══════ 提醒 ══════ -->
+      <div class="st-section">提醒</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-bell"></i> 日期提醒</div>
+          <div class="st-desc">纪念日 / 每日提示</div>
+        </div>
+        <label class="toggle-sw"><input type="checkbox" class="st-toggle" data-set="cal_enableReminders"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-bell-plus"></i> 管理提醒</div>
+          <div class="st-desc">添加 / 删除提醒项</div>
+        </div>
+        <button class="st-btn" id="manageRemindersBtn">管理</button>
+      </div>
+
+      <!-- ══════ 数据 ══════ -->
+      <div class="st-section">数据</div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-database"></i> 本地备份</div>
+          <div class="st-desc">导出 / 导入数据</div>
+        </div>
+        <div class="st-btns">
+          <button class="st-btn" id="exportDataBtn">导出</button>
+          <button class="st-btn" id="importDataBtn">导入</button>
+          <input type="file" id="importDataFile" accept="application/json" style="display:none">
+        </div>
+      </div>
+      <div class="st-row">
+        <div>
+          <div class="st-label"><i class="ti ti-cloud"></i> 云端同步</div>
+          <div class="st-desc">需后端账号（待排期）</div>
+        </div>
+        <button class="st-btn" disabled title="需后端账号系统，待排期">即将推出</button>
+      </div>
     </div>
 
     <!-- 命盘档案 -->
@@ -205,18 +478,37 @@
 
 </main><!-- /wrap -->
 
-<!-- ══════ 固定页脚 ══════ -->
-<footer class="foot" id="pageFoot" role="contentinfo" aria-label="版权与来源信息">
-  <div class="foot-tab" id="footTab" title="折叠/展开页脚">
-    <i class="ti ti-chevron-down"></i>
-  </div>
+<!-- ══════ 固定页脚（重设计：默认折叠，悬浮印章手柄，展开为玻璃面板）══════ -->
+<footer class="foot collapsed" id="pageFoot" role="contentinfo" aria-label="版权与来源信息">
   <div class="foot-body">
     <div class="foot-inner">
-      <div class="foot-line">命理推断 · 八卦掌决版 &nbsp; 岁次推演范围：公元前 4712 年 — 公元 9999 年</div>
-      <div class="foot-line">历算核心承自寿星万年历<span class="sep">|</span>神煞体系基于 lunisolar</div>
-      <div class="foot-line">指导老师：王贵柱<span class="sep">|</span>校对：芹芹<span class="sep">|</span>设计：梓踊</div>
+      <div class="foot-brand">
+        <span class="foot-brand-main">命理推断 · 八卦掌决版</span>
+        <span class="foot-brand-range">岁次推演范围 · 公元前 4712 年 — 公元 9999 年</span>
+      </div>
+      <div class="foot-divider"><i class="ti ti-diamond" aria-hidden="true"></i></div>
+      <div class="foot-meta">
+        <span>历算核心承自 <b>寿星万年历</b></span>
+        <span class="sep">·</span>
+        <span>神煞体系基于 <b>lunisolar</b></span>
+      </div>
+      <div class="foot-meta foot-meta-credit">
+        <span>指导老师 <b>王贵柱</b></span>
+        <span class="sep">·</span>
+        <span>校对 <b>芹芹</b></span>
+        <span class="sep">·</span>
+        <span>设计 <b>梓踊</b></span>
+      </div>
     </div>
   </div>
+  <button class="foot-tab" id="footTab" type="button" aria-expanded="false" aria-label="展开 / 收起版权信息" title="版权与来源">
+    <svg class="foot-seal" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill="currentColor"/>
+      <path d="M12 2a10 10 0 0 1 0 20c-5.5 0-10-4.5-10-10S6.5 2 12 2z" fill="#fff"/>
+      <circle cx="12" cy="7" r="2.6" fill="currentColor"/>
+      <circle cx="12" cy="17" r="2.6" fill="#fff"/>
+    </svg>
+  </button>
 </footer>
 
 <!-- 试用横幅（授权模块待迁移） -->
@@ -253,17 +545,7 @@ window.showToast = function(msg, type, duration) {
     try { localStorage.setItem('cal_' + key, val ? 'true' : 'false'); } catch(e) {}
   }
   function refreshCalendar() {
-    var data = {
-      showWulu: getSet('showWulu', true),
-      showDaojiaMonth: getSet('showDaojiaMonth', true),
-      showDaojiaYear: getSet('showDaojiaYear', true),
-      showJinshenqisha: getSet('showJinshenqisha', true),
-      showWufu: getSet('showWufu', true),
-      showSiLiSiJue: getSet('showSiLiSiJue', true),
-      showTiande: getSet('showTiande', true),
-      showYuede: getSet('showYuede', true),
-      showTianshe: getSet('showTianshe', true)
-    };
+    var data = {};
     // DOM 事件（日历也监听此事件）
     try { window.dispatchEvent(new CustomEvent('settings:changed', { detail: data })); } catch(e) {}
     // State 模块（如果已加载）
@@ -271,16 +553,6 @@ window.showToast = function(msg, type, duration) {
   }
 
   function initToggles() {
-    document.getElementById('togWuluBadge').checked = getSet('showWulu', true);
-    document.getElementById('togDaojiaMonth').checked = getSet('showDaojiaMonth', true);
-    document.getElementById('togDaojiaYear').checked = getSet('showDaojiaYear', true);
-    document.getElementById('togJinshenqishaBadge').checked = getSet('showJinshenqisha', true);
-    document.getElementById('togWufuBadge').checked = getSet('showWufu', true);
-    document.getElementById('togSiLiSiJueBadge').checked = getSet('showSiLiSiJue', true);
-    document.getElementById('togYanggongJiBadge').checked = getSet('showYanggongJi', true);
-    document.getElementById('togTiansheBadge').checked = getSet('showTianshe', true);
-    document.getElementById('togTiandeBadge').checked = getSet('showTiande', true);
-    document.getElementById('togYuedeBadge').checked = getSet('showYuede', true);
     document.getElementById('togDarkMode').checked = document.body.classList.contains('dark');
     var fs = localStorage.getItem('fontSize') || 'medium';
     panel.querySelectorAll('.fs-btn').forEach(function(b) {
@@ -359,16 +631,6 @@ window.showToast = function(msg, type, duration) {
   panel.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
     cb.addEventListener('change', function() {
       switch(this.id) {
-        case 'togWuluBadge':       saveSet('showWulu', this.checked); refreshCalendar(); break;
-        case 'togDaojiaMonth':      saveSet('showDaojiaMonth', this.checked); refreshCalendar(); break;
-        case 'togDaojiaYear':       saveSet('showDaojiaYear', this.checked); refreshCalendar(); break;
-        case 'togJinshenqishaBadge':saveSet('showJinshenqisha', this.checked); refreshCalendar(); break;
-        case 'togWufuBadge':        saveSet('showWufu', this.checked); refreshCalendar(); break;
-        case 'togSiLiSiJueBadge':   saveSet('showSiLiSiJue', this.checked); refreshCalendar(); break;
-        case 'togYanggongJiBadge': saveSet('showYanggongJi', this.checked); refreshCalendar(); break;
-        case 'togTiansheBadge':    saveSet('showTianshe', this.checked); refreshCalendar(); break;
-        case 'togTiandeBadge':     saveSet('showTiande', this.checked); refreshCalendar(); break;
-        case 'togYuedeBadge':      saveSet('showYuede', this.checked); refreshCalendar(); break;
         case 'togDarkMode':         toggleTheme(this.checked); break;
       }
     });
@@ -384,13 +646,248 @@ window.showToast = function(msg, type, duration) {
 
   if (tab) tab.addEventListener('click', window.toggleSettingsPanel);
 
+  // ════════ 扩展设置（2026-08-10） ════════
+  function readSetting(key, def) { try { var v = localStorage.getItem(key); return v === null ? def : v; } catch(e) { return def; } }
+  function writeSetting(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
+  function readBool(key, def) { try { var v = localStorage.getItem(key); return v === null ? def : (v === 'true'); } catch(e) { return def; } }
+  function writeBool(key, val) { try { localStorage.setItem(key, val ? 'true' : 'false'); } catch(e) {} }
+
+  function getAllSettings() {
+    return {
+      cal_weekStart: readSetting('cal_weekStart', 'sun'),
+      cal_primaryDisplay: readSetting('cal_primaryDisplay', 'solar'),
+      cal_showJieqi: readBool('cal_showJieqi', true),
+      cal_showGods: readBool('cal_showGods', true),
+      cal_reduceMotion: readBool('cal_reduceMotion', false),
+      cal_todayStyle: readSetting('cal_todayStyle', 'default'),
+      cal_themePreset: readSetting('cal_themePreset', 'gold'),
+      cal_defaultTab: readSetting('cal_defaultTab', 'home'),
+      cal_enableReminders: readBool('cal_enableReminders', false),
+      zw_defaultView: readSetting('zw_defaultView', 'sanhe'),
+      zw_defaultCalendar: readSetting('zw_defaultCalendar', 'lunar'),
+      zw_defaultGender: readSetting('zw_defaultGender', 'male'),
+      zw_trueSolar: readBool('zw_trueSolar', true)
+    };
+  }
+
+  function emitSettingsChanged() {
+    var snap = getAllSettings();
+    applyGlobalSettings(snap); // 立即应用全局（减少动效 / 配色预设 / 今日徽章）—— 开关即生效
+    try { window.dispatchEvent(new CustomEvent('settings:changed', { detail: snap })); } catch(e) {}
+    try { if (window.State && window.State.emit) window.State.emit('settings:changed', snap); } catch(e) {}
+  }
+
+  // 全局应用（减少动效 / 配色预设 / 今日徽章）—— 开关即生效，无需重渲染
+  function applyGlobalSettings(snap) {
+    var root = document.documentElement;
+    root.classList.toggle('reduce-motion', !!snap.cal_reduceMotion);
+    root.setAttribute('data-theme-preset', snap.cal_themePreset || 'gold');
+    root.setAttribute('data-today-style', snap.cal_todayStyle || 'default');
+  }
+
+  // 初始化新控件状态 + 绑定（面板打开时调用）
+  function initNewControls() {
+    if (!panel.classList.contains('show')) return;
+    panel.querySelectorAll('.st-select').forEach(function(sel) {
+      var key = sel.getAttribute('data-set');
+      var cur = readSetting(key, sel.value);
+      sel.value = cur;
+      if (!sel._bound) {
+        sel._bound = true;
+        sel.addEventListener('change', function() {
+          writeSetting(key, this.value);
+          if (key === 'zw_defaultCalendar') writeSetting('zw_calType', this.value);
+          if (key === 'zw_defaultGender') writeSetting('zw_sex', this.value === 'male' ? '男' : '女');
+          if (key === 'zw_trueSolar') writeSetting('zw_zty', this.value === 'true' ? 'true' : 'false');
+          // 紫微默认视图：面板写 zw_defaultView，紫微盘读 zw_viewMode，这里做别名同步
+          if (key === 'zw_defaultView') writeSetting('zw_viewMode', this.value);
+          emitSettingsChanged();
+        });
+      }
+    });
+    panel.querySelectorAll('.st-toggle').forEach(function(cb) {
+      var key = cb.getAttribute('data-set');
+      cb.checked = readBool(key, cb.checked);
+      if (!cb._bound) {
+        cb._bound = true;
+        cb.addEventListener('change', function() {
+          writeBool(key, this.checked);
+          if (key === 'zw_trueSolar') writeSetting('zw_zty', this.checked ? 'true' : 'false');
+          emitSettingsChanged();
+        });
+      }
+    });
+    refreshDefaultCityDesc();
+  }
+
+  function refreshDefaultCityDesc() {
+    var desc = document.getElementById('defaultCityDesc');
+    if (!desc) return;
+    var zwProv = localStorage.getItem('zw_province');
+    var zwRegion = localStorage.getItem('zw_region');
+    var baziCity = localStorage.getItem('bazi_city');
+    desc.textContent = (zwProv && zwRegion) ? (zwProv + ' ' + zwRegion) : (baziCity || '未设置');
+  }
+
+  // 打开面板时同步初始化新控件（tab 点击已绑定原始 toggle，这里用 setTimeout 在其之后执行）
+  if (tab && !tab._extBound) {
+    tab._extBound = true;
+    tab.addEventListener('click', function() { setTimeout(initNewControls, 0); });
+  }
+
+  // 清除默认城市（覆盖紫微 zw_* 与八字 bazi_*）
+  var clearCityBtn = document.getElementById('clearDefaultCity');
+  if (clearCityBtn && !clearCityBtn._bound) {
+    clearCityBtn._bound = true;
+    clearCityBtn.addEventListener('click', function() {
+      ['zw_jd','zw_wd','zw_province','zw_region','bazi_jd','bazi_wd','bazi_city'].forEach(function(k){ localStorage.removeItem(k); });
+      refreshDefaultCityDesc();
+      window.showToast && window.showToast('已清除默认城市', 'info', 1800);
+    });
+  }
+
+  // 数据导出 / 导入（本地备份代理“同步”）
+  var exportBtn = document.getElementById('exportDataBtn');
+  if (exportBtn && !exportBtn._bound) {
+    exportBtn._bound = true;
+    exportBtn.addEventListener('click', function() {
+      var data = {};
+      var pat = /^(cal_|zw_|note_|theme|fontSize|_license_data|_trial_start|zw_saved_charts|zw_reminders|daily_notes|bazi_)/;
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && pat.test(k)) { try { data[k] = localStorage.getItem(k); } catch(e) {} }
+      }
+      var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url; a.download = 'mingli-backup-' + new Date().toISOString().slice(0,10) + '.json';
+      document.body.appendChild(a); a.click();
+      // 延迟移除锚点：headless Chromium 在 a.click() 后若立即 remove 会取消 blob 下载
+      setTimeout(function(){ a.remove(); URL.revokeObjectURL(url); }, 1000);
+      window.showToast && window.showToast('已导出 ' + Object.keys(data).length + ' 项', 'success', 1800);
+    });
+  }
+  var importBtn = document.getElementById('importDataBtn');
+  var importFile = document.getElementById('importDataFile');
+  if (importBtn && importFile && !importBtn._bound) {
+    importBtn._bound = true;
+    importBtn.addEventListener('click', function() { importFile.click(); });
+    importFile.addEventListener('change', function() {
+      var f = importFile.files && importFile.files[0];
+      if (!f) return;
+      var reader = new FileReader();
+      reader.onload = function() {
+        try {
+          var obj = JSON.parse(reader.result);
+          Object.keys(obj).forEach(function(k){ try { localStorage.setItem(k, obj[k]); } catch(e) {} });
+          window.showToast && window.showToast('导入成功，即将刷新', 'success', 1800);
+          setTimeout(function(){ location.reload(); }, 800);
+        } catch(e) { window.showToast && window.showToast('导入失败：文件格式错误', 'error', 2000); }
+      };
+      reader.readAsText(f);
+      importFile.value = '';
+    });
+  }
+
+  // 提醒管理
+  var manageBtn = document.getElementById('manageRemindersBtn');
+  if (manageBtn && !manageBtn._bound) {
+    manageBtn._bound = true;
+    manageBtn.addEventListener('click', openReminderManager);
+  }
+
+  // 全局设置在页面加载时即应用（不依赖面板打开）
+  applyGlobalSettings(getAllSettings());
+
+  // ═══ 本地提醒（纪念日 / 每日提示）═══
+  var REM_KEY = 'zw_reminders';
+  function getReminders() { try { return JSON.parse(localStorage.getItem(REM_KEY) || '[]'); } catch(e){ return []; } }
+  function setReminders(arr) { try { localStorage.setItem(REM_KEY, JSON.stringify(arr)); } catch(e){} }
+  function remindersForDate(y, m, d) {
+    return getReminders().filter(function(r){
+      if (r.type === 'daily') return true;
+      return (parseInt(r.month,10) === m && parseInt(r.day,10) === d);
+    });
+  }
+  window.Reminders = { forDate: remindersForDate, all: getReminders };
+  function _remindersChanged() {
+    try { window.dispatchEvent(new CustomEvent('reminders:changed')); } catch(e) {}
+    try { if (window.State && window.State.emit) window.State.emit('reminders:changed'); } catch(e) {}
+  }
+  function openReminderManager() {
+    if (document.getElementById('reminderOverlay')) return;
+    var ov = document.createElement('div');
+    ov.className = 'license-activation-overlay';
+    ov.id = 'reminderOverlay';
+    ov.innerHTML =
+      '<div class="license-dialog" style="max-width:360px">' +
+        '<div class="license-dialog-header"><span><i class="ti ti-bell"></i> 日期提醒管理</span>' +
+        '<button class="license-close-btn" id="remCloseBtn"><i class="ti ti-x"></i></button></div>' +
+        '<div class="license-dialog-body">' +
+          '<div class="rem-form">' +
+            '<input class="rem-input" id="remTitle" placeholder="提醒标题，如 生日 / 纪念日" style="width:100%">' +
+            '<select class="rem-input" id="remType" style="width:100%">' +
+              '<option value="annual">每年（指定月日）</option><option value="daily">每日</option></select>' +
+            '<div id="remDateWrap" style="display:flex;gap:6px">' +
+              '<input class="rem-input" id="remMonth" type="number" min="1" max="12" placeholder="月" style="width:50%">' +
+              '<input class="rem-input" id="remDay" type="number" min="1" max="31" placeholder="日" style="width:50%"></div>' +
+            '<button class="btn-license-activate" id="remAddBtn">添加提醒</button>' +
+          '</div>' +
+          '<div class="rem-list" id="remList"></div>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(ov);
+    var typeSel = document.getElementById('remType');
+    var dateWrap = document.getElementById('remDateWrap');
+    typeSel.addEventListener('change', function(){ dateWrap.style.display = (this.value === 'annual') ? 'flex' : 'none'; });
+
+    function renderList() {
+      var list = document.getElementById('remList');
+      var arr = getReminders();
+      if (!arr.length) { list.innerHTML = '<div class="rem-empty">暂无提醒</div>'; return; }
+      list.innerHTML = arr.map(function(r, i){
+        var sub = r.type === 'daily' ? '每日' : (r.month + '月' + r.day + '日');
+        return '<div class="rem-item"><span class="rem-item-title">' + (r.title||'未命名') + '</span>' +
+               '<span class="rem-item-sub">' + sub + '</span>' +
+               '<button class="rem-del" data-i="' + i + '"><i class="ti ti-trash"></i></button></div>';
+      }).join('');
+      list.querySelectorAll('.rem-del').forEach(function(b){
+        b.addEventListener('click', function(){
+          var arr2 = getReminders(); var idx = parseInt(this.getAttribute('data-i'),10);
+          arr2.splice(idx,1); setReminders(arr2); renderList(); _remindersChanged();
+        });
+      });
+    }
+    renderList();
+
+    document.getElementById('remAddBtn').addEventListener('click', function(){
+      var title = document.getElementById('remTitle').value.trim();
+      var type = typeSel.value;
+      if (!title) { window.showToast && window.showToast('请输入标题', 'error', 1500); return; }
+      var r = { id: Date.now(), title: title, type: type };
+      if (type === 'annual') {
+        var mo = parseInt(document.getElementById('remMonth').value,10);
+        var da = parseInt(document.getElementById('remDay').value,10);
+        if (!mo || !da) { window.showToast && window.showToast('请输入月日', 'error', 1500); return; }
+        r.month = mo; r.day = da;
+      }
+      var arr = getReminders(); arr.push(r); setReminders(arr);
+      document.getElementById('remTitle').value = '';
+      renderList(); _remindersChanged();
+      window.showToast && window.showToast('已添加提醒', 'success', 1500);
+    });
+
+    document.getElementById('remCloseBtn').addEventListener('click', function(){ ov.remove(); });
+    ov.addEventListener('click', function(e){ if (e.target === ov) ov.remove(); });
+  }
+
   // 字体大小初始化（主题已由 body 后阻塞脚本处理）
   (function() {
     var fs = localStorage.getItem('fontSize') || 'medium';
     if (fs !== 'medium') { var sz={'small':'13px','large':'18px'}; if(sz[fs]) document.documentElement.style.fontSize=sz[fs]; }
   })();
 
-  console.log('[settings] 就绪（独立模式）');
+  console.log('[settings] 就绪（独立模式 + 扩展）');
 })();
 </script>
 
@@ -408,5 +905,20 @@ window.showToast = function(msg, type, duration) {
 <script src="/js/bazi-interact.js"></script>
 <!-- ══════ 应用入口 ══════ -->
 <script type="module" src="/js/app.js"></script>
+<!-- PWA：注册 Service Worker（离线壳 + 缓存） -->
+<script>
+// Service Worker 仅在「安全上下文」(HTTPS / localhost) 可用。
+// 局域网 HTTP 访问时 navigator.serviceWorker 不存在，属预期行为，不影响核心功能
+// （API 签名已有纯 JS 回退，见 web/js/sha256.js）。
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function (e) {
+      console.warn('[PWA] SW 注册失败：', e);
+    });
+  });
+} else {
+  console.info('[PWA] 非安全上下文，跳过 SW 注册（离线能力不可用，在线功能不受影响）');
+}
+</script>
 </body>
 </html>

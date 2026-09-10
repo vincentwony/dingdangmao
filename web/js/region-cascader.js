@@ -1,51 +1,51 @@
 // web/js/region-cascader.js — 省→地区二级联动选择器（原生JS）
 // 数据源: window._REGION_TREE (region-tree-data.js)
 // 替换原 geoCardContainer / citySearchInput
+// 2026-07-18 升级：支持可选 prefix，避免同一页面多实例 ID 冲突（紫微/八字同时存在）
 'use strict';
 
 (function() {
   var TREE = window._REGION_TREE || [];
 
-  var _container = null;
-  var _selProv = null;
-  var _selRegion = null;
-  var _selected = null; // { province, provinceFull, region, regionId, lon, lat }
+  function _id(prefix, name) {
+    return (prefix || '') + name;
+  }
 
   // ═══ 构建 DOM ═══
-  function _buildHTML() {
+  function _buildHTML(prefix) {
     return (
       '<div class="rc-wrap">' +
         '<div class="rc-row">' +
-          '<select id="rcProvince" class="rc-select">' +
+          '<select id="' + _id(prefix, 'rcProvince') + '" class="rc-select">' +
             '<option value="">选择省…</option>' +
           '</select>' +
-          '<select id="rcRegion" class="rc-select rc-region" disabled>' +
+          '<select id="' + _id(prefix, 'rcRegion') + '" class="rc-select rc-region" disabled>' +
             '<option value="">选择地区…</option>' +
           '</select>' +
         '</div>' +
-        '<div id="rcInfo" class="rc-info" style="display:none"></div>' +
+        '<div id="' + _id(prefix, 'rcInfo') + '" class="rc-info" style="display:none"></div>' +
       '</div>'
     );
   }
 
   // ═══ 填充省份列表 ═══
-  function _populateProvinces() {
-    if (!_selProv) return;
-    _selProv.innerHTML = '<option value="">选择省…</option>';
+  function _populateProvinces(selProv) {
+    if (!selProv) return;
+    selProv.innerHTML = '<option value="">选择省…</option>';
     for (var i = 0; i < TREE.length; i++) {
       var p = TREE[i];
       var opt = document.createElement('option');
       opt.value = p.provShort;
       opt.textContent = p.province;
-      _selProv.appendChild(opt);
+      selProv.appendChild(opt);
     }
   }
 
   // ═══ 填充地区列表 ═══
-  function _populateRegions(provShort) {
-    if (!_selRegion) return;
-    _selRegion.innerHTML = '<option value="">选择地区…</option>';
-    _selRegion.disabled = true;
+  function _populateRegions(selRegion, provShort) {
+    if (!selRegion) return;
+    selRegion.innerHTML = '<option value="">选择地区…</option>';
+    selRegion.disabled = true;
 
     var provData = null;
     for (var i = 0; i < TREE.length; i++) {
@@ -61,25 +61,19 @@
       opt.setAttribute('data-lat', r.lat);
       opt.setAttribute('data-name', r.name);
       opt.textContent = r.name;
-      _selRegion.appendChild(opt);
+      selRegion.appendChild(opt);
     }
-    _selRegion.disabled = false;
-  }
-
-  // ═══ 更新选中信息 ═══
-  function _updateInfo(regionData) {
-    var info = document.getElementById('rcInfo');
-    if (!info) return;
-    info.style.display = 'none'; // 不再显示附属信息
+    selRegion.disabled = false;
   }
 
   // ═══ 选中地区回调 ═══
-  function _onRegionSelected(provShort, provFull, regionOpt) {
+  function _onRegionSelected(prefix, provShort, provFull, regionOpt, onChange) {
     var name = regionOpt.getAttribute('data-name');
     var lon = parseFloat(regionOpt.getAttribute('data-lon'));
     var lat = parseFloat(regionOpt.getAttribute('data-lat'));
 
-    _selected = {
+    var selected = {
+      prefix: prefix || '',
       province: provShort,
       provinceFull: provFull,
       region: name,
@@ -88,98 +82,112 @@
       lat: lat
     };
 
-    // 更新隐藏域
-    var jdEl = document.getElementById('Jd_input');
-    var wdEl = document.getElementById('Wd_input');
+    // 更新隐藏域（支持带 prefix 的隐藏输入）
+    var jdEl = document.getElementById(_id(prefix, 'Jd_input'));
+    var wdEl = document.getElementById(_id(prefix, 'Wd_input'));
     if (jdEl) jdEl.value = lon;
     if (wdEl) wdEl.value = lat;
 
-    // geoDisplay 已移除，仅更新隐藏域坐标
-
-    _updateInfo(_selected);
-
     // 触发坐标变更事件
     try {
-      window.dispatchEvent(new CustomEvent('geo:changed', { detail: _selected }));
+      window.dispatchEvent(new CustomEvent('geo:changed', { detail: selected }));
     } catch(e) {}
     try {
-      if (window._State && window._State.emit) window._State.emit('geo:changed', _selected);
+      if (window._State && window._State.emit) window._State.emit('geo:changed', selected);
     } catch(e) {}
+
+    if (typeof onChange === 'function') onChange(selected);
+
+    return selected;
   }
 
   // ═══ 初始化 ═══
-  function init(containerEl) {
-    _container = typeof containerEl === 'string' ? document.getElementById(containerEl) : containerEl;
+  function init(containerEl, options) {
+    options = options || {};
+    var prefix = options.prefix || '';
+    var onChange = options.onChange || null;
+
+    var _container = typeof containerEl === 'string' ? document.getElementById(containerEl) : containerEl;
     if (!_container || !TREE.length) return;
 
-    _container.innerHTML = _buildHTML();
+    _container.innerHTML = _buildHTML(prefix);
 
-    _selProv = document.getElementById('rcProvince');
-    _selRegion = document.getElementById('rcRegion');
+    var selProv = document.getElementById(_id(prefix, 'rcProvince'));
+    var selRegion = document.getElementById(_id(prefix, 'rcRegion'));
+    var _selected = null;
 
-    _populateProvinces();
+    _populateProvinces(selProv);
 
     // 省份变更 → 刷新地区
-    if (_selProv) {
-      _selProv.addEventListener('change', function() {
+    if (selProv) {
+      selProv.addEventListener('change', function() {
         var provShort = this.value;
-        _selRegion.value = '';
-        _selected = null;
-        _updateInfo(null);
-
+        if (selRegion) {
+          selRegion.value = '';
+          _selected = null;
+        }
+        if (provShort) {
+          _populateRegions(selRegion, provShort);
+        } else {
+          if (selRegion) {
+            selRegion.innerHTML = '<option value="">选择地区…</option>';
+            selRegion.disabled = true;
+          }
+        }
         // 清空坐标
-        var jdEl = document.getElementById('Jd_input');
-        var wdEl = document.getElementById('Wd_input');
+        var jdEl = document.getElementById(_id(prefix, 'Jd_input'));
+        var wdEl = document.getElementById(_id(prefix, 'Wd_input'));
         if (jdEl) jdEl.value = '';
         if (wdEl) wdEl.value = '';
-
-        if (provShort) {
-          _populateRegions(provShort);
-        } else {
-          _selRegion.innerHTML = '<option value="">选择地区…</option>';
-          _selRegion.disabled = true;
-        }
       });
     }
 
     // 地区选中
-    if (_selRegion) {
-      _selRegion.addEventListener('change', function() {
+    if (selRegion) {
+      selRegion.addEventListener('change', function() {
         if (!this.value) {
           _selected = null;
-          _updateInfo(null);
           return;
         }
-        var provShort = _selProv.value;
-        var provFull = _selProv.selectedOptions[0].textContent;
-        _onRegionSelected(provShort, provFull, this.selectedOptions[0]);
+        var provShort = selProv ? selProv.value : '';
+        var provFull = (selProv && selProv.selectedOptions && selProv.selectedOptions[0])
+          ? selProv.selectedOptions[0].textContent : '';
+        _selected = _onRegionSelected(prefix, provShort, provFull, this.selectedOptions[0], onChange);
       });
     }
 
-    // 暴露全局 API
-    window._rcGetSelected = function() { return _selected; };
-    window._rcSelectByRegion = function(provShort, regionName) {
-      if (_selProv) _selProv.value = provShort;
-      _selProv.dispatchEvent(new Event('change'));
-      setTimeout(function() {
-        if (!_selRegion) return;
-        for (var i = 0; i < _selRegion.options.length; i++) {
-          if (_selRegion.options[i].getAttribute('data-name') === regionName) {
-            _selRegion.value = _selRegion.options[i].value;
-            _selRegion.dispatchEvent(new Event('change'));
-            return;
-          }
-        }
-      }, 50);
-    };
+    // 暴露带 prefix 的查询 API
+    var apiName = prefix ? ('_rcGetSelected_' + prefix.replace(/[^a-zA-Z0-9_-]/g, '')) : '_rcGetSelected';
+    window[apiName] = function() { return _selected; };
 
     // 默认选中北京
     setTimeout(function() {
-      if (window._rcSelectByRegion) window._rcSelectByRegion('北京市', '北京');
+      if (window._rcSelectByRegion) window._rcSelectByRegion('北京市', '北京', prefix);
     }, 100);
 
-    console.log('[region-cascader] 就绪 ' + TREE.length + ' 省');
+    console.log('[region-cascader] 就绪 prefix=' + (prefix || '(none)') + ' 省份=' + TREE.length);
+  }
+
+  // 全局按省+地区选中（支持 prefix）
+  function selectByRegion(provShort, regionName, prefix) {
+    prefix = prefix || '';
+    var selProv = document.getElementById(_id(prefix, 'rcProvince'));
+    var selRegion = document.getElementById(_id(prefix, 'rcRegion'));
+    if (!selProv) return;
+    selProv.value = provShort;
+    selProv.dispatchEvent(new Event('change'));
+    setTimeout(function() {
+      if (!selRegion) return;
+      for (var i = 0; i < selRegion.options.length; i++) {
+        if (selRegion.options[i].getAttribute('data-name') === regionName) {
+          selRegion.value = selRegion.options[i].value;
+          selRegion.dispatchEvent(new Event('change'));
+          return;
+        }
+      }
+    }, 50);
   }
 
   window.initRegionCascader = init;
+  window._rcSelectByRegion = selectByRegion;
 })();

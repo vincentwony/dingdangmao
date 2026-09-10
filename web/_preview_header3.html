@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+  body { margin:0; background:#1c1813; font-family: var(--font-display); }
+  .pv-wrap { padding: 22px; }
+  .pv-cap { color:#c7b47b; font-size:13px; letter-spacing:2px; margin:0 0 8px 4px; opacity:.85; }
+  .pv-cap b { color:#D4A853; }
+  .top-nav { position: relative !important; margin-bottom:0; }
+  .spacer { height:20px; }
+  .tabs { display:inline-flex; gap:6px; }
+  .tabs .t { font-size:13px; color:#c7b47b; padding:8px 13px; border-radius:8px; letter-spacing:1px; background:rgba(201,169,110,.10); }
+  .tabs .t.on { color:#f0dcab; background:rgba(201,169,110,.16); box-shadow:inset 0 -2px 0 #D4A853; }
+
+  /* G1 字标主导（无 logo，报头式） */
+  .brandG1 { display:flex; flex-direction:column; }
+  .brandG1 .over { font-size:10px; letter-spacing:5px; color:#D4A853; opacity:.75; margin-bottom:2px; }
+  .brandG1 .row { display:flex; align-items:baseline; gap:12px; }
+  .brandG1 .title { font-size:24px; font-weight:600; letter-spacing:7px; color:#D4A853; }
+  .brandG1 .sub { font-size:11px; letter-spacing:2px; color:#c7b47b; }
+  .brandG1 .rule { width:200px; max-width:60vw; height:1px; margin-top:7px;
+    background:linear-gradient(90deg,#D4A853,rgba(212,168,83,0)); }
+
+  /* G2 星象印记 */
+  .brandG2 { display:inline-flex; align-items:center; gap:13px; }
+  .brandG2 .mk { width:38px; height:38px; flex-shrink:0; }
+  .brandG2 .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandG2 .title { font-size:22px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandG2 .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandG2 .badge { margin-left:12px; font-size:11px; letter-spacing:2px; padding:3px 10px; border-radius:999px;
+    color:#c7b47b; border:1px solid rgba(212,168,83,.55); background:transparent; }
+
+  /* G3 金线分隔（竖向金条 + 菱形） */
+  .brandG3 { display:inline-flex; align-items:center; gap:13px; }
+  .brandG3 .vr { flex-shrink:0; width:3px; height:32px; background:#D4A853; border-radius:2px; }
+  .brandG3 .dm { flex-shrink:0; width:9px; height:9px; background:#D4A853; transform:rotate(45deg); border-radius:1px; }
+  .brandG3 .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandG3 .title { font-size:22px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandG3 .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandG3 .badge { margin-left:12px; font-size:11px; letter-spacing:2px; padding:4px 10px; border-radius:999px;
+    color:#f0dcab; background:linear-gradient(135deg,#A01510,#D4403A); border:1px solid rgba(212,168,83,.5); }
+
+  /* G4 方圆相生（几何抽象，无具象符号） */
+  .brandG4 { display:inline-flex; align-items:center; gap:13px; }
+  .brandG4 .mk { width:42px; height:42px; flex-shrink:0; }
+  .brandG4 .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandG4 .title { font-size:22px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandG4 .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandG4 .badge { margin-left:12px; font-size:11px; letter-spacing:2px; padding:3px 10px; border-radius:999px;
+    color:#c7b47b; border:1px solid rgba(212,168,83,.55); background:transparent; }
+</style>
+</head>
+<body>
+<div class="pv-wrap">
+
+  <p class="pv-cap"><b>方案 G1</b> · 字标主导（报头式，无 logo）</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandG1">
+      <span class="over">命理推演 · 万年历</span>
+      <span class="row"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="rule"></span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 G2</b> · 星象印记（四芒星）</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandG2">
+      <svg class="mk" viewBox="0 0 40 40"><path d="M20 4 L23 17 L37 20 L23 23 L20 36 L17 23 L3 20 L17 17 Z" fill="#D4A853"/></svg>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 G3</b> · 金线分隔（竖向金条 + 菱形）</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandG3">
+      <span class="vr"></span><span class="dm"></span>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 G4</b> · 方圆相生（圆中正方形几何）</p>
+  <header class="top-nav"><div class="top-nav-inner"><div class="top-nav-row1">
+    <div class="brandG4">
+      <svg class="mk" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18.5" fill="none" stroke="#D4A853" stroke-width="2"/><rect x="10.4" y="10.4" width="23.2" height="23.2" transform="rotate(45 22 22)" fill="none" stroke="#D4A853" stroke-width="2"/></svg>
+      <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+      <span class="badge">八卦掌决版</span>
+    </div>
+    <div class="tabs"><span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span><span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span></div>
+  </div></div></header>
+
+</div>
+</body>
+</html>

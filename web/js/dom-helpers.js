@@ -21,6 +21,11 @@ function _highlightFab(activeId) {
   if (btn) {
     btn.classList.add('tab-active');
     btn.setAttribute('aria-selected', 'true');
+    // 移动端：确保激活的标签在横向滚动容器内可见
+    if (window.matchMedia && window.matchMedia('(max-width: 640px)').matches) {
+      try { btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' }); }
+      catch (e) { /* 旧浏览器忽略 */ }
+    }
   }
 }
 

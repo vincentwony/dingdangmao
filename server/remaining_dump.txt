@@ -1,0 +1,326 @@
+全量神煞数: 133 | 已覆盖: 25 | 剩余: 108
+
+
+##### 八風
+"八風":[z((l=>[[13,53],[40,20],[43,23],[10,50]][l.getSeasonIndex()]),((l,e)=>l.char8[e].value),"includes"),null,Nl([26],!1),-4,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||e.has("六合")?{replace:{bad:[]}}:null}]},ue={"天恩":[z((l=>[0,1,2,3,4,15,16,17,18,19,45,46,47,48,49,50,51,52,53,54]),((l,e="day")=>I(l,e,0).value),
+
+##### 八專
+"八專":[z((l=>[50,43,55,56,49]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10,"012a"],!1),-2,{showGB:!0,meetDeStillBad:!0,actsFilter:(l,e)=>e.has("天願")?{replace:{bad:Ul}}:null}],"觸水龍":[z((l=>[12,19,49]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([26],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}
+
+##### 白虎
+"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官
+
+##### 寶日
+"寶日":[z((l=>[13,22,30,36,38,39,41,43,44,45,47,52]),((l,e="day")=>I(l,e,0).value),"includes"),["安撫邊境","選將訓兵","出師"],null,2,{showGB:!0}],"義日":[z((l=>[0,3,4,5,7,8,9,11,16,37,46,54]),((l,e="day")=>I(l,e,0).value),"includes"),["安撫邊境","選將訓兵","出師"],null,2,{showGB:!0}],"製日":[z((l=>[1,10,18,24,26,27,29,31,32,33,35,40]),((l,e="da
+
+##### 兵寶
+"兵寶":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl([10]),null,4,{showGB:!0}],"吉期":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl(["施恩封拜 舉正直",9,11]),null,4,{showGB:!0}],"天巫":[z(((l,e="month")=>(_(l,e)+2)%12),_),["祭祀","祈福"],null,4,{showGB:!0}],"福德":[z(((l,e="month")=>(_(l,e)+2)%12),_),Nl(["上冊進表章",8,"修宮室 繕城郭"]),null,4,{showGB:!0}],"天罡
+
+##### 兵福
+"兵福":[z(((l,e="month")=>_(l,e)%12),_),Nl([10]),null,4,{showGB:!0}],"小時":[z(((l,e="month")=>_(l,e)%12),_),null,null,4,{showGB:!0}],"土府":[z(((l,e="month")=>_(l,e)%12),_),null,null,4,{showGB:!0}],"兵寶":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl([10]),null,4,{showGB:!0}],"吉期":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl(["施恩封拜 舉正直"
+
+##### 兵吉
+"兵吉":[z((l=>{const e=l.getMonthBuilder(0)[0].branch.value,n=[];for(let l=2;l<6;l++)n.push((l+e)%12);return n}),_,"includes"),Nl([10],!1),null,4,{showGB:!0}],"解神":[z(((l,e="month")=>[6,6,8,8,10,10,0,0,2,2,4,4][_(l,e)]),_),Nl(["上表章 陳詞訟 沐浴","014a",15],!1),null,4,{showGB:!0}],"月恩":[C([0,7,2,3,6,5,4,7,8,9,6,1],_,0,"month",L
+
+##### 兵禁
+"兵禁":[C([6,4,2,0,10,8],_,6,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"大煞":[C([8,9,10,5,6,7,2,3,4,11,0,1],_,0,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"往亡":[C([10,1,2,5,8,11,3,6,9,0,4,7],_,0,"month"),null,Kl,-4,{showGB:!0,meetDeStillBad:!0,meet
+
+##### 不將
+"不將":[z((l=>{const[e,n]=((l,e="zh")=>{const n=(l=>[0,22,20,18,16,14,12,10,8,6,4,2][l])(l),t=(n+12)%24,a=[{type:"Branch",value:0},{type:"Stem",value:9},{type:"Branch",value:1},{type:"Trigram8",value:4},{type:"Branch",value:2},{type:"Stem",value:0},{type:"Branch",value:3},{type:"Stem",value:1},{type:"Branch",value:4},{ty
+
+##### 除神
+"除神":[z((l=>[8,9]),((l,e="day")=>_(l,e)),"includes"),["解除","沐浴","整容","剃頭","整手足甲","求醫療病","掃舍宇"],null,2,{showGB:!0}],"五離":[z((l=>[8,9]),((l,e="day")=>_(l,e)),"includes"),null,Nl([8,12,"立券 交易"],!1),-2,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||["天赦","六合","三合"].some((l=>e.has(l)))?{replace:{bad:[]}}:null}],"鳴吠":[z
+
+##### 觸水龍
+"觸水龍":[z((l=>[12,19,49]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([26],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"無祿":[z((l=>[40,41,32,23,34,25,16,17,8,59]),((l,e="day")=>I(l,e,0).value),"includes"),null,null,-2,{showGB:!0,actsFilter:(l,e)=>{const n=Nl(["祭祀 解除 沐浴",14,"掃舍宇 修飾垣墻 平治道涂 破屋壞垣 伐木"],!1
+
+##### 純陰
+"純陰":[z(((l,e="month")=>11===_(l,e)?35:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"歲薄":[z(((l,e="month")=>{const n=_(l,e);return 5===n?[42,54]:11===n?[48,24]:null}),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"逐陣":[z(((l,e="month")=>{const n=_(l,e);return 1===n?[48,24]:7===n?[42,54]:null})
+
+##### 大耗
+"大耗":[z(((l,e="month")=>(_(l,e)+6)%12),_),null,Nl(["020b"]),-4,{showGB:!0,meetDeStillBad:!0}],"天喜":[z(((l,e="month")=>(_(l,e)+8)%12),_),Nl(["施恩封拜 舉正直",8,9,11,"012a"]),null,4,{showGB:!0}],"天醫":[z(((l,e="month")=>(_(l,e)+8)%12),_),["求醫療病"],null,4,{showGB:!0}],"時陽":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB
+
+##### 大會
+"大會":[C([48,59,10,21,null,null,42,null,53,16,27,null],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"小會":[C([35,24,null,15,4,5,54,null,null,null,45,34],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"行狠":[C([37,null,null,null,20,31,null,null,null,null,null,26],_,0,"month",(l=>l.char8.day.
+
+##### 大煞
+"大煞":[C([0,9,6,3],_,4,"year"),null,Nl([10],!1),-8,{meetDeStillBad:!0,meetWishStillBad:!0}],"黃幡":[C([4,1,10,7],_,4,"year"),null,Nl(["嫁娶","019a"]),-8],"豹尾":[C([10,7,4,1],_,4,"year"),null,Nl(["16-17","嫁娶","納畜"]),8],"灸退":[C([3,0,9,6],_,4,"year"),null,null,-8],"飛廉":[C([8,9,10,5,6,7,2,3,4,11,0,1],_,0,"year"),null,Nl([16,17,"
+
+##### 單陰
+"單陰":[z(((l,e="month")=>4===_(l,e)?4:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"純陽":[z(((l,e="month")=>5===_(l,e)?5:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"孤陽":[z(((l,e="month")=>11===_(l,e)?34:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"純陰":[z(((l,e="month")=>11===_(l,e)?35:
+
+##### 地火
+"地火":[...te.月厭]},se=Object.assign({},te,ae),oe={"天赦":[z((l=>[14,30,44,0][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),jl,["畋獵","取魚"],4,{showGB:!0}],"母倉":[z((l=>[[11,0],[2,3],[4,7,10,1],[8,9]][l.getSeasonIndex()]),_,"includes"),Nl(["納財",24]),null,4,{showGB:!0}],"四相":[z((l=>[[2,3],[4,5],[8,9],[0,1]][l.getSeasonIndex()
+
+##### 地囊
+"地囊":[z(((l,e="month")=>[[27,57],[51,9],[35,6],[31,49],[0,18],[15,45],[40,58],[52,22],[53,23],[2,31],[37,7],[14,44]][_(l,e)]),((l,e="day")=>I(l,e,0).value),"includes"),null,Jl,-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"陽德":[C([6,8,10,0,2,4],_,6,"month"),Nl([5,"007a"],!1),null,4,{showGB:!0}],"陰德":[C([1,11,9,
+
+##### 短星
+"短星":[(l,e,n)=>{const t=[[21],[19],[16],[25],[25],[20],[22],[18,19],[16,17],[15],[22],[25]][l.lunar.month%100-1];return n?1===t.length?t[0]===l.lunar.day:t.includes(l.lunar.day):t},null,Nl(["進人口 裁製 經絡","019a","納畜"],!1),-2,{showGB:!0}],"反支":[(l,e,n)=>{const t=l.lunar.day,a=[6,6,5,5,4,4,3,3,2,2,1,1][l.add(1-t,"day").char
+
+##### 伐日
+"伐日":[z((l=>[6,12,14,15,17,19,20,21,23,28,49,58]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"八專":[z((l=>[50,43,55,56,49]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10,"012a"],!1),-2,{showGB:!0,meetDeStillBad:!0,actsFilter:(l,e)=>e.has("天願")
+
+##### 反支
+"反支":[(l,e,n)=>{const t=l.lunar.day,a=[6,6,5,5,4,4,3,3,2,2,1,1][l.add(1-t,"day").char8.day.branch.value];return n?a===t:a},null,Nl(["上冊進表章","陳詞訟"],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"四離":[(l,e,n)=>{const t=l.add(1,"day");return!!t.solarTerm&&[23,11,5,17].includes(t.solarTerm.value)},null,Ql,-2,{s
+
+##### 福德
+"福德":[N(9),null,null,8],"吊客":[N(10),null,Nl([16,17,"求醫醫療病"]),-8],"病符":[N(11),null,null,-8],"神后":[j(0),null,null,8],"功曹":[j(2),null,null,8],"天罡":[j(4),null,null,-8],"勝光":[j(6),null,null,8],"傳送":[j(8),null,null,8],"河魁":[j(10),null,null,-8],"六害":[j(7),null,null,-8],"五鬼":[j(4),null,null,-8],"歲馬":[C([2,11,8,5],_,4,"year"),n
+
+##### 福生
+"福生":[C([2,8,9,3,10,4,11,5,0,6,1,7],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"聖心":[C([4,10,11,5,0,6,1,7,2,8,9,3],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"益後":[C([5,11,0,6,1,7,2,8,9,3,4,10],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"續世":[C([0,6,1,7,2,8,9,3,4,10,5,11],_,0,"month"),Nl(["001a"]),null,4,{showGB
+
+##### 勾陳
+"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官赴任 臨政親民 訓兵 出師".split(" "),["結姻親","開倉庫"],null,-1],"除":["解除 沐浴 整容 剃頭 整手足甲 求醫療病 掃舍宇 施恩封拜 舉正直 行幸 遣使 上官
+
+##### 孤辰
+"孤辰":[z(((l,e="month")=>[[1,13,25],null,null,null,[32,56,44],[55,7,19],null,null,null,null,null,[50,2,14]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"單陰":[z(((l,e="month")=>4===_(l,e)?4:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"純陽":[z(((l,e="month")=>5===_(l,e)?5:null),(l=>l.c
+
+##### 孤陽
+"孤陽":[z(((l,e="month")=>11===_(l,e)?34:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"純陰":[z(((l,e="month")=>11===_(l,e)?35:null),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"歲薄":[z(((l,e="month")=>{const n=_(l,e);return 5===n?[42,54]:11===n?[48,24]:null}),(l=>l.char8.day.value),"includes"),null,null,-4
+
+##### 官日
+"官日":[z((l=>[3,6,9,0][l.getSeasonIndex()]),_),Nl(["011b"],!1),null,4,{showGB:!0}],"守日":[z((l=>[4,7,10,1][l.getSeasonIndex()]),_),Nl(["011b","安撫邊境"],!1),null,4,{showGB:!0}],"相日":[z((l=>[5,8,11,2][l.getSeasonIndex()]),_),Nl(["011b"],!1),null,4,{showGB:!0}],"民日":[z((l=>[6,9,0,3][l.getSeasonIndex()]),_),Nl(["宴會",12,"進人口","
+
+##### 歸忌
+"歸忌":[C([2,0,1],_,3),null,Nl(["013a"],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"要安":[C([7,1,2,8,3,9,4,10,5,11,6,0],_,0,"month"),["安神"],null,4,{showGB:!0}],"玉宇":[C([8,2,3,9,4,10,5,11,6,0,7,1],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"金堂":[C([9,3,4,10,5,11,6,0,7,1,8,2],_,0,"month"),["修祠宇"],null,4,{showGB
+
+##### 河魁
+"河魁":[j(10),null,null,-8],"六害":[j(7),null,null,-8],"五鬼":[j(4),null,null,-8],"歲馬":[C([2,11,8,5],_,4,"year"),null,null,8],"歲刑":[C([3,10,5,0,4,8,6,1,2,9,7,11],_,0,"year"),null,null,-8],"歲煞":[C([7,4,1,10],_,4,"year"),null,null,-8],"伏兵":[C([2,0,8,6],_,4,"year",L),null,Nl([10,16,"017a"],!1),-8],"大禍":[C([3,1,9,7],_,4,"year",L
+
+##### 吉期
+"吉期":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl(["施恩封拜 舉正直",9,11]),null,4,{showGB:!0}],"天巫":[z(((l,e="month")=>(_(l,e)+2)%12),_),["祭祀","祈福"],null,4,{showGB:!0}],"福德":[z(((l,e="month")=>(_(l,e)+2)%12),_),Nl(["上冊進表章",8,"修宮室 繕城郭"]),null,4,{showGB:!0}],"天罡":[z(((l,e="month")=>[3,10,5,0,7,2,9,4,11,6,1,8][_(l,e)]),_),null,null,
+
+##### 解神
+"解神":[z(((l,e="month")=>[6,6,8,8,10,10,0,0,2,2,4,4][_(l,e)]),_),Nl(["上表章 陳詞訟 沐浴","014a",15],!1),null,4,{showGB:!0}],"月恩":[C([0,7,2,3,6,5,4,7,8,9,6,1],_,0,"month",L),zl,null,4,{showGB:!0}],"復日":[C([9,5,0,1,4,2,3,5,6,7,4,8],_,0,"month",L),["裁製"],Nl(["025a"],!1),-4,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||["天赦"
+
+##### 金匱
+"金匱":[null,null,1],"天德":[null,null,1],"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉
+
+##### 金堂
+"金堂":[C([9,3,4,10,5,11,6,0,7,1,8,2],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"敬安":[C([0,6,7,1,8,2,9,3,10,4,11,5],_,0,"month"),["安神"],null,4,{showGB:!0}],"普護":[C([1,7,8,2,9,3,10,4,11,5,0,6],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"福生":[C([2,8,9,3,10,4,11,5,0,6,1,7],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"聖心":
+
+##### 敬安
+"敬安":[C([0,6,7,1,8,2,9,3,10,4,11,5],_,0,"month"),["安神"],null,4,{showGB:!0}],"普護":[C([1,7,8,2,9,3,10,4,11,5,0,6],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"福生":[C([2,8,9,3,10,4,11,5,0,6,1,7],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"聖心":[C([4,10,11,5,0,6,1,7,2,8,9,3],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"
+
+##### 九坎
+"九坎":[C([8,5,4,1,10,7,3,0,9,6,2,11],_,0,"month"),null,Nl(["補垣塞穴",26],!1),-4,{showGB:!0,meetDeStillBad:!0}],"土符":[C([8,0,1,5,9,2,6,10,3,7,11,4],_,0,"month"),null,Jl,-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"地囊":[z(((l,e="month")=>[[27,57],[51,9],[35,6],[31,49],[0,18],[15,45],[40,58],[52,22],[53,23],[2,31],[
+
+##### 九空
+"九空":[C([10,7,4,1],_,4,"month"),null,Nl(["進人口","020b"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t=el(l)[1];return([2,8].includes(n)&&"滿"===t||[0,3,6,9].includes(n)&&"開"===t)&&["月德","天德合","月德合"].some((l=>e.has(l)))?{replace:{bad:[]}}:null}}],"月刑":[C([3,10,5,0,4,8,6,1,2,9,7,11],_,0,"month"),null,`${Cl} 進
+
+##### 了戾
+"了戾":[C([49,null,null,null,32,43,null,null,null,null,null,38],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"孤辰":[z(((l,e="month")=>[[1,13,25],null,null,null,[32,56,44],[55,7,19],null,null,null,null,null,[50,2,14]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"單陰":[z(((l,e="mont
+
+##### 臨日
+"臨日":[C([4,9,6,11,8,1,10,3,0,5,2,7],_,0,"month"),Nl(["上冊進表章",11,"陳詞訟"],!1),null,4,{showGB:!0}],"驛馬":[C([2,11,8,5],_,4,"month"),Nl([9,"求醫療病"],!1),null,4,{showGB:!0}],"天火":[C([6,3,0,9],_,4,"month"),null,null,-4,{showGB:!0}],"月煞":[C([7,4,1,10],_,4,"month"),null,`${Cl} 修倉庫 開倉庫 出貨財`.split(" "),-4,{actsFilter:(l,e)=>{const n
+
+##### 民日
+"民日":[z((l=>[6,9,0,3][l.getSeasonIndex()]),_),Nl(["宴會",12,"進人口","019a",24],!1),null,4,{showGB:!0}],"四擊":[z((l=>[10,1,4,7][l.getSeasonIndex()]),_),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"四忌":[z((l=>[0,12,36,48][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"012a","安葬"],!1),-
+
+##### 明堂
+"明堂":[null,null,1],"天刑":[null,null,-1],"朱雀":[null,null,-1],"金匱":[null,null,1],"天德":[null,null,1],"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:n
+
+##### 普護
+"普護":[C([1,7,8,2,9,3,10,4,11,5,0,6],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"福生":[C([2,8,9,3,10,4,11,5,0,6,1,7],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"聖心":[C([4,10,11,5,0,6,1,7,2,8,9,3],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"益後":[C([5,11,0,6,1,7,2,8,9,3,4,10],_,0,"month"),Nl(["001a"]),null,4,{showGB:
+
+##### 氣往亡
+"氣往亡":[(l,e,n)=>{const t=_(l,"month"),a=[20,30,7,14,21,8,16,24,9,18,27,10][t];if(!n)return a;const s=l.add(1-a,"day");return!!s.solarTerm&&(13+(s.solarTerm.value>>1))%12===t},null,Kl,-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}]};function re(l,e,n,t){const a=l.data.extra,s={good:new Set(l.data.good),bad:new Set
+
+##### 青龍
+"青龍":[null,null,1],"明堂":[null,null,1],"天刑":[null,null,-1],"朱雀":[null,null,-1],"金匱":[null,null,1],"天德":[null,null,1],"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOw
+
+##### 三陰
+"三陰":[z(((l,e="month")=>{const n=_(l,e);return 2===n?57:8===n?51:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陽錯":[z(((l,e="month")=>[null,[49],[50],[51],[40],[53,5],null,[43,55],[56],[57],[46],[59]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"陰錯":[z(((l,e="month")=>[null,[59],[4
+
+##### 上朔
+"上朔":[z((l=>[59,5,11,17,23,29,35,41,47,53][L(l,"year")]),((l,e="day")=>I(l,e,0).value)),null,Ql,-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"長星":[(l,e,n)=>{const t=[[7],[4],[1],[9],[15],[10],[8],[2,5],[3,4],[1],[12],[9]][l.lunar.month%100-1];return n?1===t.length?t[0]===l.lunar.day:t.includes(l.lunar.day):t},
+
+##### 聖心
+"聖心":[C([4,10,11,5,0,6,1,7,2,8,9,3],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"益後":[C([5,11,0,6,1,7,2,8,9,3,4,10],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"續世":[C([0,6,1,7,2,8,9,3,4,10,5,11],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"月厭":[R(-1),null,Yl,-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t
+
+##### 時陽
+"時陽":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"生氣":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"血支":[z(((l,e="month")=>(_(l,e)+11)%12),_),null,["針刺"],-4,{showGB:!0}],"五墓":[C([28,4,31,31,4,22,22,4,37,37,4,28],_,0,"month",((l,e="day")=>I(l,e,0).value)),null,Nl(["冠帶",9,"011a","012b
+
+##### 時陰
+"時陰":[z(((l,e="month")=>(_(l,e)+4)%12),_),["運謀算","畫計策"],null,4,{showGB:!0}],"小耗":[z(((l,e="month")=>(_(l,e)+5)%12),_),null,Nl(["020b"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{if(p.some((l=>e.has(l)))||e.has("天願"))return{replace:{bad:[]}};const n=_(l,"month");return[0,3,6,9].includes(n)&&e.has("劫煞")?{meetDeStillBad:!0}:nul
+
+##### 守日
+"守日":[z((l=>[4,7,10,1][l.getSeasonIndex()]),_),Nl(["011b","安撫邊境"],!1),null,4,{showGB:!0}],"相日":[z((l=>[5,8,11,2][l.getSeasonIndex()]),_),Nl(["011b"],!1),null,4,{showGB:!0}],"民日":[z((l=>[6,9,0,3][l.getSeasonIndex()]),_),Nl(["宴會",12,"進人口","019a",24],!1),null,4,{showGB:!0}],"四擊":[z((l=>[10,1,4,7][l.getSeasonIndex()]),_),n
+
+##### 司命
+"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官赴任 臨政親民 訓兵 出師".split(" "),["結姻親","開倉庫"],null,-1],"除":["解除 沐浴 整容 剃頭 整手足甲 求醫療病 掃舍
+
+##### 死神
+"死神":[z(((l,e="month")=>(_(l,e)+3)%12),_),null,Nl([10,"進人口 解除 求醫療病 修置產室",24]),-4,{showGB:!0}],"死氣":[z(((l,e="month")=>(_(l,e)+4)%12),_),null,Nl([10,"解除 求醫療病 修置產室 栽種"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{if(p.some((l=>e.has(l))))return{replace:{bad:Xl}};const n=_(l,"month");return[4,10].includes(n)&&e.has("月厭")?{meetDe
+
+##### 四廢
+"四廢":[z((l=>[[56,57],[48,59],[50,51],[53,42]][l.getSeasonIndex()]),((l,e)=>l.char8[e].value),"includes"),null,Nl([1,"上冊進表章 頒詔",3,4,6,8,"冠帶","9-11","012b",13,"解除 求醫療病 裁製","017b","鼓鑄",18,"020a",21,"開渠穿井 安碓磑 補垣塞穴 修飾垣墻",24,"025a"],!1),-4,{showGB:!0,actsFilter:(l,e)=>e.has("月破")?{isAllBad:!0,meetDeStillBad:!0}:{meetDeStillB
+
+##### 四耗
+"四耗":[z((l=>[48,51,54,57][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"020b"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month");return 4===n&&["天德","月德"].some((l=>e.has(l)))||5===n&&e.has("月德合")||[1,4,7,10].includes(n)&&e.has("三合")?{replace:{bad:Ul}}:null}}],"四廢":[z((l=>[[56,57],[48,59],[50,51],
+
+##### 四擊
+"四擊":[z((l=>[10,1,4,7][l.getSeasonIndex()]),_),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"四忌":[z((l=>[0,12,36,48][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"012a","安葬"],!1),-4,{showGB:!0,actsFilter:(l,e)=>2===_(l,"month")&&11===l.char8.day.value&&e.has("天願")?{replace:{bad:
+
+##### 四忌
+"四忌":[z((l=>[0,12,36,48][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"012a","安葬"],!1),-4,{showGB:!0,actsFilter:(l,e)=>2===_(l,"month")&&11===l.char8.day.value&&e.has("天願")?{replace:{bad:Ul}}:{meetDeStillBad:!0}}],"四窮":[z((l=>[11,23,47,59][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"012b
+
+##### 四絕
+"四絕":[(l,e,n)=>{const t=l.add(1,"day");return!!t.solarTerm&&[2,8,14,20].includes(t.solarTerm.value)},null,Ql,-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"氣往亡":[(l,e,n)=>{const t=_(l,"month"),a=[20,30,7,14,21,8,16,24,9,18,27,10][t];if(!n)return a;const s=l.add(1-a,"day");return!!s.solarTerm&&(13+(s.solarTerm.v
+
+##### 四離
+"四離":[(l,e,n)=>{const t=l.add(1,"day");return!!t.solarTerm&&[23,11,5,17].includes(t.solarTerm.value)},null,Ql,-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"四絕":[(l,e,n)=>{const t=l.add(1,"day");return!!t.solarTerm&&[2,8,14,20].includes(t.solarTerm.value)},null,Ql,-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBa
+
+##### 四窮
+"四窮":[z((l=>[11,23,47,59][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([10,"012b","020b","安葬"],!1),-4,{showGB:!0,actsFilter:(l,e)=>2===_(l,"month")&&11===l.char8.day.value&&e.has("天願")?{replace:{bad:Ul}}:{meetDeStillBad:!0}}],"四耗":[z((l=>[48,51,54,57][l.getSeasonIndex()]),((l,e)=>l.char8[e].value)),null,Nl([
+
+##### 歲薄
+"歲薄":[z(((l,e="month")=>{const n=_(l,e);return 5===n?[42,54]:11===n?[48,24]:null}),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"逐陣":[z(((l,e="month")=>{const n=_(l,e);return 1===n?[48,24]:7===n?[42,54]:null}),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"陰陽交破":[z(((l,e="month")=>{const 
+
+##### 天倉
+"天倉":[R(3),["進人口","納財","納畜"],null,4,{showGB:!0}],"六儀":[R(4),["臨政親民"],null,4],"月害":[R(5),null,Nl([1,"上冊進表章 頒詔",8,10,"012b",18,"020a","修置產室 牧養","025a"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t=el(l)[1];return([3,9].includes(n)&&("除"===t||e.has("守日"))||[1,7].includes(n)&&("執"===t||e.has("大時")))&&["月德","
+
+##### 天罡
+"天罡":[j(4),null,null,-8],"勝光":[j(6),null,null,8],"傳送":[j(8),null,null,8],"河魁":[j(10),null,null,-8],"六害":[j(7),null,null,-8],"五鬼":[j(4),null,null,-8],"歲馬":[C([2,11,8,5],_,4,"year"),null,null,8],"歲刑":[C([3,10,5,0,4,8,6,1,2,9,7,11],_,0,"year"),null,null,-8],"歲煞":[C([7,4,1,10],_,4,"year"),null,null,-8],"伏兵":[C([2,0,8,6],_,
+
+##### 天狗
+"天狗":[z(((l,e="month")=>(_(l,e)+2)%12==10?10:null),(l=>l.char8.day.value)),null,["祭祀"],-4,{showGB:!0}]},ae={"天后":[...te.驛馬],"大敗":[te.大時[0],null,null,-4],"咸池":[te.大時[0],null,["取魚","乘船渡水"],-4,te.大時[4]],"致死":[te.天吏[0],null,null,-4],"九焦":[te.九坎[0],null,Nl(["鼓鑄 栽種 修筑園圃"],!1),-4],"血忌":[te.續世[0],null,["針刺"],-4,{meetDeStillBad
+
+##### 天后
+"天后":[...te.驛馬],"大敗":[te.大時[0],null,null,-4],"咸池":[te.大時[0],null,["取魚","乘船渡水"],-4,te.大時[4]],"致死":[te.天吏[0],null,null,-4],"九焦":[te.九坎[0],null,Nl(["鼓鑄 栽種 修筑園圃"],!1),-4],"血忌":[te.續世[0],null,["針刺"],-4,{meetDeStillBad:!0,meetWishStillBad:!0}],"厭對":[te.六儀[0],null,["嫁娶"],-4,{actsFilter:(l,e)=>p.some((l=>e.has(l)))||e.has("天赦"
+
+##### 天火
+"天火":[C([6,3,0,9],_,4,"month"),null,null,-4,{showGB:!0}],"月煞":[C([7,4,1,10],_,4,"month"),null,`${Cl} 修倉庫 開倉庫 出貨財`.split(" "),-4,{actsFilter:(l,e)=>{const n=_(l,"month");return[2,8,5,11].includes(n)&&e.has("六合")&&["月德","天願"].some((l=>e.has(l)))?{replace:{bad:Xl}}:null}}],"大時":[C([9,6,3,0],_,4,"month"),null,[...ql],-4,{a
+
+##### 天牢
+"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官赴任 臨政親民 訓兵 出師".split(" "),["結姻親","開倉庫"]
+
+##### 天吏
+"天吏":[[2,[2,5,8,11],["危日"]],[3,[1,4,7,10],["閉日"]],[3,[3,6,9],["平日"]],[4,[0],["平日","月刑"]]]},x=new Set(["y","m","d","h"]),A=new Set([24,54,48,18,51,15,27,21,45,57]),F=[2,1,0,11,10,9,8,7,6,5,4,3,2,1],O={name:"zh",theGods:{gods:{},acts:{},queryString:{[e]:"年神",[n]:"月神",[t]:"日神",[a]:"時神",[s]:"本日神煞",[o]:"本日黃黑十二神",[u]:"此時黃黑十二
+
+##### 天馬
+"天馬":[C([2,4,6,8,10,0],_,6,"month"),Nl([9,"般移"],!1),null,4,{showGB:!0}],"兵禁":[C([6,4,2,0,10,8],_,6,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"大煞":[C([8,9,10,5,6,7,2,3,4,11,0,1],_,0,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"往亡":[C([10,1,2,5,8,1
+
+##### 天巫
+"天巫":[z(((l,e="month")=>(_(l,e)+2)%12),_),["祭祀","祈福"],null,4,{showGB:!0}],"福德":[z(((l,e="month")=>(_(l,e)+2)%12),_),Nl(["上冊進表章",8,"修宮室 繕城郭"]),null,4,{showGB:!0}],"天罡":[z(((l,e="month")=>[3,10,5,0,7,2,9,4,11,6,1,8][_(l,e)]),_),null,null,-4,{showGB:!0}],"河魁":[z(((l,e="month")=>[9,4,11,6,1,8,3,10,5,0,7,2][_(l,e)]),_),null
+
+##### 天喜
+"天喜":[z(((l,e="month")=>(_(l,e)+8)%12),_),Nl(["施恩封拜 舉正直",8,9,11,"012a"]),null,4,{showGB:!0}],"天醫":[z(((l,e="month")=>(_(l,e)+8)%12),_),["求醫療病"],null,4,{showGB:!0}],"時陽":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"生氣":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"血支":[z(((l,e="month
+
+##### 天刑
+"天刑":[null,null,-1],"朱雀":[null,null,-1],"金匱":[null,null,1],"天德":[null,null,1],"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除
+
+##### 天醫
+"天醫":[z(((l,e="month")=>(_(l,e)+8)%12),_),["求醫療病"],null,4,{showGB:!0}],"時陽":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"生氣":[z(((l,e="month")=>(_(l,e)+10)%12),_),null,null,4,{showGB:!0}],"血支":[z(((l,e="month")=>(_(l,e)+11)%12),_),null,["針刺"],-4,{showGB:!0}],"五墓":[C([28,4,31,31,4,22,22,4,37,37,4,28],
+
+##### 天賊
+"天賊":[R(2),null,Nl([9,"修倉庫","納財","出貨財"],!1),-4,{showGB:!0,meetDeStillBad:!0}],"天倉":[R(3),["進人口","納財","納畜"],null,4,{showGB:!0}],"六儀":[R(4),["臨政親民"],null,4],"月害":[R(5),null,Nl([1,"上冊進表章 頒詔",8,10,"012b",18,"020a","修置產室 牧養","025a"],!1),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t=el(l)[1];return([3,9].includes(n
+
+##### 土符
+"土符":[C([8,0,1,5,9,2,6,10,3,7,11,4],_,0,"month"),null,Jl,-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"地囊":[z(((l,e="month")=>[[27,57],[51,9],[35,6],[31,49],[0,18],[15,45],[40,58],[52,22],[53,23],[2,31],[37,7],[14,44]][_(l,e)]),((l,e="day")=>I(l,e,0).value),"includes"),null,Jl,-4,{showGB:!0,meetDeStillBad:!0,m
+
+##### 土府
+"土府":[z(((l,e="month")=>_(l,e)%12),_),null,null,4,{showGB:!0}],"兵寶":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl([10]),null,4,{showGB:!0}],"吉期":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl(["施恩封拜 舉正直",9,11]),null,4,{showGB:!0}],"天巫":[z(((l,e="month")=>(_(l,e)+2)%12),_),["祭祀","祈福"],null,4,{showGB:!0}],"福德":[z(((l,e="month")=>(_(l
+
+##### 王日
+"王日":[z((l=>[2,5,8,11][l.getSeasonIndex()]),_),Nl(["頒詔",2,3,"008a",9,"011a","裁製"],!1),null,4,{showGB:!0}],"官日":[z((l=>[3,6,9,0][l.getSeasonIndex()]),_),Nl(["011b"],!1),null,4,{showGB:!0}],"守日":[z((l=>[4,7,10,1][l.getSeasonIndex()]),_),Nl(["011b","安撫邊境"],!1),null,4,{showGB:!0}],"相日":[z((l=>[5,8,11,2][l.getSeasonIndex()]
+
+##### 無祿
+"無祿":[z((l=>[40,41,32,23,34,25,16,17,8,59]),((l,e="day")=>I(l,e,0).value),"includes"),null,null,-2,{showGB:!0,actsFilter:(l,e)=>{const n=Nl(["祭祀 解除 沐浴",14,"掃舍宇 修飾垣墻 平治道涂 破屋壞垣 伐木"],!1),t=_(l,"year"),a=_(l,"month"),s=_(l,"day"),o=`${L(l,"day")}-${s}`;if("9-11"===o)return{gOnlySign:n};if(["天德","月德"].some((l=>e.has(l))))re
+
+##### 五合
+"五合":[z((l=>[2,3]),((l,e="day")=>_(l,e)),"includes"),["宴會","結婚姻","立券","交易"],null,2,{showGB:!0}],"除神":[z((l=>[8,9]),((l,e="day")=>_(l,e)),"includes"),["解除","沐浴","整容","剃頭","整手足甲","求醫療病","掃舍宇"],null,2,{showGB:!0}],"五離":[z((l=>[8,9]),((l,e="day")=>_(l,e)),"includes"),null,Nl([8,12,"立券 交易"],!1),-2,{showGB:!0,actsFilter:(l,e
+
+##### 五離
+"五離":[z((l=>[8,9]),((l,e="day")=>_(l,e)),"includes"),null,Nl([8,12,"立券 交易"],!1),-2,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||["天赦","六合","三合"].some((l=>e.has(l)))?{replace:{bad:[]}}:null}],"鳴吠":[z((l=>[30,42,6,18,20,32,56,8,21,33,45,57,9]),((l,e="day")=>I(l,e,0).value),"includes"),["破土","安葬"],null,2,{showGB:!0
+
+##### 五墓
+"五墓":[C([28,4,31,31,4,22,22,4,37,37,4,28],_,0,"month",((l,e="day")=>I(l,e,0).value)),null,Nl(["冠帶",9,"011a","012b",13,"解除 求醫療病","16-17",19,21,24,"25a"]),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month");return[6,0].includes(n)&&e.has("月德")?{replace:{bad:[]}}:null}}],"九坎":[C([8,5,4,1,10,7,3,0,9,6,2,11],_,0,"month"),
+
+##### 五虛
+"五虛":[z((l=>[[5,9,1],[8,0,4],[11,3,7],[2,6,10]][l.getSeasonIndex()]),_,"includes"),null,Nl(["修倉庫",20],!1),-4,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||e.has("六合")?{replace:{bad:[]}}:null}],"八風":[z((l=>[[13,53],[40,20],[43,23],[10,50]][l.getSeasonIndex()]),((l,e)=>l.char8[e].value),"includes"),null,Nl([26],!1)
+
+##### 相日
+"相日":[z((l=>[5,8,11,2][l.getSeasonIndex()]),_),Nl(["011b"],!1),null,4,{showGB:!0}],"民日":[z((l=>[6,9,0,3][l.getSeasonIndex()]),_),Nl(["宴會",12,"進人口","019a",24],!1),null,4,{showGB:!0}],"四擊":[z((l=>[10,1,4,7][l.getSeasonIndex()]),_),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"四忌":[z((l=>[0,12,36
+
+##### 小耗
+"小耗":[le.支德[0],null,Nl(["020b"]),-8,{actsFilter:(l,e)=>{const n=_(l,"month");return p.some((l=>e.has(l)))?{replace:{bad:[]}}:[0,3,6,9].includes(n)&&e.has("劫煞")?{meetDeStillBad:!0}:null}}]},ne=Object.assign({},le,ee),te={"天德":[(l,e="month",n)=>{const t=_(l,e),a=[5,6,3,8,8,7,11,0,9,2,2,1][t],s=!!(t%3);return n?s?a===L(l,
+
+##### 小會
+"小會":[C([35,24,null,15,4,5,54,null,null,null,45,34],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"行狠":[C([37,null,null,null,20,31,null,null,null,null,null,26],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"了戾":[C([49,null,null,null,32,43,null,null,null,null,null,38],_,0,"month",(l=>l.ch
+
+##### 小時
+"小時":[z(((l,e="month")=>_(l,e)%12),_),null,null,4,{showGB:!0}],"土府":[z(((l,e="month")=>_(l,e)%12),_),null,null,4,{showGB:!0}],"兵寶":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl([10]),null,4,{showGB:!0}],"吉期":[z(((l,e="month")=>(_(l,e)+1)%12),_),Nl(["施恩封拜 舉正直",9,11]),null,4,{showGB:!0}],"天巫":[z(((l,e="month")=>(_(l,e)+2)%12),
+
+##### 行狠
+"行狠":[C([37,null,null,null,20,31,null,null,null,null,null,26],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"了戾":[C([49,null,null,null,32,43,null,null,null,null,null,38],_,0,"month",(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"孤辰":[z(((l,e="month")=>[[1,13,25],null,null,null,[32,56,44],[55,7,19],n
+
+##### 續世
+"續世":[C([0,6,1,7,2,8,9,3,4,10,5,11],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"月厭":[R(-1),null,Yl,-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t=el(l)[1];return([2,8].includes(n)&&"成"===t||[1,7].includes(n)&&"開"===t)&&["月德","天德合","月德合"].some((l=>e.has(l)))?{replace:{bad:Nl(["9-10","012a",15,"013a","栽種"])}}
+
+##### 玄武
+"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官赴任 臨政親民 訓兵 出師".split(" "),["結姻親","開倉庫"],null,-1],"除":["解除 沐
+
+##### 血支
+"血支":[z(((l,e="month")=>(_(l,e)+11)%12),_),null,["針刺"],-4,{showGB:!0}],"五墓":[C([28,4,31,31,4,22,22,4,37,37,4,28],_,0,"month",((l,e="day")=>I(l,e,0).value)),null,Nl(["冠帶",9,"011a","012b",13,"解除 求醫療病","16-17",19,21,24,"25a"]),-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month");return[6,0].includes(n)&&e.has("月德")?{repl
+
+##### 陽錯
+"陽錯":[z(((l,e="month")=>[null,[49],[50],[51],[40],[53,5],null,[43,55],[56],[57],[46],[59]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"陰錯":[z(((l,e="month")=>[null,[59],[46],[57],[56],[43,31],null,[53,3],[40],[51],[50],[49]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}
+
+##### 陽德
+"陽德":[C([6,8,10,0,2,4],_,6,"month"),Nl([5,"007a"],!1),null,4,{showGB:!0}],"陰德":[C([1,11,9,7,5,3],_,6,"month"),Nl([5,"007a"],!1),null,4,{showGB:!0}],"天馬":[C([2,4,6,8,10,0],_,6,"month"),Nl([9,"般移"],!1),null,4,{showGB:!0}],"兵禁":[C([6,4,2,0,10,8],_,6,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBa
+
+##### 陽破陰沖
+"陽破陰沖":[z(((l,e="month")=>{const n=_(l,e);return 1===n?43:7===n?49:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陰位":[z(((l,e="month")=>{const n=_(l,e);return 4===n?16:10===n?10:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陰道沖陽":[z(((l,e="month")=>{const n=_(l,e);return 3===n?45:9===n?15:null})
+
+##### 要安
+"要安":[C([7,1,2,8,3,9,4,10,5,11,6,0],_,0,"month"),["安神"],null,4,{showGB:!0}],"玉宇":[C([8,2,3,9,4,10,5,11,6,0,7,1],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"金堂":[C([9,3,4,10,5,11,6,0,7,1,8,2],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"敬安":[C([0,6,7,1,8,2,9,3,10,4,11,5],_,0,"month"),["安神"],null,4,{showGB:!0}],"普護":[C([1,7,8
+
+##### 益後
+"益後":[C([5,11,0,6,1,7,2,8,9,3,4,10],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"續世":[C([0,6,1,7,2,8,9,3,4,10,5,11],_,0,"month"),Nl(["001a"]),null,4,{showGB:!0}],"月厭":[R(-1),null,Yl,-4,{showGB:!0,actsFilter:(l,e)=>{const n=_(l,"month"),t=el(l)[1];return([2,8].includes(n)&&"成"===t||[1,7].includes(n)&&"開"===t)&&["月德","
+
+##### 義日
+"義日":[z((l=>[0,3,4,5,7,8,9,11,16,37,46,54]),((l,e="day")=>I(l,e,0).value),"includes"),["安撫邊境","選將訓兵","出師"],null,2,{showGB:!0}],"製日":[z((l=>[1,10,18,24,26,27,29,31,32,33,35,40]),((l,e="day")=>I(l,e,0).value),"includes"),["安撫邊境","選將訓兵","出師"],null,2,{showGB:!0}],"專日":[z((l=>[4,5,34,42,48,50,51,53,55,56,57,59]),((l,e="day"
+
+##### 陰錯
+"陰錯":[z(((l,e="month")=>[null,[59],[46],[57],[56],[43,31],null,[53,3],[40],[51],[50],[49]][_(l,e)]),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"陰陽俱錯":[z(((l,e="month")=>{const n=_(l,e);return 1===n?48:6===n?42:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"絕陰":[z(((l,e="month")=>5===_(l,e)?
+
+##### 陰德
+"陰德":[C([1,11,9,7,5,3],_,6,"month"),Nl([5,"007a"],!1),null,4,{showGB:!0}],"天馬":[C([2,4,6,8,10,0],_,6,"month"),Nl([9,"般移"],!1),null,4,{showGB:!0}],"兵禁":[C([6,4,2,0,10,8],_,6,"month"),null,Nl([10],!1),-4,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"大煞":[C([8,9,10,5,6,7,2,3,4,11,0,1],_,0,"month"),null,Nl([10],!1),-
+
+##### 陰位
+"陰位":[z(((l,e="month")=>{const n=_(l,e);return 4===n?16:10===n?10:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陰道沖陽":[z(((l,e="month")=>{const n=_(l,e);return 3===n?45:9===n?15:null}),(l=>l.char8.day.value)),null,null,4,{showGB:!0}],"三陰":[z(((l,e="month")=>{const n=_(l,e);return 2===n?57:8===n?51:null}),(l
+
+##### 陰陽擊沖
+"陰陽擊沖":[z(((l,e="month")=>{const n=_(l,e);return 0===n?42:6===n?48:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陽破陰沖":[z(((l,e="month")=>{const n=_(l,e);return 1===n?43:7===n?49:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陰位":[z(((l,e="month")=>{const n=_(l,e);return 4===n?16:10===n?10:null})
+
+##### 玉堂
+"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破","危","成","收","開","閉"],ll={"建":["施恩封拜 詔命公卿 招賢 舉正直 行幸 遣使 上官赴任 臨政親民 訓兵 出師".split
+
+##### 玉宇
+"玉宇":[C([8,2,3,9,4,10,5,11,6,0,7,1],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"金堂":[C([9,3,4,10,5,11,6,0,7,1,8,2],_,0,"month"),["修祠宇"],null,4,{showGB:!0}],"敬安":[C([0,6,7,1,8,2,9,3,10,4,11,5],_,0,"month"),["安神"],null,4,{showGB:!0}],"普護":[C([1,7,8,2,9,3,10,4,11,5,0,6],_,0,"month"),["祭祀","祈福"],null,4,{showGB:!0}],"福生":[C([
+
+##### 月建
+"月建":[z(((l,e="month")=>_(l,e)),_),null,Nl([1,"上冊進表章","012a","般移","014a","求醫療病","017b","20-23","安碓磑 補垣 平治道涂 伐木 栽種","025a"],!1),-4,{showGB:!0,actsFilter:(l,e)=>p.some((l=>e.has(l)))||["天赦","月恩","四相"].some((l=>e.has(l)))?{replace:{bad:Nl([16,"興造動土 修倉庫 修置產室 開渠穿井 安碓磑 補垣 平治道涂",23,"伐木 栽種 破土"],!1)}}:2===_(l,"month")&&2===_(l,
+
+##### 月空
+"月空":[C([2,0,8,6],_,4,"month",L),["上表章"],null,4,{showGB:!0}],"三合":[(l,e="month",n)=>{const t=l.char8[e].branch.triad;return n?t.map((l=>l.value)).includes(_(l,n)):t},Nl([8,"012b","裁製 修宮室 繕城郭",17,"修倉庫",18,"019a","安碓磑 納畜"],!1),null,4,{showGB:!0}],"五富":[C([5,8,11,2],_,4,"month",_),Nl([18,"020a","牧養 納畜"],!1),null,4,{showGB
+
+##### 月厭
+"月厭":[[2,[2,8],["成日"]],[2,[1,7],["開日"]],[3,[4,10],["定日"]],[3,[5,11],["滿日"]],[4,[0],["月建","德","大會"]],[4,[6],["月建","月刑","德","大會"]],[5,[3,9],["月破","災煞"]]],"大時":[[0,[2,5,8,11],["除日","官日"]],[0,[4,10],["執日","六合"]],[2,[1,7],["執日","月害"]],[3,[0,6,9],["收日"]],[4,[3],["收日","月刑"]]],"天吏":[[2,[2,5,8,11],["危日"]],[3,[1,4,7,10],["閉日"]],
+
+##### 長星
+"長星":[(l,e,n)=>{const t=[[7],[4],[1],[9],[15],[10],[8],[2,5],[3,4],[1],[12],[9]][l.lunar.month%100-1];return n?1===t.length?t[0]===l.lunar.day:t.includes(l.lunar.day):t},null,Nl(["進人口 裁製 經絡","019a","納畜"],!1),-2,{showGB:!0}],"短星":[(l,e,n)=>{const t=[[21],[19],[16],[25],[25],[20],[22],[18,19],[16,17],[15],[22],[25]][l.lu
+
+##### 製日
+"製日":[z((l=>[1,10,18,24,26,27,29,31,32,33,35,40]),((l,e="day")=>I(l,e,0).value),"includes"),["安撫邊境","選將訓兵","出師"],null,2,{showGB:!0}],"專日":[z((l=>[4,5,34,42,48,50,51,53,55,56,57,59]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"伐日":[z((l=>[6,12,14,15,1
+
+##### 朱雀
+"朱雀":[null,null,-1],"金匱":[null,null,1],"天德":[null,null,1],"白虎":[null,null,-1],"玉堂":[null,null,1],"天牢":[null,null,-1],"玄武":[null,null,-1],"司命":[null,null,1],"勾陳":[null,null,-1],"寶光":[null,null,1]},Q=[8,10,0,2,4,6],U=(l,e)=>5===l&&"hour"===e?"寶光":J[l],X=l=>K.hasOwnProperty(l)?K[l]:null;const Z=["建","除","滿","平","定","執","破
+
+##### 逐陣
+"逐陣":[z(((l,e="month")=>{const n=_(l,e);return 1===n?[48,24]:7===n?[42,54]:null}),(l=>l.char8.day.value),"includes"),null,null,-4,{showGB:!0}],"陰陽交破":[z(((l,e="month")=>{const n=_(l,e);return 5===n?59:11===n?53:null}),(l=>l.char8.day.value)),null,null,-4,{showGB:!0}],"陰陽擊沖":[z(((l,e="month")=>{const n=_(l,e);return 0==
+
+##### 專日
+"專日":[z((l=>[4,5,34,42,48,50,51,53,55,56,57,59]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:!0}],"伐日":[z((l=>[6,12,14,15,17,19,20,21,23,28,49,58]),((l,e="day")=>I(l,e,0).value),"includes"),null,Nl([10],!1),-2,{showGB:!0,meetDeStillBad:!0,meetWishStillBad:

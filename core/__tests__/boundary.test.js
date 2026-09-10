@@ -76,6 +76,19 @@ test('时辰边界 — 所有小时排盘正常', function() {
   assert.strictEqual(failures.length, 0, '部分小时排盘失败:\n' + failures.join('\n'));
 });
 
+test('时辰边界 — 晚子时换日(23:00整点属当日, 23:30属次日)', function() {
+  // mingLiBaZi 日界：23:00:00 整点归属当日日柱，23:00:01 起算次日（晚子时换日流派）。
+  // 这与 lunar-javascript(23:00含即换次日) 有 1 分钟边界差，属流派差异，勿"修正"。
+  var obA = calcBazi(2024, 6, 15, 23, 0, 120, 40);
+  var obB = calcBazi(2024, 6, 15, 23, 30, 120, 40);
+  assert.ok(obA.bz_jr && obB.bz_jr, '排盘失败');
+  assert.strictEqual(obA.bz_jr, '庚戌', '23:00整点应属当日庚戌，实际: ' + obA.bz_jr);
+  assert.strictEqual(obB.bz_jr, '辛亥', '23:30应属次日辛亥，实际: ' + obB.bz_jr);
+  // 时柱自洽：庚戌日+23:00(亥时)→丁亥；辛亥日+23:30(子时)→戊子（五鼠遁）
+  assert.strictEqual(obA.bz_js, '丁亥', '23:00时柱应丁亥，实际: ' + obA.bz_js);
+  assert.strictEqual(obB.bz_js, '戊子', '23:30时柱应戊子，实际: ' + obB.bz_js);
+});
+
 // ═══════════════════════════════════════════════════════════════
 // 测试组 2: 真太阳时极端经度
 // ═══════════════════════════════════════════════════════════════

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="公信万年历">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#2a1a0e"/>
+      <stop offset="100%" stop-color="#160d06"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#E8C66A"/>
+      <stop offset="50%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8B6914"/>
+    </linearGradient>
+  </defs>
+  <!-- 圆角方底（金箔边） -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg)" stroke="url(#gold)" stroke-width="10"/>
+  <!-- 太极 -->
+  <g transform="translate(256 256)">
+    <circle r="150" fill="none" stroke="url(#gold)" stroke-width="6"/>
+    <path d="M0,-150 A150,150 0 0,1 0,150 A75,75 0 0,1 0,0 A75,75 0 0,0 0,-150 Z" fill="#F5EDE0"/>
+    <path d="M0,-150 A150,150 0 0,0 0,150 A75,75 0 0,0 0,0 A75,75 0 0,1 0,-150 Z" fill="#3C2415"/>
+    <circle cx="0" cy="-75" r="30" fill="#3C2415"/>
+    <circle cx="0" cy="75" r="30" fill="#F5EDE0"/>
+  </g>
+</svg>

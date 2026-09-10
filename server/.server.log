@@ -1,0 +1,14 @@
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): *.*[39m
+[33m[nodemon] watching extensions: js,json,mjs[39m
+[32m[nodemon] starting `node index.js`[39m
+[lunar] Engine bundle loaded (vm)
+[lunar] Render funcs OK
+[server] listening on port 3000
+[32m[nodemon] restarting due to changes...[39m
+[32m[nodemon] starting `node index.js`[39m
+[lunar] Engine bundle loaded (vm)
+[lunar] Render funcs OK
+[server] listening on port 3000
+[31m[nodemon] app crashed - waiting for file changes before starting...[39m

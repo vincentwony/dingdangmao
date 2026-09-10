@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紫微斗数单宫面板</title>
+<style>
+  :root {
+    --p-w: 162px;
+    --p-h: 130px;
+    --c-border: #fff;
+    --c-bg: #000;
+    --c-text: #eee;
+    --c-red: #e74c3c;
+    --c-blue: #3498db;
+    --c-purple: #9b59b6;
+    --c-gray: #7f8c8d;
+  }
+  body { margin: 0; min-height: 100vh; display: flex; justify-content: center; align-items: center; background: #222; }
+
+  /* 单宫容器 */
+  .palace {
+    position: relative;
+    width: var(--p-w);
+    height: var(--p-h);
+    border: 1px solid var(--c-border);
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-family: "Noto Serif SC", "SimSun", serif;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* 顶部星耀三行 */
+  .stars {
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  .row { display: flex; gap: 1px; }
+  .cell { width: 15px; text-align: center; font-size: 11px; line-height: 1; }
+
+  /* 中间流年/小限 */
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 9px;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+  .center .range { font-weight: bold; font-size: 10px; margin-top: 2px; }
+
+  /* 右侧竖排文字（右下角）：长生 / 乙巳 各为独立竖向块，中间留间距 */
+  .side-right {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+  }
+  .side-right .vword {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 10px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+  }
+  .side-right .bold { font-weight: bold; }
+  /* 左侧横排三行文字（左下角：飞廉 / 亡神 / 龙德 各一行） */
+  .side-left {
+    position: absolute;
+    left: 2px;
+    bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    line-height: 1.45;
+    text-align: left;
+  }
+
+  /* 底部宫名 */
+  .palace-name {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--c-red);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  /* 配色 */
+  .c-red    { color: var(--c-red); }
+  .c-blue   { color: var(--c-blue); }
+  .c-purple { color: var(--c-purple); }
+  .c-gray   { color: var(--c-gray); }
+</style>
+</head>
+<body>
+
+<div class="palace" id="palace"></div>
+
+<script>
+/*
+  单宫面板数据配置。
+  切换其他宫位时，只需修改下方 palaceData 中的文字与配色即可。
+  stars: 7 列 × 3 行，每格 { t: 文字, c: 颜色类名（red/blue/purple/gray，空为默认白） }。
+*/
+const palaceData = {
+  name: '迁移宫',
+  stars: [
+    [{ t: '天', c: 'red' }, { t: '相', c: 'red' },    { t: '得', c: 'gray' }],
+    [{ t: '天', c: 'red' }, { t: '钺', c: 'purple' }, { t: '旺', c: 'gray' }],
+    [{ t: '地', c: 'blue' }, { t: '劫', c: '' },       { t: '不', c: 'gray' }],
+    [{ t: '地', c: 'blue' }, { t: '空', c: '' },       { t: '庙', c: 'gray' }],
+    [{ t: '红', c: 'red' }, { t: '鸾', c: 'blue' },   { t: '旺', c: 'gray' }],
+    [{ t: '大', c: '' },     { t: '耗', c: '' },       { t: '陷', c: 'gray' }],
+    [{ t: '龙', c: '' },     { t: '德', c: '' },       { t: '',  c: '' }]
+  ],
+  liunian: [8, 20, 32, 44, 56],
+  xiaoxian: [2, 14, 26, 38, 50],
+  range: '64 ~ 73',
+  left: ['飞廉', '亡神', '龙德'],
+  right: ['长生', '乙巳']
+};
+
+function renderPalace(data, container) {
+  // 按行重组列数据
+  const rows = [[], [], []];
+  data.stars.forEach(col => col.forEach((item, i) => rows[i].push(item)));
+
+  container.innerHTML = `
+    <div class="stars">
+      ${rows.map(row => `
+        <div class="row">
+          ${row.map(item => `<span class="cell ${item.c ? 'c-' + item.c : ''}">${item.t}</span>`).join('')}
+        </div>
+      `).join('')}
+    </div>
+    <div class="center">
+      <div>流年：${data.liunian.join(',')}</div>
+      <div>小限：${data.xiaoxian.join(',')}</div>
+      <div class="range">${data.range}</div>
+    </div>
+    <div class="side side-left">${data.left.map(t => `<div>${t}</div>`).join('')}</div>
+    <div class="side side-right">${data.right.map(t => `<div class="vword ${t === '乙巳' ? 'bold' : ''}">${t}</div>`).join('')}</div>
+    <div class="palace-name">${data.name}</div>
+  `;
+}
+
+renderPalace(palaceData, document.getElementById('palace'));
+</script>
+
+</body>
+</html>

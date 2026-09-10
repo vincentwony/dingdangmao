@@ -1,0 +1,20 @@
+{
+  "watch": ["."],
+  "ignore": [
+    "node_modules/**",
+    "core/**",
+    "verify/**",
+    "dist/**",
+    "*.log",
+    ".server.*",
+    ".server.log",
+    ".server.err",
+    ".server.pid",
+    ".restart.log",
+    "**/*.test.js",
+    "**/*.test.mjs"
+  ],
+  "ext": "js,json,mjs",
+  "signal": "SIGTERM",
+  "delay": 800
+}

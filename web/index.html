@@ -5,8 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
 <meta name="x5-fullscreen" content="true">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="var(--text-heading)">
+<meta name="theme-color" content="#3C2415">
 <title>天地玄黄 · 日月更替 — 八卦掌决版</title>
+
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="万年历">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png">
+<link rel="apple-touch-icon" sizes="any" href="/icons/icon-maskable-512.png">
 
 <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -385,5 +395,19 @@ body::after {
 })();
 </script>
 
+<!-- PWA：注册 Service Worker（离线壳 + 缓存） -->
+<script>
+// Service Worker 仅在「安全上下文」(HTTPS / localhost) 可用。
+// 局域网 HTTP 下跳过属预期行为，在线功能不受影响。
+if ('serviceWorker' in navigator && window.isSecureContext) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function (e) {
+      console.warn('[PWA] SW 注册失败：', e);
+    });
+  });
+} else {
+  console.info('[PWA] 非安全上下文，跳过 SW 注册（离线能力不可用，在线功能不受影响）');
+}
+</script>
 </body>
 </html>

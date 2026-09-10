@@ -3,6 +3,8 @@
 
 import { State } from './state.js';
 import { $, _highlightFab } from './dom-helpers.js';
+import { HMAC_KEY } from './hmac-spec.js';
+import { hmacSha256Hex } from './sha256.js';
 
 // ══════ 状态 ══════
 var _panelEl = null;
@@ -10,12 +12,7 @@ var _visible = false;
 var _initializing = false; // 初始化期间跳过 change 事件处理
 
 // ══════ 设置键 ══════
-var SETTING_KEYS = {
-  showWulu: { key: 'cal_showWulu', def: true, id: 'togWuluBadge' },
-  showDaojiaMonth: { key: 'cal_showDaojiaMonth', def: true, id: 'togDaojiaMonth' },
-  showDaojiaYear: { key: 'cal_showDaojiaYear', def: true, id: 'togDaojiaYear' },
-  showJinshenqisha: { key: 'cal_showJinshenqisha', def: true, id: 'togJinshenqishaBadge' }
-};
+var SETTING_KEYS = {};
 
 /** 读取设置 */
 function getSetting(key, def) {
@@ -109,27 +106,15 @@ function positionPanel() {
 function bindPanelEvents() {
   if (!_panelEl) return;
 
-  // Toggle 开关变更
-  _panelEl.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
-    cb.addEventListener('change', function() {
-      if (_initializing) return; // 初始化期间静默
-      if (cb.id === 'togDarkMode') {
-        toggleTheme(cb.checked);
-      } else if (cb.id === 'togWuluBadge') {
-        saveSetting('cal_showWulu', cb.checked);
-        emitSettingsChanged();
-      } else if (cb.id === 'togDaojiaMonth') {
-        saveSetting('cal_showDaojiaMonth', cb.checked);
-        emitSettingsChanged();
-      } else if (cb.id === 'togDaojiaYear') {
-        saveSetting('cal_showDaojiaYear', cb.checked);
-        emitSettingsChanged();
-      } else if (cb.id === 'togJinshenqishaBadge') {
-        saveSetting('cal_showJinshenqisha', cb.checked);
-        emitSettingsChanged();
-      }
+    // Toggle 开关变更
+    _panelEl.querySelectorAll('input[type=checkbox]').forEach(function(cb) {
+      cb.addEventListener('change', function() {
+        if (_initializing) return; // 初始化期间静默
+        if (cb.id === 'togDarkMode') {
+          toggleTheme(cb.checked);
+        }
+      });
     });
-  });
 
   // 字号按钮
   _panelEl.querySelectorAll('.fs-btn').forEach(function(btn) {
@@ -150,12 +135,6 @@ function bindPanelEvents() {
 function initToggleStates() {
   _initializing = true;
   try {
-    Object.keys(SETTING_KEYS).forEach(function(k) {
-      var cfg = SETTING_KEYS[k];
-      var el = document.getElementById(cfg.id);
-      if (el) el.checked = getSetting(cfg.key, cfg.def);
-    });
-
     // 暗色模式
     var darkTog = document.getElementById('togDarkMode');
     if (darkTog) {
@@ -288,11 +267,28 @@ async function handleActivate() {
   var message = mid + tier + expireDate;
 
   try {
-    var HMAC_KEY = '381cb51f0923fc771bf7e81547c485f7';
-    var keyBuf = new TextEncoder().encode(HMAC_KEY);
-    var cryptoKey = await crypto.subtle.importKey('raw', keyBuf, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-    var sigBuf = await crypto.subtle.sign('HMAC', cryptoKey, new TextEncoder().encode(message));
-    var sigHex = Array.from(new Uint8Array(sigBuf)).map(function(b) { return b.toString(16).padStart(2,'0').toUpperCase(); }).join('');
+    // 密钥单一来源：hmac-spec.js（禁止在此再硬编码一份）
+    // crypto.subtle 仅安全上下文可用；局域网 HTTP（手机扫码访问）下为 undefined，
+    // 直接调用会抛异常导致激活功能完全不可用，故与 api.js 同策略做能力探测 + 纯 JS 回退。
+    var sigHex;
+    var _subtleOK = false;
+    try {
+      _subtleOK = typeof crypto !== 'undefined' && crypto.subtle
+        && typeof crypto.subtle.importKey === 'function';
+    } catch (e0) { _subtleOK = false; }
+
+    if (_subtleOK) {
+      try {
+        var keyBuf = new TextEncoder().encode(HMAC_KEY);
+        var cryptoKey = await crypto.subtle.importKey('raw', keyBuf, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+        var sigBuf = await crypto.subtle.sign('HMAC', cryptoKey, new TextEncoder().encode(message));
+        sigHex = Array.from(new Uint8Array(sigBuf)).map(function(b) { return b.toString(16).padStart(2,'0').toUpperCase(); }).join('');
+      } catch (e1) { _subtleOK = false; }
+    }
+    if (!_subtleOK) {
+      sigHex = hmacSha256Hex(HMAC_KEY, message).toUpperCase();
+    }
+
     var expectedCheck = sigHex.substring(0, 8);
 
     if (checkCode !== expectedCheck) {
@@ -366,16 +362,6 @@ function updateFontSizeButtons() {
     var fs = btn.getAttribute('data-fs');
     if (fs === current) btn.classList.add('fs-active');
     else btn.classList.remove('fs-active');
-  });
-}
-
-/** 发出设置变更事件（日历会监听并刷新） */
-function emitSettingsChanged() {
-  State.emit('settings:changed', {
-    showWulu: getSetting('cal_showWulu', true),
-    showDaojiaMonth: getSetting('cal_showDaojiaMonth', true),
-    showDaojiaYear: getSetting('cal_showDaojiaYear', true),
-    showJinshenqisha: getSetting('cal_showJinshenqisha', true)
   });
 }
 

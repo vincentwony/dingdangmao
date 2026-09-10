@@ -4,6 +4,7 @@
 import { State } from './state.js';
 import { API } from './api.js';
 import { $, $$, _highlightFab, closeFullDetail } from './dom-helpers.js';
+import { parseClockTime } from './time-util.js';
 
 // ══════ localStorage 安全读写 ══════
 function _lsGet(key, def) {
@@ -25,10 +26,94 @@ window._tldwSwitch = function(el) {
   document.querySelectorAll('.tldw-panel').forEach(function(p){ p.style.display = p.getAttribute('data-tldw') === mode ? '' : 'none'; });
 };
 
+/** 小儿关煞双面板切换（正统子平 / 民间） */
+window._xiaoguanSwitch = function(el) {
+  var mode = el.getAttribute('data-mode');
+  var toggle = el.parentElement;
+  toggle.querySelectorAll('.engine-opt').forEach(function(o){ o.classList.toggle('active', o.getAttribute('data-mode') === mode); });
+  var wrap = el.closest('.ch-content') || document;
+  wrap.querySelectorAll('.xg-panel').forEach(function(p){ p.style.display = p.getAttribute('data-xg') === mode ? '' : 'none'; });
+};
+
 window.toggleCardCollapse = function(el) {
   var card = el.closest('.card');
   if (card) card.classList.toggle('collapsed');
 };
+
+/** 渲染第伍章 · 小儿关煞 内容（数据来自服务端 xiaoErGuanSha） */
+function _renderXiaoErGuanSha(xg) {
+  if (!xg) return '';
+  var h = '';
+  // 警示条（常显）
+  h += '<div class="xg-warn">⚠ ' + (xg.ageNote || '限 16 岁前参考 · 民俗说法仅供参考，不可迷信') + '</div>';
+
+  // 性别横幅（分男女：明确本造性别，关煞按性别判定，不混为一谈）
+  var sexCls = (xg.sex === 0) ? 'female' : 'male';
+  var sexText = xg.sexText || (sexCls === 'female' ? '坤造·女命' : '乾造·男命');
+  h += '<div class="xg-sex-banner xg-sex-' + sexCls + '">⚧ 命主：<b>' + sexText + '</b> · 关煞按本造性别分别判定</div>';
+
+  // 面板切换
+  h += '<div class="xg-toggle">';
+  h += '<span class="engine-opt active" data-mode="zhengtong" style="cursor:pointer" onclick="window._xiaoguanSwitch(this)">正统子平</span>';
+  h += '<span class="engine-opt" data-mode="minjian" style="cursor:pointer" onclick="window._xiaoguanSwitch(this)">民间三十六关 / 七十二煞</span>';
+  h += '</div>';
+
+  // ── 面板 A：正统子平 ──
+  h += '<div class="xg-panel" data-xg="zhengtong">';
+  (xg.zhengtong || []).forEach(function(z) {
+    h += '<div class="xg-zt-card">';
+    h += '<div class="xg-zt-title"><span class="xg-zt-gan">' + z.dayGan + '日</span> 七杀 <b>' + z.guan + '</b>（' + z.guanWx + '）为<strong>关</strong>，<b>' + z.guanXian.join('/') + '</b> 岁关卡；偏财 <b>' + z.sha + '</b>（' + z.shaWx + '）为<strong>煞</strong>，<b>' + z.shaXian.join('/') + '</b> 岁煞期</div>';
+    h += '<div class="xg-zt-shen shen-' + (z.shenQiangRuo === '身强' ? 'qiang' : 'ruo') + '">命主 ' + z.shenQiangRuo + ' · ' + (z.shenQiangRuo === '身强' ? '关煞可挡，凶象减轻' : '身弱宜慎，幼年须护') + '</div>';
+    h += '<div class="xg-zt-detail">' + z.detail + '</div>';
+    h += '<div class="xg-chu">📚 ' + z.chu + '</div>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  // ── 面板 B：民间 ──
+  h += '<div class="xg-panel" data-xg="minjian" style="display:none">';
+
+  h += '<div class="xg-sub-h">民间三十六关 · 命中 <b>' + (xg.total36 || 0) + '</b> 项</div>';
+  if (!xg.minjian36 || !xg.minjian36.length) {
+    h += '<div class="xg-empty">未犯三十六关，可喜。</div>';
+  } else {
+    xg.minjian36.forEach(function(g) {
+      h += '<div class="xg-guan-card' + (g.level === '重' ? ' lv-zhong' : (g.level === '中' ? ' lv-zhong2' : '')) + (g.heavy ? ' is-heavy' : '') + '">';
+      h += '<div class="xg-guan-head"><span class="xg-guan-name">' + g.idx + '. ' + g.name + '</span>';
+      // 性别标签：男命专属 / 女命偏重 / 男女通用
+      if (g.sexLabel) h += '<span class="xg-sex-badge xg-sex-' + (g.applySex === 'male' ? 'male' : g.applySex === 'female' ? 'female' : 'both') + '">' + g.sexLabel + '</span>';
+      if (g.level) h += '<span class="xg-level xg-level-' + g.level + '">' + g.level + '</span>';
+      h += '</div>';
+      h += '<div class="xg-guan-trigger">触发：' + g.trigger + '</div>';
+      h += '<div class="xg-guan-yiyi"><span class="xg-tag">寓意</span>' + g.yiYi + '</div>';
+      h += '<div class="xg-guan-jihou"><span class="xg-tag">忌讳</span>' + g.jiHou + '</div>';
+      // 性别定级提示（阎王关按性别：女命偏重/男命较轻）；其余保留原 sexNote
+      if (g.sexWeight) h += '<div class="xg-guan-sex xg-weight-' + (g.sexWeight.indexOf('女') >= 0 ? 'female' : 'male') + '">⚧ ' + g.sexWeight + '</div>';
+      else if (g.sexNote) h += '<div class="xg-guan-sex">⚧ ' + g.sexNote + '</div>';
+      h += '<div class="xg-chu">📚 ' + g.chu + ' · ' + g.conf + '</div>';
+      h += '</div>';
+    });
+  }
+
+  h += '<div class="xg-sub-h">民间七十二煞子集 · 命中 <b>' + (xg.total72 || 0) + '</b> 项 <span class="xg-minyi">民俗衍生（非正统八字典籍）</span></div>';
+  if (!xg.minjian72 || !xg.minjian72.length) {
+    h += '<div class="xg-empty">未犯衍生煞。</div>';
+  } else {
+    xg.minjian72.forEach(function(s) {
+      h += '<div class="xg-sha-card">';
+      h += '<div class="xg-guan-head"><span class="xg-guan-name">' + s.name + '</span>';
+      if (s.sexLabel) h += '<span class="xg-sex-badge xg-sex-' + (s.applySex === 'male' ? 'male' : s.applySex === 'female' ? 'female' : 'both') + '">' + s.sexLabel + '</span>';
+      h += '<span class="xg-minyi">民俗衍生</span></div>';
+      h += '<div class="xg-guan-trigger">触发：' + s.trigger + '</div>';
+      h += '<div class="xg-guan-yiyi"><span class="xg-tag">寓意</span>' + s.yiYi + '</div>';
+      h += '<div class="xg-chu">📚 ' + s.chu + ' · ' + s.conf + '</div>';
+      h += '</div>';
+    });
+  }
+  h += '</div>'; // minjian panel
+
+  return h;
+}
 // 别名：nianli-ui 中 onclick 引用了 _toggleCardCollapse（带下划线）
 window._toggleCardCollapse = window.toggleCardCollapse;
 
@@ -43,15 +128,12 @@ var _LUNAR_DAYS = ['初一','初二','初三','初四','初五','初六','初七
 
 /** 显示八字页面 */
 function show() {
-  var calRoot = document.getElementById('cal-root');
-  if (calRoot) calRoot.style.display = 'none';
-  var ziweiRoot = document.getElementById('ziwei-root');
-  if (ziweiRoot) ziweiRoot.style.display = 'none';
   var root = document.getElementById('bazi-root');
   if (!root) return;
+  // 集中式切换页面根：显示八字根，隐藏其它（含 home-root）
+  window.__setActivePage('bazi-root');
   var oldResult = document.getElementById('baziResultArea');
   if (oldResult) oldResult.remove();
-  root.style.display = 'block';
   _highlightFab('tabBazi');
   State.emit('page:changed', 'bazi');
   // 强制重建表单 (2026-06-27: 双引擎切换需要新版 action-bar)
@@ -60,73 +142,131 @@ function show() {
   bindFormEvents();
 }
 
-/** 构建表单 HTML — 2026-06-29 美学重设计 */
+// ═══ 十二时辰映射 ═══
+var _SHICHEN = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+var _SHICHEN_TIME = ['23:30','01:30','03:30','05:30','07:30','09:30','11:30','13:30','15:30','17:30','19:30','21:30'];
+function _hourToShichenIdx(h, m) {
+  var t = (h||0)*60 + (m||0);
+  if (t < 60) return 0;        // 0:00–0:59 子
+  if (t < 180) return 1;       // 1:00–2:59 丑
+  if (t < 300) return 2;       // 3:00–4:59 寅
+  if (t < 420) return 3;       // 5:00–6:59 卯
+  if (t < 540) return 4;       // 7:00–8:59 辰
+  if (t < 660) return 5;       // 9:00–10:59 巳
+  if (t < 780) return 6;       // 11:00–12:59 午
+  if (t < 900) return 7;       // 13:00–14:59 未
+  if (t < 1020) return 8;      // 15:00–16:59 申
+  if (t < 1140) return 9;      // 17:00–18:59 酉
+  if (t < 1260) return 10;     // 19:00–20:59 戌
+  if (t < 1380) return 11;     // 21:00–22:59 亥
+  return 0;                    // 23:00–23:59 子
+}
+function _syncShichenFromTime() {
+  var his = $('#Cml_his'); if (!his) return;
+  var parts = (his.value || '08:30').split(':');
+  var h = parseInt(parts[0],10) || 0, m = parseInt(parts[1],10) || 0;
+  var idx = _hourToShichenIdx(h, m);
+  var cells = $$('.bazi-shichen-cell');
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].classList.toggle('active', parseInt(cells[i].getAttribute('data-idx'),10) === idx);
+  }
+  var hint = $('#shichenHint');
+  if (hint) hint.textContent = '当前时辰：' + _SHICHEN[idx] + '时';
+}
+
+/** 构建表单 HTML — 古典卷轴 · 命主档案式（2026-07-14 重设计） */
 function buildFormHTML() {
-  return '<div class="bazi-header">' +
-    '<div class="bazi-title">八字排盘分析</div>' +
-    '<div class="bazi-action-bar">' +
-      '<span class="engine-toggle">' +
-        '<span class="engine-opt active" data-engine="A" title="《滴天髓》顺势派">A·滴天髓</span>' +
-        '<span class="engine-opt" data-engine="B" title="《子平真诠》根气派">B·子平</span>' +
-      '</span>' +
-      '<button class="bazi-action-btn" id="baziBtnSave"><i class="ti ti-device-floppy"></i> 保存</button>' +
-      '<button class="bazi-action-btn" id="baziBtnArchive"><i class="ti ti-archive"></i> 档案</button>' +
-    '</div>' +
-  '</div>' +
-  '<div class="bazi-input-form">' +
-    '<div class="bazi-card">' +
-      '<div class="bazi-card-body">' +
-        // ── 区块1：排盘人信息 ──
-        '<div class="bazi-section"><div class="bazi-section-label">排盘人</div>' +
-        '<div class="bazi-row cols-2">' +
-          '<div class="bazi-field"><label class="bazi-label">姓名</label>' +
-            '<input id="Name_input" type="text" value="未知" class="bazi-input" placeholder="姓名"></div>' +
-          '<div class="bazi-field"><label class="bazi-label">性别</label>' +
-            '<div class="bazi-sex-toggle" id="Sex_toggle">' +
-              '<button class="bazi-sex-btn active" data-sex="1"><i class="ti ti-mars"></i> 男</button>' +
-              '<button class="bazi-sex-btn" data-sex="0"><i class="ti ti-venus"></i> 女</button>' +
-            '</div>' +
-            '<input type="hidden" id="Sex_input" value="1">' +
-          '</div>' +
-        '</div></div>' +
-        // ── 区块2：出生时间 ──
-        '<div class="bazi-section"><div class="bazi-section-label">出生时间</div>' +
-        '<div class="bazi-cal-tabs">' +
-          '<button class="bazi-cal-tab active" data-cal="1"><i class="ti ti-calendar"></i> 公历</button>' +
-          '<button class="bazi-cal-tab" data-cal="0"><i class="ti ti-moon"></i> 农历</button>' +
-          '<input type="hidden" id="gnlsel" value="1">' +
+  var shichenGrid = '';
+  for (var i = 0; i < _SHICHEN.length; i++) {
+    shichenGrid += '<span class="bazi-shichen-cell" data-idx="' + i + '" data-time="' + _SHICHEN_TIME[i] + '">' + _SHICHEN[i] + '</span>';
+  }
+  return '' +
+  '<div class="bazi-scroll">' +
+    '<div class="bazi-scroll-rod top"></div>' +
+    '<div class="bazi-form-title">八字排盘分析</div>' +
+    // ── 命主档案卡 ──
+    '<div class="bazi-profile-card">' +
+      '<div class="bazi-avatar" id="baziAvatar">?</div>' +
+      '<input id="Name_input" type="text" value="" class="bazi-name-input" placeholder="姓名">' +
+      '<div class="bazi-sex-toggle" id="Sex_toggle">' +
+        '<button class="bazi-sex-btn active" data-sex="1">男</button>' +
+        '<button class="bazi-sex-btn" data-sex="0">女</button>' +
+      '</div>' +
+      '<input type="hidden" id="Sex_input" value="1">' +
+      '<div class="bazi-profile-actions">' +
+        '<div class="bazi-mode-pills" id="Engine_pills">' +
+          '<span class="bazi-mode-pill active" data-engine="A" title="《滴天髓》顺势派">A·滴天髓</span>' +
+          '<span class="bazi-mode-pill" data-engine="B" title="《子平真诠》根气派">B·子平</span>' +
         '</div>' +
-        '<div class="bazi-row cols-4">' +
-          '<div class="bazi-field"><label class="bazi-label">年</label>' +
-            '<select id="Cml_y" class="bazi-input">' + _yearOptions() + '</select>' +
-            '<input type="number" id="Cml_y_custom" class="bazi-input" placeholder="年" style="display:none" min="-4712" max="9999" disabled>' +
-          '</div>' +
-          '<div class="bazi-field"><label class="bazi-label">月</label>' +
-            '<select id="Cml_m" class="bazi-input">' + _monthOptions(false) + '</select></div>' +
-          '<div class="bazi-field"><label class="bazi-label">日</label>' +
-            '<select id="Cml_d" class="bazi-input">' + _dayOptions(false) + '</select></div>' +
-          '<div class="bazi-field"><label class="bazi-label">时间</label>' +
-            '<input id="Cml_his" type="time" value="08:30" class="bazi-input"></div>' +
-        '</div>' +
-        '<div id="leapMonthRow" style="display:none;margin-top:4px;">' +
-          '<span id="leapMonthStatus" class="bazi-leap-status"></span>' +
-          '<label id="leapMonthLabel" class="bazi-leap-label" style="display:none;">' +
-            '<input type="checkbox" id="chkLeapMonth" value="1"> 闰月' +
-          '</label>' +
-        '</div></div>' +
-        // ── 区块3：出生地点 ──
-        '<div class="bazi-section"><div class="bazi-section-label">出生地点</div>' +
-        '<div class="bazi-field">' +
-          '<div id="regionCascaderContainer"></div>' +
-          '<input type="hidden" id="Jd_input" value="116.4">' +
-          '<input type="hidden" id="Wd_input" value="39.9">' +
-        '</div></div>' +
-        // ── 提交 ──
-        '<div class="bazi-submit-row">' +
-          '<button class="bazi-action-btn bazi-action-go" id="baziBtnSubmit"><i class="ti ti-check"></i> 开始排盘</button>' +
-        '</div>' +
+        '<button class="bazi-action-btn" id="baziBtnSave">保存</button>' +
+        '<button class="bazi-action-btn" id="baziBtnArchive">档案</button>' +
       '</div>' +
     '</div>' +
+    // ── 表单主体 ──
+    '<div class="bazi-input-form">' +
+      // ── 出生时间 ──
+      '<div class="bazi-section"><div class="bazi-section-label">出生时间</div>' +
+      '<div class="bazi-cal-tabs">' +
+        '<button class="bazi-cal-tab active" data-cal="1">公历</button>' +
+        '<button class="bazi-cal-tab" data-cal="0">农历</button>' +
+        '<input type="hidden" id="gnlsel" value="1">' +
+      '</div>' +
+      '<div class="bazi-row cols-4">' +
+        '<div class="bazi-field"><label class="bazi-label">年</label>' +
+          '<select id="Cml_y" class="bazi-input">' + _yearOptions() + '</select>' +
+          '<input type="number" id="Cml_y_custom" class="bazi-input" placeholder="年" style="display:none" min="-4712" max="9999" disabled>' +
+        '</div>' +
+        '<div class="bazi-field"><label class="bazi-label">月</label>' +
+          '<select id="Cml_m" class="bazi-input">' + _monthOptions(false) + '</select></div>' +
+        '<div class="bazi-field"><label class="bazi-label">日</label>' +
+          '<select id="Cml_d" class="bazi-input">' + _dayOptions(false) + '</select></div>' +
+        '<div class="bazi-field"><label class="bazi-label">时间</label>' +
+          '<input id="Cml_his" type="time" value="08:30" class="bazi-input"></div>' +
+        '<div class="bazi-field"><label class="bazi-label">夏令时</label>' +
+          '<select id="Dst_sel" class="bazi-input" title="1986–1991 年中国实行夏令时，期间出生北京时间实为 UTC+9，需减 1 小时为标准时再排盘。">' +
+            '<option value="auto" selected>自动（1986–1991）</option>' +
+            '<option value="on">强制修正</option>' +
+            '<option value="off">不修正</option>' +
+          '</select></div>' +
+        '<div class="bazi-field"><label class="bazi-label">子时派</label>' +
+          '<select id="ZiShi_sel" class="bazi-input" title="夜子时：23:00 起日柱换次日（本程序默认）。早子时：23:00 当日日柱不变，子时仍属当日。">' +
+            '<option value="wan" selected>夜子时（默认）</option>' +
+            '<option value="zao">早子时</option>' +
+          '</select></div>' +
+      '</div>' +
+      '<div id="leapMonthRow" style="display:none;margin-top:4px;">' +
+        '<span id="leapMonthStatus" class="bazi-leap-status"></span>' +
+        '<label id="leapMonthLabel" class="bazi-leap-label" style="display:none;">' +
+          '<input type="checkbox" id="chkLeapMonth" value="1"> 闰月' +
+        '</label>' +
+      '</div>' +
+      '<div class="bazi-time-hint">' +
+        '<span id="shichenHint">当前时辰：辰时</span>' +
+        '<span class="bazi-now-link" id="baziNowBtn">使用当前时间</span>' +
+      '</div>' +
+      '<div class="bazi-shichen-grid" id="shichenGrid">' + shichenGrid + '</div>' +
+      '</div>' +
+      // ── 出生地点 ──
+      '<div class="bazi-section"><div class="bazi-section-label">出生地点</div>' +
+      '<div class="bazi-field">' +
+        '<div id="regionCascaderContainer"></div>' +
+        '<input type="hidden" id="Jd_input" value="116.4">' +
+        '<input type="hidden" id="Wd_input" value="39.9">' +
+      '</div>' +
+      '<div class="bazi-recent">' +
+        '<span class="bazi-recent-chip" data-prov="北京市" data-region="北京">北京</span>' +
+        '<span class="bazi-recent-chip" data-prov="上海市" data-region="上海">上海</span>' +
+        '<span class="bazi-recent-chip" data-prov="广东省" data-region="广州">广州</span>' +
+        '<span class="bazi-recent-chip" data-prov="四川省" data-region="成都">成都</span>' +
+        '<span class="bazi-recent-chip" data-prov="广东省" data-region="深圳">深圳</span>' +
+      '</div>' +
+      '</div>' +
+      // ── 提交 ──
+      '<div class="bazi-submit-row">' +
+        '<button class="bazi-action-btn bazi-action-go" id="baziBtnSubmit">开始排盘</button>' +
+      '</div>' +
+    '</div>' +
+    '<div class="bazi-scroll-rod bottom"></div>' +
   '</div>';
 }
 
@@ -139,6 +279,15 @@ function populateFormDefaults() {
   if (yEl) yEl.value = now.getFullYear();
   if (mEl) mEl.value = now.getMonth() + 1;
   if (dEl) dEl.value = now.getDate();
+
+  // 恢复记忆的默认城市（与“设置·默认城市”联动）
+  var baziCity = _lsGet('bazi_city', '');
+  if (baziCity) {
+    var cityInput = $('#citySearchInput'); if (cityInput) cityInput.value = baziCity;
+    var geoDisplay = $('#geoDisplay'); if (geoDisplay) geoDisplay.textContent = baziCity;
+    var jdEl = $('#Jd_input'); if (jdEl) { var bj = _lsGet('bazi_jd', ''); if (bj) jdEl.value = bj; }
+    var wdEl = $('#Wd_input'); if (wdEl) { var bw = _lsGet('bazi_wd', ''); if (bw) wdEl.value = bw; }
+  }
 }
 
 /** 绑定表单事件 */
@@ -153,13 +302,13 @@ function bindFormEvents() {
   if (ySel && !ySel._bound) {
     ySel._bound = true;
   }
-  // 引擎切换按钮
-  var engineOpts = $$('.engine-opt');
+  // 引擎切换按钮（命主档案卡内 pills）
+  var engineOpts = $$('.bazi-mode-pill');
   for (var ei = 0; ei < engineOpts.length; ei++) {
     if (!engineOpts[ei]._bound) {
       engineOpts[ei]._bound = true;
       engineOpts[ei].addEventListener('click', function() {
-        var all = $$('.engine-opt');
+        var all = $$('.bazi-mode-pill');
         for (var aj = 0; aj < all.length; aj++) all[aj].classList.remove('active');
         this.classList.add('active');
         // 如果已有结果，立即用另一套引擎数据重新渲染（无需重新提交）
@@ -244,6 +393,66 @@ function bindFormEvents() {
   // 回退：旧文本框搜索
   else if (typeof initCitySearch === 'function') {
     initCitySearch();
+  }
+
+  // ── 十二时辰网格 click ──
+  var shichenGrid = $('#shichenGrid');
+  if (shichenGrid && !shichenGrid._bound) {
+    shichenGrid._bound = true;
+    shichenGrid.addEventListener('click', function(e) {
+      var cell = e.target.closest('.bazi-shichen-cell');
+      if (!cell) return;
+      var t = cell.getAttribute('data-time');
+      var his = $('#Cml_his');
+      if (his) his.value = t;
+      _syncShichenFromTime();
+    });
+  }
+  // ── 时间 input 变化同步时辰 ──
+  var hisEl = $('#Cml_his');
+  if (hisEl && !hisEl._boundShi) {
+    hisEl._boundShi = true;
+    hisEl.addEventListener('input', _syncShichenFromTime);
+  }
+  // ── 使用当前时间 ──
+  var nowBtn = $('#baziNowBtn');
+  if (nowBtn && !nowBtn._bound) {
+    nowBtn._bound = true;
+    nowBtn.addEventListener('click', function() {
+      var now = new Date();
+      var yEl = $('#Cml_y'), mEl = $('#Cml_m'), dEl = $('#Cml_d'), hhEl = $('#Cml_his');
+      if (yEl) yEl.value = now.getFullYear();
+      if (mEl) mEl.value = now.getMonth() + 1;
+      if (dEl) dEl.value = now.getDate();
+      if (hhEl) hhEl.value = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+      _syncShichenFromTime();
+      if ((($('#gnlsel') || {}).value || '1') === '0') _updateMonthDayOptions();
+    });
+  }
+  // ── 最近城市快捷 ──
+  var chips = $$('.bazi-recent-chip');
+  for (var ri = 0; ri < chips.length; ri++) {
+    if (chips[ri]._bound) continue;
+    chips[ri]._bound = true;
+    chips[ri].addEventListener('click', function() {
+      var prov = this.getAttribute('data-prov'), region = this.getAttribute('data-region');
+      if (window._rcSelectByRegion) window._rcSelectByRegion(prov, region);
+    });
+  }
+  // ── 初始同步时辰高亮 ──
+  _syncShichenFromTime();
+
+  // ── 姓名输入同步头像 ──
+  var nameInput = $('#Name_input');
+  var avatar = $('#baziAvatar');
+  if (nameInput && avatar && !nameInput._boundAvatar) {
+    nameInput._boundAvatar = true;
+    function _updateAvatar() {
+      var v = (nameInput.value || '').trim();
+      avatar.textContent = v ? v.charAt(0) : '?';
+    }
+    nameInput.addEventListener('input', _updateAvatar);
+    _updateAvatar();
   }
 }
 
@@ -390,6 +599,10 @@ function initCitySearch() {
       $('#Jd_input').value = jd;
       $('#Wd_input').value = wd;
       if (geoDisplay) geoDisplay.textContent = city.province + ' ' + city.name;
+      // 记忆默认城市（供“设置·默认城市”联动）
+      _lsSet('bazi_jd', String(jd));
+      _lsSet('bazi_wd', String(wd));
+      _lsSet('bazi_city', city.province + ' ' + city.name);
     }
   }
 
@@ -445,9 +658,8 @@ async function doCalculate() {
     var y = _getYear();
     var m = parseInt(($('#Cml_m') || {}).value, 10);
     var d = parseInt(($('#Cml_d') || {}).value, 10);
-    var timeStr = (($('#Cml_his') || {}).value || '08:30').split(':');
-    var h = parseInt(timeStr[0], 10) || 12;
-    var min = parseInt(timeStr[1], 10) || 0;
+    var _ct = parseClockTime(($('#Cml_his') || {}).value || '08:30');
+    var h = _ct.h, min = _ct.min;
     var jd = parseFloat(($('#Jd_input') || {}).value) || 116.4;
     var wd = parseFloat(($('#Wd_input') || {}).value) || 39.9;
     // 闰月标记（仅农历时有效）
@@ -461,7 +673,9 @@ async function doCalculate() {
     var payload = {
       name: name, sex: sex, calType: calType,
       y: y, m: m, d: d, h: h, min: min,
-      jd: jd, wd: wd
+      jd: jd, wd: wd,
+      dst: (document.getElementById('Dst_sel') || {}).value || 'auto',
+      ziShi: (document.getElementById('ZiShi_sel') || {}).value || 'wan'
     };
     if (calType === 'nongli') payload.isLeap = isLeap;
 
@@ -585,11 +799,18 @@ function renderResult(data, opts) {
 
 
   // 五行分布条形图 — 插入到五行力量卡片(bz_wuxing)正上方
-  var wxScores = data.wuxingScores || (data.congGe && data.congGe.scores) || null;
+  // 优先采用权威日主强弱引擎的五行得分（与 A/B 比值同源），数组转为 _renderWxDist 所需对象
+  var wxScores = null;
+  if (data.dayMasterScores) {
+    var _dms = data.dayMasterScores;
+    wxScores = { mu: _dms[0], huo: _dms[1], tu: _dms[2], jin: _dms[3], shui: _dms[4] };
+  } else {
+    wxScores = data.wuxingScores || (data.congGe && data.congGe.scores) || null;
+  }
   var wxDistHtml = '';
   if (wxScores) {
     wxDistHtml += '<div class="card" data-card-id="wx-dist">';
-    wxDistHtml += '<div class="card-header"><span><i class="ti ti-chart-dots"></i> 五行力量分布</span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
+    wxDistHtml += '<div class="card-header"><span><i class="ti ti-chart-dots"></i> 五行力量分布 <em class="wx-dist-tag">日主强弱明细</em></span><i class="ti ti-chevron-down card-collapse-icon"></i></div>';
     wxDistHtml += '<div class="card-body">';
     var wxDetails = data.wuxingDetails || null;
     var wxLevels = data.wuxingLevels || null;
@@ -600,7 +821,7 @@ function renderResult(data, opts) {
   // ══════ 古籍章節式卡片渲染 ══════
   // 选中引擎：读取 toggle 状态
   var activeEngine = 'A';
-  var activeOpt = document.querySelector('.engine-opt.active');
+  var activeOpt = document.querySelector('.bazi-mode-pill.active');
   if (activeOpt) activeEngine = activeOpt.getAttribute('data-engine') || 'A';
   var cards = (activeEngine === 'B' && data.cardsV2 && data.cardsV2.length)
     ? data.cardsV2 : (data.cards || []);
@@ -660,7 +881,23 @@ function renderResult(data, opts) {
       html += '</div></div>';
     }
     html += '<div data-ch-unassigned></div>';
-  } else if (data.bzinfo) {
+  }
+  // ══════ 第伍章 · 小儿关煞（常显，独立于 cards 桶，数据来自 xiaoErGuanSha） ══════
+  if (data.xiaoErGuanSha) {
+    var xg = data.xiaoErGuanSha;
+    var xgCount = (xg.total36 || 0) + (xg.total72 || 0);
+    html += '<div class="chapter ch-xiaoguan" data-chapter="xiaoguan">';
+    html += '<div class="chapter-head">';
+    html += '<div class="ch-marker ch-marker-xiaoguan"><span>伍</span></div>';
+    html += '<div class="ch-info"><div class="ch-title">小儿关煞</div><div class="ch-sub">正统子平 · 民间关煞</div></div>';
+    html += '<div class="ch-tail"><span class="ch-count">' + xgCount + ' 项</span><i class="ti ti-chevron-down ch-arrow"></i></div>';
+    html += '</div>';
+    html += '<div class="chapter-body"><div class="ch-rule"></div>';
+    html += '<div class="ch-content" data-ch-content="xiaoguan"></div>';
+    html += '</div></div>';
+  }
+
+  if (data.bzinfo && !(cards && cards.length)) {
     // 回退：DOM 手术
     var tempDiv = document.createElement('div');
     tempDiv.innerHTML = data.bzinfo;
@@ -694,6 +931,11 @@ function renderResult(data, opts) {
         h += buckets[g][i].body;
       }
       el.innerHTML = h;
+    }
+    // ── 第伍章 小儿关煞 内容注入 ──
+    if (data.xiaoErGuanSha) {
+      var xgEl = resultEl.querySelector('.ch-content[data-ch-content="xiaoguan"]');
+      if (xgEl) xgEl.innerHTML = _renderXiaoErGuanSha(data.xiaoErGuanSha);
     }
     var ua = resultEl.querySelector('[data-ch-unassigned]');
     if (ua && unassigned.length) {
@@ -785,7 +1027,7 @@ function doSave() {
         congGeV2: _lastResult.congGeV2 || null,
         geNameV2: _lastResult.geNameV2 || null,
         // 当前选中引擎
-        selectedEngine: (document.querySelector('.engine-opt.active') || {}).getAttribute('data-engine') || 'A',
+        selectedEngine: (document.querySelector('.bazi-mode-pill.active') || {}).getAttribute('data-engine') || 'A',
         wuxingPct: _lastResult.wuxingPct || null,
         wuxingLevels: _lastResult.wuxingLevels || null,
         wuxingDetails: _lastResult.wuxingDetails || null
@@ -798,14 +1040,14 @@ function doSave() {
 /** 五行分布条形图（wuxingScores: {mu,huo,tu,jin,shui}） */
 function _renderWxDist(scores) {
   var order = [{k:'mu',n:'木'},{k:'huo',n:'火'},{k:'tu',n:'土'},{k:'jin',n:'金'},{k:'shui',n:'水'}];
-  var colors = {木:'#4CAF50',火:'#F44336',土:'#FF9800',金:'#FFC107',水:'#2196F3'};
+  var wxVar = {'木':'--bt-gan-wood','火':'--bt-gan-fire','土':'--bt-gan-earth','金':'--bt-gan-metal','水':'--bt-gan-water'};  // 五行色统一引用 --bt-gan-* token（与八字细盘同问真色板，消除 Material 通用色硬编码）
   var total = 0;
   for (var i = 0; i < order.length; i++) { total += scores[order[i].k] || 0; }
   if (total === 0) total = 1;
   var html = '<div class="wx-bar-wrap">';
   for (var i = 0; i < order.length; i++) {
     var o = order[i], v = scores[o.k] || 0, pct = Math.round(v / total * 100);
-    var color = colors[o.n];
+    var color = 'var(' + wxVar[o.n] + ')';
     html += '<div class="wx-bar-item">';
     html += '<span class="wx-bar-label" style="color:' + color + '">' + o.n + '</span>';
     html += '<span class="wx-bar-bg"><span class="wx-bar-fill" style="width:' + pct + '%;background:' + color + ';"></span></span>';

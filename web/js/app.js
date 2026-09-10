@@ -7,7 +7,12 @@ import { _highlightFab, _updateTopNavHeight, $, $$ } from './dom-helpers.js';
 
 // ══════ 导航事件绑定 ══════
 function initNavigation() {
-  // 萬历
+  // 首页
+  $('#tabHome').addEventListener('click', function() {
+    Router.navigate('home');
+  });
+
+  // 万年历
   $('#tabCalendar').addEventListener('click', function() {
     Router.navigate('calendar');
   });
@@ -35,8 +40,131 @@ function initNavigation() {
   // 设置 — 由内联脚本 window.toggleSettingsPanel 直接处理，不走路由
 }
 
+// ══════ 移动端抽屉导航 ══════
+function initDrawer() {
+  var toggle = document.getElementById('navToggle');
+  var drawer = document.getElementById('navDrawer');
+  var scrim = document.getElementById('navScrim');
+  var closeBtn = document.getElementById('navDrawerClose');
+  if (!toggle || !drawer) return;
+
+  var _escHandler = null;
+
+  function open() {
+    requestAnimationFrame(function() {
+      drawer.classList.add('is-open');
+      if (scrim) scrim.classList.add('is-open');
+    });
+    drawer.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    var first = drawer.querySelector('.drawer-item');
+    if (first) { try { first.focus(); } catch (e) {} }
+    _escHandler = function(e) { if (e.key === 'Escape') close(); };
+    document.addEventListener('keydown', _escHandler, true);
+  }
+
+  function close() {
+    drawer.classList.remove('is-open');
+    if (scrim) scrim.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (_escHandler) { document.removeEventListener('keydown', _escHandler, true); _escHandler = null; }
+    try { toggle.focus(); } catch (e) {}
+  }
+
+  toggle.addEventListener('click', function() {
+    if (drawer.classList.contains('is-open')) close(); else open();
+  });
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  if (scrim) scrim.addEventListener('click', close);
+
+  drawer.querySelectorAll('.drawer-item').forEach(function(item) {
+    item.addEventListener('click', function() {
+      var nav = item.getAttribute('data-nav');
+      if (nav) Router.navigate(nav);
+      close();
+    });
+  });
+
+  // 路由切换同步抽屉高亮
+  State.on('route:changed', function(d) {
+    var route = d && d.route ? d.route : '';
+    drawer.querySelectorAll('.drawer-item').forEach(function(item) {
+      item.classList.toggle('is-active', item.getAttribute('data-nav') === route);
+    });
+  });
+}
+
+// ══════ 首页（落地页）交互 ══════
+function initHome() {
+  var homeRoot = document.getElementById('home-root');
+  if (!homeRoot) return;
+
+  // 快捷入口 → 跳转对应路由
+  homeRoot.querySelectorAll('.home-entry').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var nav = btn.getAttribute('data-nav');
+      if (nav) Router.navigate(nav);
+    });
+  });
+
+  // 日期选择器：填充年/月/日
+  var selY = document.getElementById('homeY');
+  var selM = document.getElementById('homeM');
+  var selD = document.getElementById('homeD');
+  if (selY && selM && selD) {
+    var now = new Date();
+    var y0 = now.getFullYear(), m0 = now.getMonth() + 1, d0 = now.getDate();
+    for (var y = 1900; y <= 2100; y++) {
+      var o = document.createElement('option');
+      o.value = String(y); o.textContent = String(y);
+      if (y === y0) o.selected = true;
+      selY.appendChild(o);
+    }
+    for (var m = 1; m <= 12; m++) {
+      var om = document.createElement('option');
+      om.value = String(m); om.textContent = String(m);
+      if (m === m0) om.selected = true;
+      selM.appendChild(om);
+    }
+    function fillDays() {
+      var yy = parseInt(selY.value, 10);
+      var mm = parseInt(selM.value, 10);
+      var dim = new Date(yy, mm, 0).getDate();
+      selD.innerHTML = '';
+      for (var d = 1; d <= dim; d++) {
+        var od = document.createElement('option');
+        od.value = String(d); od.textContent = String(d);
+        if (d === d0 && mm === m0 && yy === y0) od.selected = true;
+        selD.appendChild(od);
+      }
+    }
+    fillDays();
+    selM.addEventListener('change', fillDays);
+    selY.addEventListener('change', fillDays);
+
+    var go = document.getElementById('homeGo');
+    if (go) {
+      go.addEventListener('click', function() {
+        var y = parseInt(selY.value, 10);
+        var m = parseInt(selM.value, 10);
+        var d = parseInt(selD.value, 10);
+        Router.navigate('calendar');
+        State.emit('home:goto-date', { y: y, m: m, d: d });
+      });
+    }
+  }
+}
+
 // ══════ 路由处理 ═════=
 function initRoutes() {
+  Router.register('home', function() {
+    _highlightFab('tabHome');
+    showHomePage();
+  });
+
   Router.register('calendar', function() {
     _highlightFab('tabCalendar');
     showCalendarPage();
@@ -44,6 +172,7 @@ function initRoutes() {
 
   Router.register('nianli', function() {
     _highlightFab('tabNianli');
+    window.__setActivePage('cal-root');   // 立即隐藏首页根，避免异步加载期间漏显
     loadModule('nianli').then(function(mod) {
       if (mod && mod.show) mod.show();
     });
@@ -51,6 +180,7 @@ function initRoutes() {
 
   Router.register('bazi', function() {
     _highlightFab('tabBazi');
+    window.__setActivePage('bazi-root');   // 立即隐藏首页根，避免异步加载期间漏显
     loadModule('bazi').then(function(mod) {
       if (mod && mod.show) mod.show();
     });
@@ -59,13 +189,33 @@ function initRoutes() {
   Router.register('ziwei', function() {
     _highlightFab('tabZiwei');
     _closeDetailIfOpen();
-    showZiweiPage();
+    window.__setActivePage('ziwei-vanilla-root');   // 立即隐藏首页根，避免异步加载期间漏显
+    loadModule('ziwei').then(function(mod) {
+      if (mod && mod.show) mod.show();
+      else showCalendarPage();
+    }).catch(function(e) {
+      console.error('[app] 紫微模块加载失败:', e);
+      showCalendarPage();
+    });
   });
 
   Router.register('note', function() {
     _highlightFab('tabNote');
+    window.__setActivePage('note-root');   // 记事是独立页面，不再是日历覆盖层
     loadModule('note').then(function(mod) {
-      if (mod && mod.openForSelected) mod.openForSelected();
+      if (mod && mod.renderNotePage) mod.renderNotePage();
+    });
+  });
+
+  Router.register('choose', function() {
+    // 择日助手独立页面（hash: #choose）；顶栏保留，日历底部 Tab 仍可辨识来源
+    _highlightFab('tabCalendar');
+    window.__setActivePage('choose-root');
+    loadModule('choose').then(function(mod) {
+      if (mod && mod.show) mod.show();
+    }).catch(function(e) {
+      console.error('[app] 择日模块加载失败:', e);
+      showCalendarPage();
     });
   });
 
@@ -77,18 +227,24 @@ function initRoutes() {
   });
 }
 
+// ══════ 页面根切换（集中式：唯一权威，避免漏藏兄弟根） ══════
+// 所有页面根在此登记；切页时先全部隐藏，再只显示目标根。
+var PAGE_ROOTS = ['home-root', 'cal-root', 'choose-root', 'bazi-root', 'ziwei-root', 'ziwei-vanilla-root', 'detail-root', 'note-root'];
+function setActivePage(targetId) {
+  PAGE_ROOTS.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = (id === targetId) ? 'block' : 'none';
+  });
+}
+window.__setActivePage = setActivePage;
+
 // ══════ 页面显示 ══════
 function showCalendarPage() {
   // 恢复主应用顶栏（紫微 iframe 中会隐藏）
   var topNav0 = document.querySelector('.top-nav');
   if (topNav0) topNav0.style.display = '';
-  // 显示日历区，隐藏八字区和紫微区
-  var calRoot = document.getElementById('cal-root');
-  if (calRoot) calRoot.style.display = 'block';
-  var baziRoot = document.getElementById('bazi-root');
-  if (baziRoot) baziRoot.style.display = 'none';
-  var ziweiRoot = document.getElementById('ziwei-root');
-  if (ziweiRoot) ziweiRoot.style.display = 'none';
+  // 集中式切换页面根：显示日历根，隐藏其它（含 home-root）
+  setActivePage('cal-root');
   // 清理旧的八字结果区域
   var oldArea = document.getElementById('baziResultArea');
   if (oldArea) oldArea.remove();
@@ -100,6 +256,17 @@ function showCalendarPage() {
   // 关闭详情浮层（可能还开着）
   _closeDetailIfOpen();
   State.emit('page:changed', 'calendar');
+}
+
+// ══════ 显示首页（落地页） ══════
+function showHomePage() {
+  // 恢复主应用顶栏
+  var topNav0 = document.querySelector('.top-nav');
+  if (topNav0) topNav0.style.display = '';
+  // 集中式切换页面根：显示首页根，隐藏其它
+  setActivePage('home-root');
+  _closeDetailIfOpen();
+  State.emit('page:changed', 'home');
 }
 
 /** 显示紫微斗数（iframe 覆盖层，React 通过 URL 参数读取表单） */
@@ -150,15 +317,11 @@ function showZiweiPage() {
   // zh-CN 放在 path 中（React 路由 /:lng?/astrolabe 从路径取语言参数）
   iframe.src = '/ziwei/' + '#/zh-CN/astrolabe' + qs;
 
-  ziweiRoot.style.display = 'block';
+  setActivePage('ziwei-root');   // 集中式：显示 iframe 根，隐藏其余（含 home-root）
   // 隐藏主应用顶栏，让紫微 App 自己的导航（查盘/统计/语言）可见
   var topNav = document.querySelector('.top-nav');
   if (topNav) topNav.style.display = 'none';
-  // 隐藏其他页面
-  var calRoot = document.getElementById('cal-root');
-  var baziRoot = document.getElementById('bazi-root');
-  if (calRoot) calRoot.style.display = 'none';
-  if (baziRoot) baziRoot.style.display = 'none';
+  // （其它页面根已由 setActivePage 统一隐藏）
   State.emit('page:changed', 'ziwei');
 
   // ESC 键关闭紫微 iframe
@@ -191,18 +354,28 @@ function _closeDetailIfOpen() {
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
   }
+  // 同时复位内联日详情（#cal-detail-inline 是 cal-root 子节点，
+  // 旧的 _closeDetailIfOpen 只关了模态浮层，内联残留会泄漏到其它复用 cal-root 的页面）
+  var inline = document.getElementById('cal-detail-inline');
+  if (inline) {
+    inline.classList.remove('show');
+    inline.setAttribute('aria-hidden', 'true');
+    inline.innerHTML = '';
+  }
 }
 
 // ══════ 懒加载模块 ══════
 var _moduleCache = {};
 var _moduleLoaders = {
   calendar: function() { return import('./calendar-ui.js'); },
+  choose: function() { return import('./choose-ui.js'); },
   bazi: function() { return import('./bazi-ui.js'); },
   detail: function() { return import('./detail-ui.js'); },
   note: function() { return import('./note-ui.js'); },
   nianli: function() { return import('./nianli-ui.js'); },
   settings: function() { return import('./settings-ui.js'); },
-  archive: function() { return import('./archive-ui.js'); }
+  archive: function() { return import('./archive-ui.js'); },
+  ziwei: function() { return import('./ziwei-ui.js'); }
 };
 
 function loadModule(name) {
@@ -222,14 +395,22 @@ function loadModule(name) {
   });
 }
 
-// ══════ 页脚折叠 ══════
+// ══════ 页脚折叠（重设计：默认折叠，记忆展开偏好）══════
 function initFooter() {
   var foot = $('#pageFoot');
   var tab = $('#footTab');
   if (!foot || !tab) return;
 
+  // 恢复用户偏好：曾展开过则保持展开
+  var expanded = false;
+  try { expanded = localStorage.getItem('cal_footExpanded') === '1'; } catch (e) {}
+  foot.classList.toggle('collapsed', !expanded);
+  tab.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+
   tab.addEventListener('click', function() {
-    foot.classList.toggle('collapsed');
+    var nowExpanded = foot.classList.toggle('collapsed') === false;
+    tab.setAttribute('aria-expanded', nowExpanded ? 'true' : 'false');
+    try { localStorage.setItem('cal_footExpanded', nowExpanded ? '1' : '0'); } catch (e) {}
   });
 }
 
@@ -272,6 +453,10 @@ function initTheme() {
     window._dbg && window._dbg('initResponsive OK', true);
     initNavigation();
     window._dbg && window._dbg('initNavigation OK', true);
+    initDrawer();
+    window._dbg && window._dbg('initDrawer OK', true);
+    initHome();
+    window._dbg && window._dbg('initHome OK', true);
     initRoutes();
     window._dbg && window._dbg('initRoutes OK', true);
 

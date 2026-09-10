@@ -68,15 +68,19 @@ async function loadYear(y) {
 async function show() {
   _highlightFab('tabNianli');
 
-  // 显示日历容器，隐藏八字区
-  var calRoot = document.getElementById('cal-root');
-  if (calRoot) calRoot.style.display = 'block';
-  var baziRoot = document.getElementById('bazi-root');
-  if (baziRoot) baziRoot.style.display = 'none';
-  var ziweiRoot = document.getElementById('ziwei-root');
-  if (ziweiRoot) ziweiRoot.style.display = 'none';
+  // 集中式切换页面根：显示日历根，隐藏其它（含 home-root）
+  window.__setActivePage('cal-root');
+  // 旧详情浮层（detail-root）复位
   var detailRoot = document.getElementById('detail-root');
-  if (detailRoot) { detailRoot.style.display = 'none'; detailRoot.classList.remove('show'); }
+  if (detailRoot) detailRoot.classList.remove('show');
+  // 复位内联日详情：#cal-detail-inline 是 cal-root 子节点，
+  // 切到年历时若不清空，会残留万年历点过的当日详情（见 issue 节气页残留）
+  var detailInline = document.getElementById('cal-detail-inline');
+  if (detailInline) {
+    detailInline.classList.remove('show');
+    detailInline.setAttribute('aria-hidden', 'true');
+    detailInline.innerHTML = '';
+  }
 
   // 隐藏日历头部
   var calHeaderBar = document.getElementById('calHeaderBar');

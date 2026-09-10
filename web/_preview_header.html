@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<style>
+  body { margin:0; background:#1c1813; font-family: var(--font-display); }
+  .pv-wrap { padding: 24px; }
+  .pv-cap { color:#c7b47b; font-size:13px; letter-spacing:2px; margin:0 0 8px 4px; opacity:.85; }
+  .pv-cap b { color:#D4A853; }
+
+  /* ===== 方案 A：玺印金辉（推荐） ===== */
+  .brandA { display:inline-flex; align-items:center; gap:14px; }
+  .brandA .seal {
+    position:relative; width:46px; height:46px; flex-shrink:0; border-radius:50%;
+    background:linear-gradient(135deg,#f0dcab,#c7b47b 45%,#8a6d3b);
+    padding:2px; box-shadow:0 0 0 1px rgba(212,168,83,.25), 0 4px 14px rgba(0,0,0,.4);
+  }
+  .brandA .seal i {
+    display:block; width:100%; height:100%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#2a2218,#15110d);
+    display:flex; align-items:center; justify-content:center;
+    color:#e8d5a0; font-size:22px; font-style:normal;
+  }
+  .brandA .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandA .title {
+    font-size:22px; font-weight:600; letter-spacing:5px;
+    background:linear-gradient(90deg,#f6e7be,#D4A853 60%,#9a8035);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brandA .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.8; }
+  .brandA .badge {
+    margin-left:12px; font-size:11px; letter-spacing:2px; padding:4px 11px; border-radius:999px;
+    color:#f0dcab; background:linear-gradient(135deg,#A01510,#D4403A);
+    border:1px solid rgba(212,168,83,.5); box-shadow:0 0 0 1px rgba(160,21,16,.3) inset;
+  }
+  .brandA-tabs { display:inline-flex; gap:6px; }
+  .brandA-tabs .t {
+    font-size:13px; color:#c7b47b; padding:8px 14px; border-radius:8px; letter-spacing:1px;
+    background:rgba(201,169,110,.10);
+  }
+  .brandA-tabs .t.on { color:#f0dcab; background:rgba(201,169,110,.16); box-shadow:inset 0 -2px 0 #D4A853; }
+
+  /* ===== 方案 B：水墨留白 ===== */
+  .brandB { display:inline-flex; align-items:center; gap:13px; }
+  .brandB .seal {
+    width:44px; height:44px; flex-shrink:0; border-radius:50%;
+    border:2px solid #D4A853; background:rgba(212,168,83,.06);
+    display:flex; align-items:center; justify-content:center;
+    color:#D4A853; font-size:20px;
+  }
+  .brandB .txt { display:flex; flex-direction:column; line-height:1.15; }
+  .brandB .title { font-size:21px; font-weight:600; letter-spacing:5px; color:#D4A853; }
+  .brandB .sub { font-size:12px; letter-spacing:3px; color:#c7b47b; opacity:.75; }
+  .brandB .divider { width:1px; height:30px; background:linear-gradient(#D4A853,rgba(212,168,83,0)); margin:0 6px; }
+  .brandB .badge {
+    margin-left:6px; font-size:11px; letter-spacing:2px; padding:3px 10px; border-radius:999px;
+    color:#c7b47b; border:1px solid rgba(212,168,83,.55); background:transparent;
+  }
+  .brandB-tabs { display:inline-flex; gap:6px; }
+  .brandB-tabs .t {
+    color:#c7b47b; padding:8px 14px; border-radius:8px; letter-spacing:1px;
+    border:1px solid transparent; font-size:13px;
+  }
+  .brandB-tabs .t.on { color:#D4A853; border-color:rgba(212,168,83,.4); }
+
+  .spacer { height:22px; }
+  .top-nav { position: relative !important; }
+</style>
+</head>
+<body>
+<div class="pv-wrap">
+  <p class="pv-cap"><b>方案 A</b> · 玺印金辉（推荐）</p>
+  <header class="top-nav" role="banner">
+    <div class="top-nav-inner"><div class="top-nav-row1">
+      <div class="brandA">
+        <span class="seal"><i>☯</i></span>
+        <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+        <span class="badge">八卦掌决版</span>
+      </div>
+      <div class="brandA-tabs">
+        <span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span>
+        <span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span>
+      </div>
+    </div></div>
+  </header>
+
+  <div class="spacer"></div>
+
+  <p class="pv-cap"><b>方案 B</b> · 水墨留白</p>
+  <header class="top-nav" role="banner">
+    <div class="top-nav-inner"><div class="top-nav-row1">
+      <div class="brandB">
+        <span class="seal">天</span>
+        <span class="txt"><span class="title">天地玄黄</span><span class="sub">· 日月更替</span></span>
+        <span class="badge">八卦掌决版</span>
+        <span class="divider"></span>
+      </div>
+      <div class="brandB-tabs">
+        <span class="t">首页</span><span class="t on">年历</span><span class="t">节气</span>
+        <span class="t">八字</span><span class="t">紫微</span><span class="t">记事</span><span class="t">设置</span>
+      </div>
+    </div></div>
+  </header>
+</div>
+</body>
+</html>

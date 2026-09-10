@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# tools/safe-backup — 防御性备份：备份后立即校验每个 .bak 落地，缺失即报错退出。
+# 用法：bash tools/safe-backup 文件1 [文件2 ...]
+# 备份到 H:/Phone/Back/safe_<YYYYMMDD_HHMMSS>/，文件名加 .<时间戳>.bak 后缀。
+#
+# 设计目的：根治"备份命令静默漏文件"——每次 cp 后立刻 ls 校验，
+# 任一文件未落地立即非零退出，绝不让"以为备份了其实没备"的事故重演。
+set -u
+
+if [ "$#" -lt 1 ]; then
+  echo "用法: bash tools/safe-backup <文件1> [<文件2> ...]" >&2
+  exit 2
+fi
+
+TS=$(date +%Y%m%d_%H%M%S)
+DEST="H:/Phone/Back/safe_${TS}"
+
+mkdir -p "$DEST" || { echo "错误：无法创建备份目录 $DEST" >&2; exit 1; }
+
+missing=0
+for f in "$@"; do
+  if [ ! -f "$f" ]; then
+    echo "跳过(不存在): $f" >&2
+    continue
+  fi
+  base=$(basename "$f")
+  cp "$f" "$DEST/${base}.${TS}.bak"
+  # 落地即校验：缺失立刻报错，杜绝"静默漏备份"
+  if [ ! -f "$DEST/${base}.${TS}.bak" ]; then
+    echo "备份失败(未落地): $f" >&2
+    missing=1
+  else
+    echo "已备份: $f -> $DEST/${base}.${TS}.bak"
+  fi
+done
+
+if [ "$missing" -ne 0 ]; then
+  echo "错误：存在未成功落地的备份，请检查后重试。" >&2
+  exit 1
+fi
+
+echo "全部备份完成(${#} 个): $DEST"

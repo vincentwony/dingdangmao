@@ -770,6 +770,20 @@ function isHongSha2(monthBranch, dayBranch) {
     return false;
 }
 
+function isDaHongSha2(monthBranch, dayBranch) {
+    // 大红砂（吉神），玉匣记原版：每季两日，纯地支、不看天干。
+    // 春(寅卯辰)戌/子、夏(巳午未)辰/巳、秋(申酉戌)午/未、冬(亥子丑)申/戌。
+    var spring = { '寅':true, '卯':true, '辰':true };
+    var summer = { '巳':true, '午':true, '未':true };
+    var autumn = { '申':true, '酉':true, '戌':true };
+    var winter = { '亥':true, '子':true, '丑':true };
+    if (spring[monthBranch] && (dayBranch === '戌' || dayBranch === '子')) return true;
+    if (summer[monthBranch] && (dayBranch === '辰' || dayBranch === '巳')) return true;
+    if (autumn[monthBranch] && (dayBranch === '午' || dayBranch === '未')) return true;
+    if (winter[monthBranch] && (dayBranch === '申' || dayBranch === '戌')) return true;
+    return false;
+}
+
 function isJinShenQiSha2(xiuIdx) {
   return JINSHENQISHA_XIU[xiuIdx] === 1;
 }
@@ -794,20 +808,75 @@ function isSansangDay2(lunarMonth, dayBranch) {
 }
 
 // ══════ 天德/月德/天赦 ══════
+// 天德口诀：正丁二申宫，三壬四辛同，五亥六甲上，七癸八寅逢，九丙十居乙，子巳丑庚中
+// 四仲月(子午卯酉)天德落四维地支(巳申亥寅)，其余八月为天干
 var _TIANDE_MAP  = { '寅':'丁','卯':'申','辰':'壬','巳':'辛','午':'亥','未':'甲','申':'癸','酉':'寅','戌':'丙','亥':'乙','子':'巳','丑':'庚' };
+// 天德合：四仲月天德居四维无合(空)；其余取天干五合
+var _TIANDE_HE_MAP = { '寅':'壬','卯':null,'辰':'丁','巳':'丙','午':null,'未':'己','申':'戊','酉':null,'戌':'辛','亥':'庚','子':null,'丑':'乙' };
 var _YUEDE_MAP   = { '寅':'丙','卯':'甲','辰':'壬','巳':'庚','午':'丙','未':'甲','申':'壬','酉':'庚','戌':'丙','亥':'甲','子':'壬','丑':'庚' };
+// 月德合：月德天干之五合
+var _YUEDE_HE_MAP = { '寅':'辛','卯':'己','辰':'丁','巳':'乙','午':'辛','未':'己','申':'丁','酉':'乙','戌':'辛','亥':'己','子':'丁','丑':'乙' };
 var _TIANSHE_MAP = { '寅':'戊寅','卯':'戊寅','辰':'戊寅','巳':'甲午','午':'甲午','未':'甲午','申':'戊申','酉':'戊申','戌':'戊申','亥':'甲子','子':'甲子','丑':'甲子' };
+
+// 天恩（协纪辨方书卷五）：历例“常以甲子至戊辰、己卯至癸未、己酉至癸丑，凡一十五日”
+// 即 甲子、乙丑、丙寅、丁卯、戊辰、己卯、庚辰、辛巳、壬午、癸未、己酉、庚戌、辛亥、壬子、癸丑
+var _TIANEN_SET = { '甲子':1,'乙丑':1,'丙寅':1,'丁卯':1,'戊辰':1,'己卯':1,'庚辰':1,'辛巳':1,'壬午':1,'癸未':1,'己酉':1,'庚戌':1,'辛亥':1,'壬子':1,'癸丑':1 };
+// 天願（协纪辨方书卷五历例，非曹震圭“传写谬误”版）：
+// 正寅甲午 二卯甲戌 三辰乙酉 四巳丙子 五午丁丑 六未戊午 七申甲寅 八酉丙辰 九戌辛卯 十亥戊辰 十一子甲子 十二丑癸未
+var _TIANYUAN_MAP = { '寅':'甲午','卯':'甲戌','辰':'乙酉','巳':'丙子','午':'丁丑','未':'戊午','申':'甲寅','酉':'丙辰','戌':'辛卯','亥':'戊辰','子':'甲子','丑':'癸未' };
+
+// 天干集合：用于区分天德取值是天干还是地支（四仲月为地支）
+var _GAN_SET = { '甲':1,'乙':1,'丙':1,'丁':1,'戊':1,'己':1,'庚':1,'辛':1,'壬':1,'癸':1 };
 
 function isTiandeDay2(monthBranch, dayStem, dayBranch) {
   var td = _TIANDE_MAP[monthBranch];
   if (!td) return false;
-  return (td.length === 1) ? (td === dayStem) : (td === dayBranch);
+  // 天干型(8个月)比较日干；地支型(四仲月子午卯酉)比较日支
+  return _GAN_SET[td] ? (td === dayStem) : (td === dayBranch);
+}
+function isTiandeHeDay2(monthBranch, dayStem) {
+  var dh = _TIANDE_HE_MAP[monthBranch];
+  if (!dh) return false; // 四仲月天德居四维，无合
+  return dh === dayStem;
 }
 function isYuedeDay2(monthBranch, dayStem) {
   return _YUEDE_MAP[monthBranch] === dayStem;
 }
+function isYuedeHeDay2(monthBranch, dayStem) {
+  return _YUEDE_HE_MAP[monthBranch] === dayStem;
+}
 function isTiansheDay2(monthBranch, dayGZ) {
   return _TIANSHE_MAP[monthBranch] === dayGZ;
+}
+function isTianenDay2(dayGZ) {
+  return !!_TIANEN_SET[dayGZ];
+}
+function isTianyuanDay2(monthBranch, dayGZ) {
+  return _TIANYUAN_MAP[monthBranch] === dayGZ;
+}
+
+// 月刑（协纪辨方书：月建所刑之日。寅刑巳、巳刑申、申刑寅；丑刑戌、戌刑未、未刑丑；
+// 子刑卯、卯刑子；辰午酉亥自刑）
+var _YUEXING_MAP = { '寅':'巳','卯':'子','辰':'辰','巳':'申','午':'午','未':'丑','申':'寅','酉':'酉','戌':'未','亥':'亥','子':'卯','丑':'戌' };
+// 月害（六害：子未、丑午、寅巳、卯辰、申亥、酉戌）
+var _YUEHAI_MAP = { '子':'未','丑':'午','寅':'巳','卯':'辰','辰':'卯','巳':'寅','午':'丑','未':'子','申':'亥','酉':'戌','戌':'酉','亥':'申' };
+// 復日（月建天干寄宫与日干相合：寅申月甲庚、卯酉月乙辛、辰戌丑未月戊己、
+// 巳亥月丙壬、子午月丁癸）
+var _FU_MAP = { '寅':['甲','庚'],'申':['甲','庚'],'卯':['乙','辛'],'酉':['乙','辛'],'辰':['戊','己'],'戌':['戊','己'],'丑':['戊','己'],'未':['戊','己'],'巳':['丙','壬'],'亥':['丙','壬'],'子':['丁','癸'],'午':['丁','癸'] };
+
+function isYuexingDay2(monthBranch, dayBranch) {
+  return _YUEXING_MAP[monthBranch] === dayBranch;
+}
+function isYuehaiDay2(monthBranch, dayBranch) {
+  return _YUEHAI_MAP[monthBranch] === dayBranch;
+}
+function isChongriDay2(monthBranch, dayBranch) {
+  // 重日：月支与日支相同
+  return monthBranch === dayBranch;
+}
+function isFuriDay2(monthBranch, dayStem) {
+  var arr = _FU_MAP[monthBranch];
+  return !!arr && arr.indexOf(dayStem) >= 0;
 }
 
 function isChongsangDay2(lunarMonth, dayStem) {
@@ -1074,6 +1143,7 @@ function computeDayFromLunar(y, m, d) {
         daojiaYear: isDaojiaYearDay2(yearGZ[0], dayGZ),
         daojiaMonth: isDaojiaMonthDay2(lunarMonthNum, dayGZ),
         hongsha: isHongSha2(monthBranch, branch),
+        dahongsha: isDaHongSha2(monthBranch, branch),
         jinshenqisha: isJinShenQiSha2(xi),
         miemen: isMiemenDay2(lunarMonthNum, branch),
         shousi: isShousiDay2(lunarMonthNum, branch),
@@ -1089,8 +1159,16 @@ function computeDayFromLunar(y, m, d) {
     yanggongJi: isYanggongJiDay2(lunarMonthNum, lunarDayNum),
         silisiJue: isSiLiSiJue2(y, m, d),
         tiande: isTiandeDay2(monthBranch, stem, branch),
+        tiandeHe: isTiandeHeDay2(monthBranch, stem),
         yuede: isYuedeDay2(monthBranch, stem),
-        tianshe: isTiansheDay2(monthBranch, dayGZ)
+        yuedeHe: isYuedeHeDay2(monthBranch, stem),
+        tianshe: isTiansheDay2(monthBranch, dayGZ),
+        tianen: isTianenDay2(dayGZ),
+        tianyuan: isTianyuanDay2(monthBranch, dayGZ),
+        yuexing: isYuexingDay2(monthBranch, branch),
+        yuehai: isYuehaiDay2(monthBranch, branch),
+        chongri: isChongriDay2(monthBranch, branch),
+        furi: isFuriDay2(monthBranch, stem)
     };
 
     // LRU 缓存
@@ -1143,6 +1221,7 @@ function precomputeMonthDays2(y, m) {
             jianchu: DUTY12_ORDER2[jcIdx],
             wulu: isWuluDay2(stem, branch),
             hongsha: isHongSha2(monthBranch, branch),
+            dahongsha: isDaHongSha2(monthBranch, branch),
             jinshenqisha: isJinShenQiSha2(xiuIndex2(y, m, d)),
             miemen: isMiemenDay2(ob.Lmc ? (CMON.indexOf(ob.Lmc.replace('闰','')) + 1 || 1) : 1, branch),
             shousi: isShousiDay2(ob.Lmc ? (CMON.indexOf(ob.Lmc.replace('闰','')) + 1 || 1) : 1, branch),
@@ -1229,11 +1308,20 @@ module.exports = {
   isYanggongJiDay2,
   isSiLiSiJue2,
   isTiandeDay2,
+  isTiandeHeDay2,
   isYuedeDay2,
+  isYuedeHeDay2,
   isTiansheDay2,
+  isTianenDay2,
+  isTianyuanDay2,
+  isYuexingDay2,
+  isYuehaiDay2,
+  isChongriDay2,
+  isFuriDay2,
   computeTianLuoDiWang,
   computeKuiGang,
   isHongSha2,
+  isDaHongSha2,
   isJinShenQiSha2,
   isMiemenDay2,
   isShousiDay2,

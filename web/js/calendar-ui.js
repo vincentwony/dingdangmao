@@ -12,21 +12,7 @@ var _currentM = 6;
 var _currentD = null;
 var _containerEl = null;
 var _selectedDay = null;
-
-// ══════ 设置缓存（渲染前更新，避免循环内读 localStorage） ══════
-// ══════ 日历徽章设置（key→变量映射，由 _refreshSettings 更新） ══════
-var _badgeFlags = {
-  wulu:       { show: true, key: 'showWulu' },
-  daojiaM:    { show: true, key: 'showDaojiaMonth' },
-  daojiaY:    { show: true, key: 'showDaojiaYear' },
-  jinshen:    { show: true, key: 'showJinshenqisha' },
-  wufu:       { show: true, key: 'showWufu' },
-  silisijue:  { show: true, key: 'showSiLiSiJue' },
-  yanggongji: { show: true, key: 'showYanggongJi' },
-  tiande:     { show: true, key: 'showTiande' },
-  yuede:      { show: true, key: 'showYuede' },
-  tianshe:    { show: true, key: 'showTianshe' }
-};
+var _today = null;          // 真实今天（用于高亮锚点）
 
 // ══════ DailyNotes 引用（由 note-ui 模块设置） ══════
 var _DailyNotes = null;
@@ -38,20 +24,8 @@ var ZHI = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','�
 var SHENGXIAO = ['鼠','牛','虎','兔','龙','蛇','马','羊','猴','鸡','狗','猪'];
 
 // 吉凶颜色常量（统一管理，避免 4 处硬编码）
-var COLOR_GOOD = '#c43d3d';  // 吉（红色）
-var COLOR_BAD  = '#1e1e1e';  // 凶（黑色）
-
-/** 读取日历设置（兼容 dom-helpers.js 的 '1'/'0' 和 app.html/settings-ui.js 的 'true'/'false' 双格式） */
-function _loadSet(key, def) {
-  try { var v = localStorage.getItem('cal_' + key); if (v === null) return def; return v === '1' || v === 'true'; }
-  catch(e) { return def; }
-}
-/** 刷新设置缓存 */
-function _refreshSettings() {
-  for (var k in _badgeFlags) {
-    if (_badgeFlags.hasOwnProperty(k)) _badgeFlags[k].show = _loadSet(_badgeFlags[k].key, true);
-  }
-}
+var COLOR_GOOD = 'var(--ss-good-text)';  // 吉 → 引用神煞墙 token（金），与神煞墙一致，消除"吉=红"不一致
+var COLOR_BAD  = 'var(--ss-bad-text)';   // 凶 → 引用神煞墙 token（红）
 
 /** 农历日期数字→中文（1→初一, 15→十五, 20→二十, 29→廿九） */
 function lunarDayToChinese(n) {
@@ -64,6 +38,10 @@ function lunarDayToChinese(n) {
   if (num < 30) return '廿' + CN[num - 20];
   return '三十';
 }
+
+// ── 设置读取（与设置面板 cal_/zw_ 键一致）──
+function _calSetBool(key, def) { try { var v = localStorage.getItem(key); return v === null ? def : (v === 'true'); } catch(e) { return def; } }
+function _calSetStr(key, def) { try { var v = localStorage.getItem(key); return v === null ? def : v; } catch(e) { return def; } }
 
 /** 从寿星历节日字符串中提取第一个节日名并截断为3字（用于日历格精简显示） */
 function _firstFestival(raw) {
@@ -82,25 +60,32 @@ function _resolveFestival(jq, solarFes, lunarFes) {
   return { text: '', isFestival: false };
 }
 
-/** 渲染日历格徽章（无禄/金神七煞/倒家杀/五富） */
+/** 渲染日历格徽章（无禄/金神七煞/倒家杀/五富等）。
+ *  所有神煞/特殊日已改为常显，不再受设置开关控制。 */
 function _renderBadges(dayData) {
-  var b = _badgeFlags, html = '';
-  if (b.tianshe.show && dayData.isTianshe) html += '<span class="cal-badge cal-badge-tianshe">赦</span>';
-  if (b.tiande.show && dayData.isTiande) html += '<span class="cal-badge cal-badge-tiande">德</span>';
-  if (b.yuede.show && dayData.isYuede) html += '<span class="cal-badge cal-badge-yuede">月</span>';
-  if (b.wufu.show && dayData.isWufu) html += '<span class="cal-badge cal-badge-wufu">富</span>';
-  if (b.wulu.show && dayData.isWulu) html += '<span class="cal-badge cal-badge-wu">无</span>';
-  if (dayData.isJinshenqisha && b.jinshen.show) html += '<span class="cal-badge cal-badge-sha">煞</span>';
-  if ((b.daojiaM.show && dayData.isDaojiaMonth) || (b.daojiaY.show && dayData.isDaojiaYear)) {
+  var html = '';
+  if (dayData.isTianshe) html += '<span class="cal-badge cal-badge-tianshe">赦</span>';
+  if (dayData.isTiande) html += '<span class="cal-badge cal-badge-tiande">德</span>';
+  if (dayData.isYuede) html += '<span class="cal-badge cal-badge-yuede">月</span>';
+  if (dayData.isWufu) html += '<span class="cal-badge cal-badge-wufu">富</span>';
+  if (dayData.isWulu) html += '<span class="cal-badge cal-badge-wu">无</span>';
+  if (dayData.isJinshenqisha) html += '<span class="cal-badge cal-badge-sha">煞</span>';
+  if (dayData.isDaojiaMonth || dayData.isDaojiaYear) {
     html += '<span class="cal-badge cal-badge-dao">倒</span>';
   }
-  if (b.silisijue.show && dayData.isSiLiSiJue) {
+  if (dayData.isSiLiSiJue) {
     var slsjData = dayData.silisiJue || {};
     var slsjChar = slsjData.type === '离' ? '离' : '绝';
     html += '<span class="cal-badge cal-badge-silisijue">' + slsjChar + '</span>';
   }
-  if (b.yanggongji.show && dayData.isYanggongJi) {
+  if (dayData.isYanggongJi) {
     html += '<span class="cal-badge cal-badge-yanggongji">忌</span>';
+  }
+  if (dayData.isHongSha) {
+    html += '<span class="cal-badge cal-badge-hongsha" title="小红砂（凶）">砂</span>';
+  }
+  if (dayData.isDaHongSha) {
+    html += '<span class="cal-badge cal-badge-dahongsha" title="大红砂（吉）· 百事吉">大</span>';
   }
   return html;
 }
@@ -127,6 +112,7 @@ function init(containerSel) {
   _currentY = now.getFullYear();
   _currentM = now.getMonth() + 1;
   _currentD = now.getDate();
+  _today = { y: _currentY, m: _currentM, d: _currentD };
   window._dbg && window._dbg('当前日期: ' + _currentY + '-' + _currentM + '-' + _currentD, true);
 
   // 填充年月下拉框
@@ -143,27 +129,35 @@ function init(containerSel) {
   bindEvents();
   window._dbg && window._dbg('事件已绑定', true);
 
-  // 加载首屏（完成后高亮今天）
+  // 加载首屏（完成后默认展示今天的日课详情）
   loadAndRender(_currentY, _currentM).then(function() {
-    selectDay(_currentY, _currentM, _currentD, true); // 静默高亮，不触发详情
-    window._dbg && window._dbg('默认高亮今天: ' + _currentD, true);
+    selectDay(_currentY, _currentM, _currentD); // 高亮今天 + 内联展开详情
+    window._dbg && window._dbg('首屏默认展示今天: ' + _currentD, true);
   });
   window._dbg && window._dbg('loadAndRender 已触发', true);
 
-  // 监听设置变更（State 事件 + DOM CustomEvent 双通道）
-  function _onSettingsChanged() {
-    _refreshSettings();
-    loadAndRender(_currentY, _currentM);
-  }
-  State.on('settings:changed', _onSettingsChanged);
-  window.addEventListener('settings:changed', _onSettingsChanged);
+  // Phase 3.1 — 懒加载并初始化择日助手（独立模块，避免静态循环依赖）
+  try {
+    import('./choose-ui.js').then(function(m) { if (m && m.init) m.init(); }).catch(function() {});
+  } catch (e) { /* 择日模块可选，失败不影响日历 */ }
+
+  // 首页“快速选择日期”→ 定位到月历并展开当日详情
+  State.on('home:goto-date', function(p) {
+    if (!p || !p.y) return;
+    _currentY = p.y; _currentM = p.m; _currentD = p.d;
+    var selY = $('#Cal_y'); if (selY) selY.value = String(p.y);
+    var selM = $('#Cal_m'); if (selM) selM.value = String(p.m);
+    loadAndRender(p.y, p.m).then(function() {
+      selectDay(p.y, p.m, p.d); // 高亮 + 内联展开详情
+    });
+  });
 
   // 监听记事变更 → 刷新红点（轻量，不重绘整个日历）
   State.on('note:changed', function(evt) {
     if (evt && evt.y && evt.m && evt.d && _DailyNotes) {
       var cal3 = document.getElementById('Cal3');
       if (!cal3) return;
-      var tds = cal3.querySelectorAll('td[data-year="' + evt.y + '"][data-month="' + evt.m + '"][data-day="' + evt.d + '"]');
+      var tds = cal3.querySelectorAll('.cal-cell[data-year="' + evt.y + '"][data-month="' + evt.m + '"][data-day="' + evt.d + '"]');
       for (var i = 0; i < tds.length; i++) {
         var sn = tds[i].querySelector('.solar-num');
         if (!sn) continue;
@@ -180,11 +174,30 @@ function init(containerSel) {
     }
   });
 
-  // 监听页面切换 → 从年历/八字返回时重绘月历
+  // 监听页面切换 → 从年历/八字返回时重绘月历并恢复选中日详情
   State.on('page:changed', function(page) {
     if (page === 'calendar' && _containerEl) {
-      loadAndRender(_currentY, _currentM);
+      loadAndRender(_currentY, _currentM).then(function() {
+        var sd = _selectedDay || _today;
+        if (sd && sd.y === _currentY && sd.m === _currentM) selectDay(sd.y, sd.m, sd.d);
+      });
     }
+  });
+
+  // 设置变更 → 仅当影响显示的项变化时才重绘月历（避免无关开关触发重绘）
+  var _relKeys = ['cal_weekStart', 'cal_primaryDisplay', 'cal_showJieqi', 'cal_enableReminders'];
+  var _lastRel = _relKeys.map(function(k) { return _calSetStr(k, ''); }).join('|');
+  function _maybeRerenderCalendar() {
+    var now = _relKeys.map(function(k) { return _calSetStr(k, ''); }).join('|');
+    if (now !== _lastRel) {
+      _lastRel = now;
+      if (_currentY && _currentM) loadAndRender(_currentY, _currentM);
+    }
+  }
+  State.on('settings:changed', _maybeRerenderCalendar);
+  // 提醒变更 → 重绘以更新铃铛
+  State.on('reminders:changed', function() {
+    if (_currentY && _currentM) loadAndRender(_currentY, _currentM);
   });
 }
 
@@ -251,33 +264,33 @@ function bindEvents() {
     });
   }
 
-  // 日历格点击委托
+  // 上一月 / 下一月 箭头
+  var btnPrev = $('#btnPrevMonth');
+  if (btnPrev) btnPrev.addEventListener('click', function() { changeMonth(-1); });
+  var btnNext = $('#btnNextMonth');
+  if (btnNext) btnNext.addEventListener('click', function() { changeMonth(1); });
+
+  // 日历格点击委托：点格 = 高亮 + 就地展开日课；再点当天 = 收起
   var cal3 = $('#Cal3');
   if (cal3) {
     cal3.addEventListener('click', function(e) {
-      // 详情节关按钮 — 阻止冒泡，独立处理
-      if (e.target.closest('.cal-detail-toggle')) {
-        e.stopPropagation();
-        var toggle = e.target.closest('.cal-detail-toggle');
-        var cell = toggle.closest('.cal-cell');
-        if (!cell) return;
-        var y = parseInt(cell.dataset.year, 10);
-        var m = parseInt(cell.dataset.month, 10);
-        var d = parseInt(cell.dataset.day, 10);
-        if (!y || !m || !d) return;
-        _toggleDetailForDay(cell, y, m, d);
-        return;
-      }
-
       var cell = e.target.closest('.cal-cell');
       if (!cell) return;
+
+      // 跨月格：无操作
+      if (cell.classList.contains('other-month')) return;
+
       var y = parseInt(cell.dataset.year, 10);
       var m = parseInt(cell.dataset.month, 10);
       var d = parseInt(cell.dataset.day, 10);
       if (!y || !m || !d) return;
 
-      // 跨月格：无操作
-      if (cell.classList.contains('other-month')) return;
+      // 再次点击已展开的当天 → 收起详情（保留高亮）
+      if (cell.classList.contains('detail-on')) {
+        cell.classList.remove('detail-on');
+        import('./detail-ui.js').then(function(mod) { mod.default.hide(); });
+        return;
+      }
 
       selectDay(y, m, d);
     });
@@ -320,41 +333,27 @@ function changeMonth(delta) {
   State.emit('month:changed', { y: _currentY, m: _currentM });
 }
 
-/** 选中某天
- *  @param {boolean} [silent] - true=只高亮不触发事件（初始加载用） */
+/** 选中某天：高亮 +（非静默时）在日历下方内联展开日课详情
+ *  @param {boolean} [silent] - true=只高亮不展开详情（当前基本不再使用） */
 function selectDay(y, m, d, silent) {
   _selectedDay = { y: y, m: m, d: d };
 
-  // 高亮前：清除旧选中格的详情节关状态 + 关闭浮层
-  var oldSelected = document.querySelector('#Cal3 .cal-cell.detail-on');
-  if (oldSelected) {
-    oldSelected.classList.remove('detail-on');
-    import('./detail-ui.js').then(function(mod) { mod.default.hide(); });
-  }
   $$('#Cal3 .cal-cell').forEach(function(c) { c.classList.remove('selected', 'detail-on'); });
   var cell = document.querySelector('#Cal3 .cal-cell[data-year="' + y + '"][data-month="' + m + '"][data-day="' + d + '"]');
-  if (cell) cell.classList.add('selected');
+  if (cell) {
+    cell.classList.add('selected');
+    if (!silent) cell.classList.add('detail-on');
+  }
 
   // 更新 Cal2 标题栏
   updateCal2(y, m, d);
 
   if (!silent) {
+    import('./detail-ui.js').then(function(mod) { mod.default.show(y, m, d); });
     State.emit('date:selected', { y: y, m: m, d: d });
+  } else {
+    import('./detail-ui.js').then(function(mod) { mod.default.hide(); });
   }
-}
-
-/** 切换日课详情显隐（迷你开关回调）
- *  默认关闭；点击开关后切换 ON/OFF 并控制浮层 */
-function _toggleDetailForDay(cell, y, m, d) {
-  var isOn = cell.classList.toggle('detail-on');
-  import('./detail-ui.js').then(function(mod) {
-    var detail = mod.default;
-    if (isOn) {
-      detail.show(y, m, d);
-    } else {
-      detail.hide();
-    }
-  });
 }
 
 /** 更新 Cal2 标题栏 */
@@ -384,7 +383,6 @@ async function loadAndRender(y, m) {
 
   _currentY = y;
   _currentM = m;
-  _refreshSettings(); // 渲染前同步设置
   window._dbg && window._dbg('loadAndRender: ' + y + '/' + m, true);
 
   // 显示加载状态
@@ -429,20 +427,25 @@ function renderMonth(data) {
     dayMap[day.d] = day;
   });
 
-  // 计算当月1日是星期几 (0=日, 1-6=一~六)
-  var firstDayWeek = new Date(y, m - 1, 1).getDay();
+  // 计算当月1日是星期几 (0=日, 1-6=一~六) + 周起始设置
+  var firstDow = new Date(y, m - 1, 1).getDay();
+  var weekStart = _calSetStr('cal_weekStart', 'sun');
+  var dowOrder = (weekStart === 'mon') ? [1,2,3,4,5,6,0] : [0,1,2,3,4,5,6];
+  var prevFill = dowOrder.indexOf(firstDow); // 上月边缘格数量
   var daysInMonth = new Date(y, m, 0).getDate();
 
-  // 构建表格
-  var html = '<table><thead><tr>';
-  var weekLabels = ['日','一','二','三','四','五','六'];
-  for (var wi = 0; wi < 7; wi++) html += '<th>' + weekLabels[wi] + '</th>';
-  html += '</tr></thead><tbody>';
+  // 构建星期表头 + 日期网格（CSS Grid 卡片式）
+  var html = '<div class="cal-weekhead">';
+  var CN_WD = ['日','一','二','三','四','五','六'];
+  for (var wi = 0; wi < 7; wi++) {
+    var dnum = dowOrder[wi];
+    var wkCls = (dnum === 0 || dnum === 6) ? 'cal-wd weekend' : 'cal-wd';
+    html += '<span class="' + wkCls + '">' + CN_WD[dnum] + '</span>';
+  }
+  html += '</div><div class="cal-body">';
 
   var cellCount = 0;
-  var prevFill = firstDayWeek;
 
-  html += '<tr>';
   // 上月边缘格（完整数据 + other-month 遮罩）
   for (var pf = 0; pf < prevFill; pf++) {
     var prevData = prevEdge[pf] || {};
@@ -454,7 +457,6 @@ function renderMonth(data) {
 
   // 当月日期
   for (var d = 1; d <= daysInMonth; d++) {
-    if (cellCount % 7 === 0 && cellCount > 0) html += '</tr><tr>';
     var dayData = dayMap[d] || {};
     html += renderDayCell(y, m, d, dayData);
     cellCount++;
@@ -469,12 +471,44 @@ function renderMonth(data) {
     html += renderEdgeCell(nextY, nextM, nextData.d || (nf + 1), nextData);
   }
 
-  html += '</tr></tbody></table>';
+  html += '</div>';
 
   var cal3 = $('#Cal3');
-  if (cal3) cal3.innerHTML = html;
+  if (cal3) {
+    cal3.innerHTML = html;
+    if (_calSetStr('cal_primaryDisplay', 'solar') === 'lunar') cal3.classList.add('lunar-primary');
+    else cal3.classList.remove('lunar-primary');
+  }
 
   updateCal2TitleSimple(y, m);
+  _renderJqTopBar(data);
+}
+
+/** 填充节气顶栏：月建 + 当月节气 */
+function _renderJqTopBar(data) {
+  var bar = document.getElementById('jqTopBar');
+  if (!bar || !data) return;
+  var days = data.days || [];
+  var terms = [];
+  days.forEach(function(day) { if (day.jieQi) terms.push(day.jieQi); });
+  // 月建取当月月中(15日附近)的干支月 —— 节气交节必在月初，月中必已入当月节气所属干支月，
+  // 避免「首日月建」比「当月交节后月建」落后一位导致的顶栏月建与节气错位。
+  var curDays = days.filter(function(d){ return d && !d.other && d.d && d.gz && d.gz.month; });
+  var midDay = null;
+  curDays.forEach(function(d){
+    if (!midDay || Math.abs(d.d - 15) < Math.abs(midDay.d - 15)) midDay = d;
+  });
+  var mbFull = (midDay && midDay.gz && midDay.gz.month) ? midDay.gz.month : '';
+  var parts = [];
+  if (mbFull) parts.push('<span class="jq-tag jq-tag-jq">节气</span><span class="jq-branch">' + mbFull + '月</span>');
+  if (terms.length && _calSetBool('cal_showJieqi', true)) {
+    parts.push('<span class="jq-label">本月节气</span> ' + terms.map(function(t) {
+      return '<span class="jq-term">' + t + '</span>';
+    }).join('<span class="jq-sep">·</span>'));
+  }
+  bar.innerHTML = parts.length
+    ? parts.join('<span class="jq-sep">　</span>')
+    : ('公元 ' + data.y + ' 年 ' + data.m + ' 月');
 }
 
 /** 渲染当月日期格 */
@@ -506,15 +540,15 @@ function renderDayCell(y, m, d, dayData) {
 
   // 月相标志：朔(黑●) 望(金●) 上弦(◐) 下弦(◑)
   var moonDot = '';
-  if (yx === '朔') moonDot = '<span style="color:#404040;font-size:10px;">●</span>';
-  else if (yx === '望') moonDot = '<span style="color:#F0A000;font-size:10px;">●</span>';
-  else if (yx === '上弦') moonDot = '<span style="color:#888;font-size:9px;">◐</span>';
-  else if (yx === '下弦') moonDot = '<span style="color:#888;font-size:9px;">◑</span>';
+  if (yx === '朔') moonDot = '<span style="color:var(--moon-new);font-size:10px;">●</span>';
+  else if (yx === '望') moonDot = '<span style="color:var(--moon-full);font-size:10px;">●</span>';
+  else if (yx === '上弦') moonDot = '<span style="color:var(--moon-quarter);font-size:9px;">◐</span>';
+  else if (yx === '下弦') moonDot = '<span style="color:var(--moon-quarter);font-size:9px;">◑</span>';
 
-  // 节气标志（仅非节日模式下与农历日并行显示）
-  var jqFlag = (!ft.isFestival && jq) ? '<span style="color:#009000;font-size:8px;">◆</span>' : '';
+  // 节气标志（仅非节日模式下与农历日并行显示，受“显示节气”开关控制）
+  var jqFlag = (!ft.isFestival && jq && _calSetBool('cal_showJieqi', true)) ? '<span style="color:var(--color-jieqi);font-size:8px;">◆</span>' : '';
 
-  // 九星 — 吉=红色, 凶=黑色 (据 index.html ns.good ? '#c43d3d' : '#1e1e1e')
+  // 九星 — 吉=金(--ss-good-text), 凶=红(--ss-bad-text)，与神煞墙一致
   var nsHtml = '';
   if (ns && ns.name) {
     var nsColor = ns.good ? COLOR_GOOD : COLOR_BAD;
@@ -533,6 +567,13 @@ function renderDayCell(y, m, d, dayData) {
     noteDot = '<span class="daily-note-dot"></span>';
   }
 
+  // 提醒铃铛（仅当开启“日期提醒”且当日有提醒）
+  var remDot = '';
+  if (_calSetBool('cal_enableReminders', false) && window.Reminders) {
+    var _rems = window.Reminders.forDate(y, m, d);
+    if (_rems.length) remDot = '<span class="cal-reminder-dot" title="' + _rems.map(function(r){ return r.title || '提醒'; }).join('、') + '"></span>';
+  }
+
   var _dow = new Date(y, m - 1, d).getDay();
   var isWeekend = (_dow === 0 || _dow === 6);
   var weekendClass = isWeekend ? ' weekend' : '';
@@ -542,18 +583,23 @@ function renderDayCell(y, m, d, dayData) {
     selectedClass = ' selected';
   }
 
-  // 建除徽章 — 吉(黄道)=红色, 凶(黑道)=黑色 (据 index.html jcGood2 ? '#c43d3d' : '#1e1e1e')
+  // 今天高亮锚点
+  var isToday = (_today && _today.y === y && _today.m === m && _today.d === d);
+  var todayClass = isToday ? ' today' : '';
+  var todayMark = isToday ? '<span class="today-mark">今</span>' : '';
+
+  // 建除徽章 — 吉(黄道)=金(--ss-good-text), 凶(黑道)=红(--ss-bad-text)，与神煞墙一致
   var dutyColor = dutyGood ? COLOR_GOOD : COLOR_BAD;
 
-  return '<td class="cal-cell' + weekendClass + selectedClass + '" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
-    '<span class="solar-num">' + _dayImg(d, isWeekend) + moonDot + noteDot + '</span>' +
+  return '<div class="cal-cell' + weekendClass + selectedClass + todayClass + '" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
+    todayMark +
+    '<span class="solar-num">' + _dayImg(d, isWeekend) + moonDot + noteDot + remDot + '</span>' +
     '<span class="lunar-num' + (ft.isFestival ? ' lunar-festival' : '') + '">' + lunarDisplay + jqFlag + '</span>' +
     '<span class="gz-text">' + gzDay + '</span>' +
     xiuHtml + nsHtml +
     '<span class="duty-badge" style="color:' + dutyColor + '">' + duty + '</span>' +
     badges +
-    '<button class="cal-detail-toggle" title="钤印查阅日课" aria-label="钤印查阅日课"><span class="seal-char">印</span></button>' +
-    '</td>';
+    '</div>';
 }
 
 /** 渲染跨月边缘格（完整数据 + 遮罩，不可点击） */
@@ -580,7 +626,7 @@ function renderEdgeCell(y, m, d, dayData) {
     lunarDisplay = lunarDayToChinese(lunarDayRaw);
   }
 
-  // 九星 — 吉=红色, 凶=黑色
+  // 九星 — 吉=金, 凶=红（引用神煞墙 token）
   var nsHtml = '';
   if (ns && ns.name) {
     var nsColor = ns.good ? COLOR_GOOD : COLOR_BAD;
@@ -590,20 +636,20 @@ function renderEdgeCell(y, m, d, dayData) {
 
   var badges = _renderBadges(dayData);
 
-  // 建除颜色 — 吉=红色, 凶=黑色
+  // 建除颜色 — 吉=金, 凶=红（引用神煞墙 token）
   var dutyColor = dutyGood ? COLOR_GOOD : COLOR_BAD;
 
   var _edow = new Date(y, m - 1, d).getDay();
   var _eweekend = (_edow === 0 || _edow === 6);
 
-  return '<td class="cal-cell other-month" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
+  return '<div class="cal-cell other-month" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
     '<span class="solar-num">' + _dayImg(d, _eweekend) + '</span>' +
     '<span class="lunar-num' + (ft.isFestival ? ' lunar-festival' : '') + '">' + lunarDisplay + '</span>' +
     '<span class="gz-text">' + gzDay + '</span>' +
     xiuHtml + nsHtml +
     '<span class="duty-badge" style="color:' + dutyColor + '">' + duty + '</span>' +
     badges +
-    '</td>';
+    '</div>';
 }
 
 /** 简单更新 Cal2 标题栏 */
@@ -654,28 +700,34 @@ async function tryOfflineRender(y, m) {
 /** 静态日历（纯公历，无天文依赖） */
 function renderStaticCalendar(y, m, container) {
   var daysInMonth = new Date(y, m, 0).getDate();
-  var firstDayWeek = new Date(y, m - 1, 1).getDay();
+  var firstDow = new Date(y, m - 1, 1).getDay();
+  var weekStart = _calSetStr('cal_weekStart', 'sun');
+  var dowOrder = (weekStart === 'mon') ? [1,2,3,4,5,6,0] : [0,1,2,3,4,5,6];
+  var firstDayWeek = dowOrder.indexOf(firstDow);
 
-  var html = '<table><thead><tr>';
-  var labels = ['日','一','二','三','四','五','六'];
-  for (var i = 0; i < 7; i++) html += '<th>' + labels[i] + '</th>';
-  html += '</tr></thead><tbody><tr>';
+  var html = '<div class="cal-weekhead">';
+  var CN_WD = ['日','一','二','三','四','五','六'];
+  for (var i = 0; i < 7; i++) {
+    var dnum = dowOrder[i];
+    var lc = (dnum === 0 || dnum === 6) ? 'cal-wd weekend' : 'cal-wd';
+    html += '<span class="' + lc + '">' + CN_WD[dnum] + '</span>';
+  }
+  html += '</div><div class="cal-body">';
 
   var col = 0;
   for (var pf = 0; pf < firstDayWeek; pf++) {
-    html += '<td class="cal-cell other-month"><span class="solar-num">-</span></td>';
+    html += '<div class="cal-cell other-month"><span class="solar-num">-</span></div>';
     col++;
   }
   for (var d = 1; d <= daysInMonth; d++) {
-    if (col % 7 === 0 && col > 0) html += '</tr><tr>';
     var _sdow = new Date(y, m - 1, d).getDay();
     var _sweekend = (_sdow === 0 || _sdow === 6);
-    html += '<td class="cal-cell" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
+    html += '<div class="cal-cell" data-year="' + y + '" data-month="' + m + '" data-day="' + d + '">' +
       '<span class="solar-num">' + _dayImg(d, _sweekend) + '</span>' +
-      '</td>';
+      '</div>';
     col++;
   }
-  html += '</tr></tbody></table>';
+  html += '</div>';
   container.innerHTML = html;
 }
 

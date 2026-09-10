@@ -33,7 +33,7 @@ const Router = (function() {
 
   /** hashchange 事件处理 */
   function _onHashChange() {
-    var hash = window.location.hash.replace('#', '') || 'calendar';
+    var hash = window.location.hash.replace('#', '') || 'home';
     _currentRoute = hash;
 
     // 查找匹配的路由处理函数
@@ -59,7 +59,10 @@ const Router = (function() {
     if (window.location.hash) {
       _onHashChange();
     } else {
-      navigate('calendar');
+      // 尊重“启动页”设置（默认首页）
+      var def = 'home';
+      try { var s = localStorage.getItem('cal_defaultTab'); if (s) def = s; } catch(e) {}
+      navigate(def);
     }
   }
 

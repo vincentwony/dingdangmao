@@ -1,18 +1,18 @@
 // server/middleware/auth.js — HMAC-SHA256 请求签名验证
 'use strict';
 
-var crypto = require('crypto');
+var hmac = require('../lib/hmac');
 
-var HMAC_SECRET = process.env.HMAC_SECRET || '381cb51f0923fc771bf7e81547c485f7';
 var TIME_WINDOW = 5 * 60 * 1000; // ±5分钟
 var NONCE_MAX = 10000;
 var nonceCache = new Map();
 
 module.exports = function hmacAuth(req, res, next) {
-  var mid = req.headers['x-machine-id'];
-  var ts = parseInt(req.headers['x-timestamp'], 10);
-  var nonce = req.headers['x-nonce'];
-  var sig = req.headers['x-signature'];
+  var H = hmac.HEADER_NAMES;
+  var mid = req.headers[H.MID];
+  var ts = parseInt(req.headers[H.TS], 10);
+  var nonce = req.headers[H.NONCE];
+  var sig = req.headers[H.SIG];
 
   if (!mid || !ts || !nonce || !sig) {
     return res.status(401).json({ ok: false, error: '缺少认证参数', code: 401 });
@@ -28,14 +28,10 @@ module.exports = function hmacAuth(req, res, next) {
     return res.status(401).json({ ok: false, error: '请求已使用', code: 401 });
   }
 
-  // HMAC-SHA256 签名验证 (Node.js crypto 同步版本)
-  var message = mid + ts + nonce + req.originalUrl;
-  var hmac = crypto.createHmac('sha256', HMAC_SECRET);
-  hmac.update(message, 'utf8');
-  var fullHex = hmac.digest('hex');
-  var expected = fullHex.substring(0, 8); // 前4字节=8 hex字符
+  // HMAC-SHA256 签名验证（复用共享库，单一算法源 + 时序安全比较）
+  var expected = hmac.sign(mid, ts, nonce, req.originalUrl);
 
-  if (expected !== sig.toLowerCase()) {
+  if (!hmac.constantTimeEqual(sig, expected)) {
     return res.status(401).json({ ok: false, error: '签名无效', code: 401 });
   }
 

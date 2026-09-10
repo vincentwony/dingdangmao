@@ -12,14 +12,20 @@
   "description": "",
   "main": "build-release.js",
   "devDependencies": {
+    "jsdom": "^29.1.1",
     "playwright": "^1.60.0"
   },
   "scripts": {
-    "test": "node core/__tests__/regression.test.js && node core/__tests__/wuxing.test.js && node core/__tests__/shensha-data.test.js && node core/__tests__/boundary.test.js && echo '✅ 全部测试通过'",
+    "test": "node core/__tests__/regression.test.js && node core/__tests__/wuxing.test.js && node core/__tests__/shensha-data.test.js && node core/__tests__/boundary.test.js && node verify/_time_util_audit.mjs && node verify/_token_audit.mjs && node verify/_hmac_audit.mjs && echo '✅ 全部测试通过'",
     "test:engine": "node core/__tests__/regression.test.js",
     "test:wuxing": "node core/__tests__/wuxing.test.js",
     "test:shensha": "node core/__tests__/shensha-data.test.js",
     "test:boundary": "node core/__tests__/boundary.test.js",
+    "test:time-util": "node verify/_time_util_audit.mjs",
+    "test:tokens": "node verify/_token_audit.mjs",
+    "test:hmac": "node verify/_hmac_audit.mjs",
+    "test:e2e-bazi": "node verify/_bazi_midnight_e2e.mjs",
+    "test:e2e-minute": "node verify/_bazi_minute_e2e.mjs",
     "test:ziping": "node test-ziping-zhenquan.js",
     "test:validate": "node test-analysis-validate.js",
     "build": "node build-release.js",
@@ -28,7 +34,10 @@
     "check:css": "node scripts/check-css-vars.js",
     "check:zh": "node scripts/check-zh-chars.js",
     "check:hmac": "node scripts/check-hmac-keys.js",
-    "check": "node scripts/check-hmac-keys.js && node scripts/check-css-vars.js && node scripts/check-zh-chars.js"
+    "check:syntax": "node scripts/check-syntax.js",
+    "check:smoke": "node scripts/smoke-boot.mjs",
+    "check:smoke-ziwei": "node scripts/smoke-ziwei.mjs",
+    "check": "node scripts/check-hmac-keys.js && node scripts/check-syntax.js && node scripts/check-css-vars.js && node scripts/check-zh-chars.js && node scripts/smoke-boot.mjs && node scripts/smoke-ziwei.mjs"
   },
   "keywords": [],
   "author": "",
