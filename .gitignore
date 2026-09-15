@@ -11,3 +11,10 @@ WannianliAndroid/local.properties
 WannianliAndroid/app/build/
 .superpowers/
 impeccable/
+
+# 切勿提交私钥(已保全至 ~/.ssh/id_github)
+vincent.ine@hotmail.com
+vincent.ine@hotmail.com.pub
+
+# 隔离区/构建垃圾, 勿入版本库
+.trash_phase4/
